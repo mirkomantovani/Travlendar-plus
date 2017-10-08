@@ -1,0 +1,26 @@
+\begin{center}
+\begin{tabular}{r|p{7cm}}
+\bf\large Name&\bf\large Creation of a meeting\\
+\hline
+\hline
+\bf Actors&User\\
+\hline
+\bf Entry conditions&The user is logged in and is in the main page.\\
+\hline
+\bf Flow of events&
+\begin{itemize}
+\item The user clicks on "Create meeting" button and he is redirected to the page with the input form to create a meeting; 
+\item  The user ﬁlls up the form with the meeting information (title, location, description, date and time, flags, etc.); 
+\item  The system checks whether the meeting at the specified time and date is possible according to the speciﬁed user preferences and the current daily schedule, the optimal route is proposed.
+\item The user is then redirected to the main page
+\end{itemize}
+\\
+\hline
+\bf Exit conditions&The new meeting with the calculated optimal route is added to the user Calendar. In the case of the incompatibility of a meeting with others a warning is created.\\
+\hline
+\bf Exceptions&The information inserted is wrong or some information is missing: a corresponding error is displayed and the user is asked to modify the inserted information accordingly.
+\\
+\hline
+
+\end{tabular}
+\end{center}

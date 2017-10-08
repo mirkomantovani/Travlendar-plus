@@ -1,0 +1,26 @@
+\begin{center}
+\begin{tabular}{r|p{7cm}}
+\bf\large Name&\bf\large Solving a warning\\
+\hline
+\hline
+\bf Actors&User\\
+\hline
+\bf Entry conditions&The user is logged in and is in the page of a warning\\
+\hline
+\bf Flow of events&
+\begin{itemize}
+\item The user clicks on "Solve warning" button and he is redirected to a page that lets him
+choose how to solve the conflict: the timing of two overlapping meetings can be changed, or one of the two meetings has to be canceled; 
+\item  The user solves the conflict the way he wants and clicks on the button "Done".
+\item  The system checks whether the conflict has been solved and the user is redirected to the warnings page.
+\end{itemize}
+\\
+\hline
+\bf Exit conditions&The warning has been solved and is deleted from the system and from the list of warnings in the corresponding page\\
+\hline
+\bf Exceptions&The warning was not solved after the user's modifications, the unresolved warning will still be present and a message stating that the conflict wasn't successfully solved is displayed. The user is redirected to the warning page.
+\\
+\hline
+
+\end{tabular}
+\end{center}

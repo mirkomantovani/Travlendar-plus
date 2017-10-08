@@ -1,0 +1,25 @@
+\begin{center}
+\begin{tabular}{r|p{7cm}}
+\bf\large Name&\bf\large Activate/deactivate mean of transport\\
+\hline
+\hline
+\bf Actors&User\\
+\hline
+\bf Entry conditions&The user is logged in and is in the user preferences page\\
+\hline
+\bf Flow of events&
+\begin{itemize}
+\item The user clicks on "Choose means of transport" button and he is redirected to a page containing a list of all possible means of transport;
+\item  The user unflags all the means of transport he does not intend to use.
+\item  The user clicks on "Done" button and is redirected to the user preferences page.
+\end{itemize}
+\\
+\hline
+\bf Exit conditions&The unflagged means of transport are removed from the possible means needed to compute a route\\
+\hline
+\bf Exceptions&The user unselected every mean of transport, clicking "Done" button has no effect and an error message stating that at lest one mean of trasport has to be flagged.
+\\
+\hline
+
+\end{tabular}
+\end{center}

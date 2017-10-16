@@ -1,11 +1,56 @@
 //defining basic data types? boolean, integers, strings,
 
+abstract sig Boolean {
+	
+}
+
+one sig true extends Boolean {
+
+}
+
+one sig false extends Boolean {
+
+}
+
+sig Time {
+	hour: one Int,
+	minutes: one Int
+}
+
 sig Date {
-	year: one int,
-   	month: one int,
-	day: one int,
-	hour: one int,
-	minutes: one int
+	year: one Int,
+   	month: one Int,
+	day: one Int,
+	time: one Time
+}
+
+sig Travel {
+//duration in minutes
+	duration: one Int,
+//length in km
+	length: one Int,
+	means: set TravelMean
+}
+
+abstract sig TravelMean {
+
+}
+
+sig Preferences {
+	minimizeCarbonFootprint: one Boolean,
+//distance in km
+	maxWalkingDistance: one Int,
+	noPublicTransportsAfter: one Time,
+	breaks: set break,
+	activeMeansOfTransport: TravelMean -> one Boolean
+}
+
+sig Break {
+ 	starts: one Date,
+	ends: one Date,
+	active: one Boolean,
+	lunch: one boolean
+//if lunch min 30 mins
 }
 
 sig User {
@@ -14,21 +59,29 @@ sig User {
 	ID: one String,
 	email: one String,
 	registrationDate: one Date,
-	calendar: one Calendar
+	calendar: one Calendar,
+	preferences: one Preferences
  }
 
 sig Calendar {
 	meetings: set Meeting
 }
 
+sig Reminder {
+
+}
+
 sig Meeting {
 	location: one Location,
+	route: one Travel,
 	starts: one Date,
 	ends: one Date,
 	next: lone Meeting,
 	previous: lone Meeting,
+	reminders: set Reminder,
 //	priority: lone Priority (enum)
- 	participants: set String //just emails, or we could do users who has the app
+ 	participants: set String, //just emails, or we could do users who has the app
+	warning: lone Warning
 }
 
 sig Warning {
@@ -38,12 +91,9 @@ sig Warning {
 	#conflicts > 1
 }
 
-sig
 
 //all meetings must have a starting date	 > user registration date
 
 
-
 //no same starting date meetings
-
 //no same ID, no same email

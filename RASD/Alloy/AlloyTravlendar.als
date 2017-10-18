@@ -36,12 +36,14 @@ abstract sig TravelMean {
 
 }
 
+sig Location{}
+
 sig Preferences {
 	minimizeCarbonFootprint: one Boolean,
 //distance in km
 	maxWalkingDistance: one Int,
 	noPublicTransportsAfter: one Time,
-	breaks: set break,
+	breaks: set Break,
 	activeMeansOfTransport: TravelMean -> one Boolean
 }
 
@@ -49,7 +51,7 @@ sig Break {
  	starts: one Date,
 	ends: one Date,
 	active: one Boolean,
-	lunch: one boolean
+	lunch: one Boolean
 //if lunch min 30 mins
 }
 
@@ -90,6 +92,45 @@ sig Warning {
 //meetings set has to be at least >=2 otherwise the conflict wouldn't exist
 	#conflicts > 1
 }
+
+fun isPrecedent [m,m1: Meeting] : one Meeting{
+	m.(starts.day) > m1.(starts.day) && m.(starts.month) >= m1.(starts.month) && m.(starts.year) >= m1.(starts.year) 
+	&& m.(starts.time.hour) >= m1.(starts.time.hour) && m.(starts.time.minutes)>= m1.(starts.time.minutes) && 
+	m.(ends.day) > m1.(ends.day) && m.(ends.month) >= m1.(ends.month) && m.(ends.year) >= m1.(ends.year) 
+	&& m.(ends.time.hour) >= m1.(ends.time.hour) && m.(ends.time.minutes)>= m1.(ends.time.minutes)
+	implies m1 
+		else m
+}
+
+fact{
+ Time.hour <24 && Time.minutes < 60 
+}
+
+fact {
+Date.year >= 2017 && Date.day <=31 && Date.month <=12 
+}
+
+fact { //costraints on less than 31 days
+Date.month = 2 implies Date.day<=28 
+&&
+(Date.month=11 || Date.month = 4 || Date.month= 6 || Date.month = 9) implies Date.day<=30
+}
+
+assert noOverlappedMeetings{
+no m: Meeting, m1:Meeting | m.(starts.day) = m1.(starts.day) && m.(starts.month) = m1.(starts.month) && m.(starts.year) = m1.(starts.year) 
+	&& m.(starts.time.hour) = m1.(starts.time.hour) && m.(starts.time.minutes)= m1.(starts.time.minutes) && 
+	m.(ends.day) = m1.(ends.day) && m.(ends.month) = m1.(ends.month) && m.(ends.year) = m1.(ends.year) 
+	&& m.(ends.time.hour) = m1.(ends.time.hour) && m.(ends.time.minutes)= m1.(ends.time.minutes)
+}
+
+check noOverlappedMeetings
+
+pred show{}
+
+run show for 2 User
+
+
+
 
 
 //all meetings must have a starting date	 > user registration date

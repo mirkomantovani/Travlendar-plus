@@ -1,0 +1,155 @@
+\documentclass{article}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{underscore}
+%\usepackage{float} % here for H placement parameter
+\usepackage{flafter} 
+\setcounter{secnumdepth}{5}
+\usepackage[bookmarks=true]{hyperref}
+\author{Mirko Mantovani (893784), Matteo Marziali (893904)} 
+\date{\today}
+\title{Politecnico di Milano
+	\\A.A. 2017\@-\@2018
+	\\Software Engineering II project \\ \textbf{Travlendar+}
+	\\\textbf{R}equirements \textbf{A}nalysis \\and\\ \textbf{S}pecifications \textbf{D}ocument}
+	\hypersetup{pdftitle={Software Requirement Specification},    % title
+	pdfauthor={Mirko Mantovani, Matteo Marziali},                     % author
+	pdfsubject={RASD},                        % subject of the document
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=black,       % color of internal links
+	citecolor=blue,       % color of links to bibliography
+	filecolor=black,        % color of file links
+	urlcolor=purple,        % color of external links
+}
+\begin{document}
+\maketitle
+\begin{center}
+	\includegraphics[width=5cm]{polimi-logo}
+\end{center}
+\clearpage
+\tableofcontents
+\clearpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+\input{subsections/purpose}
+
+
+\newpage
+\subsection{Scope}
+\input{subsections/scope}
+
+\subsection{Goals}
+
+
+\subsection{Definition and Acronyms}
+
+\subsubsection{Definitions}
+\input{subsections/definitions}
+
+\subsubsection{Acronyms}
+\begin{itemize}
+	\item ETA:\@ estimated time of arrival: the time, estimated by the system, that the closest available taxi will take to get to the starting location of the ride.
+	\item API:\@ application programming interface; it is a set of routines, protocols, and tools for building software applications on top of this one.
+	
+\subsection{Revision}
+\input{subsections/revision}
+
+	
+\end{itemize}
+\subsection{Actors}
+\begin{itemize}
+	\item \textit{Guest}: 
+	\item \textit{Logged in users}:
+
+\end{itemize}
+
+\subsection{References}
+\begin{itemize}
+	\item The document with the assignment for the project
+	\item The IEEE Standard for SRS 
+\end{itemize}
+\subsection{Document Structure}
+\input{subsections/documentstructure}
+
+\clearpage
+\section{Overall description}
+
+\subsection{Product perspective}
+\input{subsections/productperspective}
+
+
+\clearpage
+
+\subsection{Product functionalities}
+\input{subsections/productfunctions}
+
+\subsection{User characteristics}
+\input{subsections/usercharacteristics}
+
+
+\subsection{Assumptions and dependencies}
+
+\subsubsection{Domain Assumptions}
+\input{subsections/domainassumptions}
+
+\subsubsection{General Assumptions}
+\input{subsections/assumptions}
+
+\clearpage
+\section{Specific requirements}
+
+\subsection{External Interface Requirements}
+
+\subsubsection{User Interfaces}
+
+\subsubsection{Software Interfaces}
+\input{subsections/softwareinterfaces}
+
+\subsection{Functional Requirements}
+\input{subsections/constraints}
+
+\subsection{Non functional requirements}
+\input{subsections/nonfunctionalrequirements}
+
+\subsection{The world and the machine}
+The first model of the system to be presented is the model ``The world and the machine'' by M. Jackson and P. Zave. This model highlights the division between phenomena that happen entirely either in the world or in the machine, and those that are shared between the two of them.
+
+immagine
+
+\subsection{Scenarios}
+\subsubsection{Scenario 1}
+
+\subsubsection{Scenario 2}
+
+\subsubsection{Scenario 3}
+
+\clearpage
+\subsection{Use Cases}
+\input{sections/usecase}
+
+
+
+\clearpage
+\subsection{Class Diagram}
+
+\section{Alloy}
+\subsection{Model}
+
+
+\subsection{Result}
+\begin{center}
+	
+	immagine dei risultati
+\end{center}
+\subsection{Worlds Generated}
+
+\section{Effort Spent}
+
+\end{document}

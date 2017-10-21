@@ -1,61 +1,54 @@
-\documentclass [b5paper,12pt,openany]{book}
-\usepackage{graphicx}
-\pdfpagewidth\paperwidth
-\pdfpageheight\paperheight
-\usepackage[italian]{babel}
-\usepackage[latin1]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+This section contains all the use cases initially described with the use cases UML model of the whole system.
 
-\begin{document}
-\pagestyle{empty}
-\noindent
-\begin{minipage}[c][\textheight][c]{\textwidth}\centering
-\textsc{\Large Mirko}
-\vfill
-\textbf{\Huge Mirko prova}
-\vfill
-\Large\oldstylenums{2010}
-\end{minipage}
+\subsubsection{User Page use cases}
+\begin{figure}[htp] 
 
-
-
-\begin{figure} 
-
-\includegraphics[width=\textwidth]{../usecases/png/userpage} 
-\caption{didascalia} 
+\includegraphics[width=\textwidth]{usecases/png/userpage} 
+\caption{Use cases relative to the user registration and authentication} 
 \label{fig:userpage} 
 \end{figure} 
 
 \newpage
-\input{../usecases/tables/signup}
-\newpage
-\input{../usecases/tables/login}
-\newpage
-\input{../usecases/tables/recoverpassword}
+\subsubsection{Sign up}
+\input{usecases/tables/signup}
 
-\begin{figure} 
-\includegraphics[width=\textwidth]{../usecases/png/schedulemanagement} 
-\caption{didascalia} 
+ \newpage
+\subsubsection{Login}
+\input{usecases/tables/login}
+\newpage
+\subsubsection{Password Recovery}
+\input{usecases/tables/recoverpassword}
+
+
+\newpage
+\subsubsection{Schedule Management use cases}
+\begin{figure}[htp] 
+\includegraphics[width=\textwidth]{usecases/png/schedulemanagement} 
+\caption{Main use cases showing the functionalities of Travlendar+ application relative to the meetings creation and management} 
 \label{fig:schedulemanagement} 
 \end{figure}
 
 \newpage
-\input{../usecases/tables/meetingcreation}
+\subsubsection{Meeting Creation}
+\input{usecases/tables/meetingcreation}
 \newpage
-\input{../usecases/tables/reminderaddition}
+\subsubsection{Reminder Addition}
+\input{usecases/tables/reminderaddition}
 \newpage
-\input{../usecases/tables/warningsolving}
+\subsubsection{Warning Solving}
+\input{usecases/tables/warningsolving}
 
-\begin{figure} 
-\includegraphics[width=\textwidth]{../usecases/png/specifyuserpreferences} 
-\caption{didascalia} 
+
+\newpage
+\subsubsection{User Preferences use cases}
+\begin{figure}[htp]
+\includegraphics[width=\textwidth]{usecases/png/specifyuserpreferences} 
+\caption{Use cases showing the user preferences and relative functonalities} 
 \label{fig:specifyuserpreferences} 
 \end{figure}
 
 \newpage
-\input{../usecases/tables/activatedeactivatemean}
+\subsubsection{Means activation/deactivation}
+\input{usecases/tables/activatedeactivatemean}
 
 
-
-\end{document}

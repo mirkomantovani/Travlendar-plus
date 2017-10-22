@@ -108,7 +108,15 @@ fact precedence{
 
 //THIS CREATES "ERRORS", NO INSTANCE FOUND
 fact conflictualMeeting{
-        some disj m1, m2: Meeting | m2 in m1.conflict implies m1 in m2.conflict
+        all disj m1, m2: Meeting | m2 in m1.conflict implies m1 in m2.conflict
+}
+
+fact noAutoConflict{
+	no m: Meeting | m in m.conflict
+}
+
+fact noConflictualMeeting{
+	some disj m1,m2: Meeting | m1 not in m2.conflict 
 }
 
 //WARNING CONSTRAINTS
@@ -125,7 +133,7 @@ fact warningExistence{ // se esistono due meeting in conflitto esiste un warning
 }
 
 fact exclusiveWarning{//se un meeting è in un warning non è in altri warning
-	all m:Meeting | some disj w1,w2:Warning | m in w1.conflicts implies m not in w2.conflicts
+	all m:Meeting | all disj w1,w2:Warning | m in w1.conflicts implies m not in w2.conflicts
 }
 
 fact onlyConflictsInSameCalendar{ //i conflitti valgono solo nello stesso calendario
@@ -144,6 +152,8 @@ fact NoEqualBreaks{
 
 }
 
+//se un meeting è in un warning allora è in conflitto con tutti i meeting contenuti nel warning
+
 
 //If a travel mean is deactivated, it can't be in any travel in any meeting
 
@@ -156,4 +166,4 @@ assert singleUserCalendar {
 pred show {
 
 }
-run show { } for 4 but exactly 3 Warning, exactly 2 Preferences, exactly 2 User
+run show { } for 10 but exactly 1 Warning, exactly 1 Preferences, exactly 1 User

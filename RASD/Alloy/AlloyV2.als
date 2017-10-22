@@ -12,23 +12,8 @@ one sig false extends Boolean {
 
 }
 
-sig Time {
-	hour: one Int,
-	minutes: one Int
-}
-
-sig Date {
-	year: one Int,
-   	month: one Int,
-	day: one Int,
-	time: one Time
-}
 
 sig Travel {
-//duration in minutes
-	duration: one Int,
-//length in km
-	length: one Int,
 	means: set TravelMean
 }
 
@@ -39,8 +24,6 @@ abstract sig TravelMean {
 sig Preferences {
 	minimizeCarbonFootprint: one Boolean,
 //distance in km
-	maxWalkingDistance: one Int,
-	noPublicTransportsAfter: one Time,
 	breaks: set Break,
 	activeMeansOfTransport: TravelMean -> one Boolean
 }{
@@ -48,15 +31,12 @@ sig Preferences {
 }
 
 sig Break {
- 	starts: one Date,
-	ends: one Date,
 	active: one Boolean,
 	lunch: one Boolean
 //if lunch min 30 mins
 }
 
 sig User {
-	registrationDate: one Date,
 	calendar: one Calendar,
 	preferences: one Preferences
  }
@@ -64,7 +44,7 @@ sig User {
 sig Calendar {
 	meetings: set Meeting
 }{
-	one u:User | this = u.calendar // A calendar must refers only to one user
+	 // A calendar must refers only to one user
 }
 
 sig Reminder {
@@ -78,14 +58,10 @@ sig Location {
 sig Meeting {
 	location: one Location,
 	route: one Travel,
-	starts: one Date,
-	duration: one Int,
-	//ends: one Date,
 	next: lone Meeting,
 	previous: lone Meeting,
 	reminders: set Reminder,
 //	priority: lone Priority (enum)
- 	participants: set String, //just emails, or we could do users who has the app
 	warning: lone Warning,
 	conflict: set Meeting
 }
@@ -109,9 +85,9 @@ fact OneCalendarPerUser{ //user has only one calendar
 	no disj c1,c2: Calendar | all u:User | c1 in u.calendar && c2 in u.calendar
 }
 
-fact emailUnicity {
-	no disj u1, u2: User | u1.email = u2.email
-}
+//fact emailUnicity {
+	//no disj u1, u2: User | u1.email = u2.email
+//}
 
 fact atLeastOneTravelMean{ //esiste almeno un mezzo di trasporto usato per ogni viaggio
 	all t:Travel | some m: TravelMean | m in t.means
@@ -130,11 +106,10 @@ fact precedence{
 	no m: Meeting | m in m.^next
 }
 
-
 //THIS CREATES "ERRORS", NO INSTANCE FOUND
-//fact conflictualMeeting{
-   //      some disj m1, m2: Meeting | m2 in m1.conflict implies m1 in m2.conflict
-//}
+fact conflictualMeeting{
+        some disj m1, m2: Meeting | m2 in m1.conflict implies m1 in m2.conflict
+}
 
 //WARNING CONSTRAINTS
 
@@ -157,9 +132,7 @@ fact onlyConflictsInSameCalendar{ //i conflitti valgono solo nello stesso calend
 	all w: Warning | all m: w.conflicts | some c: Calendar | m in c.meetings
 }
 
-
 //PREFERENCES CONSTRAINTS
-
 
 fact atLeastOneSelectedTravelMean{ //nelle preferenze deve essere selezionato almeno un mezzo di trasporto
 	all p:Preferences | some t:TravelMean |one tr:true | tr in t.(p.activeMeansOfTransport) 
@@ -174,21 +147,13 @@ fact NoEqualBreaks{
 
 //If a travel mean is deactivated, it can't be in any travel in any meeting
 
-
-
-
 assert singleUserCalendar {
 	all c:Calendar | one u:User | u.calendar = c
 }
 
 //check singleUserCalendar
 
-pred lotsOfMeetings{
-
-}
-
-
 pred show {
 
 }
-run show { } for 3 
+run show { } for 4 but exactly 3 Warning, exactly 2 Preferences, exactly 2 User

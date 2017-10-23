@@ -38,9 +38,15 @@
 \contentsline {subsubsection}{\numberline {3.6.8}Warning Solving}{21}{subsubsection.3.6.8}
 \contentsline {subsubsection}{\numberline {3.6.9}User Preferences use cases}{22}{subsubsection.3.6.9}
 \contentsline {subsubsection}{\numberline {3.6.10}Means activation/deactivation}{23}{subsubsection.3.6.10}
-\contentsline {subsection}{\numberline {3.7}Class Diagram}{24}{subsection.3.7}
-\contentsline {section}{\numberline {4}Alloy}{24}{section.4}
-\contentsline {subsection}{\numberline {4.1}Model}{24}{subsection.4.1}
-\contentsline {subsection}{\numberline {4.2}Result}{24}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Worlds Generated}{24}{subsection.4.3}
-\contentsline {section}{\numberline {5}Effort Spent}{24}{section.5}
+\contentsline {subsection}{\numberline {3.7}Activity Diagrams}{24}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Meeting creation process}{24}{subsubsection.3.7.1}
+\contentsline {subsection}{\numberline {3.8}State Charts}{26}{subsection.3.8}
+\contentsline {subsubsection}{\numberline {3.8.1}Meeting State Machine}{26}{subsubsection.3.8.1}
+\contentsline {subsubsection}{\numberline {3.8.2}Basic UX State Chart}{27}{subsubsection.3.8.2}
+\contentsline {subsection}{\numberline {3.9}Sequence Diagrams}{28}{subsection.3.9}
+\contentsline {subsection}{\numberline {3.10}Class Diagram}{29}{subsection.3.10}
+\contentsline {section}{\numberline {4}Alloy}{29}{section.4}
+\contentsline {subsection}{\numberline {4.1}Model}{29}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Result}{29}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Worlds Generated}{29}{subsection.4.3}
+\contentsline {section}{\numberline {5}Effort Spent}{29}{section.5}

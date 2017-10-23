@@ -38,9 +38,15 @@
 \BOOKMARK [3][-]{subsubsection.3.6.8}{Warning Solving}{subsection.3.6}% 38
 \BOOKMARK [3][-]{subsubsection.3.6.9}{User Preferences use cases}{subsection.3.6}% 39
 \BOOKMARK [3][-]{subsubsection.3.6.10}{Means activation/deactivation}{subsection.3.6}% 40
-\BOOKMARK [2][-]{subsection.3.7}{Class Diagram}{section.3}% 41
-\BOOKMARK [1][-]{section.4}{Alloy}{}% 42
-\BOOKMARK [2][-]{subsection.4.1}{Model}{section.4}% 43
-\BOOKMARK [2][-]{subsection.4.2}{Result}{section.4}% 44
-\BOOKMARK [2][-]{subsection.4.3}{Worlds Generated}{section.4}% 45
-\BOOKMARK [1][-]{section.5}{Effort Spent}{}% 46
+\BOOKMARK [2][-]{subsection.3.7}{Activity Diagrams}{section.3}% 41
+\BOOKMARK [3][-]{subsubsection.3.7.1}{Meeting creation process}{subsection.3.7}% 42
+\BOOKMARK [2][-]{subsection.3.8}{State Charts}{section.3}% 43
+\BOOKMARK [3][-]{subsubsection.3.8.1}{Meeting State Machine}{subsection.3.8}% 44
+\BOOKMARK [3][-]{subsubsection.3.8.2}{Basic UX State Chart}{subsection.3.8}% 45
+\BOOKMARK [2][-]{subsection.3.9}{Sequence Diagrams}{section.3}% 46
+\BOOKMARK [2][-]{subsection.3.10}{Class Diagram}{section.3}% 47
+\BOOKMARK [1][-]{section.4}{Alloy}{}% 48
+\BOOKMARK [2][-]{subsection.4.1}{Model}{section.4}% 49
+\BOOKMARK [2][-]{subsection.4.2}{Result}{section.4}% 50
+\BOOKMARK [2][-]{subsection.4.3}{Worlds Generated}{section.4}% 51
+\BOOKMARK [1][-]{section.5}{Effort Spent}{}% 52

@@ -85,6 +85,11 @@ fact OneCalendarPerUser{ //user has only one calendar
 	no disj c1,c2: Calendar | all u:User | c1 in u.calendar && c2 in u.calendar
 }
 
+fact MeetingInOnlyOneCalendar {// one meeting can be in only one calendar
+	no disj c1,c2:Calendar | some m:Meeting | m in c1.meetings  && m in c2.meetings
+
+}
+
 //fact emailUnicity {
 	//no disj u1, u2: User | u1.email = u2.email
 //}
@@ -97,6 +102,10 @@ fact atLeastOneTravelMean{ //esiste almeno un mezzo di trasporto usato per ogni 
 
 fact precedenceRelationConstraint {
 	next=~previous
+}
+
+fact{ 
+	all m:Meeting | all c:Calendar | m in c.meetings implies m.previous in c.meetings 
 }
 
 //A Meeting can't have itself as next or previous meeting nor it can be next 
@@ -126,6 +135,10 @@ fact adjacentConflicts{//ogni meeting nel set dei conflitti ha almeno o il next 
 								or m2 = m.previous or m2 = m.next
 } 
 
+fact noWarningWithoutConflicts{ // not exists meeting in a warning without being in conflict
+	all disj m1,m2:Meeting |some w:Warning |  m1 in w.conflicts && m2 in w.conflicts implies m1 in m2.conflict && m2 in m1.conflict
+}
+
 fact warningExistence{ // se esistono due meeting in conflitto esiste un warning che li contiene entrambi
 	all disj m1,m2: Meeting | m1 in m2.conflict implies one m1.warning && 
 						one m2.warning && (some w: Warning | m1 in w.conflicts
@@ -137,7 +150,11 @@ fact exclusiveWarning{//se un meeting è in un warning non è in altri warning
 }
 
 fact onlyConflictsInSameCalendar{ //i conflitti valgono solo nello stesso calendario
-	all w: Warning | all m: w.conflicts | some c: Calendar | m in c.meetings
+	all disj m1,m2:Meeting | some c:Calendar | m1 in m2.conflict and m2 in m1.conflict implies m1 in c.meetings and m2 in c.meetings
+}
+
+fact noConflictNoWarning{// empty conflict set implies empty warning set and viceversa
+	no disj m:Meeting.conflict | some w:Warning | 
 }
 
 //PREFERENCES CONSTRAINTS
@@ -151,6 +168,13 @@ fact NoEqualBreaks{
 	no disj b1,b2: Break | all u: User | b1 = b2 and b1 in u.preferences.breaks and b2 in u.preferences.breaks
 
 }
+
+fact TravelMeansAllowed{ // the travel must include only travelMeans that are selected in the preferences 
+ 	no t:TravelMean | all u:User | all p:u.preferences | all c: u.calendar | all m:c.meetings | all r: m.route |
+	some f:false | t in r.means && f in t.(p.activeMeansOfTransport) 
+	
+}
+
 
 //se un meeting è in un warning allora è in conflitto con tutti i meeting contenuti nel warning
 
@@ -166,4 +190,4 @@ assert singleUserCalendar {
 pred show {
 
 }
-run show { } for 10 but exactly 1 Warning, exactly 1 Preferences, exactly 1 User
+run show { } for 4

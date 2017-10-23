@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.7)  20 OCT 2017 10:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.7)  20 OCT 2017 12:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**PreferencesTravelMeans.tex
-(./PreferencesTravelMeans.tex
+**MockupHome.tex
+(./MockupHome.tex
 LaTeX2e <2017-04-15>
 Babel <3.10> and hyphenation patterns for 84 language(s) loaded.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
@@ -55,8 +55,8 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-(./PreferencesTravelMeans.aux)
-\openout1 = `PreferencesTravelMeans.aux'.
+(./MockupHome.aux)
+\openout1 = `MockupHome.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
 LaTeX Font Info:    ... okay on input line 4.
@@ -133,32 +133,78 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-<PreferencesTravelMeans.png, id=1, 357.335pt x 727.71875pt>
+<Homepage.png, id=1, 357.335pt x 727.71875pt>
+File: Homepage.png Graphic file (type png)
+ <use Homepage.png>
+Package pdftex.def Info: Homepage.png used on input line 7.
+(pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
+
+<QuickMenu.png, id=3, 357.335pt x 727.71875pt>
+File: QuickMenu.png Graphic file (type png)
+ <use QuickMenu.png>
+Package pdftex.def Info: QuickMenu.png used on input line 14.
+(pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
+
+<CreateMeeting.png, id=4, 357.335pt x 727.71875pt>
+File: CreateMeeting.png Graphic file (type png)
+ <use CreateMeeting.png>
+Package pdftex.def Info: CreateMeeting.png used on input line 21.
+(pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
+
+<MeetingView.png, id=5, 357.335pt x 727.71875pt>
+File: MeetingView.png Graphic file (type png)
+ <use MeetingView.png>
+Package pdftex.def Info: MeetingView.png used on input line 28.
+(pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
+
+<Warnings.png, id=6, 357.335pt x 727.71875pt>
+File: Warnings.png Graphic file (type png)
+ <use Warnings.png>
+Package pdftex.def Info: Warnings.png used on input line 35.
+(pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
+
+<PreferencesBreaks.png, id=7, 357.335pt x 727.71875pt>
+File: PreferencesBreaks.png Graphic file (type png)
+
+<use PreferencesBreaks.png>
+Package pdftex.def Info: PreferencesBreaks.png used on input line 42.
+(pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
+
+<PreferencesTravelMeans.png, id=8, 357.335pt x 727.71875pt>
 File: PreferencesTravelMeans.png Graphic file (type png)
 
 <use PreferencesTravelMeans.png>
-Package pdftex.def Info: PreferencesTravelMeans.png used on input line 7.
+Package pdftex.def Info: PreferencesTravelMeans.png used on input line 49.
 (pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
 
 
-LaTeX Warning: Float too large for page by 11.13728pt on input line 10.
+LaTeX Warning: Float too large for page by 11.13728pt on input line 52.
 
-[1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Pre
-ferencesTravelMeans.png>] (./PreferencesTravelMeans.aux) ) 
+<PreferencesRoutes.png, id=9, 357.335pt x 727.71875pt>
+File: PreferencesRoutes.png Graphic file (type png)
+
+<use PreferencesRoutes.png>
+Package pdftex.def Info: PreferencesRoutes.png used on input line 56.
+(pdftex.def)             Requested size: 251.9989pt x 513.20834pt.
+ [1{/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./Ho
+mepage.png>] [2 <./QuickMenu.png>] [3 <./CreateMeeting.png>] [4 <./MeetingView.
+png>] [5 <./Warnings.png>] [6 <./PreferencesBreaks.png>] [7 <./PreferencesTrave
+lMeans.png>] [8 <./PreferencesRoutes.png>]
+(./MockupHome.aux) ) 
 Here is how much of TeX's memory you used:
- 1468 strings out of 492995
- 21514 string characters out of 6132704
- 78201 words of memory out of 5000000
- 5041 multiletter control sequences out of 15000+600000
+ 1511 strings out of 492995
+ 22242 string characters out of 6132704
+ 80257 words of memory out of 5000000
+ 5076 multiletter control sequences out of 15000+600000
  3940 words of font info for 15 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 39i,5n,25p,248b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2
-017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-Output written on PreferencesTravelMeans.pdf (1 page, 43178 bytes).
+ 39i,5n,25p,236b,220s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr10.pfb>
+Output written on MockupHome.pdf (8 pages, 305916 bytes).
 PDF statistics:
- 15 PDF objects out of 1000 (max. 8388607)
- 8 compressed objects within 1 object stream
+ 52 PDF objects out of 1000 (max. 8388607)
+ 24 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

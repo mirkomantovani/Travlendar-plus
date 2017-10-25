@@ -66,6 +66,8 @@ sig Meeting {
 	conflict: set Meeting
 }
 
+//doppia freccia tra meeting e warning
+
 sig Warning {
 	conflicts: set Meeting
 } {
@@ -153,10 +155,13 @@ fact onlyConflictsInSameCalendar{ //i conflitti valgono solo nello stesso calend
 	all disj m1,m2:Meeting | some c:Calendar | m1 in m2.conflict and m2 in m1.conflict implies m1 in c.meetings and m2 in c.meetings
 }
 
-fact noConflictNoWarning{// empty conflict set implies empty warning set and viceversa
-	no disj m:Meeting.conflict | some w:Warning | 
-}
+//fact noConflictNoWarning{
+//	some m1,m2:Meeting | m1 not in m2.conflict implies #Warning = 0
+//}
 
+fact {// empty conflict set implies empty warning set and viceversa
+	all m:Meeting | #m.conflict=0 implies #m.warning=0
+}
 //PREFERENCES CONSTRAINTS
 
 fact atLeastOneSelectedTravelMean{ //nelle preferenze deve essere selezionato almeno un mezzo di trasporto

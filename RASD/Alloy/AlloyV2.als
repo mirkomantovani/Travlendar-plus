@@ -75,6 +75,8 @@ sig Warning {
 	#conflicts > 1
 }
 
+//problema: tutti i meeting nella stessa location
+
 //*************************************CONSTRAINTS************************************//
 
 //CARDINALITY CONSTRAINTS
@@ -87,9 +89,24 @@ fact OneCalendarPerUser{ //user has only one calendar
 	no disj c1,c2: Calendar | all u:User | c1 in u.calendar && c2 in u.calendar
 }
 
+//Different Users can't have the same Calendar
+fact noSameCalendarDifferentUsers{
+	no disj u1,u2: User | some c: Calendar | c in u1.calendar && c in u2.calendar
+}
+
 fact MeetingInOnlyOneCalendar {// one meeting can be in only one calendar
 	no disj c1,c2:Calendar | some m:Meeting | m in c1.meetings  && m in c2.meetings
 
+}
+
+//A reminder is unique for a Meeting
+fact uniqueReminderForMeeting {
+	no disj m1,m2: Meeting | some r:Reminder | r in m1.reminders && r in m2.reminders
+}
+
+//Every reminder is associated to a meeting
+fact reminderIsSetForAMeeting{
+	all r:Reminder | some m:Meeting | r in m.reminders
 }
 
 //fact emailUnicity {
@@ -130,6 +147,12 @@ fact noConflictualMeeting{
 	some disj m1,m2: Meeting | m1 not in m2.conflict 
 }
 
+//There can't be a conflict between two Meetings if they are in the same location
+fact noConflictBetweenSameLocationMeetings{
+	all disj m1,m2: Meeting | all l:Location | (m1.location = l && m2.location= l ) implies 
+ 	(m2 not in m1.conflict && m1 not in m2.conflict)
+}
+
 //WARNING CONSTRAINTS
 
 fact adjacentConflicts{//ogni meeting nel set dei conflitti ha almeno o il next o il previous nel set
@@ -145,6 +168,11 @@ fact warningExistence{ // se esistono due meeting in conflitto esiste un warning
 	all disj m1,m2: Meeting | m1 in m2.conflict implies one m1.warning && 
 						one m2.warning && (some w: Warning | m1 in w.conflicts
 												 && m2 in w.conflicts)
+}
+
+//trovati 2 meeting in un warning ma non sono in conflitto tra loro
+fact {
+	all w: Warning | all disj m1,m2: w.conflicts | m1 in m2.conflict && m2 in m1.conflict
 }
 
 fact exclusiveWarning{//se un meeting è in un warning non è in altri warning
@@ -174,11 +202,26 @@ fact NoEqualBreaks{
 
 }
 
-fact TravelMeansAllowed{ // the travel must include only travelMeans that are selected in the preferences 
- 	no t:TravelMean | all u:User | all p:u.preferences | all c: u.calendar | all m:c.meetings | all r: m.route |
-	some f:false | t in r.means && f in t.(p.activeMeansOfTransport) 
+//TRAVELS CONSTRAINTS
+
+//Meetings happening in different locations can't have the same travel to get there
+fact noDifferentLocationsSameTravelMeetings{
+	all disj m1,m2: Meeting | (m1.location != m2.location) implies (m1.route != m2.route)
 	
 }
+
+
+//There cannot exist a travel not associated to any meeting
+fact noDisassociatedTravel {
+	all t:Travel | some m:Meeting | m.route=t
+}
+
+//crea problemi, relazioni tra meansof transport verso tutto
+//fact TravelMeansAllowed{ // the travel must include only travelMeans that are selected in the preferences 
+ 	//no t:TravelMean | all u:User | all p:u.preferences | all c: u.calendar | all m:c.meetings | all r: m.route |
+//	some f:false | t in r.means && f in t.(p.activeMeansOfTransport) 
+	
+//}
 
 
 //se un meeting è in un warning allora è in conflitto con tutti i meeting contenuti nel warning
@@ -190,9 +233,11 @@ assert singleUserCalendar {
 	all c:Calendar | one u:User | u.calendar = c
 }
 
+
+
 //check singleUserCalendar
 
 pred show {
 
 }
-run show { } for 4
+run show { } for 4 but exactly 6 Meeting

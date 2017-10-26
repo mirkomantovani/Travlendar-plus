@@ -21,6 +21,38 @@ abstract sig TravelMean {
 
 }
 
+one sig Car extends TravelMean {
+
+}
+
+one sig SharedCar extends TravelMean {
+
+}
+
+one sig Bike extends TravelMean {
+
+}
+
+one sig SharedBike extends TravelMean {
+
+}
+
+one sig Train extends TravelMean {
+
+}
+
+one sig Metro extends TravelMean {
+
+}
+
+one sig Bus extends TravelMean {
+
+}
+
+one sig OnFoot extends TravelMean {
+
+}
+
 sig Preferences {
 	minimizeCarbonFootprint: one Boolean,
 //distance in km
@@ -61,9 +93,44 @@ sig Meeting {
 	next: lone Meeting,
 	previous: lone Meeting,
 	reminders: set Reminder,
-//	priority: lone Priority (enum)
+	status: one MeetingState,
 	warning: lone Warning,
 	conflict: set Meeting
+} {
+	
+}
+
+fact {
+	all m:Meeting | m.status=WithWarning implies #m.warning=1
+}
+
+fact {
+	all w:Warning | all m:w.conflicts | m.status=WithWarning
+}
+
+fact {
+	all m:Meeting | (m.status=Regular or m.status=Passed or m.status=Happening ) 
+				  implies #m.warning=0
+}
+
+abstract sig MeetingState {
+ 
+}
+
+one sig Regular extends MeetingState{
+
+}
+
+one sig WithWarning extends MeetingState{
+
+}
+
+one sig Happening extends MeetingState{
+
+}
+
+one sig Passed extends MeetingState{
+
 }
 
 //doppia freccia tra meeting e warning
@@ -92,6 +159,18 @@ fact OneCalendarPerUser{ //user has only one calendar
 //Different Users can't have the same Calendar
 fact noSameCalendarDifferentUsers{
 	no disj u1,u2: User | some c: Calendar | c in u1.calendar && c in u2.calendar
+}
+
+fact noCalendarWithoutUser{
+	all c:Calendar | some u:User| u.calendar=c
+}
+
+fact noBreakOutsidePreferences{
+	all b:Break | some p:Preferences| b in p.breaks
+}
+
+fact noUnneededLocation{
+	all l:Location | some m:Meeting | m.location=l
 }
 
 fact MeetingInOnlyOneCalendar {// one meeting can be in only one calendar
@@ -253,4 +332,4 @@ assert singleUserCalendar {
 pred show {
 
 }
-run show { } for 4 but exactly 6 Meeting
+run show { } for 3 but exactly 8 Meeting, exactly 1 User

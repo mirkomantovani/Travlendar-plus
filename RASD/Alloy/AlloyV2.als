@@ -190,6 +190,19 @@ fact onlyConflictsInSameCalendar{ //i conflitti valgono solo nello stesso calend
 fact {// empty conflict set implies empty warning set and viceversa
 	all m:Meeting | #m.conflict=0 implies #m.warning=0
 }
+
+//all meetings in a warning conflicts have to be in conflict with each other
+fact noWarningIfNoConflicts{
+	all w:Warning | all disj m1,m2: w.conflicts | m1 in m2.conflict && m2 in m1.conflict
+}
+
+//if a meeting is in a warning, the warning has the meeting in its conflicts
+fact meetingWarningRelationCorrespondance{
+	all w:Warning | all m:Meeting | (m in w.conflicts) implies (w in m.warning)
+}
+
+
+
 //PREFERENCES CONSTRAINTS
 
 fact atLeastOneSelectedTravelMean{ //nelle preferenze deve essere selezionato almeno un mezzo di trasporto
@@ -217,11 +230,11 @@ fact noDisassociatedTravel {
 }
 
 //crea problemi, relazioni tra meansof transport verso tutto
-//fact TravelMeansAllowed{ // the travel must include only travelMeans that are selected in the preferences 
- 	//no t:TravelMean | all u:User | all p:u.preferences | all c: u.calendar | all m:c.meetings | all r: m.route |
-//	some f:false | t in r.means && f in t.(p.activeMeansOfTransport) 
+fact TravelMeansAllowed{ // the travel must include only travelMeans that are selected in the preferences 
+ 	no t:TravelMean | all u:User | all p:u.preferences | all c: u.calendar | all m:c.meetings | all r: m.route |
+some f:false | t in r.means && f in t.(p.activeMeansOfTransport) 
 	
-//}
+}
 
 
 //se un meeting è in un warning allora è in conflitto con tutti i meeting contenuti nel warning

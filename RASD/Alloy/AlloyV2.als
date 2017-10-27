@@ -248,9 +248,23 @@ assert singleUserCalendar {
 
 
 
-//check singleUserCalendar
+//PREDICATES
+
+pred MeetingCreation(m:Meeting,u:User, c,c':u.calendar){ //creating a meeting m
+	//preconditions
+	all m1:c.meetings | m1 != m &&
+
+	//postconditions
+	c'.meetings = c.meetings + m
+		
+}
+
 
 pred show {
 
 }
-run show { } for 4 but exactly 6 Meeting
+//run show { } for 4 but exactly 6 Meeting
+run MeetingCreation for 3
+
+
+

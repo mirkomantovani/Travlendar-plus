@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.7)  28 OCT 2017 10:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.4.5)  28 OCT 2017 13:15
 entering extended mode
 **./RASD.tex
 (RASD.tex
@@ -350,8 +350,11 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \Hy@SectionHShift=\skip43
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 29.
+ (RASD.aux
 
-(./RASD.aux)
+LaTeX Warning: Label `fig:ux' multiply defined.
+
+)
 \openout1 = `RASD.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
@@ -368,7 +371,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
 LaTeX Font Info:    ... okay on input line 30.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 30.
- (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
+ ("C:\Users\Mirko\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 30.
@@ -422,8 +425,7 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 30.
 LaTeX Info: Redefining \pageref on input line 30.
 LaTeX Info: Redefining \nameref on input line 30.
-
-(./RASD.out) (./RASD.out)
+ (RASD.out) (RASD.out)
 \@outlinefile=\write3
 \openout3 = `RASD.out'.
 
@@ -433,45 +435,55 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 32.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 32.
- <polimi-logo.png, id=229, 293.095pt x 294.09875pt>
-File: polimi-logo.png Graphic file (type png)
 
-<use polimi-logo.png>
+<polimi-logo.png, id=235, 293.095pt x 294.09875pt>
+File: polimi-logo.png Graphic file (type png)
+ <use polimi-logo.png>
 Package pdftex.def Info: polimi-logo.png used on input line 33.
 (pdftex.def)             Requested size: 142.26378pt x 142.74991pt.
 
 [1
 
 {C:/Users/Mirko/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <./polimi-lo
-go.png>]
+go.png>] (RASD.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 2.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 2.
+ [2
 
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
+])
 \tf@toc=\write4
 \openout4 = `RASD.toc'.
 
-[2
+ [3] (subsections/purpose.tex) [4
 
-] (./subsections/scope.tex)
-(./images/worldmachine.tex
-<images/World-Machine.png, id=312, 2677.00125pt x 1505.625pt>
+]
+(subsections/scope.tex) (images/worldmachine.tex
+<images/World-Machine.png, id=320, 2677.00125pt x 1505.625pt>
 File: images/World-Machine.png Graphic file (type png)
 
 <use images/World-Machine.png>
 Package pdftex.def Info: images/World-Machine.png used on input line 6.
-(pdftex.def)             Requested size: 345.0pt x 194.03804pt.
-) [5 <./images/World-Machine.png>]
-(./subsections/goals.tex) (./subsections/definitions.tex) [6
+(pdftex.def)             Requested size: 374.77762pt x 210.78606pt.
 
-]
-(./subsections/revision.tex) (./subsections/documentstructure.tex [7]) [8]
-(./subsections/productperspective.tex) [9
+Overfull \hbox (29.77762pt too wide) in paragraph at lines 6--7
+ [] 
+ []
+
+) [5 <./images/World-Machine.png>] (subsections/goals.tex)
+(subsections/definitions.tex) [6
+
+] (subsections/revision.tex)
+(subsections/documentstructure.tex [7]) [8] (subsections/productperspective.tex
+) [9
 
 ] (subsections/productfunctions.tex
-Missing character: There is no ï¿½ in font cmr10!
-Missing character: There is no ï¿½ in font cmr10!
-Missing character: There is no ï¿½ in font cmr10!
-) (./subsections/usercharacteristics.tex) [10
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+) (subsections/usercharacteristics.tex)
+[10
 
 pdfTeX warning (ext4): destination with the same identifier (name{F1}) has been
  already used, duplicate ignored
@@ -479,44 +491,44 @@ pdfTeX warning (ext4): destination with the same identifier (name{F1}) has been
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.98 
-     ] (./subsections/domainassumptions.tex) (./subsections/assumptions.tex
-[11]) (./subsections/constraints.tex) [12] (./mockups/Mockups.tex
-<mockups/Homepage.png, id=379, 357.335pt x 727.71875pt>
+     ] (subsections/domainassumptions.tex) (subsections/assumptions.tex
+[11]) (subsections/constraints.tex) [12] (mockups/Mockups.tex
+<mockups/Homepage.png, id=386, 357.335pt x 727.71875pt>
 File: mockups/Homepage.png Graphic file (type png)
 
 <use mockups/Homepage.png>
 Package pdftex.def Info: mockups/Homepage.png used on input line 11.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/QuickMenu.png, id=380, 357.335pt x 727.71875pt>
+<mockups/QuickMenu.png, id=387, 357.335pt x 727.71875pt>
 File: mockups/QuickMenu.png Graphic file (type png)
 
 <use mockups/QuickMenu.png>
 Package pdftex.def Info: mockups/QuickMenu.png used on input line 22.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/CreateMeeting.png, id=381, 357.335pt x 727.71875pt>
+<mockups/CreateMeeting.png, id=388, 357.335pt x 727.71875pt>
 File: mockups/CreateMeeting.png Graphic file (type png)
 
 <use mockups/CreateMeeting.png>
 Package pdftex.def Info: mockups/CreateMeeting.png used on input line 32.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/MeetingView.png, id=382, 357.335pt x 727.71875pt>
+<mockups/MeetingView.png, id=389, 357.335pt x 727.71875pt>
 File: mockups/MeetingView.png Graphic file (type png)
 
 <use mockups/MeetingView.png>
 Package pdftex.def Info: mockups/MeetingView.png used on input line 43.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/Warnings.png, id=383, 357.335pt x 727.71875pt>
+<mockups/Warnings.png, id=390, 357.335pt x 727.71875pt>
 File: mockups/Warnings.png Graphic file (type png)
 
 <use mockups/Warnings.png>
 Package pdftex.def Info: mockups/Warnings.png used on input line 53.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/PreferencesTravelMeans.png, id=384, 357.335pt x 727.71875pt>
+<mockups/PreferencesTravelMeans.png, id=391, 357.335pt x 727.71875pt>
 File: mockups/PreferencesTravelMeans.png Graphic file (type png)
 
 <use mockups/PreferencesTravelMeans.png>
@@ -524,7 +536,7 @@ Package pdftex.def Info: mockups/PreferencesTravelMeans.png used on input line
 64.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/PreferencesBreaks.png, id=385, 357.335pt x 727.71875pt>
+<mockups/PreferencesBreaks.png, id=392, 357.335pt x 727.71875pt>
 File: mockups/PreferencesBreaks.png Graphic file (type png)
 
 <use mockups/PreferencesBreaks.png>
@@ -534,7 +546,7 @@ Package pdftex.def Info: mockups/PreferencesBreaks.png used on input line 75.
 
 LaTeX Warning: Float too large for page by 19.56638pt on input line 84.
 
-<mockups/PreferencesRoutes.png, id=386, 357.335pt x 727.71875pt>
+<mockups/PreferencesRoutes.png, id=393, 357.335pt x 727.71875pt>
 File: mockups/PreferencesRoutes.png Graphic file (type png)
 
 <use mockups/PreferencesRoutes.png>
@@ -550,17 +562,16 @@ LaTeX Warning: Float too large for page by 24.06638pt on input line 94.
 reateMeeting.png>] [17 <./mockups/MeetingView.png>] [18 <./mockups/Warnings.png
 >] [19 <./mockups/PreferencesTravelMeans.png>] [20 <./mockups/PreferencesBreaks
 .png>] [21 <./mockups/PreferencesRoutes.png>]
-(./subsections/softwareinterfaces.tex
+(subsections/softwareinterfaces.tex
 Overfull \hbox (0.36172pt too wide) in paragraph at lines 2--8
 \OT1/cmr/m/n/10 In ad-di-tion, we have no-ticed that the most com-plex com-pu-t
 a-tions which Travlen-
  []
 
-) (./subsections/nonfunctionalrequirements.tex [22
+) (subsections/nonfunctionalrequirements.tex [22
 
-]) [23]
-(./sections/usecase.tex
-<usecases/png/userpage.png, id=450, 566.86781pt x 627.84563pt>
+]) [23] (sections/usecase.tex
+<usecases/png/userpage.png, id=456, 566.86781pt x 627.84563pt>
 File: usecases/png/userpage.png Graphic file (type png)
 
 <use usecases/png/userpage.png>
@@ -569,34 +580,34 @@ Package pdftex.def Info: usecases/png/userpage.png used on input line 6.
  [24
 
  <./usecases/png/userpage.png>]
-(./usecases/tables/signup.tex) [25] (./usecases/tables/login.tex) [26]
-(./usecases/tables/recoverpassword.tex) [27]
-<usecases/png/schedulemanagement.png, id=473, 852.18375pt x 858.20625pt>
+(usecases/tables/signup.tex) [25] (usecases/tables/login.tex) [26]
+(usecases/tables/recoverpassword.tex) [27]
+<usecases/png/schedulemanagement.png, id=479, 852.18375pt x 858.20625pt>
 File: usecases/png/schedulemanagement.png Graphic file (type png)
 
 <use usecases/png/schedulemanagement.png>
 Package pdftex.def Info: usecases/png/schedulemanagement.png used on input line
  26.
 (pdftex.def)             Requested size: 345.0pt x 347.44067pt.
- [28 <./usecases/png/schedulemanagement.png>] (./usecases/tables/meetingcreatio
-n.tex) [29]
-(./usecases/tables/reminderaddition.tex) [30]
-(./usecases/tables/warningsolving.tex) [31]
-<usecases/png/specifyuserpreferences.png, id=496, 726.46407pt x 724.20563pt>
+ [28 <./usecases/png/schedulemanagement.png>] (usecases/tables/meetingcreation.
+tex) [29]
+(usecases/tables/reminderaddition.tex) [30] (usecases/tables/warningsolving.tex
+) [31]
+<usecases/png/specifyuserpreferences.png, id=502, 726.46407pt x 724.20563pt>
 File: usecases/png/specifyuserpreferences.png Graphic file (type png)
 
 <use usecases/png/specifyuserpreferences.png>
 Package pdftex.def Info: usecases/png/specifyuserpreferences.png used on input 
 line 45.
 (pdftex.def)             Requested size: 345.0pt x 343.93494pt.
- [32 <./usecases/png/specifyuserpreferences.png>] (./usecases/tables/activatede
-activatemean.tex
+ [32 <./usecases/png/specifyuserpreferences.png>] (usecases/tables/activatedeac
+tivatemean.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 []\OT1/cmr/bx/n/12 Activate/deactivate mean of
  []
 
-)) [33] (./sections/activitydiagrams.tex
-<activitydiagrams/meetingcreationprocess.png, id=508, 621.82312pt x 755.82375pt
+)) [33] (sections/activitydiagrams.tex
+<activitydiagrams/meetingcreationprocess.png, id=514, 621.82312pt x 755.82375pt
 >
 File: activitydiagrams/meetingcreationprocess.png Graphic file (type png)
  <use activitydiagrams/meetingcreationprocess.png>
@@ -605,9 +616,9 @@ put line 8.
 (pdftex.def)             Requested size: 345.0pt x 419.34875pt.
 ) [34
 
-] [35 <./activitydiagrams/meetingcreationprocess.png>] (./sections/statecharts.
-tex
-<statecharts/meetingstatemachine.png, id=519, 546.54187pt x 467.49657pt>
+] [35 <./activitydiagrams/meetingcreationprocess.png>] (sections/statecharts.te
+x
+<statecharts/meetingstatemachine.png, id=525, 546.54187pt x 467.49657pt>
 File: statecharts/meetingstatemachine.png Graphic file (type png)
 
 <use statecharts/meetingstatemachine.png>
@@ -616,7 +627,7 @@ Package pdftex.def Info: statecharts/meetingstatemachine.png used on input line
 (pdftex.def)             Requested size: 345.0pt x 295.1022pt.
  [36
 
- <./statecharts/meetingstatemachine.png>] <statecharts/basicux.png, id=526, 799
+ <./statecharts/meetingstatemachine.png>] <statecharts/basicux.png, id=532, 799
 .48688pt x 581.92406pt>
 File: statecharts/basicux.png Graphic file (type png)
 
@@ -624,8 +635,8 @@ File: statecharts/basicux.png Graphic file (type png)
 Package pdftex.def Info: statecharts/basicux.png used on input line 19.
 (pdftex.def)             Requested size: 345.0pt x 251.1193pt.
 ) [37 <./statecharts/basicux.png>]
-(./sequencediagrams/sequencediagrams.tex
-<sequencediagrams/signup-logIn.png, id=534, 672.26157pt x 804.00375pt>
+(sequencediagrams/sequencediagrams.tex
+<sequencediagrams/signup-logIn.png, id=540, 672.26157pt x 804.00375pt>
 File: sequencediagrams/signup-logIn.png Graphic file (type png)
 
 <use sequencediagrams/signup-logIn.png>
@@ -635,7 +646,7 @@ Package pdftex.def Info: sequencediagrams/signup-logIn.png used on input line 1
  [38
 
 ] [39 <./sequencediagrams/signup-logIn.png>]
-<sequencediagrams/meetingcreation.png, id=545, 662.475pt x 721.19438pt>
+<sequencediagrams/meetingcreation.png, id=551, 662.475pt x 721.19438pt>
 File: sequencediagrams/meetingcreation.png Graphic file (type png)
 
 <use sequencediagrams/meetingcreation.png>
@@ -643,7 +654,7 @@ Package pdftex.def Info: sequencediagrams/meetingcreation.png used on input lin
 e 29.
 (pdftex.def)             Requested size: 345.0pt x 375.57347pt.
  [40] [41 <./sequencediagrams/meetingcreation.png>]
-<sequencediagrams/Ignorewarning.png, id=556, 692.5875pt x 515.67656pt>
+<sequencediagrams/Ignorewarning.png, id=562, 692.5875pt x 515.67656pt>
 File: sequencediagrams/Ignorewarning.png Graphic file (type png)
 
 <use sequencediagrams/Ignorewarning.png>
@@ -651,7 +662,7 @@ Package pdftex.def Info: sequencediagrams/Ignorewarning.png used on input line
 46.
 (pdftex.def)             Requested size: 345.0pt x 256.87767pt.
 
-<"sequencediagrams/ warningresolution".png, id=557, 742.27313pt x 532.99126pt>
+<"sequencediagrams/ warningresolution".png, id=563, 742.27313pt x 532.99126pt>
 File: "sequencediagrams/ warningresolution".png Graphic file (type png)
 
 <use "sequencediagrams/ warningresolution".png>
@@ -660,58 +671,543 @@ t line 54.
 (pdftex.def)             Requested size: 345.0pt x 247.73265pt.
  [42 <./sequencediagrams/Ignorewarning.png>] [43 <./sequencediagrams/ warningre
 solution.png>])
-(./classdiagrams/classdiagram.tex
-<classdiagrams/ClassDiagramTravlendar+.png, id=572, 1004.25188pt x 745.28438pt>
+(classdiagrams/classdiagram.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--3
+
+ []
+
+
+<classdiagrams/ClassDiagramTravlendar+.png, id=577, 1004.25188pt x 745.28438pt>
 File: classdiagrams/ClassDiagramTravlendar+.png Graphic file (type png)
 <use classdiagrams/ClassDiagramTravlendar+.png>
 Package pdftex.def Info: classdiagrams/ClassDiagramTravlendar+.png used on inpu
 t line 8.
 (pdftex.def)             Requested size: 345.0pt x 256.03166pt.
-) [43
+) [44
 
-] [45 <./classdiagrams/ClassDiagramTravlendar+.png>] (./traceabilitytable.tex
-Overfull \hbox (163.93132pt too wide) in paragraph at lines 5--27
+ <./classdiagrams/ClassDiagramTravlendar+.png>] (traceabilitytable.tex
+Overfull \hbox (140.32016pt too wide) in paragraph at lines 5--27
 [][] 
  []
 
-) [46
+) [45
+
+] (alloy/alloynew.tex
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 3.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 3.
+
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 3.
+
+)
+Overfull \hbox (22.49677pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 -  98  []//This symbolizes every case of 'good' weather (e.g. 
+Cloudy,
+ []
+
+
+Overfull \hbox (11.99686pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 101  []//This symbolizes every case of 'bad' weather (e.g. S
+nowy,
+ []
+
+
+Overfull \hbox (38.2466pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 109  []//meetings set has to be at least >=2  otherwise the 
+conflict
+ []
+
+
+Overfull \hbox (1.49695pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 119  []//The status=With Warning implies that there is a War
+ning[] 
+ []
+
+
+Overfull \hbox (22.49673pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 121  - []all[] m:Meeting | m.status=WithWarning []implies[] 
+#m.warning=1 
+ []
+
+
+Overfull \hbox (1.49695pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 124  []//Every Meeting with a warning must have their status
+ set
+ []
+
+
+Overfull \hbox (17.24678pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 126  - []all[] w:Warning | []all[] m:w.conflicts | m.status=
+WithWarning 
+ []
+
+
+Overfull \hbox (17.24681pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 129  []//If the status is Regular, Happening or passed, the 
+Meeting
+ []
+
+
+Overfull \hbox (11.99683pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 131  - []all[] m:Meeting | (m.status=Regular []or[] m.status
+=Passed []or[]
+ []
+
+
+Overfull \hbox (38.24657pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 144  - []no[] disj c1,c2: Calendar | []all[] u:User | c1  []
+in[] u.calendar
+ []
+
+
+Overfull \hbox (32.99664pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 149  - []no[] disj u1,u2: User | []some[] c: Calendar | c []
+in[] u1.calendar
+ []
+
+
+Overfull \hbox (6.7469pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 157  []//It can't exist a Break not associated to any Prefer
+ences[] 
+ []
+
+
+Overfull \hbox (1.49695pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 162  []//It can't exist a Location not associated to any Mee
+ting[] 
+ []
+
+
+Overfull \hbox (27.74669pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 169  - []no[] disj c1,c2:Calendar | []some[] m:Meeting | m [
+]in[] c1.meetings
+ []
+
+
+Overfull \hbox (6.7469pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 173  []//For every Meeting there exists one and only one Cal
+endar
+ []
+
+
+Overfull \hbox (43.49655pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 180  - []no[] disj m1,m2: Meeting | []some[] r:Reminder | r 
+[]in[] m1.reminders
+ []
+
+
+Overfull \hbox (43.49658pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 196  []//If the forecasts say it's going to rain (WeatherFor
+ecast=Rainy)
+ []
+
+
+Overfull \hbox (27.74672pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 197  []//associated to that Meeting can't contain the follow
+ing means
+ []
+
+
+Overfull \hbox (6.74687pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 199  - []all[] m:Meeting | m.weather=Rainy []implies[] (OnFo
+ot []not[] in
+ []
+
+
+Overfull \hbox (17.24669pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 200  - - - - Bike []not[] in m.route.means []and[] SharedBik
+e []not[]
+ []
+
+
+Overfull \hbox (38.24663pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 209  []//For every Meeting in any Calendar, the previous (an
+d therefore
+ []
+
+
+Overfull \hbox (17.24678pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 211  - []all[] m:Meeting | []all[] c:Calendar | m []in[] c.m
+eetings []implies[]
+ []
+
+
+Overfull \hbox (1.49695pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 214  []//A Meeting can't have itself as next or previous mee
+ting
+ []
+
+
+Overfull \hbox (6.7469pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 215  []//of the next and so on (transitive closure), (previo
+us is
+ []
+
+
+Overfull \hbox (11.99686pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 216  []//verified because of the precedenceRelationConstrain
+t fact[] 
+ []
+
+
+Overfull \hbox (6.7469pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 221  []//If a Meeting is in conflict with another one, the s
+econd
+ []
+
+
+Overfull \hbox (1.49692pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 223  []all[] disj m1, m2: Meeting | m2  []in[] m1.conflict [
+]implies[]
+ []
+
+
+Overfull \hbox (17.24681pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 231  []//There can't be a conflict between two Meetings if t
+hey are
+ []
+
+
+Overfull \hbox (17.24678pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 233  - []all[] disj m1,m2: Meeting | []all[] l:Location | (m
+1.location
+ []
+
+
+Overfull \hbox (22.49667pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 234  - (m2  []not[] in m1.conflict and m1  []not[] in m2.con
+flict) 
+ []
+
+
+Overfull \hbox (32.99667pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 241  []//Every Meeting in his conflicts set must have the ne
+xt Meeting
+ []
+
+
+Overfull \hbox (6.74687pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 243  - []all[] m: Meeting | []all[] m2: m.conflict | m2.prev
+ious []in[]
+ []
+
+
+Overfull \hbox (1.49667pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 244  - - - - - - - - []or[] m2  = m.previous []or[]
+ []
+
+
+Overfull \hbox (22.49677pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 247  []//It can't exist a Meeting in a Warning if this Meeti
+ng isn't
+ []
+
+
+Overfull \hbox (48.74648pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 249  - []all[] disj m1,m2:Meeting |some w:Warning | m1  []in
+[] w.conflicts
+ []
+
+
+Overfull \hbox (17.24675pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 and m2  []in[] w.conflicts []implies[] m1  []in[] m2.conflict 
+and m2  []in[]
+ []
+
+
+Overfull \hbox (22.49673pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 252  []//If there exists 2  Meetings in conflict with each o
+ther,
+ []
+
+
+Overfull \hbox (17.24675pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 254  - []all[] disj m1,m2: Meeting | m1  []in[] m2.conflict 
+[]implies[]
+ []
+
+
+Overfull \hbox (17.24663pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 255  - - - - - - []one[] m2.warning and (some w: Warning
+ []
+
+
+Overfull \hbox (22.49637pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 256  - - - - - - - - - - - - and m2  []in[]
+ []
+
+
+Overfull \hbox (22.49677pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 259  []//For every pair of disjoint Meetings contained in a 
+Warning,
+ []
+
+
+Overfull \hbox (27.74666pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 261  - []all[] w: Warning | []all[] disj m1,m2: w.conflicts 
+| m1  []in[]
+ []
+
+
+Overfull \hbox (27.74669pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 266  - []all[] m:Meeting | []all[] disj w1,w2:Warning | m []
+in[] w1.conflicts
+ []
+
+
+Overfull \hbox (1.49695pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 269  []//There can only exist a conflict between Meetings in
+ the
+ []
+
+
+Overfull \hbox (59.24638pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 271  - []all[] disj m1,m2:Meeting | []some[] c:Calendar | m1
+  []in[] m2.conflict
+ []
+
+
+Overfull \hbox (11.9968pt too wide) in paragraph at lines 162--163
+[]\OT1/cmtt/m/n/10 and[] m2  []in[] m1.conflict []implies[] m1  []in[] c.meetin
+gs []and[] m2  []in[]
+ []
+
+
+Overfull \hbox (17.24681pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 274  []//Empty conflict set implies empty warning set and vi
+ceversa[] 
+ []
+
+
+Overfull \hbox (6.74684pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 276  - []all[] m:Meeting | #m.conflict=0  []implies[] #m.war
+ning=0 
+ []
+
+
+Overfull \hbox (17.24681pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 279  []//All meetings in a warning conflicts have to be in c
+onflict
+ []
+
+
+Overfull \hbox (17.24675pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 281  - []all[] w:Warning | []all[] disj m1,m2: w.conflicts |
+ m1  []in[]
+ []
+
+
+Overfull \hbox (11.99686pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 284  []//If a meeting is in a warning, the warning has the m
+eeting
+ []
+
+
+Overfull \hbox (27.74669pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 286  - []all[] w:Warning | []all[] m:Meeting | (m []in[] w.c
+onflicts) []implies[]
+ []
+
+
+Overfull \hbox (1.49695pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 294  []//In every preferences at least one travel mean has t
+o be
+ []
+
+
+Overfull \hbox (11.99683pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 296  - []all[] p:Preferences | []some[] t:TravelMean |one tr
+:true | tr
+ []
+
+
+Overfull \hbox (22.49673pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 301  - []no[] disj p1,p2:Preferences | []some[] b:Break | b 
+[]in[] p1.breaks
+ []
+
+
+Overfull \hbox (6.7469pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 307  []//Meetings happening in different locations can't hav
+e the
+ []
+
+
+Overfull \hbox (11.99683pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 309  - []all[] disj m1,m2: Meeting | (m1.location != m2.loca
+tion)
+ []
+
+
+Overfull \hbox (11.99686pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 314  []//There cannot exist a travel not associated to any m
+eeting[] 
+ []
+
+
+Overfull \hbox (17.24681pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 319  []//The travel must include only travelMeans that are s
+elected
+ []
+
+
+Overfull \hbox (6.74687pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 321  - []no[] t:TravelMean | []some[] u:User | []some[] p:u.
+preferences |
+ []
+
+
+Overfull \hbox (43.49658pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 323  []some[] f:false | t []in[] r.means and f []in[] t.(p.a
+ctiveMeansOfTransport) 
+ []
+
+
+Overfull \hbox (17.24681pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 329  []//If a travel mean is deactivated, it can't be in any
+ travel
+ []
+
+
+Overfull \hbox (6.74687pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 340  []//There can't exist 2  warning with the same meeting 
+in
+ []
+
+
+Overfull \hbox (38.2466pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 342  - []no[] disj w1,w2: Warning | []some[] m:Meeting | m [
+]in[] w1.conflicts
+ []
+
+
+Overfull \hbox (38.2466pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 348  - []no[] m: Meeting | m.weather=Rainy []and[] ((Bike []
+in[] m.route.means
+ []
+
+
+Overfull \hbox (1.49673pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 349  - - - - - - - []in[] m.route.means []or[] OnFoot []in[]
+
+ []
+
+
+Overfull \hbox (95.9961pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 355  - []no[] u:User | []some[] t:TravelMean | []some[] trav
+el: u.calendar.meetings.route
+ []
+
+
+Overfull \hbox (1.49692pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 356  - false []in[] t.(u.preferences.activeMeansOfTransport)
+ []and[]
+ []
+
+
+Overfull \hbox (53.99643pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 364  - []all[] disj m1,m2:Meeting | []some[] w:Warning | m1 
+ []in[] m2.conflict
+ []
+
+
+Overfull \hbox (32.49673pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 377  []run[] showLotsOfMeetings \OMS/cmtt/m/n/10 f g []\OT1/
+cmtt/m/n/10 for[] 3  []but[] exactly 8  Meeting,
+ []
+
+
+Overfull \hbox (6.24696pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 384  []run[] showMoreUsers \OMS/cmtt/m/n/10 f g []\OT1/cmtt/
+m/n/10 for[] 2  []but[] exactly 4  Meeting,
+ []
+
+
+Overfull \hbox (37.74669pt too wide) in paragraph at lines 162--163
+\OT1/cmtt/m/n/10 - 389  []run[] showNoMeetingsInstance \OMS/cmtt/m/n/10 f g []\
+OT1/cmtt/m/n/10 for[] 6  []but[] exactly 6  User,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 162--163
+
+ []
+
+[46
+
+] [47] [48] [49] [50] [51] [52] [53] [54] [55] (sections/alloystatic.tex
+<alloy/world1pdf.pdf, id=681, 474.10263pt x 471.65681pt>
+File: alloy/world1pdf.pdf Graphic file (type pdf)
+
+<use alloy/world1pdf.pdf>
+Package pdftex.def Info: alloy/world1pdf.pdf used on input line 10.
+(pdftex.def)             Requested size: 586.49895pt x 583.517pt.
+
+
+LaTeX Warning: Float too large for page by 67.46144pt on input line 16.
+
+[56
+
+] [57 <./alloy/world1pdf.pdf>]
+<alloy/world2pdf.pdf, id=700, 461.69118pt x 532.4397pt>
+File: alloy/world2pdf.pdf Graphic file (type pdf)
+
+<use alloy/world2pdf.pdf>
+Package pdftex.def Info: alloy/world2pdf.pdf used on input line 27.
+(pdftex.def)             Requested size: 552.0021pt x 636.59276pt.
+
+
+LaTeX Warning: Float too large for page by 120.5372pt on input line 33.
+
+) [58
+
+] [59 <./alloy/world2pdf.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 176.
+ [60
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
- [47
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
- (./RASD.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 176.
+ (RASD.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 176.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 176.
 Package rerunfilecheck Info: File `RASD.out' has not changed.
-(rerunfilecheck)             Checksum: 05B76199FAADCC14531A05777CD959DA;3910.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 172.
+(rerunfilecheck)             Checksum: 0473CA9F8BBCF51D8918FBE0C7AD3458;4102.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 176.
  ) 
 Here is how much of TeX's memory you used:
- 7342 strings out of 492995
- 111951 string characters out of 6132704
- 196442 words of memory out of 5000000
- 10551 multiletter control sequences out of 15000+600000
- 8883 words of font info for 31 fonts, out of 8000000 for 9000
+ 7385 strings out of 493333
+ 113578 string characters out of 3130144
+ 219979 words of memory out of 3000000
+ 10544 multiletter control sequences out of 15000+200000
+ 9051 words of font info for 32 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,11n,32p,679b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 28i,11n,32p,682b,386s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{F9} has been referenced but does not exist, repla
 ced by a fixed one
 
-{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
-/usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
-usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></u
-sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/l
-ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
-al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on RASD.pdf (47 pages, 1346977 bytes).
+ <C:\Users\Mirko\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tc
+rm1000.pk><C:/Users/Mirko/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb><C:/Users/Mirko/AppData/Local/Programs/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Mirko/AppData/Local/Programs/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Mirko/AppData/Local/P
+rograms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Mirko/App
+Data/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Use
+rs/Mirko/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy1
+0.pfb><C:/Users/Mirko/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmti10.pfb><C:/Users/Mirko/AppData/Local/Programs/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmtt10.pfb>
+Output written on RASD.pdf (60 pages, 1989211 bytes).
 PDF statistics:
- 704 PDF objects out of 1000 (max. 8388607)
- 600 compressed objects within 6 object streams
- 163 named destinations out of 1000 (max. 500000)
- 554 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 793 PDF objects out of 1000 (max. 8388607)
+ 180 named destinations out of 1000 (max. 500000)
+ 580 words of extra memory for PDF output out of 10000 (max. 10000000)
 

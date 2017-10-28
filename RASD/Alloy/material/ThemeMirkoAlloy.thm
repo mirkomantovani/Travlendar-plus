@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<alloy>
+
+<view nodetheme="Martha">
+
+<defaultnode/>
+
+<defaultedge/>
+
+<node>
+   <type name="Bus"/>
+   <type name="Car"/>
+   <type name="false"/>
+   <type name="Happening"/>
+   <type name="Int"/>
+   <type name="Metro"/>
+   <type name="OnFoot"/>
+   <type name="Passed"/>
+   <type name="Rainy"/>
+   <type name="Regular"/>
+   <type name="SharedBike"/>
+   <type name="SharedCar"/>
+   <type name="String"/>
+   <type name="Sunny"/>
+   <type name="Train"/>
+   <type name="true"/>
+   <type name="univ"/>
+   <type name="WithWarning"/>
+   <type name="seq/Int"/>
+</node>
+
+<node shape="Circle" color="Green">
+   <type name="Travel"/>
+</node>
+
+<node shape="Diamond" color="Blue">
+   <type name="Location"/>
+</node>
+
+<node shape="Egg" color="Gray">
+   <type name="Calendar"/>
+   <type name="Preferences"/>
+</node>
+
+<node shape="Ellipse" color="Yellow">
+   <type name="Break"/>
+</node>
+
+<node shape="Hexagon" color="White">
+   <type name="Reminder"/>
+</node>
+
+<node shape="Hexagon" color="Yellow">
+   <type name="User"/>
+</node>
+
+<node shape="Triangle" color="Black">
+   <type name="Warning"/>
+</node>
+
+<node style="Bold" shape="Dbl Octagon" color="Red">
+   <type name="Meeting"/>
+</node>
+
+<node visible="no">
+   <type name="Bike"/>
+   <type name="Boolean"/>
+   <type name="MeetingState"/>
+   <type name="TravelMean"/>
+   <type name="WeatherForecast"/>
+</node>
+
+<edge color="Black" style="Bold" weight="4">
+   <relation name="conflict"> <type name="Meeting"/> <type name="Meeting"/> </relation>
+</edge>
+
+<edge color="Gray" constraint="no">
+   <relation name="activeMeansOfTransport"> <type name="Preferences"/> <type name="TravelMean"/> <type name="Boolean"/> </relation>
+</edge>
+
+<edge color="Gray" visible="no" attribute="no" constraint="no">
+   <relation name="$lotsOfMeetings_m&apos;&apos;"> <type name="Travel"/> <type name="TravelMean"/> </relation>
+   <relation name="$lotsOfMeetings_t"> <type name="Preferences"/> <type name="TravelMean"/> </relation>
+</edge>
+
+<edge color="Gray" visible="no" attribute="yes" constraint="no">
+   <relation name="active"> <type name="Break"/> <type name="Boolean"/> </relation>
+   <relation name="lunch"> <type name="Break"/> <type name="Boolean"/> </relation>
+   <relation name="means"> <type name="Travel"/> <type name="TravelMean"/> </relation>
+   <relation name="minimizeCarbonFootprint"> <type name="Preferences"/> <type name="Boolean"/> </relation>
+   <relation name="status"> <type name="Meeting"/> <type name="MeetingState"/> </relation>
+   <relation name="weather"> <type name="Meeting"/> <type name="WeatherForecast"/> </relation>
+</edge>
+
+<edge style="Bold">
+   <relation name="warning"> <type name="Meeting"/> <type name="Warning"/> </relation>
+</edge>
+
+<edge style="Dashed">
+   <relation name="route"> <type name="Meeting"/> <type name="Travel"/> </relation>
+</edge>
+
+<edge style="Dotted">
+   <relation name="meetings"> <type name="Calendar"/> <type name="Meeting"/> </relation>
+</edge>
+
+<edge visible="no">
+   <relation name="$lotsOfMeetings_m"> <type name="Location"/> <type name="Meeting"/> </relation>
+   <relation name="$lotsOfMeetings_m&apos;"> <type name="Reminder"/> <type name="Meeting"/> </relation>
+   <relation name="$lotsOfMeetings_m&apos;&apos;&apos;"> <type name="Travel"/> <type name="Meeting"/> </relation>
+   <relation name="$lotsOfMeetings_p"> <type name="Break"/> <type name="Preferences"/> </relation>
+   <relation name="$lotsOfMeetings_u"> <type name="Calendar"/> <type name="User"/> </relation>
+</edge>
+
+<edge visible="no" attribute="yes">
+   <relation name="conflicts"> <type name="Warning"/> <type name="Meeting"/> </relation>
+   <relation name="next"> <type name="Meeting"/> <type name="Meeting"/> </relation>
+   <relation name="previous"> <type name="Meeting"/> <type name="Meeting"/> </relation>
+</edge>
+
+</view>
+
+</alloy>

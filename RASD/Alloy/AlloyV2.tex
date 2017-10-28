@@ -1,0 +1,389 @@
+\-     \ \ 1    \qquad {\color{green}/{\color{green}/***************************                                                 ************************SIGNATURES**********************************************                                                 **/}/}\\
+\-     \ \ 2    \qquad \\
+\-     \ \ 3    \qquad {\color{blue}abstract} {\color{blue}sig} Boolean \{\\
+\-     \ \ 4    \qquad \\
+\-     \ \ 5    \qquad \}\\
+\-     \ \ 6    \qquad \\
+\-     \ \ 7    \qquad {\color{blue}one} {\color{blue}sig} true {\color{blue}ext                                                 ends} Boolean \{ \}\\
+\-     \ \ 8    \qquad \\
+\-     \ \ 9    \qquad {\color{blue}one} {\color{blue}sig} false {\color{blue}ex                                                 tends} Boolean \{ \}\\
+\-    \ 10      \qquad \\
+\-    \ 11      \qquad \\
+\-    \ 12      \qquad {\color{blue}sig} Travel \{\\
+\-    \ 13      \qquad \-\qquad means: {\color{blue}set} TravelMean\\
+\-    \ 14      \qquad \}\\
+\-    \ 15      \qquad \\
+\-    \ 16      \qquad {\color{blue}abstract} {\color{blue}sig} TravelMean \{ \}                                                 \\
+\-    \ 17      \qquad \\
+\-    \ 18      \qquad {\color{blue}one} {\color{blue}sig} Car {\color{blue}exte                                                 nds} TravelMean \{\\
+\-    \ 19      \qquad \\
+\-    \ 20      \qquad \}\\
+\-    \ 21      \qquad \\
+\-    \ 22      \qquad {\color{blue}one} {\color{blue}sig} SharedCar {\color{blu                                                 e}extends} TravelMean \{ \}\\
+\-    \ 23      \qquad \\
+\-    \ 24      \qquad {\color{blue}one} {\color{blue}sig} Bike {\color{blue}ext                                                 ends} TravelMean \{ \}\\
+\-    \ 25      \qquad \\
+\-    \ 26      \qquad {\color{blue}one} {\color{blue}sig} SharedBike {\color{bl                                                 ue}extends} TravelMean \{ \}\\
+\-    \ 27      \qquad \\
+\-    \ 28      \qquad {\color{blue}one} {\color{blue}sig} Train {\color{blue}ex                                                 tends} TravelMean \{ \}\\
+\-    \ 29      \qquad \\
+\-    \ 30      \qquad {\color{blue}one} {\color{blue}sig} Metro {\color{blue}ex                                                 tends} TravelMean \{ \}\\
+\-    \ 31      \qquad \\
+\-    \ 32      \qquad {\color{blue}one} {\color{blue}sig} Bus {\color{blue}exte                                                 nds} TravelMean \{ \}\\
+\-    \ 33      \qquad \\
+\-    \ 34      \qquad {\color{blue}one} {\color{blue}sig} OnFoot {\color{blue}e                                                 xtends} TravelMean \{ \}\\
+\-    \ 35      \qquad \\
+\-    \ 36      \qquad {\color{blue}sig} Preferences \{\\
+\-    \ 37      \qquad \-\qquad minimizeCarbonFootprint: {\color{blue}one} Boole                                                 an,\\
+\-    \ 38      \qquad \-\qquad breaks: {\color{blue}set} Break,\\
+\-    \ 39      \qquad \-\qquad activeMeansOfTransport: TravelMean -> {\color{bl                                                 ue}one} Boolean\\
+\-    \ 40      \qquad \}\{\\
+\-    \ 41      \qquad \-\qquad  {\color{green}// A {\color{blue}set} of prefere                                                 nces must refers only to {\color{blue}one} user}\\
+\-    \ 42      \qquad \-\qquad {\color{blue}one} u:User | this = u.preferences\                                                 \
+\-    \ 43      \qquad \}\\
+\-    \ 44      \qquad \\
+\-    \ 45      \qquad {\color{blue}sig} Break \{\\
+\-    \ 46      \qquad \-\qquad active: {\color{blue}one} Boolean,\\
+\-    \ 47      \qquad \-\qquad lunch: {\color{blue}one} Boolean\\
+\-    \ 48      \qquad \}\\
+\-    \ 49      \qquad \\
+\-    \ 50      \qquad {\color{blue}sig} User \{\\
+\-    \ 51      \qquad \-\qquad calendar: {\color{blue}one} Calendar,\\
+\-    \ 52      \qquad \-\qquad preferences: {\color{blue}one} Preferences\\
+\-    \ 53      \qquad  \}\\
+\-    \ 54      \qquad \\
+\-    \ 55      \qquad {\color{blue}sig} Calendar \{\\
+\-    \ 56      \qquad \-\qquad meetings: {\color{blue}set} Meeting\\
+\-    \ 57      \qquad \}\{\\
+\-    \ 58      \qquad \-\qquad  {\color{green}// A calendar must refers only to                                                  {\color{blue}one} user}\\
+\-    \ 59      \qquad \-\qquad {\color{blue}one} u:User | this = u.calendar\\
+\-    \ 60      \qquad \}\\
+\-    \ 61      \qquad \\
+\-    \ 62      \qquad {\color{blue}sig} Reminder \{\\
+\-    \ 63      \qquad \\
+\-    \ 64      \qquad \}\\
+\-    \ 65      \qquad \\
+\-    \ 66      \qquad {\color{blue}sig} Location \{\\
+\-    \ 67      \qquad \\
+\-    \ 68      \qquad \}\\
+\-    \ 69      \qquad \\
+\-    \ 70      \qquad {\color{blue}sig} Meeting \{\\
+\-    \ 71      \qquad \-\qquad location: {\color{blue}one} Location,\\
+\-    \ 72      \qquad \-\qquad route: {\color{blue}one} Travel,\\
+\-    \ 73      \qquad \-\qquad next: {\color{blue}lone} Meeting,\\
+\-    \ 74      \qquad \-\qquad previous: {\color{blue}lone} Meeting,\\
+\-    \ 75      \qquad \-\qquad reminders: {\color{blue}set} Reminder,\\
+\-    \ 76      \qquad \-\qquad status: {\color{blue}one} MeetingState,\\
+\-    \ 77      \qquad \-\qquad warning: {\color{blue}lone} Warning,\\
+\-    \ 78      \qquad \-\qquad conflict: {\color{blue}set} Meeting,\\
+\-    \ 79      \qquad \-\qquad weather: {\color{blue}one} WeatherForecast\\
+\-    \ 80      \qquad \} \\
+\-    \ 81      \qquad \\
+\-    \ 82      \qquad {\color{blue}abstract} {\color{blue}sig} MeetingState \{\                                                 \
+\-    \ 83      \qquad  \\
+\-    \ 84      \qquad \}\\
+\-    \ 85      \qquad \\
+\-    \ 86      \qquad {\color{blue}one} {\color{blue}sig} Regular {\color{blue}                                                 extends} MeetingState\{ \}\\
+\-    \ 87      \qquad \\
+\-    \ 88      \qquad {\color{blue}one} {\color{blue}sig} WithWarning {\color{b                                                 lue}extends} MeetingState\{ \}\\
+\-    \ 89      \qquad \\
+\-    \ 90      \qquad {\color{blue}one} {\color{blue}sig} Happening {\color{blu                                                 e}extends} MeetingState\{ \}\\
+\-    \ 91      \qquad \\
+\-    \ 92      \qquad {\color{blue}one} {\color{blue}sig} Passed {\color{blue}e                                                 xtends} MeetingState\{ \}\\
+\-    \ 93      \qquad \\
+\-    \ 94      \qquad {\color{blue}abstract} {\color{blue}sig} WeatherForecast                                                  \{\\
+\-    \ 95      \qquad \\
+\-    \ 96      \qquad \}\\
+\-    \ 97      \qquad \\
+\-    \ 98      \qquad {\color{green}//This symbolizes every case of 'good' weat                                                 her (e.g. Cloudy, Partially Cloudy, etc.)}\\
+\-    \ 99      \qquad {\color{blue}one} {\color{blue}sig} Sunny {\color{blue}ex                                                 tends} WeatherForecast\{ \}\\
+\-   100        \qquad \\
+\-   101        \qquad {\color{green}//This symbolizes every case of 'bad' weath                                                 er (e.g. Snowy, Stormy, extremely Windy, etc.)}\\
+\-   102        \qquad {\color{blue}one} {\color{blue}sig} Rainy {\color{blue}ex                                                 tends} WeatherForecast \{ \}\\
+\-   103        \qquad \\
+\-   104        \qquad {\color{green}//doppia freccia tra meeting e warning}\\
+\-   105        \qquad \\
+\-   106        \qquad {\color{blue}sig} Warning \{\\
+\-   107        \qquad \-\qquad conflicts: {\color{blue}set} Meeting\\
+\-   108        \qquad \} \{\\
+\-   109        \qquad {\color{green}//meetings set has to be at least >=2 \qqua                                                 d otherwise the conflict wouldn't exist}\\
+\-   110        \qquad \-\qquad \#conflicts > 1\\
+\-   111        \qquad \}\\
+\-   112        \qquad \\
+\-   113        \qquad {\color{green}//problema: tutti i meeting nella stessa lo                                                 cation}\\
+\-   114        \qquad \\
+\-   115        \qquad {\color{green}/{\color{green}/***************************                                                 ***********************CONSTRAINTS**********************************************                                                 /}/}\\
+\-   116        \qquad \\
+\-   117        \qquad {\color{green}//-----------------------------------------                                                 ------------------------------------MEETING STATUS CONSTRAINTS}\\
+\-   118        \qquad \\
+\-   119        \qquad {\color{green}//The status=With Warning implies that ther                                                 e is a Warning}\\
+\-   120        \qquad {\color{blue}fact} \{\\
+\-   121        \qquad \-\qquad {\color{blue}all} m:Meeting | m.status=WithWarni                                                 ng {\color{blue}implies} \#m.warning=1\\
+\-   122        \qquad \}\\
+\-   123        \qquad \\
+\-   124        \qquad {\color{green}//Every Meeting with a warning must have th                                                 eir status set to With Warning}\\
+\-   125        \qquad {\color{blue}fact} \{\\
+\-   126        \qquad \-\qquad {\color{blue}all} w:Warning | {\color{blue}all}                                                  m:w.conflicts | m.status=WithWarning\\
+\-   127        \qquad \}\\
+\-   128        \qquad \\
+\-   129        \qquad {\color{green}//If the status is Regular, Happening or pa                                                 ssed, the Meeting does not have any Warning}\\
+\-   130        \qquad {\color{blue}fact} \{\\
+\-   131        \qquad \-\qquad {\color{blue}all} m:Meeting | (m.status=Regular                                                  {\color{blue}or} m.status=Passed {\color{blue}or} m.status=Happening ) \\
+\-   132        \qquad \-\qquad \-\qquad \-\qquad \-\qquad   {\color{blue}implie                                                 s} \#m.warning=0\\
+\-   133        \qquad \}\\
+\-   134        \qquad \\
+\-   135        \qquad {\color{green}//-----------------------------------------                                                 ------------------------------------------CARDINALITY CONSTRAINTS}\\
+\-   136        \qquad \\
+\-   137        \qquad {\color{green}//Function to retrieve the Calendar owner}\                                                 \
+\-   138        \qquad {\color{blue}fun} calendarOwner[c: Calendar]: {\color{blu                                                 e}set} User \{\\
+\-   139        \qquad \-\qquad \{u: User | u.calendar = c\}\\
+\-   140        \qquad \}\\
+\-   141        \qquad \\
+\-   142        \qquad {\color{green}//A User can only have one Calendar}\\
+\-   143        \qquad {\color{blue}fact} OneCalendarPerUser\{ \\
+\-   144        \qquad \-\qquad {\color{blue}no} disj c1,c2: Calendar | {\color{                                                 blue}all} u:User | c1 \qquad {\color{blue}in} u.calendar && c2 \qquad {\color{bl                                                 ue}in} u.calendar\\
+\-   145        \qquad \}\\
+\-   146        \qquad \\
+\-   147        \qquad {\color{green}//Different Users can't have the same Calen                                                 dar}\\
+\-   148        \qquad {\color{blue}fact} noSameCalendarDifferentUsers\{\\
+\-   149        \qquad \-\qquad {\color{blue}no} disj u1,u2: User | {\color{blue                                                 }some} c: Calendar | c {\color{blue}in} u1.calendar && c {\color{blue}in} u2.cal                                                 endar\\
+\-   150        \qquad \}\\
+\-   151        \qquad \\
+\-   152        \qquad {\color{green}//It can't exist a Calendar not associated                                                  to any User}\\
+\-   153        \qquad {\color{blue}fact} noCalendarWithoutUser\{\\
+\-   154        \qquad \-\qquad {\color{blue}all} c:Calendar | {\color{blue}some                                                 } u:User| u.calendar=c\\
+\-   155        \qquad \}\\
+\-   156        \qquad \\
+\-   157        \qquad {\color{green}//It can't exist a Break not associated to                                                  any Preferences}\\
+\-   158        \qquad {\color{blue}fact} noBreakOutsidePreferences\{\\
+\-   159        \qquad \-\qquad {\color{blue}all} b:Break | {\color{blue}some} p                                                 :Preferences| b {\color{blue}in} p.breaks\\
+\-   160        \qquad \}\\
+\-   161        \qquad \\
+\-   162        \qquad {\color{green}//It can't exist a Location not associated                                                  to any Meeting}\\
+\-   163        \qquad {\color{blue}fact} noUnneededLocation\{\\
+\-   164        \qquad \-\qquad {\color{blue}all} l:Location | {\color{blue}some                                                 } m:Meeting | m.location=l\\
+\-   165        \qquad \}\\
+\-   166        \qquad \\
+\-   167        \qquad {\color{green}//One meeting can be in only one calendar}\                                                 \
+\-   168        \qquad {\color{blue}fact} MeetingInOnlyOneCalendar \{\\
+\-   169        \qquad \-\qquad {\color{blue}no} disj c1,c2:Calendar | {\color{b                                                 lue}some} m:Meeting | m {\color{blue}in} c1.meetings  && m {\color{blue}in} c2.m                                                 eetings\\
+\-   170        \qquad \\
+\-   171        \qquad \}\\
+\-   172        \qquad \\
+\-   173        \qquad {\color{green}//For every Meeting there exists one and on                                                 ly one Calendar containing it}\\
+\-   174        \qquad {\color{blue}fact} noMeetingOutsideCalendar\{\\
+\-   175        \qquad \-\qquad {\color{blue}all} m:Meeting | {\color{blue}some}                                                  c:Calendar | m {\color{blue}in} c.meetings\\
+\-   176        \qquad \}\\
+\-   177        \qquad \\
+\-   178        \qquad {\color{green}//A reminder is unique for a Meeting}\\
+\-   179        \qquad {\color{blue}fact} uniqueReminderForMeeting \{\\
+\-   180        \qquad \-\qquad {\color{blue}no} disj m1,m2: Meeting | {\color{b                                                 lue}some} r:Reminder | r {\color{blue}in} m1.reminders && r {\color{blue}in} m2.                                                 reminders\\
+\-   181        \qquad \}\\
+\-   182        \qquad \\
+\-   183        \qquad {\color{green}//Every reminder is associated to a meeting                                                 }\\
+\-   184        \qquad {\color{blue}fact} reminderIsSetForAMeeting\{\\
+\-   185        \qquad \-\qquad {\color{blue}all} r:Reminder | {\color{blue}some                                                 } m:Meeting | r {\color{blue}in} m.reminders\\
+\-   186        \qquad \}\\
+\-   187        \qquad \\
+\-   188        \qquad {\color{green}//There exists at least one Travel Mean for                                                  any Travel}\\
+\-   189        \qquad {\color{blue}fact} atLeastOneTravelMean\{ \\
+\-   190        \qquad \-\qquad {\color{blue}all} t:Travel | {\color{blue}some}                                                  m: TravelMean | m {\color{blue}in} t.means\\
+\-   191        \qquad \}\\
+\-   192        \qquad \\
+\-   193        \qquad {\color{green}//-----------------------------------------                                                 ------------------------------------------WEATHER CONSTRAINTS}\\
+\-   194        \qquad \\
+\-   195        \qquad \\
+\-   196        \qquad {\color{green}//If the forecasts say it's going to rain (                                                 WeatherForecast=Rainy) in the date of a Meeting, the Travel}\\
+\-   197        \qquad {\color{green}//associated to that Meeting can't contain                                                  the following means of transport: OnFoot, Bike, SharedBike}\\
+\-   198        \qquad {\color{blue}fact}  dontWetUsers \{\\
+\-   199        \qquad \-\qquad {\color{blue}all} m:Meeting | m.weather=Rainy {\                                                 color{blue}implies} (OnFoot {\color{blue}not} in m.route.means {\color{blue}and}                                                  \\
+\-   200        \qquad \-\qquad \-\qquad \-\qquad \-\qquad Bike {\color{blue}not                                                 } in m.route.means {\color{blue}and} SharedBike {\color{blue}not} in m.route.mea                                                 ns)\\
+\-   201        \qquad \}\\
+\-   202        \qquad \\
+\-   203        \qquad {\color{green}//-----------------------------------------                                                 ------------------------------------------MEETINGS CONSTRAINTS}\\
+\-   204        \qquad \\
+\-   205        \qquad {\color{blue}fact} precedenceRelationConstraint \{\\
+\-   206        \qquad \-\qquad next=~previous\\
+\-   207        \qquad \}\\
+\-   208        \qquad \\
+\-   209        \qquad {\color{green}//For every Meeting in any Calendar, the pr                                                 evious (and therefore also the next) is in that Calendar}\\
+\-   210        \qquad fact\{ \\
+\-   211        \qquad \-\qquad {\color{blue}all} m:Meeting | {\color{blue}all}                                                  c:Calendar | m {\color{blue}in} c.meetings {\color{blue}implies} m.previous {\co                                                 lor{blue}in} c.meetings \\
+\-   212        \qquad \}\\
+\-   213        \qquad \\
+\-   214        \qquad {\color{green}//A Meeting can't have itself as next or pr                                                 evious meeting nor it can be next }\\
+\-   215        \qquad {\color{green}//of the next and so on (transitive closure                                                 ), (previous is automatically }\\
+\-   216        \qquad {\color{green}//verified because of the precedenceRelatio                                                 nConstraint fact}\\
+\-   217        \qquad {\color{blue}fact} precedence\{\\
+\-   218        \qquad \-\qquad {\color{blue}no} m: Meeting | m {\color{blue}in}                                                  m.\string^next\\
+\-   219        \qquad \}\\
+\-   220        \qquad \\
+\-   221        \qquad {\color{green}//If a Meeting is in conflict with another                                                  one, the second one must be in conflict with the first one}\\
+\-   222        \qquad {\color{blue}fact} conflictualMeeting\{\\
+\-   223        \qquad         {\color{blue}all} disj m1, m2: Meeting | m2 \qqua                                                 d {\color{blue}in} m1.conflict {\color{blue}implies} m1 \qquad {\color{blue}in}                                                  m2.conflict\\
+\-   224        \qquad \}\\
+\-   225        \qquad \\
+\-   226        \qquad {\color{green}//A Meeting can't be in conflict with itsel                                                 f}\\
+\-   227        \qquad {\color{blue}fact} noAutoConflict\{\\
+\-   228        \qquad \-\qquad {\color{blue}no} m: Meeting | m {\color{blue}in}                                                  m.conflict\\
+\-   229        \qquad \}\\
+\-   230        \qquad \\
+\-   231        \qquad {\color{green}//There can't be a conflict between two Mee                                                 tings if they are in the same location}\\
+\-   232        \qquad {\color{blue}fact} noConflictBetweenSameLocationMeetings\                                                 {\\
+\-   233        \qquad \-\qquad {\color{blue}all} disj m1,m2: Meeting | {\color{                                                 blue}all} l:Location | (m1.location = l && m2.location= l ) {\color{blue}implies                                                 } \\
+\-   234        \qquad  \-\qquad (m2 \qquad {\color{blue}not} in m1.conflict &&                                                  m1 \qquad {\color{blue}not} in m2.conflict)\\
+\-   235        \qquad \}\\
+\-   236        \qquad \\
+\-   237        \qquad \\
+\-   238        \qquad {\color{green}//-----------------------------------------                                                 ----------------------------------------WARNING CONSTRAINTS}\\
+\-   239        \qquad \\
+\-   240        \qquad \\
+\-   241        \qquad {\color{green}//Every Meeting in his conflicts set must h                                                 ave the next Meeting or the Previous Meeting in the set}\\
+\-   242        \qquad {\color{blue}fact} adjacentConflicts\{\\
+\-   243        \qquad \-\qquad {\color{blue}all} m: Meeting | {\color{blue}all}                                                  m2: m.conflict | m2.previous {\color{blue}in} m2 \qquad {\color{blue}or} m2.nex                                                 t {\color{blue}in} m2 \qquad \\
+\-   244        \qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\                                                 qquad \-\qquad {\color{blue}or} m2 \qquad = m.previous {\color{blue}or} m2 \qqua                                                 d = m.next\\
+\-   245        \qquad \} \\
+\-   246        \qquad \\
+\-   247        \qquad {\color{green}//It can't exist a Meeting in a Warning if                                                  this Meeting isn't in conflict with some other Meeting}\\
+\-   248        \qquad {\color{blue}fact} noWarningWithoutConflicts\{\\
+\-   249        \qquad \-\qquad {\color{blue}all} disj m1,m2:Meeting |some w:War                                                 ning |  m1 \qquad {\color{blue}in} w.conflicts && m2 \qquad {\color{blue}in} w.c                                                 onflicts {\color{blue}implies} m1 \qquad {\color{blue}in} m2.conflict && m2 \qqu                                                 ad {\color{blue}in} m1.conflict\\
+\-   250        \qquad \}\\
+\-   251        \qquad \\
+\-   252        \qquad {\color{green}//If there exists 2 \qquad Meetings in conf                                                 lict with each other, there exists a Warning containing both of them}\\
+\-   253        \qquad {\color{blue}fact} warningExistence\{ \\
+\-   254        \qquad \-\qquad {\color{blue}all} disj m1,m2: Meeting | m1 \qqua                                                 d {\color{blue}in} m2.conflict {\color{blue}implies} one m1.warning && \\
+\-   255        \qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad {\c                                                 olor{blue}one} m2.warning && (some w: Warning | m1 \qquad {\color{blue}in} w.con                                                 flicts\\
+\-   256        \qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\                                                 qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad  && m2 \qquad {\color{blue}in                                                 } w.conflicts)\\
+\-   257        \qquad \}\\
+\-   258        \qquad \\
+\-   259        \qquad {\color{green}//For every pair of disjoint Meetings conta                                                 ined in a Warning, one is in the conflict set of the other and viceversa}\\
+\-   260        \qquad {\color{blue}fact} \{\\
+\-   261        \qquad \-\qquad {\color{blue}all} w: Warning | {\color{blue}all}                                                  disj m1,m2: w.conflicts | m1 \qquad {\color{blue}in} m2.conflict && m2 \qquad {                                                 \color{blue}in} m1.conflict\\
+\-   262        \qquad \}\\
+\-   263        \qquad \\
+\-   264        \qquad {\color{green}//A meeting can only be contained in one Wa                                                 rning              }\\
+\-   265        \qquad {\color{blue}fact} exclusiveWarning\{\\
+\-   266        \qquad \-\qquad {\color{blue}all} m:Meeting | {\color{blue}all}                                                  disj w1,w2:Warning | m {\color{blue}in} w1.conflicts {\color{blue}implies} m {\c                                                 olor{blue}not} in w2.conflicts\\
+\-   267        \qquad \}\\
+\-   268        \qquad \\
+\-   269        \qquad {\color{green}//There can only exist a conflict between M                                                 eetings in the same Calendar}\\
+\-   270        \qquad {\color{blue}fact} onlyConflictsInSameCalendar\{ \\
+\-   271        \qquad \-\qquad {\color{blue}all} disj m1,m2:Meeting | {\color{b                                                 lue}some} c:Calendar | m1 \qquad {\color{blue}in} m2.conflict {\color{blue}and}                                                  m2 \qquad {\color{blue}in} m1.conflict {\color{blue}implies} m1 \qquad {\color{b                                                 lue}in} c.meetings {\color{blue}and} m2 \qquad {\color{blue}in} c.meetings\\
+\-   272        \qquad \}\\
+\-   273        \qquad \\
+\-   274        \qquad {\color{green}//Empty conflict set implies empty warning                                                  set and viceversa}\\
+\-   275        \qquad {\color{blue}fact} \{\\
+\-   276        \qquad \-\qquad {\color{blue}all} m:Meeting | \#m.conflict=0 \qq                                                 uad {\color{blue}implies} \#m.warning=0\\
+\-   277        \qquad \}\\
+\-   278        \qquad \\
+\-   279        \qquad {\color{green}//All meetings in a warning conflicts have                                                  to be in conflict with each other}\\
+\-   280        \qquad {\color{blue}fact} noWarningIfNoConflicts\{\\
+\-   281        \qquad \-\qquad {\color{blue}all} w:Warning | {\color{blue}all}                                                  disj m1,m2: w.conflicts | m1 \qquad {\color{blue}in} m2.conflict && m2 \qquad {\                                                 color{blue}in} m1.conflict\\
+\-   282        \qquad \}\\
+\-   283        \qquad \\
+\-   284        \qquad {\color{green}//If a meeting is in a warning, the warning                                                  has the meeting in its conflicts}\\
+\-   285        \qquad {\color{blue}fact} meetingWarningRelationCorrespondance\{                                                 \\
+\-   286        \qquad \-\qquad {\color{blue}all} w:Warning | {\color{blue}all}                                                  m:Meeting | (m {\color{blue}in} w.conflicts) {\color{blue}implies} (w {\color{bl                                                 ue}in} m.warning)\\
+\-   287        \qquad \}\\
+\-   288        \qquad \\
+\-   289        \qquad \\
+\-   290        \qquad \\
+\-   291        \qquad {\color{green}//-----------------------------------------                                                 ---------------------------------------------PREFERENCES CONSTRAINTS}\\
+\-   292        \qquad \\
+\-   293        \qquad \\
+\-   294        \qquad {\color{green}//In every preferences at least one travel                                                  mean has to be selected}\\
+\-   295        \qquad {\color{blue}fact} atLeastOneSelectedTravelMean\{\\
+\-   296        \qquad \-\qquad {\color{blue}all} p:Preferences | {\color{blue}s                                                 ome} t:TravelMean |one tr:true | tr {\color{blue}in} t.(p.activeMeansOfTransport                                                 ) \\
+\-   297        \qquad \}\\
+\-   298        \qquad \\
+\-   299        \qquad {\color{green}//A break has to be in one and only one Pre                                                 ferences}\\
+\-   300        \qquad {\color{blue}fact} noEqualBreaks\{\\
+\-   301        \qquad \-\qquad {\color{blue}no} disj p1,p2:Preferences | {\colo                                                 r{blue}some} b:Break | b {\color{blue}in} p1.breaks {\color{blue}and} b {\color{                                                 blue}in} p2.breaks\\
+\-   302        \qquad \\
+\-   303        \qquad \}\\
+\-   304        \qquad \\
+\-   305        \qquad {\color{green}//-----------------------------------------                                                 ----------------------------------------------TRAVELS CONSTRAINTS}\\
+\-   306        \qquad \\
+\-   307        \qquad {\color{green}//Meetings happening in different locations                                                  can't have the same travel to get there}\\
+\-   308        \qquad {\color{blue}fact} noDifferentLocationsSameTravelMeetings                                                 \{\\
+\-   309        \qquad \-\qquad {\color{blue}all} disj m1,m2: Meeting | (m1.loca                                                 tion != m2.location) {\color{blue}implies} (m1.route != m2.route)\\
+\-   310        \qquad \-\qquad \\
+\-   311        \qquad \}\\
+\-   312        \qquad \\
+\-   313        \qquad \\
+\-   314        \qquad {\color{green}//There cannot exist a travel not associate                                                 d to any meeting}\\
+\-   315        \qquad {\color{blue}fact} noDisassociatedTravel \{\\
+\-   316        \qquad \-\qquad {\color{blue}all} t:Travel | {\color{blue}some}                                                  m:Meeting | m.route=t\\
+\-   317        \qquad \}\\
+\-   318        \qquad \\
+\-   319        \qquad {\color{green}//The travel must include only travelMeans                                                  that are selected in the preferences }\\
+\-   320        \qquad {\color{blue}fact} onlyUseActiveTravelMeans\{ \\
+\-   321        \qquad  \-\qquad {\color{blue}no} t:TravelMean | {\color{blue}so                                                 me} u:User | {\color{blue}some} p:u.preferences | {\color{blue}some} c: u.calend                                                 ar |\\
+\-   322        \qquad  {\color{blue}some} m:c.meetings | {\color{blue}some} r:                                                  m.route |\\
+\-   323        \qquad {\color{blue}some} f:false | t {\color{blue}in} r.means &                                                 & f {\color{blue}in} t.(p.activeMeansOfTransport) \\
+\-   324        \qquad \-\qquad \\
+\-   325        \qquad \}\\
+\-   326        \qquad \\
+\-   327        \qquad \\
+\-   328        \qquad \\
+\-   329        \qquad {\color{green}//If a travel mean is deactivated, it can't                                                  be in any travel in any meeting}\\
+\-   330        \qquad \\
+\-   331        \qquad \\
+\-   332        \qquad {\color{green}/{\color{green}/***************************                                                 ***********************ASSERTIONS**********************************************/                                                 }/}\\
+\-   333        \qquad \\
+\-   334        \qquad {\color{blue}assert} singleUserCalendar \{\\
+\-   335        \qquad \-\qquad {\color{blue}all} c:Calendar | {\color{blue}one}                                                  u:User | u.calendar = c\\
+\-   336        \qquad \}\\
+\-   337        \qquad \\
+\-   338        \qquad {\color{blue}check} singleUserCalendar {\color{blue}for}                                                  2\\
+\-   339        \qquad \\
+\-   340        \qquad {\color{green}//There can't exist 2 \qquad warning with t                                                 he same meeting in the conflicts set}\\
+\-   341        \qquad {\color{blue}assert} noMoreWarningSameMeeting \{ \\
+\-   342        \qquad \-\qquad {\color{blue}no} disj w1,w2: Warning | {\color{b                                                 lue}some} m:Meeting | m {\color{blue}in} w1.conflicts {\color{blue}and} m {\colo                                                 r{blue}in} w2.conflicts\\
+\-   343        \qquad \}\\
+\-   344        \qquad \\
+\-   345        \qquad {\color{blue}check} noMoreWarningSameMeeting {\color{blue                                                 }for} 3\\
+\-   346        \qquad \\
+\-   347        \qquad {\color{blue}assert} usersAreNeverGettingWet \{\\
+\-   348        \qquad \-\qquad {\color{blue}no} m: Meeting | m.weather=Rainy {\                                                 color{blue}and} ((Bike {\color{blue}in} m.route.means {\color{blue}or} SharedBik                                                 e \\
+\-   349        \qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\                                                 qquad {\color{blue}in} m.route.means {\color{blue}or} OnFoot {\color{blue}in} m.                                                 route.means))\\
+\-   350        \qquad \}\\
+\-   351        \qquad \\
+\-   352        \qquad {\color{blue}check} usersAreNeverGettingWet {\color{blue}                                                 for} 4\\
+\-   353        \qquad \\
+\-   354        \qquad {\color{blue}assert} neverUseInactiveTravelMeans\{\\
+\-   355        \qquad  \-\qquad {\color{blue}no} u:User | {\color{blue}some} t:                                                 TravelMean | {\color{blue}some} travel: u.calendar.meetings.route |\\
+\-   356        \qquad \-\qquad  false {\color{blue}in} t.(u.preferences.activeM                                                 eansOfTransport) {\color{blue}and} t {\color{blue}in} travel.means\\
+\-   357        \qquad \-\qquad \\
+\-   358        \qquad \}\\
+\-   359        \qquad \\
+\-   360        \qquad {\color{blue}check} neverUseInactiveTravelMeans\\
+\-   361        \qquad \\
+\-   362        \qquad \\
+\-   363        \qquad {\color{blue}assert} noConflictualMeetingsOutsideWarning\                                                 {\\
+\-   364        \qquad \-\qquad {\color{blue}all} disj m1,m2:Meeting | {\color{b                                                 lue}some} w:Warning | m1 \qquad {\color{blue}in} m2.conflict {\color{blue}implie                                                 s} m1 \qquad {\color{blue}in} w.conflicts and\\
+\-   365        \qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\qquad \-\                                                 qquad \-\qquad m2 \qquad {\color{blue}in} w.conflicts\\
+\-   366        \qquad \}\\
+\-   367        \qquad \\
+\-   368        \qquad {\color{blue}check} noConflictualMeetingsOutsideWarning\\
+\-   369        \qquad \\
+\-   370        \qquad {\color{green}/{\color{green}/***************************                                                 ***********************PREDICATES**********************************************/                                                 }/}\\
+\-   371        \qquad \\
+\-   372        \qquad {\color{blue}pred} showLotsOfMeetings\{\\
+\-   373        \qquad \-\qquad \#User=1\\
+\-   374        \qquad \-\qquad \#Meeting=8\\
+\-   375        \qquad \}\\
+\-   376        \qquad \\
+\-   377        \qquad {\color{blue}run} showLotsOfMeetings \{ \} {\color{blue}f                                                 or} 3 \qquad {\color{blue}but} exactly 8 \qquad Meeting, {\color{blue}exactly} 1                                                  \qquad User, {\color{blue}exactly} 2 \qquad Warning\\
+\-   378        \qquad \\
+\-   379        \qquad {\color{blue}pred} showMoreUsers\{\\
+\-   380        \qquad \-\qquad \#User=2\\
+\-   381        \qquad \-\qquad \#Meeting=4\\
+\-   382        \qquad \}\\
+\-   383        \qquad \\
+\-   384        \qquad {\color{blue}run} showMoreUsers \{ \} {\color{blue}for} 2                                                  \qquad {\color{blue}but} exactly 4 \qquad Meeting, {\color{blue}exactly} 2 \qqu                                                 ad User\\
+\-   385        \qquad \\
+\-   386        \qquad {\color{blue}pred} showNoMeetingsInstance \{\\
+\-   387        \qquad \-\qquad \#Meeting=0\\
+\-   388        \qquad \}\\
+\-   389        \qquad {\color{blue}run} showNoMeetingsInstance \{ \} {\color{bl                                                 ue}for} 6 \qquad {\color{blue}but} exactly 6 \qquad User, {\color{blue}exactly}                                                  0 \qquad Meeting\\

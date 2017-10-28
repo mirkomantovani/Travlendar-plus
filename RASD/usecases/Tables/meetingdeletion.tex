@@ -1,0 +1,35 @@
+\begin{table}[htp]
+
+\begin{tabular}{r|p{7cm}}
+\bf\large Name&\bf\large Deletion of a Meeting\\
+\hline
+\hline
+\bf Actors&User\\
+\hline
+\bf Entry conditions&The user is logged in and is in the page of a meeting\\
+\hline
+\bf Flow of events&
+\begin{itemize}
+
+\item The user clicks on "Delete meeting" button and he is asked by the system if he is sure he intends to perform that action.
+
+\item If the user clicks "yes" then the meeting is deleted from the system.
+
+\item The system checks if a Warning has to be calceled because of the meeting deletion and if it's the case it deletes the warning.
+
+
+\item The user is then redirected to the main page.
+
+\end{itemize}
+\\
+\hline
+\bf Exit conditions&The meeting is not present in the system anymore, possibility of the cascade effect of a warning deletion.\\
+\hline
+\bf Exceptions&None
+\\
+\hline
+
+\end{tabular}
+\caption{Meeting Deletion Use Case table}
+ \label{tab:meetingdeletion}
+\end{table}

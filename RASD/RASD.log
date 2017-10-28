@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.7)  27 OCT 2017 18:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.10.7)  28 OCT 2017 10:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -328,31 +328,31 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip43
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 28.
+Package hyperref Info: Option `colorlinks' set `true' on input line 29.
 
 (./RASD.aux)
 \openout1 = `RASD.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 29.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 29.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 30.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 30.
  (/usr/local/texlive/2017/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 29.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
-LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    ... okay on input line 30.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
+LaTeX Font Info:    ... okay on input line 30.
 
 (/usr/local/texlive/2017/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -386,7 +386,7 @@ e
 ))
 \c@lstlisting=\count117
 \AtBeginShipoutBox=\box31
-Package hyperref Info: Link coloring ON on input line 29.
+Package hyperref Info: Link coloring ON on input line 30.
 
 (/usr/local/texlive/2017/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -396,25 +396,25 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count118
 )
-LaTeX Info: Redefining \ref on input line 29.
-LaTeX Info: Redefining \pageref on input line 29.
-LaTeX Info: Redefining \nameref on input line 29.
+LaTeX Info: Redefining \ref on input line 30.
+LaTeX Info: Redefining \pageref on input line 30.
+LaTeX Info: Redefining \nameref on input line 30.
 
 (./RASD.out) (./RASD.out)
 \@outlinefile=\write3
 \openout3 = `RASD.out'.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 31.
+(Font)              <12> on input line 32.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 31.
+(Font)              <8> on input line 32.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 31.
- <polimi-logo.png, id=213, 293.095pt x 294.09875pt>
+(Font)              <6> on input line 32.
+ <polimi-logo.png, id=229, 293.095pt x 294.09875pt>
 File: polimi-logo.png Graphic file (type png)
 
 <use polimi-logo.png>
-Package pdftex.def Info: polimi-logo.png used on input line 32.
+Package pdftex.def Info: polimi-logo.png used on input line 33.
 (pdftex.def)             Requested size: 142.26378pt x 142.74991pt.
  [1
 
@@ -435,69 +435,69 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 ] (./subsections/scope.tex)
 (./images/worldmachine.tex
-<images/World-Machine.png, id=292, 1659.19875pt x 2347.77126pt>
+<images/World-Machine.png, id=312, 2677.00125pt x 1505.625pt>
 File: images/World-Machine.png Graphic file (type png)
 
 <use images/World-Machine.png>
 Package pdftex.def Info: images/World-Machine.png used on input line 6.
-(pdftex.def)             Requested size: 241.49895pt x 341.68987pt.
-) [5] [6 <./images/World-Machine.png>]
-(./subsections/goals.tex) (./subsections/definitions.tex) [7
+(pdftex.def)             Requested size: 345.0pt x 194.03804pt.
+) [5 <./images/World-Machine.png>]
+(./subsections/goals.tex) (./subsections/definitions.tex) [6
 
 ]
-(./subsections/revision.tex) (./subsections/documentstructure.tex [8]) [9]
-(./subsections/productperspective.tex) [10
+(./subsections/revision.tex) (./subsections/documentstructure.tex [7]) [8]
+(./subsections/productperspective.tex) [9
 
 ] (./subsections/productfunctions.tex
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
-) (./subsections/usercharacteristics.tex) (./subsections/domainassumptions.tex
-[11
+) (./subsections/usercharacteristics.tex) [10
 
-]) (./subsections/assumptions.tex [12]) (./subsections/constraints.tex
-Overfull \hbox (5.5005pt too wide) in paragraph at lines 13--14
-[]\OT1/cmr/m/n/10 Reminders must be set-ted be-fore the sched-uled time of the 
-re-lated events(f7) 
- []
+pdfTeX warning (ext4): destination with the same identifier (name{F1}) has been
+ already used, duplicate ignored
 
-) [13] (./mockups/Mockups.tex
-<mockups/Homepage.png, id=337, 357.335pt x 727.71875pt>
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.98 
+     ] (./subsections/domainassumptions.tex) (./subsections/assumptions.tex
+[11]) (./subsections/constraints.tex) [12] (./mockups/Mockups.tex
+<mockups/Homepage.png, id=379, 357.335pt x 727.71875pt>
 File: mockups/Homepage.png Graphic file (type png)
 
 <use mockups/Homepage.png>
 Package pdftex.def Info: mockups/Homepage.png used on input line 11.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/QuickMenu.png, id=338, 357.335pt x 727.71875pt>
+<mockups/QuickMenu.png, id=380, 357.335pt x 727.71875pt>
 File: mockups/QuickMenu.png Graphic file (type png)
 
 <use mockups/QuickMenu.png>
 Package pdftex.def Info: mockups/QuickMenu.png used on input line 22.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/CreateMeeting.png, id=339, 357.335pt x 727.71875pt>
+<mockups/CreateMeeting.png, id=381, 357.335pt x 727.71875pt>
 File: mockups/CreateMeeting.png Graphic file (type png)
 
 <use mockups/CreateMeeting.png>
 Package pdftex.def Info: mockups/CreateMeeting.png used on input line 32.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/MeetingView.png, id=340, 357.335pt x 727.71875pt>
+<mockups/MeetingView.png, id=382, 357.335pt x 727.71875pt>
 File: mockups/MeetingView.png Graphic file (type png)
 
 <use mockups/MeetingView.png>
 Package pdftex.def Info: mockups/MeetingView.png used on input line 43.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/Warnings.png, id=341, 357.335pt x 727.71875pt>
+<mockups/Warnings.png, id=383, 357.335pt x 727.71875pt>
 File: mockups/Warnings.png Graphic file (type png)
 
 <use mockups/Warnings.png>
 Package pdftex.def Info: mockups/Warnings.png used on input line 53.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/PreferencesTravelMeans.png, id=342, 357.335pt x 727.71875pt>
+<mockups/PreferencesTravelMeans.png, id=384, 357.335pt x 727.71875pt>
 File: mockups/PreferencesTravelMeans.png Graphic file (type png)
 
 <use mockups/PreferencesTravelMeans.png>
@@ -505,7 +505,7 @@ Package pdftex.def Info: mockups/PreferencesTravelMeans.png used on input line
 64.
 (pdftex.def)             Requested size: 207.0021pt x 421.56638pt.
 
-<mockups/PreferencesBreaks.png, id=343, 357.335pt x 727.71875pt>
+<mockups/PreferencesBreaks.png, id=385, 357.335pt x 727.71875pt>
 File: mockups/PreferencesBreaks.png Graphic file (type png)
 
 <use mockups/PreferencesBreaks.png>
@@ -515,7 +515,7 @@ Package pdftex.def Info: mockups/PreferencesBreaks.png used on input line 75.
 
 LaTeX Warning: Float too large for page by 19.56638pt on input line 84.
 
-<mockups/PreferencesRoutes.png, id=344, 357.335pt x 727.71875pt>
+<mockups/PreferencesRoutes.png, id=386, 357.335pt x 727.71875pt>
 File: mockups/PreferencesRoutes.png Graphic file (type png)
 
 <use mockups/PreferencesRoutes.png>
@@ -525,125 +525,124 @@ Package pdftex.def Info: mockups/PreferencesRoutes.png used on input line 88.
 
 LaTeX Warning: Float too large for page by 24.06638pt on input line 94.
 
-) [14
+) [13
 
-] [15 <./mockups/Homepage.png>] [16 <./mockups/QuickMenu.png>] [17 <./mockups/C
-reateMeeting.png>] [18 <./mockups/MeetingView.png>] [19 <./mockups/Warnings.png
->] [20 <./mockups/PreferencesTravelMeans.png>] [21 <./mockups/PreferencesBreaks
-.png>] [22 <./mockups/PreferencesRoutes.png>]
+] [14 <./mockups/Homepage.png>] [15 <./mockups/QuickMenu.png>] [16 <./mockups/C
+reateMeeting.png>] [17 <./mockups/MeetingView.png>] [18 <./mockups/Warnings.png
+>] [19 <./mockups/PreferencesTravelMeans.png>] [20 <./mockups/PreferencesBreaks
+.png>] [21 <./mockups/PreferencesRoutes.png>]
 (./subsections/softwareinterfaces.tex
 Overfull \hbox (0.36172pt too wide) in paragraph at lines 2--8
 \OT1/cmr/m/n/10 In ad-di-tion, we have no-ticed that the most com-plex com-pu-t
 a-tions which Travlen-
  []
 
-) (./subsections/nonfunctionalrequirements.tex [23
+) (./subsections/nonfunctionalrequirements.tex [22
 
-]) [24]
+]) [23]
 (./sections/usecase.tex
-<usecases/png/userpage.png, id=409, 566.86781pt x 627.84563pt>
+<usecases/png/userpage.png, id=450, 566.86781pt x 627.84563pt>
 File: usecases/png/userpage.png Graphic file (type png)
 
 <use usecases/png/userpage.png>
 Package pdftex.def Info: usecases/png/userpage.png used on input line 6.
 (pdftex.def)             Requested size: 345.0pt x 382.12306pt.
- [25
+ [24
 
  <./usecases/png/userpage.png>]
-(./usecases/tables/signup.tex) [26] (./usecases/tables/login.tex) [27]
-(./usecases/tables/recoverpassword.tex) [28]
-<usecases/png/schedulemanagement.png, id=436, 852.18375pt x 858.20625pt>
+(./usecases/tables/signup.tex) [25] (./usecases/tables/login.tex) [26]
+(./usecases/tables/recoverpassword.tex) [27]
+<usecases/png/schedulemanagement.png, id=473, 852.18375pt x 858.20625pt>
 File: usecases/png/schedulemanagement.png Graphic file (type png)
 
 <use usecases/png/schedulemanagement.png>
 Package pdftex.def Info: usecases/png/schedulemanagement.png used on input line
  26.
 (pdftex.def)             Requested size: 345.0pt x 347.44067pt.
- [29 <./usecases/png/schedulemanagement.png>] (./usecases/tables/meetingcreatio
-n.tex) [30]
-(./usecases/tables/reminderaddition.tex) [31]
-(./usecases/tables/warningsolving.tex) [32]
-<usecases/png/specifyuserpreferences.png, id=464, 726.46407pt x 724.20563pt>
+ [28 <./usecases/png/schedulemanagement.png>] (./usecases/tables/meetingcreatio
+n.tex) [29]
+(./usecases/tables/reminderaddition.tex) [30]
+(./usecases/tables/warningsolving.tex) [31]
+<usecases/png/specifyuserpreferences.png, id=496, 726.46407pt x 724.20563pt>
 File: usecases/png/specifyuserpreferences.png Graphic file (type png)
 
 <use usecases/png/specifyuserpreferences.png>
 Package pdftex.def Info: usecases/png/specifyuserpreferences.png used on input 
 line 45.
 (pdftex.def)             Requested size: 345.0pt x 343.93494pt.
- [33 <./usecases/png/specifyuserpreferences.png>] (./usecases/tables/activatede
+ [32 <./usecases/png/specifyuserpreferences.png>] (./usecases/tables/activatede
 activatemean.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 []\OT1/cmr/bx/n/12 Activate/deactivate mean of
  []
 
-)) [34] (./sections/activitydiagrams.tex
-<activitydiagrams/meetingcreationprocess.png, id=478, 621.82312pt x 755.82375pt
+)) [33] (./sections/activitydiagrams.tex
+<activitydiagrams/meetingcreationprocess.png, id=508, 621.82312pt x 755.82375pt
 >
 File: activitydiagrams/meetingcreationprocess.png Graphic file (type png)
  <use activitydiagrams/meetingcreationprocess.png>
 Package pdftex.def Info: activitydiagrams/meetingcreationprocess.png used on in
 put line 8.
 (pdftex.def)             Requested size: 345.0pt x 419.34875pt.
-) [35
+) [34
 
-] [36 <./activitydiagrams/meetingcreationprocess.png>] (./sections/statecharts.
+] [35 <./activitydiagrams/meetingcreationprocess.png>] (./sections/statecharts.
 tex
-<statecharts/meetingstatemachine.png, id=489, 546.54187pt x 467.49657pt>
+<statecharts/meetingstatemachine.png, id=519, 546.54187pt x 467.49657pt>
 File: statecharts/meetingstatemachine.png Graphic file (type png)
 
 <use statecharts/meetingstatemachine.png>
 Package pdftex.def Info: statecharts/meetingstatemachine.png used on input line
  7.
 (pdftex.def)             Requested size: 345.0pt x 295.1022pt.
- [37
+ [36
 
- <./statecharts/meetingstatemachine.png>] <statecharts/basicux.png, id=497, 799
+ <./statecharts/meetingstatemachine.png>] <statecharts/basicux.png, id=526, 799
 .48688pt x 581.92406pt>
 File: statecharts/basicux.png Graphic file (type png)
 
 <use statecharts/basicux.png>
 Package pdftex.def Info: statecharts/basicux.png used on input line 19.
 (pdftex.def)             Requested size: 345.0pt x 251.1193pt.
-) [38 <./statecharts/basicux.png>]
+) [37 <./statecharts/basicux.png>]
 (./sequencediagrams/sequencediagrams.tex
-<sequencediagrams/signup-logIn.png, id=504, 672.26157pt x 804.00375pt>
+<sequencediagrams/signup-logIn.png, id=534, 672.26157pt x 804.00375pt>
 File: sequencediagrams/signup-logIn.png Graphic file (type png)
 
 <use sequencediagrams/signup-logIn.png>
-Package pdftex.def Info: sequencediagrams/signup-logIn.png used on input line 3
-.
-(pdftex.def)             Requested size: 241.49895pt x 288.82773pt.
+Package pdftex.def Info: sequencediagrams/signup-logIn.png used on input line 1
+1.
+(pdftex.def)             Requested size: 345.0pt x 412.6128pt.
+ [38
 
-<sequencediagrams/meetingcreation.png, id=505, 662.475pt x 721.19438pt>
+] [39 <./sequencediagrams/signup-logIn.png>]
+<sequencediagrams/meetingcreation.png, id=545, 662.475pt x 721.19438pt>
 File: sequencediagrams/meetingcreation.png Graphic file (type png)
 
 <use sequencediagrams/meetingcreation.png>
 Package pdftex.def Info: sequencediagrams/meetingcreation.png used on input lin
-e 15.
-(pdftex.def)             Requested size: 241.49895pt x 262.89812pt.
-
-<sequencediagrams/Ignorewarning.png, id=506, 692.5875pt x 515.67656pt>
+e 29.
+(pdftex.def)             Requested size: 345.0pt x 375.57347pt.
+ [40] [41 <./sequencediagrams/meetingcreation.png>]
+<sequencediagrams/Ignorewarning.png, id=556, 692.5875pt x 515.67656pt>
 File: sequencediagrams/Ignorewarning.png Graphic file (type png)
 
 <use sequencediagrams/Ignorewarning.png>
 Package pdftex.def Info: sequencediagrams/Ignorewarning.png used on input line 
-30.
-(pdftex.def)             Requested size: 241.49895pt x 179.81279pt.
+46.
+(pdftex.def)             Requested size: 345.0pt x 256.87767pt.
 
-<"sequencediagrams/ warningresolution".png, id=507, 742.27313pt x 532.99126pt>
+<"sequencediagrams/ warningresolution".png, id=557, 742.27313pt x 532.99126pt>
 File: "sequencediagrams/ warningresolution".png Graphic file (type png)
 
 <use "sequencediagrams/ warningresolution".png>
 Package pdftex.def Info: "sequencediagrams/ warningresolution".png used on inpu
-t line 37.
-(pdftex.def)             Requested size: 241.49895pt x 173.40715pt.
-) [39
-
-] [40 <./sequencediagrams/signup-logIn.png>] [41 <./sequencediagrams/meetingcre
-ation.png>] [42 <./sequencediagrams/Ignorewarning.png>] [43 <./sequencediagrams
-/ warningresolution.png>]
+t line 54.
+(pdftex.def)             Requested size: 345.0pt x 247.73265pt.
+ [42 <./sequencediagrams/Ignorewarning.png>] [43 <./sequencediagrams/ warningre
+solution.png>])
 (./classdiagrams/classdiagram.tex
-<classdiagrams/ClassDiagramTravlendar+.png, id=537, 1004.25188pt x 745.28438pt>
+<classdiagrams/ClassDiagramTravlendar+.png, id=572, 1004.25188pt x 745.28438pt>
 File: classdiagrams/ClassDiagramTravlendar+.png Graphic file (type png)
 <use classdiagrams/ClassDiagramTravlendar+.png>
 Package pdftex.def Info: classdiagrams/ClassDiagramTravlendar+.png used on inpu
@@ -651,78 +650,36 @@ t line 8.
 (pdftex.def)             Requested size: 241.49895pt x 179.22444pt.
 ) [44
 
-] [45 <./classdiagrams/ClassDiagramTravlendar+.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 167.
- [46
+] [45 <./classdiagrams/ClassDiagramTravlendar+.png>] (./traceabilitytable.tex
+Overfull \hbox (163.93132pt too wide) in paragraph at lines 5--27
+[][] 
+ []
+
+) [46
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 167.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 172.
+ [47
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 172.
  (./RASD.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 167.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 167.
-
-
-Package rerunfilecheck Warning: File `RASD.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `RASD.out':
-(rerunfilecheck)             Before: 546ECED08C44DD340BCE4170FA3C9773;3559
-(rerunfilecheck)             After:  44C633573F871C79750B687193ED5CCC;3566.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 167.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 172.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 172.
+Package rerunfilecheck Info: File `RASD.out' has not changed.
+(rerunfilecheck)             Checksum: 05B76199FAADCC14531A05777CD959DA;3910.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 172.
  ) 
 Here is how much of TeX's memory you used:
- 7307 strings out of 492995
- 111879 string characters out of 6132704
- 196242 words of memory out of 5000000
- 10540 multiletter control sequences out of 15000+600000
+ 7342 strings out of 492995
+ 111951 string characters out of 6132704
+ 196442 words of memory out of 5000000
+ 10551 multiletter control sequences out of 15000+600000
  8883 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  28i,11n,32p,679b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{subsection.3.10} has been referenced but does not
- exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.3.9} has been referenced but does not ex
-ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.8.2} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.8.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.7.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.10} has been referenced but does 
-not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.9} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.8} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.7} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.6} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.5} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.4} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.6.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.5.3} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.3.5.2} has been referenced but does n
-ot exist, replaced by a fixed one
+pdfTeX warning (dest): name{F9} has been referenced but does not exist, repla
+ced by a fixed one
 
 {/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<
 /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
@@ -732,10 +689,10 @@ sr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
 ocal/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loc
 al/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/loca
 l/texlive/2017/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on RASD.pdf (46 pages, 1268476 bytes).
+Output written on RASD.pdf (47 pages, 1346977 bytes).
 PDF statistics:
- 612 PDF objects out of 1000 (max. 8388607)
- 509 compressed objects within 6 object streams
- 142 named destinations out of 1000 (max. 500000)
- 522 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 704 PDF objects out of 1000 (max. 8388607)
+ 600 compressed objects within 6 object streams
+ 163 named destinations out of 1000 (max. 500000)
+ 554 words of extra memory for PDF output out of 10000 (max. 10000000)
 

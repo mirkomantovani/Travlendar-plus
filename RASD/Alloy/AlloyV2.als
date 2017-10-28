@@ -170,6 +170,11 @@ fact MeetingInOnlyOneCalendar {
 
 }
 
+//For every Meeting there exists one and only one Calendar containing it
+fact noMeetingOutsideCalendar{
+	all m:Meeting | some c:Calendar | m in c.meetings
+}
+
 //A reminder is unique for a Meeting
 fact uniqueReminderForMeeting {
 	no disj m1,m2: Meeting | some r:Reminder | r in m1.reminders && r in m2.reminders
@@ -355,13 +360,30 @@ assert neverUseInactiveTravelMeans{
 check neverUseInactiveTravelMeans
 
 
-
-
-
-pred show {
-
+assert noConflictualMeetingsOutsideWarning{
+	all disj m1,m2:Meeting | some w:Warning | m1 in m2.conflict implies m1 in w.conflicts and
+								m2 in w.conflicts
 }
-run show { } for 3 but exactly 8 Meeting, exactly 1 User
 
+check noConflictualMeetingsOutsideWarning
 
+//**************************************************PREDICATES**********************************************//
 
+pred showLotsOfMeetings{
+	#User=1
+	#Meeting=8
+}
+
+run showLotsOfMeetings { } for 3 but exactly 8 Meeting, exactly 1 User, exactly 2 Warning
+
+pred showMoreUsers{
+	#User=2
+	#Meeting=4
+}
+
+run showMoreUsers { } for 2 but exactly 4 Meeting, exactly 2 User
+
+pred showNoMeetingsInstance {
+	#Meeting=0
+}
+run showNoMeetingsInstance { } for 6 but exactly 6 User, exactly 0 Meeting

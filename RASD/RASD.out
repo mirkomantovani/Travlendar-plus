@@ -24,35 +24,36 @@
 \BOOKMARK [3][-]{subsubsection.3.1.2}{Software Interfaces}{subsection.3.1}% 24
 \BOOKMARK [2][-]{subsection.3.2}{Non functional requirements}{section.3}% 25
 \BOOKMARK [2][-]{subsection.3.3}{Scenarios}{section.3}% 26
-\BOOKMARK [3][-]{subsubsection.3.3.1}{Scenario 1}{subsection.3.3}% 27
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Scenario 2}{subsection.3.3}% 28
-\BOOKMARK [3][-]{subsubsection.3.3.3}{Scenario 3}{subsection.3.3}% 29
-\BOOKMARK [2][-]{subsection.3.4}{Use Cases}{section.3}% 30
-\BOOKMARK [3][-]{subsubsection.3.4.1}{User Page use cases}{subsection.3.4}% 31
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Sign up}{subsection.3.4}% 32
-\BOOKMARK [3][-]{subsubsection.3.4.3}{Login}{subsection.3.4}% 33
-\BOOKMARK [3][-]{subsubsection.3.4.4}{Password Recovery}{subsection.3.4}% 34
-\BOOKMARK [3][-]{subsubsection.3.4.5}{Schedule Management use cases}{subsection.3.4}% 35
-\BOOKMARK [3][-]{subsubsection.3.4.6}{Meeting Creation}{subsection.3.4}% 36
-\BOOKMARK [3][-]{subsubsection.3.4.7}{Reminder Addition}{subsection.3.4}% 37
-\BOOKMARK [3][-]{subsubsection.3.4.8}{Warning Solving}{subsection.3.4}% 38
-\BOOKMARK [3][-]{subsubsection.3.4.9}{User Preferences use cases}{subsection.3.4}% 39
-\BOOKMARK [3][-]{subsubsection.3.4.10}{Means activation/deactivation}{subsection.3.4}% 40
-\BOOKMARK [2][-]{subsection.3.5}{Activity Diagrams}{section.3}% 41
-\BOOKMARK [3][-]{subsubsection.3.5.1}{Meeting creation process}{subsection.3.5}% 42
-\BOOKMARK [2][-]{subsection.3.6}{State Charts}{section.3}% 43
-\BOOKMARK [3][-]{subsubsection.3.6.1}{Meeting State Machine}{subsection.3.6}% 44
-\BOOKMARK [3][-]{subsubsection.3.6.2}{Basic UX State Chart}{subsection.3.6}% 45
-\BOOKMARK [2][-]{subsection.3.7}{Sequence Diagrams}{section.3}% 46
-\BOOKMARK [3][-]{subsubsection.3.7.1}{Signup/Login Sequence Diagram}{subsection.3.7}% 47
-\BOOKMARK [3][-]{subsubsection.3.7.2}{Meeting Creation Sequence Diagram}{subsection.3.7}% 48
-\BOOKMARK [3][-]{subsubsection.3.7.3}{Warnings Solving Sequence Diagram}{subsection.3.7}% 49
-\BOOKMARK [2][-]{subsection.3.8}{Class Diagram}{section.3}% 50
-\BOOKMARK [2][-]{subsection.3.9}{Traceability Matrix}{section.3}% 51
-\BOOKMARK [1][-]{section.4}{Alloy}{}% 52
-\BOOKMARK [2][-]{subsection.4.1}{Model}{section.4}% 53
-\BOOKMARK [2][-]{subsection.4.2}{Result}{section.4}% 54
-\BOOKMARK [2][-]{subsection.4.3}{Worlds Generated}{section.4}% 55
-\BOOKMARK [3][-]{subsubsection.4.3.1}{World 1}{subsection.4.3}% 56
-\BOOKMARK [3][-]{subsubsection.4.3.2}{World 2}{subsection.4.3}% 57
-\BOOKMARK [1][-]{section.5}{Effort Spent}{}% 58
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Scenario One}{subsection.3.3}% 27
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Scenario Two}{subsection.3.3}% 28
+\BOOKMARK [2][-]{subsection.3.4}{Use Cases}{section.3}% 29
+\BOOKMARK [3][-]{subsubsection.3.4.1}{User Page use cases}{subsection.3.4}% 30
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Sign up}{subsection.3.4}% 31
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Login}{subsection.3.4}% 32
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Password Recovery}{subsection.3.4}% 33
+\BOOKMARK [3][-]{subsubsection.3.4.5}{Schedule Management use cases}{subsection.3.4}% 34
+\BOOKMARK [3][-]{subsubsection.3.4.6}{Meeting Creation}{subsection.3.4}% 35
+\BOOKMARK [3][-]{subsubsection.3.4.7}{Reminder Addition}{subsection.3.4}% 36
+\BOOKMARK [3][-]{subsubsection.3.4.8}{Warning Solving}{subsection.3.4}% 37
+\BOOKMARK [3][-]{subsubsection.3.4.9}{User Preferences use cases}{subsection.3.4}% 38
+\BOOKMARK [3][-]{subsubsection.3.4.10}{Means activation/deactivation}{subsection.3.4}% 39
+\BOOKMARK [2][-]{subsection.3.5}{Activity Diagrams}{section.3}% 40
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Meeting creation process}{subsection.3.5}% 41
+\BOOKMARK [2][-]{subsection.3.6}{State Charts}{section.3}% 42
+\BOOKMARK [3][-]{subsubsection.3.6.1}{Meeting State Machine}{subsection.3.6}% 43
+\BOOKMARK [3][-]{subsubsection.3.6.2}{Basic UX State Chart}{subsection.3.6}% 44
+\BOOKMARK [2][-]{subsection.3.7}{Sequence Diagrams}{section.3}% 45
+\BOOKMARK [3][-]{subsubsection.3.7.1}{Signup/Login Sequence Diagram}{subsection.3.7}% 46
+\BOOKMARK [3][-]{subsubsection.3.7.2}{Meeting Creation Sequence Diagram}{subsection.3.7}% 47
+\BOOKMARK [3][-]{subsubsection.3.7.3}{Warnings Solving Sequence Diagram}{subsection.3.7}% 48
+\BOOKMARK [2][-]{subsection.3.8}{Class Diagram}{section.3}% 49
+\BOOKMARK [2][-]{subsection.3.9}{Traceability Matrix}{section.3}% 50
+\BOOKMARK [1][-]{section.4}{Formal Analysis using Alloy}{}% 51
+\BOOKMARK [2][-]{subsection.4.1}{Model}{section.4}% 52
+\BOOKMARK [2][-]{subsection.4.2}{Results}{section.4}% 53
+\BOOKMARK [2][-]{subsection.4.3}{Worlds Generated}{section.4}% 54
+\BOOKMARK [3][-]{subsubsection.4.3.1}{World 1}{subsection.4.3}% 55
+\BOOKMARK [3][-]{subsubsection.4.3.2}{World 2}{subsection.4.3}% 56
+\BOOKMARK [1][-]{section.5}{Appendix}{}% 57
+\BOOKMARK [2][-]{subsection.5.1}{Used software}{section.5}% 58
+\BOOKMARK [2][-]{subsection.5.2}{Effort spent}{section.5}% 59

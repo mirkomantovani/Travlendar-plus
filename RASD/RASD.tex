@@ -34,7 +34,6 @@
 \end{center}
 \clearpage
 {\hypersetup{hidelinks}\tableofcontents}
-
 \clearpage
 
 \section{Introduction}
@@ -51,6 +50,9 @@
 \clearpage
 \subsection{Goals}
 \input{subsections/goals}
+In order to clarify and simplify the reading, a traceability table is provided to easily follow the mappings among Travlendar+ goals, functions and constraints: \\
+\input{traceabilitytable}
+\clearpage
 
 \subsection{Definition and Acronyms}
 
@@ -59,7 +61,6 @@
 
 \subsubsection{Acronyms}
 \begin{itemize}
-	\item \textbf{ETA}:\@ estimated time of arrival: the time, estimated by the system, that the closest available taxi will take to get to the starting location of the ride.
 	\item \textbf{API}:\@ application programming interface; it is a set of routines, protocols, and tools for building software applications on top of this one.
 	
 \subsection{Revision}
@@ -68,8 +69,8 @@
 
 \subsection{Actors}
 \begin{itemize}
-	\item \textit{Guest}: 
-	\item \textit{Logged in users}:
+	\item \textit{Guest}: This actor plays the role of a person who is not registered and thus logged in. Obviously the signup and the login operations would allow the guest to upgrade his status to 'user'.
+	\item \textit{User}: This actor refers to the condition of people already signed up and logged in. 
 
 \end{itemize}
 
@@ -92,6 +93,9 @@
 
 \subsection{Product functionalities}
 \input{subsections/productfunctions}
+In order to clarify and simplify the reading, a traceability table is provided to easily follow the mappings among Travlendar+ goals, functions and constraints: \\
+\input{traceabilitytable}
+\clearpage
 
 \subsection{User characteristics}
 \input{subsections/usercharacteristics}
@@ -107,6 +111,8 @@
 
 \subsubsection{Constraints}
 \input{subsections/constraints}
+In order to clarify and simplify the reading, a traceability table is provided to easily follow the mappings among Travlendar+ goals, functions and constraints: \\
+\input{traceabilitytable}
 
 \clearpage
 \section{Specific requirements}
@@ -153,9 +159,6 @@
 \subsection{Class Diagram}
 \input{classdiagrams/classdiagram}
 
-\clearpage
-\subsection{Traceability Matrix}
-\input{traceabilitytable}
 
 \clearpage
 \section{Formal Analysis using Alloy}

@@ -1,0 +1,59 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Purpose}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Scope}{5}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}The world and the machine}{5}{subsubsection.1.2.1}
+\contentsline {subsection}{\numberline {1.3}Goals}{6}{subsection.1.3}
+\contentsline {subsection}{\numberline {1.4}Definition and Acronyms}{7}{subsection.1.4}
+\contentsline {subsubsection}{\numberline {1.4.1}Definitions}{7}{subsubsection.1.4.1}
+\contentsline {subsubsection}{\numberline {1.4.2}Acronyms}{7}{subsubsection.1.4.2}
+\contentsline {subsection}{\numberline {1.5}Revision}{7}{subsection.1.5}
+\contentsline {subsection}{\numberline {1.6}Actors}{7}{subsection.1.6}
+\contentsline {subsection}{\numberline {1.7}References}{8}{subsection.1.7}
+\contentsline {subsection}{\numberline {1.8}Document Structure}{8}{subsection.1.8}
+\contentsline {section}{\numberline {2}Overall description}{9}{section.2}
+\contentsline {subsection}{\numberline {2.1}Product perspective}{9}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Product functionalities}{10}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}User characteristics}{12}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Assumptions and dependencies}{12}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Domain Assumptions}{12}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}General Assumptions}{12}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Constraints}{13}{subsubsection.2.4.3}
+\contentsline {section}{\numberline {3}Specific requirements}{15}{section.3}
+\contentsline {subsection}{\numberline {3.1}External Interface Requirements}{15}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}User Interfaces}{15}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Software Interfaces}{24}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Non functional requirements}{24}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Scenarios}{25}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Scenario One}{25}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Scenario Two}{26}{subsubsection.3.3.2}
+\contentsline {subsection}{\numberline {3.4}Use Cases}{27}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}User Page use cases}{27}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Sign up}{28}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Login}{29}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Password Recovery}{30}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}Schedule Management use cases}{31}{subsubsection.3.4.5}
+\contentsline {subsubsection}{\numberline {3.4.6}Meeting Creation}{32}{subsubsection.3.4.6}
+\contentsline {subsubsection}{\numberline {3.4.7}Meeting Deletion}{33}{subsubsection.3.4.7}
+\contentsline {subsubsection}{\numberline {3.4.8}Reminder Addition}{34}{subsubsection.3.4.8}
+\contentsline {subsubsection}{\numberline {3.4.9}Warning Solving}{35}{subsubsection.3.4.9}
+\contentsline {subsubsection}{\numberline {3.4.10}User Preferences use cases}{36}{subsubsection.3.4.10}
+\contentsline {subsubsection}{\numberline {3.4.11}Means activation/deactivation}{37}{subsubsection.3.4.11}
+\contentsline {subsection}{\numberline {3.5}Activity Diagrams}{38}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Meeting creation process}{38}{subsubsection.3.5.1}
+\contentsline {subsection}{\numberline {3.6}State Charts}{40}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Meeting State Machine}{40}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.2}Basic UX State Chart}{41}{subsubsection.3.6.2}
+\contentsline {subsection}{\numberline {3.7}Sequence Diagrams}{42}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Signup/Login Sequence Diagram}{42}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Meeting Creation Sequence Diagram}{44}{subsubsection.3.7.2}
+\contentsline {subsubsection}{\numberline {3.7.3}Warnings Solving Sequence Diagram}{46}{subsubsection.3.7.3}
+\contentsline {subsection}{\numberline {3.8}Class Diagram}{48}{subsection.3.8}
+\contentsline {section}{\numberline {4}Formal Analysis using Alloy}{49}{section.4}
+\contentsline {subsection}{\numberline {4.1}Model}{49}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Results}{59}{subsection.4.2}
+\contentsline {subsection}{\numberline {4.3}Worlds Generated}{60}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}World 1}{60}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}World 2}{62}{subsubsection.4.3.2}
+\contentsline {section}{\numberline {5}Appendix}{64}{section.5}
+\contentsline {subsection}{\numberline {5.1}Used software}{64}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Effort spent}{64}{subsection.5.2}

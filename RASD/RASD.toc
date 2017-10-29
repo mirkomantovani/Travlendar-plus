@@ -10,51 +10,48 @@
 \contentsline {subsection}{\numberline {1.6}Actors}{7}{subsection.1.6}
 \contentsline {subsection}{\numberline {1.7}References}{7}{subsection.1.7}
 \contentsline {subsection}{\numberline {1.8}Document Structure}{7}{subsection.1.8}
-\contentsline {section}{\numberline {2}Overall description}{8}{section.2}
-\contentsline {subsection}{\numberline {2.1}Product perspective}{8}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Product functionalities}{9}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}User characteristics}{9}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Assumptions and dependencies}{10}{subsection.2.4}
-\contentsline {subsubsection}{\numberline {2.4.1}Domain Assumptions}{10}{subsubsection.2.4.1}
-\contentsline {subsubsection}{\numberline {2.4.2}General Assumptions}{10}{subsubsection.2.4.2}
-\contentsline {subsubsection}{\numberline {2.4.3}Constraints}{11}{subsubsection.2.4.3}
-\contentsline {section}{\numberline {3}Specific requirements}{12}{section.3}
-\contentsline {subsection}{\numberline {3.1}External Interface Requirements}{12}{subsection.3.1}
-\contentsline {subsubsection}{\numberline {3.1.1}User Interfaces}{12}{subsubsection.3.1.1}
-\contentsline {subsubsection}{\numberline {3.1.2}Software Interfaces}{21}{subsubsection.3.1.2}
-\contentsline {subsection}{\numberline {3.2}Non functional requirements}{21}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Scenarios}{22}{subsection.3.3}
-\contentsline {subsubsection}{\numberline {3.3.1}Scenario One}{22}{subsubsection.3.3.1}
-\contentsline {subsubsection}{\numberline {3.3.2}Scenario Two}{23}{subsubsection.3.3.2}
-\contentsline {subsection}{\numberline {3.4}Use Cases}{24}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}User Page use cases}{24}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}Sign up}{25}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}Login}{26}{subsubsection.3.4.3}
-\contentsline {subsubsection}{\numberline {3.4.4}Password Recovery}{27}{subsubsection.3.4.4}
-\contentsline {subsubsection}{\numberline {3.4.5}Schedule Management use cases}{28}{subsubsection.3.4.5}
-\contentsline {subsubsection}{\numberline {3.4.6}Meeting Creation}{29}{subsubsection.3.4.6}
-\contentsline {subsubsection}{\numberline {3.4.7}Meeting Deletion}{30}{subsubsection.3.4.7}
-\contentsline {subsubsection}{\numberline {3.4.8}Reminder Addition}{31}{subsubsection.3.4.8}
-\contentsline {subsubsection}{\numberline {3.4.9}Warning Solving}{32}{subsubsection.3.4.9}
-\contentsline {subsubsection}{\numberline {3.4.10}User Preferences use cases}{33}{subsubsection.3.4.10}
-\contentsline {subsubsection}{\numberline {3.4.11}Means activation/deactivation}{34}{subsubsection.3.4.11}
-\contentsline {subsection}{\numberline {3.5}Activity Diagrams}{35}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}Meeting creation process}{35}{subsubsection.3.5.1}
-\contentsline {subsection}{\numberline {3.6}State Charts}{37}{subsection.3.6}
-\contentsline {subsubsection}{\numberline {3.6.1}Meeting State Machine}{37}{subsubsection.3.6.1}
-\contentsline {subsubsection}{\numberline {3.6.2}Basic UX State Chart}{38}{subsubsection.3.6.2}
-\contentsline {subsection}{\numberline {3.7}Sequence Diagrams}{39}{subsection.3.7}
-\contentsline {subsubsection}{\numberline {3.7.1}Signup/Login Sequence Diagram}{39}{subsubsection.3.7.1}
-\contentsline {subsubsection}{\numberline {3.7.2}Meeting Creation Sequence Diagram}{41}{subsubsection.3.7.2}
-\contentsline {subsubsection}{\numberline {3.7.3}Warnings Solving Sequence Diagram}{43}{subsubsection.3.7.3}
-\contentsline {subsection}{\numberline {3.8}Class Diagram}{45}{subsection.3.8}
-\contentsline {subsection}{\numberline {3.9}Traceability Matrix}{46}{subsection.3.9}
-\contentsline {section}{\numberline {4}Formal Analysis using Alloy}{47}{section.4}
-\contentsline {subsection}{\numberline {4.1}Model}{47}{subsection.4.1}
+\contentsline {section}{\numberline {2}Overall description}{9}{section.2}
+\contentsline {subsection}{\numberline {2.1}Product perspective}{9}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Product functionalities}{10}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}User characteristics}{11}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Assumptions and dependencies}{11}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Domain Assumptions}{11}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}General Assumptions}{11}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Constraints}{12}{subsubsection.2.4.3}
+\contentsline {section}{\numberline {3}Specific requirements}{14}{section.3}
+\contentsline {subsection}{\numberline {3.1}External Interface Requirements}{14}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}User Interfaces}{14}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Software Interfaces}{23}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}Non functional requirements}{23}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Scenarios}{24}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Scenario One}{24}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Scenario Two}{25}{subsubsection.3.3.2}
+\contentsline {subsection}{\numberline {3.4}Use Cases}{26}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}User Page use cases}{26}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Sign up}{27}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Login}{28}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Password Recovery}{29}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}Schedule Management use cases}{30}{subsubsection.3.4.5}
+\contentsline {subsubsection}{\numberline {3.4.6}Meeting Creation}{31}{subsubsection.3.4.6}
+\contentsline {subsubsection}{\numberline {3.4.7}Reminder Addition}{32}{subsubsection.3.4.7}
+\contentsline {subsubsection}{\numberline {3.4.8}Warning Solving}{33}{subsubsection.3.4.8}
+\contentsline {subsubsection}{\numberline {3.4.9}User Preferences use cases}{34}{subsubsection.3.4.9}
+\contentsline {subsubsection}{\numberline {3.4.10}Means activation/deactivation}{35}{subsubsection.3.4.10}
+\contentsline {subsection}{\numberline {3.5}Activity Diagrams}{36}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Meeting creation process}{36}{subsubsection.3.5.1}
+\contentsline {subsection}{\numberline {3.6}State Charts}{38}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Meeting State Machine}{38}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.2}Basic UX State Chart}{39}{subsubsection.3.6.2}
+\contentsline {subsection}{\numberline {3.7}Sequence Diagrams}{40}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Signup/Login Sequence Diagram}{40}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Meeting Creation Sequence Diagram}{42}{subsubsection.3.7.2}
+\contentsline {subsubsection}{\numberline {3.7.3}Warnings Solving Sequence Diagram}{44}{subsubsection.3.7.3}
+\contentsline {subsection}{\numberline {3.8}Class Diagram}{46}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}Traceability Matrix}{47}{subsection.3.9}
+\contentsline {section}{\numberline {4}Alloy}{48}{section.4}
+\contentsline {subsection}{\numberline {4.1}Model}{48}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Results}{57}{subsection.4.2}
-\contentsline {subsection}{\numberline {4.3}Worlds Generated}{58}{subsection.4.3}
-\contentsline {subsubsection}{\numberline {4.3.1}World 1}{58}{subsubsection.4.3.1}
-\contentsline {subsubsection}{\numberline {4.3.2}World 2}{60}{subsubsection.4.3.2}
-\contentsline {section}{\numberline {5}Appendix}{62}{section.5}
-\contentsline {subsection}{\numberline {5.1}Used software}{62}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}Effort spent}{62}{subsection.5.2}
+\contentsline {subsection}{\numberline {4.3}Worlds Generated}{59}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}World 1}{59}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}World 2}{61}{subsubsection.4.3.2}
+\contentsline {section}{\numberline {5}Effort Spent}{63}{section.5}

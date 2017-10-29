@@ -62,7 +62,7 @@ In order to clarify and simplify the reading, a traceability table is provided t
 \subsubsection{Acronyms}
 \begin{itemize}
 	\item \textbf{API}:\@ application programming interface; it is a set of routines, protocols, and tools for building software applications on top of this one.
-	
+\end{itemize}
 \subsection{Revision}
 \input{subsections/revision}
 
@@ -162,7 +162,16 @@ In order to clarify and simplify the reading, a traceability table is provided t
 
 \clearpage
 \section{Formal Analysis using Alloy}
-\subsection{Model}
+
+\subsection{Alloy modelling}
+
+The purpose of our static analysis using Alloy in this requirement document is to formally describe the domain of our application, its properties and constraints and whether those specified properties can be satisfied by the idealized system.
+\\With this model we can prove the consistency of the state of our application domain in terms of relations between the various entities that constitutes the abstract world. 
+\\Specifying several facts we constrain the cardinalities of the relations and we say what we cannot allow in the domain, alloy Analyzer attempts to find an instance of the model which makes the formulas true.
+\\This is important because in our application we have many entities and constrained connections between them, and it's critical to understand whether they have a feasible definition that would hold in any possible case. 
+
+
+\subsection{Code}
 
 \texttt{\input{alloy/alloynew.tex}}	
 

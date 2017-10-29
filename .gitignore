@@ -12,3 +12,13 @@ RASD/RASD\.pdf
 RASD/RASD\.synctex\.gz
 
 RASD/RASD\.toc
+
+*.aux
+
+*.log
+
+*.gz
+
+*.toc
+
+*.out

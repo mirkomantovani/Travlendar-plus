@@ -1,0 +1,10 @@
+\subsection{Implementation Order}
+The implementation will start trying to understand if the chosen technologies are actually the best match to create the software.
+\\To be able to determine if that is actually the case the first small goal is to create a very simple communication protocol between the Application Server and the Application Client (Android app), then integrate this with a simple database and trying to store and get information from it.
+\\After this we will be able to enlarge the overall software by adding one small functionality at a time. At the beginning we will concentrate more on the server side and start building some EJB which incapsulates the main functions which the server will have to perform.
+\\When all the essential features work we will start to develop the actual User Interface of the application.
+
+\subsection{Integration Testing Strategy}
+The natural integration testing strategy we came up with and that strictly follows the implementation order is the \textbf{Threads} approach. In particular, within a thread the strategy used to integrate and test modules will be the \textbf{Bottom-up} one. Thus, we will start by integrating and testing single portions of the modules starting from the ones which do not need any stub. 
+\\Simple and small drivers will be created in order to give inputs to the portion of each module till a complete tiny feature is completed, then the other threads will follow the same pattern until the application reaches its completion.
+\\This global strategy will allow us have a working application very early while in the meantime anticipating the testing as much as possible, so as to minimize the cost of repair in case an error were to be found.

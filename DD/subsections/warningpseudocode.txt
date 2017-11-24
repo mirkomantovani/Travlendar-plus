@@ -1,0 +1,48 @@
+BEGIN checkWarningPresence(Meeting newMeeting)
+//suppose we can get the entire list of Meetings in an array 
+//ordered by starting date
+
+Meeting meetings[ ]:= READ from DB
+int index:= variable that is going to assume the value of 
+the position of the array in which newMeeting should be 
+put in order for the array of meetings to remain ordered 
+by starting date
+
+index=binarySearch(meetings,newMeeting)
+
+
+Meeting prevMeeting=meetings[index-1]
+Meeting nextMeeting=meetings[index+1]
+
+//Here external API's will be used in order to compute 
+//the minimum travel time
+Time prevTime=computeMinTravelTime(prevMeeting, newMeeting)
+Time nextTime=computeMinTravelTime(prevMeeting, newMeeting)
+
+//case 1: conflict with both the previous and next meeting
+IF newMeeting.startTime-prevMeeting.startTime+
+prevMeeting.duration < prevTime AND
+ nextMeeting.startTime-newMeeting.startTime+
+prevMeeting.duration < nextTime 
+THEN 
+	createWarning(prevMeeting,newMeeting, nextMeeting)
+
+ELSE 
+		//case 2: conflict only with the previous meeting
+		IF newMeeting.startTime-prevMeeting.startTime+
+		prevMeeting.duration < prevTime 
+		THEN 
+			createWarning(prevMeeting,newMeeting)
+
+		ELSE 
+	//case 3: conflict only with the following meeting
+				IF nextMeeting.startTime-newMeeting.startTime+
+				prevMeeting.duration < nextTime 
+				THEN 
+						createWarning(newMeeting, nextMeeting)
+
+				END-IF
+		END-IF
+END-IF
+
+END

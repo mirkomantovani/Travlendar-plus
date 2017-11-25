@@ -1,4 +1,4 @@
-\subsection{Warning generator algorithm}
+\subsection{Meeting Warning checker algorithm}
 
 One of the fundamental identified algorithms is the one that checks whether a newly added meeting can generate a warning with the previous meeting, the following, or both of them.
 If it's one of those cases a warning containing the correct meetings is created in the system (see createWarning method in the code).
@@ -8,3 +8,12 @@ The pseudocode of the algorithm is provided below:
 
 \lstinputlisting[language=pseudocode]{subsections/warningpseudocode.txt}
 
+\subsection{Break Warning checked algorithm}
+
+Another important algorithm is the one that checks whether a newly added meeting can generate a warning with one or more breaks, this is a little bit more complicated because in the most general case no one forbids a user to insert overlappings breaks, more meetings entirely within the limits of a single break or even nested breaks.
+\\The proposed algorithm will be able to handle all the various cases. What has not yet taken into consideration is that if a meeting is in conflict with a break, this does not necessarily mean that the only way to solve this conflict is to modify THIS precise meeting that was discovered as problematic, another possibility could be to shift other meetings happening in the break limits range in order to make space for the minimum duration of the break to fit in.
+\\
+The pseudocode of the algorithm is provided below:
+\\
+
+\lstinputlisting[language=pseudocode]{subsections/breakpseudocode.txt}

@@ -1,0 +1,68 @@
+BEGIN checkBreakConflict(Meeting newMeeting)
+
+//the array breaks will contain all the breaks which
+//overlaps with the new meeting which is being added
+Break breaks[ ]:= READ from DB
+
+//A break has a startingTime, and endingTime, and a 
+//minDuration. This allows a break to actually happen 
+//within the limits given by startingTime and endingTime 
+//and to have a minumum duration of minDuration, the 
+//breaks can shift in the allowed range of time
+
+FOR i=0 TO breaks.length-1 DO
+
+	//overlappingMeetings array will contain all and 
+	//only the meetings whose schedule is overlapping
+	//with the i-th break, this means that either the
+	//meeting startTime is betweeen the break 
+	//startingTime and endingTime or the meeting
+	//startTime + its duration is.
+	Meeting overlappingMeetings[ ]:= 
+			getOverlappingMeetings(breaks[i])
+
+	//The array will be ordered by start date
+	orderByStartDate(overlappingMeetings)
+	
+	//the new meeting is added in the list respecting
+	//the established order
+	insertOrdered(overlappingMeetings,newMeeting)
+	
+	//An ad hoc class is used in order to better explain
+	//a possible algorithm to solve the problem.
+	//Interval will only have start and end fields.
+	Interval remainingSlots[ ]:= array of free intervals
+				within the breaks limits
+
+	IF overlappingMeetings[0].startTime > break[i].startingTime THEN
+			remainingSlots.add(break[i].startingTime,overlappingMeetings[0].startTime)
+	END-IF
+
+	
+	FOR j=0 TO overlappingMeetings.length-2 DO
+			remainingSlots.add(overlappingMeetings[j].endTime,
+			overlappingMeetings[j+1].startTime)
+	END-FOR
+	
+	IF overlappingMeetings[overlappingMeetings.length-1].endTime < break[i].endingTime THEN
+			remainingSlots.add(overlappingMeetings[overlappingMeetings.length-1].endTime,
+		break[i].endingTime)
+	END-IF
+
+	//Declaring a flag that states the feasibility of the break
+	Boolean breakIsPossible:= false
+
+	FOR k=0 TO remainingSlots.length DO
+			IF remainingSlots[k].end-remainingSlots[k].start
+				>= break[i].minDuration THEN
+					breakIsPossible=true
+			END-IF
+	END-FOR
+
+	IF !breakIsPossible THEN
+			createBreakWarning(break[i],newMeeting)
+			
+
+END-FOR
+
+END

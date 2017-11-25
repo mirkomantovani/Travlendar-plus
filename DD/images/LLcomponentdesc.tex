@@ -1,0 +1,210 @@
+\begin{flushleft}
+
+\begin{table}[htp]
+
+\begin{tabular}{l|l}
+ Component&analysis\\
+\hline
+\hline
+Name&Meeting manager bean\\
+\hline
+Input interfaces&\item Meeting data input \item Meeting evaluation\\
+\hline
+Output interfaces& Meeting details\\
+\hline
+Description&This is the component responsible for managing the insertion of meeting data by the user, it also provides these details to the meeting evaluator bean and to conflict evaluator bean.\\
+\hline
+
+
+\end{tabular}
+
+\caption{Meeting manager  table } 
+\label{tab:meetingmanagertable}
+
+\end{table}
+
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|l}
+			Component&analysis\\
+			\hline
+			\hline
+			Name&Meeting evaluator bean\\
+			\hline
+			Input interfaces&\item Meeting data  \item Break details \item Optimal route\\
+			\hline
+			Output interfaces& Meeting evaluation\\
+			\hline
+			Description&The meeting evaluator bean has the role to evaluate if a meeting can be scheduled with respect to the adjacent meetings and the breaks. To execute this critical computation it needs information about the breaks, the new meeting and the time to reach the meetings which precede and follow it. The result of the meeting evaluator bean is required by the conflict evaluator to establish whether it is necessary to generate a conflict or not. \\
+			\hline
+			
+			
+		\end{tabular}
+		
+		\caption{Meeting evaluator  table } 
+		\label{tab:meetingevaluatortable}
+		
+	\end{table}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|l}
+			Component&analysis\\
+			\hline
+			\hline
+			Name&Warning manager bean\\
+			\hline
+			Input interfaces& Meeting evaluation\\
+			\hline
+			Output interfaces& Warning generation\\
+			\hline
+			Description&This component represents the bean which is responsible to generate a warning and submit it to the user if the meeting evaluator notify a conflict. \\
+			\hline
+				
+		\end{tabular}
+		
+		\caption{Warning manager table } 
+		\label{tab:warningmanagertable}
+		
+	\end{table}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|l}
+			Component&analysis\\
+			\hline
+			\hline
+			Name&Conflict solver bean\\
+			\hline
+			Input interfaces& Warning generation\\
+			\hline
+			Output interfaces& Conflict resolution\\
+			\hline
+			Description&The conflict solver is the component that manages the resolution of conflicts, thus it is called by a new warning and his functions are to ask the user whether ignore or modify the meetings involved in a conflict and to apply his choice. \\
+			\hline
+			
+		\end{tabular}
+		
+		\caption{Conflict solver table } 
+		\label{tab:conflictsolvertable}
+		
+	\end{table}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|l}
+			Component&analysis\\
+			\hline
+			\hline
+			Name&Preferences manager bean\\
+			\hline
+			Input interfaces& Preferences set up \\
+			\hline
+			Output interfaces& \item Route preferences \item Travel mean preferences \item Break details\\
+			\hline
+			Description&This is the component designed to assolve all the functions related to the preferences. Hence, it manages the insertion, update and deletion of the preferences about routes, travel means and breaks, furthermore it provides preferences details to other components when it is necessary. \\
+			\hline
+			
+		\end{tabular}
+		
+		\caption{Preferences manager table } 
+		\label{tab:preferencesmanagertable}
+		
+	\end{table}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|l}
+			Component&analysis\\
+			\hline
+			\hline
+			Name&Route calculator bean\\
+			\hline
+			Input interfaces& \item Travel mean preferences \item Route preferences \item Weather forecasts \item Public transport data \item Maps data \\
+			\hline
+			Output interfaces& Optimal route\\
+			\hline
+			Description&This is the component designed to assolve all the functions related to the preferences. Hence, it manages the insertion, update and deletion of the preferences about routes, travel means and breaks, furthermore it provides preferences details to other components when it is necessary. \\
+			\hline
+			
+		\end{tabular}
+		
+		\caption{Route calculator table } 
+		\label{tab:routecalculatortable}
+		
+	\end{table}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|l}
+			Component&analysis\\
+			\hline
+			\hline
+			Name&Signup manager bean\\
+			\hline
+			Input interfaces& Signup data \\
+			\hline
+			Output interfaces& Registration\\
+			\hline
+			Description&This is the component which manages the user signup process, from the insertion of personal data, through their storage on the database, to the account verification. \\
+			\hline
+			
+		\end{tabular}
+		
+		\caption{Signup manager table } 
+		\label{tab:signupmanagertable}
+		
+	\end{table}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|l}
+			Component&analysis\\
+			\hline
+			\hline
+			Name&Login manager bean\\
+			\hline
+			Input interfaces& Login data \\
+			\hline
+			Output interfaces& User data \\
+			\hline
+			Description&This is the component dedicated to all the login steps. When the user insert in the apposite area his name and password, this component takes the data and provides the computations needed to verify the credentials and load the user's content. \\
+			\hline
+			
+		\end{tabular}
+		
+		\caption{Login manager table } 
+		\label{tab:loginmanagertable}
+		
+	\end{table}
+	
+\end{flushleft}
+

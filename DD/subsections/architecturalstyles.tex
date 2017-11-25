@@ -1,0 +1,39 @@
+\subsubsection{MVC Pattern}
+Model-View-Controller pattern divides a given software application into three interconnected parts, so as to separate internal representations of information from the ways that information is presented to or accepted from the user. This is one of the most common and effective ways to avoid a dangerous level of coupling between the various parts of the whole system.
+
+\subsubsection{4-tier Architecture}
+A standard JEE 4-tier architecture was used to design the system, where the layers are, as better described in [Section \ref{higharch}] \textbf{High-Level components}:
+\begin{itemize}
+\item \textbf{Client Tier}
+\item \textbf{Web Tier}
+\item \textbf{Business Logic Tier} 
+\item \textbf{Persistence Tier}
+\end{itemize}
+
+\subsubsection{Client-Server}
+A client-server programming approach was used to design the application, in particular, the choice was to create a thin client, and makes all the logic and controlling reside in the Application server, which must have enough computing power to manage concurrent accesses in an efficient way.
+On the other hand, the mobile application is only in charge of the presentation and it does not involve decision logic.
+
+\subsubsection{Deployment}
+\begin{itemize}
+\item \textbf{Divide et impera:} software is divided in 4 independent tiers that put together offer the Travlendar+ application services.
+\item \textbf{Cohesion:} each module has his specific purpose; Client tier handles the system clients; Logic tier handles the application processing and the Data layer that handles and manages the persistence of data.
+\item \textbf{Decoupling:} the sofware components are independent and communicates through interfaces 
+\item \textbf{Flexibility:} implied from decoupling, abstraction and reusability properties.
+\item \textbf{Anticipating obsolescence:} if the technologies that compose a tier become obsolete, a tier can be substituted without affecting the others.
+\item \textbf{Portability:} each tier can be run on different platforms.
+\end{itemize}
+
+
+
+\subsubsection{Structure style}
+An Object-Oriented Architectural Style was chosen. It supports the division of responsibilities for a complex system into small and reusable parts called "Objects".
+\\They communicate with each other through interfaces, by sending and receiving messages or by calling methods on other objects. 
+The main benefits are: 
+\begin{itemize}
+\item \textbf{Extensibility:} change of implementation does not imply an interface change
+\item \textbf{Reusability:} objects are developed as small reusable piece of software 
+\item \textbf{Testability:} encapsulation improves testability
+
+\end{itemize}  
+

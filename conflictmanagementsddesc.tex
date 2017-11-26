@@ -1,6 +1,0 @@
-The conflict management runtime view refers to every situation in which a conflict is generated even if in the provided sequence diagrams the computations start with a meeting insertion. We have already discussed the positive outcome that simply ends with a notification to the user, now we want to deeply analyze the presence and the management of a conflict. \\
-When a conflict is found, the conflict checker notifies the warning manager which generates a warning in the system and notifies the conflict solver component, that is in charge of asking the user in which way he/she intend to solve the conflict and is in charge of applying the user choice. \\
-Firstly, the conflict solver manages to ask the user whether ignore the conflict or modify the involved meetings to solve it. Then, it holds the user decision and computes to make it effective in the system. \\
-If the conflict is ignored, it is deleted and the system behaves like it isn't any conflict. Otherwise, if the conflict is solved by the user, the conflict solver sends an updated calendar to the meeting evaluator which computes to verify overlaps. \\
-If conflicts are found this cycle of operations is repeated, else the user is notified that his schedule is consistent. \\
-

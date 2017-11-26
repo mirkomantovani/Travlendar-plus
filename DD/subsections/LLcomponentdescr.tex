@@ -3,10 +3,9 @@
 \begin{table}[htp]
 
 \begin{tabular}{l|p{7cm}}
- Component&analysis\\
+
+Name&\textbf{Meeting manager bean}\\
 \hline
-\hline
-Name&Meeting manager bean\\
 \hline
 Input interfaces&
 	\begin{itemize}
@@ -37,10 +36,9 @@ Description&This is the component responsible for managing the insertion of meet
 	\begin{table}[htp]
 		
 		\begin{tabular}{l|p{7cm}}
-			Component&analysis\\
+		
+			Name&\textbf{Conflict checker bean}\\
 			\hline
-			\hline
-			Name&Conflict checker bean\\
 			\hline
 			Input interfaces&
 			\begin{itemize}
@@ -68,10 +66,9 @@ Description&This is the component responsible for managing the insertion of meet
 	\begin{table}[htp]
 		
 		\begin{tabular}{l|p{7cm}}
-			Component&analysis\\
+		
+			Name&\textbf{Warning manager bean}\\
 			\hline
-			\hline
-			Name&Warning manager bean\\
 			\hline
 			Input interfaces& Meeting evaluation\\
 			\hline
@@ -94,10 +91,9 @@ Description&This is the component responsible for managing the insertion of meet
 	\begin{table}[htp]
 		
 		\begin{tabular}{l|p{7cm}}
-			Component&analysis\\
+		
+			Name&\textbf{Conflict solver bean}\\
 			\hline
-			\hline
-			Name&Conflict solver bean\\
 			\hline
 			Input interfaces& Warning generation\\
 			\hline
@@ -120,10 +116,9 @@ Description&This is the component responsible for managing the insertion of meet
 	\begin{table}[htp]
 		
 		\begin{tabular}{l|p{7cm}}
-			Component&analysis\\
+		
+			Name&\textbf{Preferences manager bean}\\
 			\hline
-			\hline
-			Name&Preferences manager bean\\
 			\hline
 			Input interfaces& Preferences set up \\
 			\hline
@@ -150,10 +145,9 @@ Description&This is the component responsible for managing the insertion of meet
 	\begin{table}[htp]
 		
 		\begin{tabular}{l|p{7cm}}
-			Component&analysis\\
+		
+			Name&\textbf{Route calculator bean}\\
 			\hline
-			\hline
-			Name&Route calculator bean\\
 			\hline
 			Input interfaces& 
 			\begin{itemize}
@@ -179,10 +173,9 @@ Description&This is the component responsible for managing the insertion of meet
 	\begin{table}[htp]
 		
 		\begin{tabular}{l|p{7cm}}
-			Component&analysis\\
+		
+			Name&\textbf{Signup manager bean}\\
 			\hline
-			\hline
-			Name&Signup manager bean\\
 			\hline
 			Input interfaces& Signup data \\
 			\hline
@@ -205,10 +198,11 @@ Description&This is the component responsible for managing the insertion of meet
 	\begin{table}[htp]
 		
 		\begin{tabular}{l|p{7cm}}
-			Component&analysis\\
+			
+		
+		
+			Name&\textbf{Login manager bean}\\
 			\hline
-			\hline
-			Name&Login manager bean\\
 			\hline
 			Input interfaces& Login data \\
 			\hline
@@ -221,6 +215,35 @@ Description&This is the component responsible for managing the insertion of meet
 		
 		\caption{Login manager table } 
 		\label{tab:loginmanagertable}
+		
+	\end{table}
+	
+\end{flushleft}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{l|p{7cm}}
+		
+			Name&\textbf{Reminder manager bean}\\
+			\hline
+			\hline
+			Input interfaces& \begin{itemize} 
+				\item Meeting data.
+				\item Reminder details.
+			\end{itemize} 
+			\\
+			\hline
+			Output interfaces& Reminder. \\
+			\hline
+			Description&This is the component in charge of allowing the creation of a reminder by the user. Because of the reminder addition button is in every meeting page, it will be the Meeting manager the component which eventually will call the reminder manager. Then, the reminder manager will ask the user for the reminder details such as a schedule time and date before managing to generating the proper reminder in the system. \\
+			\hline
+			
+		\end{tabular}
+		
+		\caption{Reminder manager table } 
+		\label{tab:remindermanagertable}
 		
 	\end{table}
 	

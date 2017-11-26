@@ -3,6 +3,29 @@ The implementation will start trying to understand if the chosen technologies ar
 \\To be able to determine if that is actually the case the first small goal is to create a very simple communication protocol between the Application Server and the Application Client (Android app), then integrate this with a simple database and trying to store and get information from it.
 \\After this we will be able to enlarge the overall software by adding one small functionality at a time. At the beginning we will concentrate more on the server side and start building some EJB which incapsulates the main functions which the server will have to perform.
 \\When all the essential features work we will start to develop the actual User Interface of the application.
+\\In practice, the low-level components and the functionalities they provide will be developed in this order:
+\begin{itemize}
+\item Sign up/Login manager beans
+\item Meeting manager bean
+\item Preferences manager bean
+\item Route calculator bean
+\item Conflict checker bean
+\item Warning manager bean
+\item Conflict solver bean
+\item Reminder manager bean
+\end{itemize}
+
+\subsection{Macrocomponents to be integrated}
+
+The integration test phase for the \emph{Travlendar+} system will be structured based on the architectural division in tiers that is described in [Section \ref{higharch}].
+
+With respect to this, the subsystems to be integrated in this phase are the following:
+\begin{description}
+\item[Persistence Tier] This includes all the commercial database structures that will be used for the data storage and management of the system, the DBMS will need to be integrated with the Application Logic tier.
+\item[Application Logic Tier] This includes all the business logic for the application, the data access components and the interfaces components towards external systems and clients. All the interactions among internal logic components must be tested and all the subsystems that interact with this tier must be individually integrated.
+\item[Web Tier] This includes all the components in charge of the web interface and the communication with the application logic tier and the browser client.
+\item[Client Tier] This includes the various types of clients, the Mobile Application Client, the Web Browser Client and their internal components. Single clients must behave properly with respect to their internal structure, and must be individually be integrated with the tier they interface with.
+\end{description}
 
 \subsection{Integration Testing Strategy}
 The natural integration testing strategy we came up with and that strictly follows the implementation order is the \textbf{Threads} approach. In particular, within a thread the strategy used to integrate and test modules will be the \textbf{Bottom-up} one. Thus, we will start by integrating and testing single portions of the modules starting from the ones which do not need any stub. 

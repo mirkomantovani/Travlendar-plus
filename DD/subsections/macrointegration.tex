@@ -1,0 +1,11 @@
+\subsection{Macrocomponents to be integrated}
+
+The integration test phase for the \emph{Travlendar+} system will be structured based on the architectural division in tiers that is described in [Section \ref{higharch}].
+
+With respect to this, the subsystems to be integrated in this phase are the following:
+\begin{description}
+\item[Persistence Tier] This includes all the commercial database structures that will be used for the data storage and management of the system, the DBMS will need to be integrated with the Application Logic tier.
+\item[Application Logic Tier] This includes all the business logic for the application, the data access components and the interfaces components towards external systems and clients. All the interactions among internal logic components must be tested and all the subsystems that interact with this tier must be individually integrated.
+\item[Web Tier] This includes all the components in charge of the web interface and the communication with the application logic tier and the browser client.
+\item[Client Tier] This includes the various types of clients, the Mobile Application Client, the Web Browser Client and their internal components. Single clients must behave properly with respect to their internal structure, and must be individually be integrated with the tier they interface with.
+\end{description}

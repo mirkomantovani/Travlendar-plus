@@ -1,0 +1,84 @@
+CREATE TABLE Usertable (
+ UID INT NOT NULL,
+ Name VARCHAR(100) NOT NULL,
+ Surname VARCHAR(100),
+ Email VARCHAR(100),
+ RegistrationDate DATE,
+ HomeAddress VARCHAR(100),
+ HashedPassword VARCHAR(255)
+);
+
+ALTER TABLE Usertable ADD CONSTRAINT PK_Usertable PRIMARY KEY (UID);
+
+CREATE TABLE Meeting (
+ UID INT NOT NULL,
+ MEETINGID INT NOT NULL,
+ Name VARCHAR(100),
+ StartingDate DATE,
+ Duration INT,
+ Location VARCHAR(10)
+);
+
+ALTER TABLE Meeting ADD CONSTRAINT PK_Meeting PRIMARY KEY (UID,MEETINGID);
+
+
+CREATE TABLE Preferences (
+ UID INT NOT NULL,
+ MinimizeCarbonFootprint BOOLEAN,
+ MaxWalkingDistance INT,
+ MaxCyclingDistance INT,
+ NoPublicTransportationsAfter TIME,
+ AvoidTolls BOOLEAN,
+ AvoidMotorways BOOLEAN
+);
+
+ALTER TABLE Preferences ADD CONSTRAINT PK_Preferences PRIMARY KEY (UID);
+
+
+CREATE TABLE Reminder (
+ UID INT NOT NULL,
+ MEETINGID INT NOT NULL,
+ Time TIME
+);
+
+ALTER TABLE Reminder ADD CONSTRAINT PK_Reminder PRIMARY KEY (UID,MEETINGID);
+
+
+CREATE TABLE TravelMean (
+ UID INT NOT NULL,
+ Name VARCHAR(100),
+ Selected BOOLEAN
+);
+
+ALTER TABLE TravelMean ADD CONSTRAINT PK_TravelMean PRIMARY KEY (UID);
+
+
+CREATE TABLE Break (
+ UID INT NOT NULL,
+ Name CHAR(10),
+ StartingTime TIME,
+ EndingTime TIME,
+ MinDuration TIME,
+ Recurrent BOOLEAN,
+ Lunch BOOLEAN,
+ DayOfWeek VARCHAR(20)
+);
+
+ALTER TABLE Break ADD CONSTRAINT PK_Break PRIMARY KEY (UID);
+
+
+ALTER TABLE Meeting ADD CONSTRAINT FK_Meeting_0 FOREIGN KEY (UID) REFERENCES Usertable (UID);
+
+
+ALTER TABLE Preferences ADD CONSTRAINT FK_Preferences_0 FOREIGN KEY (UID) REFERENCES Usertable (UID);
+
+
+ALTER TABLE Reminder ADD CONSTRAINT FK_Reminder_0 FOREIGN KEY (UID,MEETINGID) REFERENCES Meeting (UID,MEETINGID);
+
+
+ALTER TABLE TravelMean ADD CONSTRAINT FK_TravelMean_0 FOREIGN KEY (UID) REFERENCES Preferences (UID);
+
+
+ALTER TABLE Break ADD CONSTRAINT FK_Break_0 FOREIGN KEY (UID) REFERENCES Preferences (UID);
+
+

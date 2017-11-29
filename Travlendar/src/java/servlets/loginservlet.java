@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbeans.UsertableFacadeLocal;
+import utils.SecureHashEncryption;
 
 /**
  *
@@ -61,7 +62,7 @@ public class loginservlet extends HttpServlet {
             System.out.println("dio caneeeee");
         }
         else {
-            if(password.equals(u.getHashedpassword())){
+            if(SecureHashEncryption.encryptPassword(password).equals(u.getHashedpassword())){
                
                 
                 HttpSession session=request.getSession();

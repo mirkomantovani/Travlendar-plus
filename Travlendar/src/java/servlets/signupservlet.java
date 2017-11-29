@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sessionbeans.UsertableFacadeLocal;
+import utils.SecureHashEncryption;
 
 /**
  *
@@ -41,19 +42,22 @@ public class signupservlet extends HttpServlet {
             throws ServletException, IOException {
         
         String username = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String passwordConfirm = request.getParameter("passwordconfirm");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         
        Random r=new Random();
         Usertable u=userFacade.find(email.hashCode());
-        if(u==null){
+        if(u==null &&password.equals(passwordConfirm)){
             //OKAY, CREATE USER
             Usertable user=new Usertable();
             //user.setUid(r.nextInt(1000));
             user.setUid(email.hashCode());
         user.setEmail(email);
         user.setName(username);
-        user.setHashedpassword(password);
+        user.setSurname(surname);
+        user.setHashedpassword(SecureHashEncryption.encryptPassword(password));
         userFacade.create(user);
         response.sendRedirect("login.jsp");
         }

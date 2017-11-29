@@ -9,30 +9,41 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Signu up Page</title>
+        <title>Sign up Page</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <h1>Sign up page</h1>
-        <form action="signupservlet">
+        
+        <form action="signupservlet" class="login">
+            <h1>Travlendar+ Sign up</h1>
             <table border="3" cellpadding="2">
                 
                 <tbody>
                     <tr>
-                        <td>Name</td>
-                        <td><input type="text" name="name" value="" /></td>
+                        
+                        <td><input type="text" name="name" value="" placeholder="Insert name *" class="login-input" /></td>
                     </tr>
                     <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="password" value="" /></td>
+                        
+                        <td><input type="text" placeholder="Insert surname" class="login-input"  name="surname" value="" /></td>
                     </tr>
                     <tr>
-                        <td>Email</td>
-                        <td><input type="text" name="email" value="" /></td>
+                        
+                        <td><input type="text" placeholder="Insert email *" class="login-input"  name="email" value="" /></td>
                     </tr>
+                    <tr>
+                        
+                        <td><input type="password" placeholder="Insert password *" class="login-input"  name="password" value="" /></td>
+                    </tr>
+                    <tr>
+                        
+                        <td><input type="password" placeholder="Confirm password *" class="login-input"  name="passwordconfirm" value="" /></td>
+                    </tr>
+                   
                 </tbody>
                
             </table>
-             <input type="submit" value="Sign up" />
+             <input type="submit" value="Sign up" class="login-submit"/>
              
              <!--<a href="signup.jsp">go to sign up</a>
              <button type="submit" action="signup.jsp" value="Go to sign up" />

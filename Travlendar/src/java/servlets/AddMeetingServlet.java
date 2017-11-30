@@ -5,28 +5,38 @@
  */
 package servlets;
 
-import entities.Usertable;
+import entities.Meeting;
+import entities.MeetingPK;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sessionbeans.UsertableFacadeLocal;
-import utils.SecureHashEncryption;
+import sessionbeans.MeetingFacadeLocal;
+import utils.DateConversion;
 
 /**
  *
  * @author Mirko
  */
-public class loginservlet extends HttpServlet {
+@WebServlet(name = "AddMeetingServlet", urlPatterns = {"/AddMeetingServlet"})
+public class AddMeetingServlet extends HttpServlet {
 
-    private static int id=20;
     @EJB
-    private UsertableFacadeLocal userFacade;
+    private MeetingFacadeLocal meetingFacade;
 
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,56 +49,15 @@ public class loginservlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
-        //INSERTED BY ME
-        /*
-        Utente user=new Utente();
-        user.setId(id);
-        this.id++;
-        user.setUsername(request.getParameter("name"));
-        user.setPassword(request.getParameter("password"));
-        utenteFacade.create(user);
-        */
-        System.out.println("dieee");
-        Usertable u=userFacade.find(request.getParameter("email").hashCode());
-        String password=request.getParameter("password");
-        
-        System.out.println(password);
-        System.out.println(u.getHashedpassword());
-        
-        if(u==null){
-            response.sendRedirect("signup.jsp");
-            System.out.println("user not in database");
-        }
-        else {
-            if(SecureHashEncryption.encryptPassword(password).equals(u.getHashedpassword())){
-               
-                HttpSession session=request.getSession();
-                session.setAttribute("name", u.getName()+" "+u.getSurname());
-                session.setAttribute("uid", u.getUid());
-                //session.setAttribute("name", u.getName());
-                System.out.println("REDIRECTING TO HOMEPAGE JSP");
-                response.sendRedirect("homepage.jsp");
-            }
-            else{
-                System.out.println(SecureHashEncryption.encryptPassword(password));
-                System.out.println(u.getHashedpassword());
-                System.out.println("REDIRECTING TO INDEX JSP");
-                response.sendRedirect("index.jsp");
-            }
-        }
-        
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet loginservlet</title>");            
+            out.println("<title>Servlet AddMeetingServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>You successfully submitted your data into the database: name= "+request.getParameter("name")+"</h1>");
+            out.println("<h1>Servlet AddMeetingServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -106,7 +75,32 @@ public class loginservlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        HttpSession session=request.getSession();
+        
+        Meeting m=new Meeting();
+        MeetingPK mpk=new MeetingPK();
+        
+        mpk.setMeetingid(request.getParameter("name").hashCode());
+        String uid=session.getAttribute("uid").toString();
+        
+        System.out.println(uid);
+        
+        mpk.setUid(Integer.parseInt(uid));
+        
+        m.setMeetingPK(mpk);
+        m.setName(request.getParameter("name"));
+        
+       
+        Timestamp tstamp = DateConversion.parseTimestampFromHTMLForm(request.getParameter("date"));
+        
+        m.setStartingdate(tstamp);
+        meetingFacade.create(m);
+        
+       // System.out.println(date);
+       // System.out.println(tstamp);
+        
+        
     }
 
     /**

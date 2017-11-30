@@ -14,7 +14,7 @@ CREATE TABLE Meeting (
  UID INT NOT NULL,
  MEETINGID INT NOT NULL,
  Name VARCHAR(100),
- StartingDate DATE,
+ StartingDate TIMESTAMP,
  Duration INT,
  Location VARCHAR(10)
 );

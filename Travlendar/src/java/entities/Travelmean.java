@@ -16,7 +16,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -29,8 +28,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Travelmean.findAll", query = "SELECT t FROM Travelmean t")
     , @NamedQuery(name = "Travelmean.findByUid", query = "SELECT t FROM Travelmean t WHERE t.uid = :uid")
-    , @NamedQuery(name = "Travelmean.findByName", query = "SELECT t FROM Travelmean t WHERE t.name = :name")
-    , @NamedQuery(name = "Travelmean.findBySelected", query = "SELECT t FROM Travelmean t WHERE t.selected = :selected")})
+    , @NamedQuery(name = "Travelmean.findByOwnedcar", query = "SELECT t FROM Travelmean t WHERE t.ownedcar = :ownedcar")
+    , @NamedQuery(name = "Travelmean.findBySharedcar", query = "SELECT t FROM Travelmean t WHERE t.sharedcar = :sharedcar")
+    , @NamedQuery(name = "Travelmean.findByOwnedbike", query = "SELECT t FROM Travelmean t WHERE t.ownedbike = :ownedbike")
+    , @NamedQuery(name = "Travelmean.findBySharedbike", query = "SELECT t FROM Travelmean t WHERE t.sharedbike = :sharedbike")
+    , @NamedQuery(name = "Travelmean.findByWalking", query = "SELECT t FROM Travelmean t WHERE t.walking = :walking")
+    , @NamedQuery(name = "Travelmean.findByPublictrasport", query = "SELECT t FROM Travelmean t WHERE t.publictrasport = :publictrasport")})
 public class Travelmean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,11 +42,18 @@ public class Travelmean implements Serializable {
     @NotNull
     @Column(name = "UID")
     private Integer uid;
-    @Size(max = 100)
-    @Column(name = "NAME")
-    private String name;
-    @Column(name = "SELECTED")
-    private Boolean selected;
+    @Column(name = "OWNEDCAR")
+    private Boolean ownedcar;
+    @Column(name = "SHAREDCAR")
+    private Boolean sharedcar;
+    @Column(name = "OWNEDBIKE")
+    private Boolean ownedbike;
+    @Column(name = "SHAREDBIKE")
+    private Boolean sharedbike;
+    @Column(name = "WALKING")
+    private Boolean walking;
+    @Column(name = "PUBLICTRASPORT")
+    private Boolean publictrasport;
     @JoinColumn(name = "UID", referencedColumnName = "UID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Preferences preferences;
@@ -63,20 +73,52 @@ public class Travelmean implements Serializable {
         this.uid = uid;
     }
 
-    public String getName() {
-        return name;
+    public Boolean getOwnedcar() {
+        return ownedcar;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOwnedcar(Boolean ownedcar) {
+        this.ownedcar = ownedcar;
     }
 
-    public Boolean getSelected() {
-        return selected;
+    public Boolean getSharedcar() {
+        return sharedcar;
     }
 
-    public void setSelected(Boolean selected) {
-        this.selected = selected;
+    public void setSharedcar(Boolean sharedcar) {
+        this.sharedcar = sharedcar;
+    }
+
+    public Boolean getOwnedbike() {
+        return ownedbike;
+    }
+
+    public void setOwnedbike(Boolean ownedbike) {
+        this.ownedbike = ownedbike;
+    }
+
+    public Boolean getSharedbike() {
+        return sharedbike;
+    }
+
+    public void setSharedbike(Boolean sharedbike) {
+        this.sharedbike = sharedbike;
+    }
+
+    public Boolean getWalking() {
+        return walking;
+    }
+
+    public void setWalking(Boolean walking) {
+        this.walking = walking;
+    }
+
+    public Boolean getPublictrasport() {
+        return publictrasport;
+    }
+
+    public void setPublictrasport(Boolean publictrasport) {
+        this.publictrasport = publictrasport;
     }
 
     public Preferences getPreferences() {

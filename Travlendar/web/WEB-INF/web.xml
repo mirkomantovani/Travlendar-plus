@@ -11,6 +11,10 @@
         <servlet-name>ModifyPreferences</servlet-name>
         <servlet-class>servlets.ModifyPreferences</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModifyTravelMeans</servlet-name>
+        <servlet-class>servlets.ModifyTravelMeans</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginservlet</servlet-name>
         <url-pattern>/loginservlet</url-pattern>
@@ -18,6 +22,10 @@
     <servlet-mapping>
         <servlet-name>ModifyPreferences</servlet-name>
         <url-pattern>/ModifyPreferences</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModifyTravelMeans</servlet-name>
+        <url-pattern>/ModifyTravelMeans</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

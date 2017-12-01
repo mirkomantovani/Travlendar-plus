@@ -11,9 +11,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="css/simple.css">
+        <link rel="stylesheet" href="css/button.css">
     </head>
     <body>
-        
+        <form action="ModifyTravelMeans" >
         <div class="page">
   <div class="page__demo">
     <div class="main-container">
@@ -50,13 +51,17 @@
           <input type="checkbox" class="switch__toggle" checked>
           <span class="switch__label"></span>
         </label> 
+          <br>
+          <br>
+          
+          <button type="submit" class="offset">Submit</button>
+          
           
       </div>
     </div>
   </div>
-  <footer class="footer">
-   
-  </footer>
+  
 </div>
+        </form>
     </body>
 </html>

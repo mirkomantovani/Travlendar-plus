@@ -23,7 +23,7 @@ import utils.SecureHashEncryption;
  */
 public class loginservlet extends HttpServlet {
 
-    private static int id=20;
+    
     @EJB
     private UsertableFacadeLocal userFacade;
 

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sessionbeans.PreferencesFacadeLocal;
+import sessionbeans.TravelmeanFacadeLocal;
 import sessionbeans.UsertableFacadeLocal;
 import utils.SecureHashEncryption;
 
@@ -26,6 +27,9 @@ import utils.SecureHashEncryption;
  */
 @WebServlet(name = "signupservlet", urlPatterns = {"/signupservlet"})
 public class signupservlet extends HttpServlet {
+
+    @EJB
+    private TravelmeanFacadeLocal travelmeanFacade;
 
     @EJB
     private PreferencesFacadeLocal preferencesFacade;
@@ -92,10 +96,17 @@ public class signupservlet extends HttpServlet {
         //user.setPreferences(pref);
         
         //System.out.println(user.getPreferences().getMaxcyclingdistance());
-       //Travelmean travel=new Travelmean();
+       Travelmean travel=new Travelmean();
        
-        
- 
+       pref.setUid(user.getUid());
+       travel.setOwnedbike(true);
+       travel.setOwnedcar(true);
+       travel.setPublictrasport(true);
+       travel.setWalking(true);
+       travel.setSharedbike(true);
+       travel.setSharedcar(true);
+       
+        travelmeanFacade.create(travel);
         userFacade.create(user);
         preferencesFacade.create(pref);
         

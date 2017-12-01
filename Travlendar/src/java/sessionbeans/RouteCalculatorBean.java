@@ -12,12 +12,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.ParseException;
 import javax.ejb.Stateless;
-import org.json.JSONException;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
+
+
 
 /**
  *
@@ -26,7 +27,7 @@ import org.json.simple.parser.ParseException;
 @Stateless
 public class RouteCalculatorBean {
 
-private void retrieveRoute() throws MalformedURLException, IOException, JSONException, ParseException{
+private void retrieveRoute() throws MalformedURLException, IOException, org.json.simple.parser.ParseException{
     URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
     connection.setRequestProperty("Accept-Charset", "UTF-8");
     StringBuilder responseStrBuilder;
@@ -44,7 +45,7 @@ private void retrieveRoute() throws MalformedURLException, IOException, JSONExce
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(json);
             JSONObject jb = (JSONObject) obj;
-
+            
             //now read
             JSONArray jsonObject1 = (JSONArray) jb.get("rows");
             

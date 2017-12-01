@@ -16,7 +16,7 @@ CREATE TABLE Meeting (
  Name VARCHAR(100),
  StartingDate TIMESTAMP,
  Duration INT,
- Location VARCHAR(10)
+ Location VARCHAR(100)
 );
 
 ALTER TABLE Meeting ADD CONSTRAINT PK_Meeting PRIMARY KEY (UID,MEETINGID);
@@ -55,7 +55,7 @@ ALTER TABLE TravelMean ADD CONSTRAINT PK_TravelMean PRIMARY KEY (UID);
 
 CREATE TABLE Break (
  UID INT NOT NULL,
- Name CHAR(10),
+ Name VARCHAR(100),
  StartingTime TIME,
  EndingTime TIME,
  MinDuration TIME,

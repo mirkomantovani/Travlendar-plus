@@ -15,7 +15,7 @@
     <body>
         
         <form action="signupservlet" class="login">
-            <h1>Travlendar+ Sign up</h1>
+            <h1>Travlendar+ Sign up </h1>
             <table border="3" cellpadding="2">
                 
                 <tbody>

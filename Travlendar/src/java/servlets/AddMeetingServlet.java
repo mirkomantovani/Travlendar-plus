@@ -10,12 +10,6 @@ import entities.MeetingPK;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -84,12 +78,15 @@ public class AddMeetingServlet extends HttpServlet {
         mpk.setMeetingid(request.getParameter("name").hashCode());
         String uid=session.getAttribute("uid").toString();
         
-        System.out.println(uid);
         
         mpk.setUid(Integer.parseInt(uid));
         
         m.setMeetingPK(mpk);
         m.setName(request.getParameter("name"));
+        
+        m.setLocation(request.getParameter("location"));
+        
+        System.out.println(request.getParameter("location"));
         
        
         Timestamp tstamp = DateConversion.parseTimestampFromHTMLForm(request.getParameter("date"));

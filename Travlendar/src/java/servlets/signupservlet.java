@@ -5,6 +5,8 @@
  */
 package servlets;
 
+import entities.Preferences;
+import entities.Travelmean;
 import entities.Usertable;
 import java.io.IOException;
 import java.util.Random;
@@ -14,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sessionbeans.PreferencesFacadeLocal;
 import sessionbeans.UsertableFacadeLocal;
 import utils.SecureHashEncryption;
 
@@ -24,8 +27,13 @@ import utils.SecureHashEncryption;
 @WebServlet(name = "signupservlet", urlPatterns = {"/signupservlet"})
 public class signupservlet extends HttpServlet {
 
+    @EJB
+    private PreferencesFacadeLocal preferencesFacade;
+
    @EJB
     private UsertableFacadeLocal userFacade;
+   
+   
     
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,16 +58,7 @@ public class signupservlet extends HttpServlet {
        Random r=new Random();
         Usertable u=userFacade.find(email.hashCode());
         if(u==null &&password.equals(passwordConfirm)){
-            //OKAY, CREATE USER
-            Usertable user=new Usertable();
-            //user.setUid(r.nextInt(1000));
-            user.setUid(email.hashCode());
-        user.setEmail(email);
-        user.setName(username);
-        user.setSurname(surname);
-        user.setHashedpassword(SecureHashEncryption.encryptPassword(password));
-        userFacade.create(user);
-        response.sendRedirect("login.jsp");
+            createUser(email, username, surname, password, response);
         }
         else {
             response.sendRedirect("signup.jsp");
@@ -69,6 +68,40 @@ public class signupservlet extends HttpServlet {
         }
         
         
+    }
+
+    private void createUser(String email, String username, String surname, String password, HttpServletResponse response) throws IOException {
+        //OKAY, CREATE USER
+        Usertable user=new Usertable();
+        //user.setUid(r.nextInt(1000));
+        user.setUid(email.hashCode());
+        user.setEmail(email);
+        user.setName(username);
+        user.setSurname(surname);
+        user.setHashedpassword(SecureHashEncryption.encryptPassword(password));
+        
+        Preferences pref=new Preferences();
+        pref.setAvoidmotorways(false);
+        pref.setAvoidtolls(false);
+        pref.setUid(user.getUid());
+        pref.setMaxcyclingdistance(Integer.MAX_VALUE);
+        pref.setMaxwalkingdistance(Integer.MAX_VALUE);
+        pref.setMinimizecarbonfootprint(false);
+        //pref.setUsertable(user);
+        
+        //user.setPreferences(pref);
+        
+        //System.out.println(user.getPreferences().getMaxcyclingdistance());
+       //Travelmean travel=new Travelmean();
+       
+        
+ 
+        userFacade.create(user);
+        preferencesFacade.create(pref);
+        
+        
+        
+        response.sendRedirect("login.jsp");
     }
 
 }

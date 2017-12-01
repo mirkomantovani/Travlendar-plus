@@ -45,7 +45,7 @@ public class Meeting implements Serializable {
     private String name;
     @Column(name = "DURATION")
     private Integer duration;
-    @Size(max = 10)
+    @Size(max = 100)
     @Column(name = "LOCATION")
     private String location;
     @Column(name = "STARTINGDATE")

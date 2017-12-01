@@ -139,7 +139,7 @@ input, textarea, select, label {
 .login {
   margin: 50px auto;
   padding: 18px 20px;
-  width: 200px;
+  width: 70%;
   background: #3f65b7;
   background-clip: padding-box;
   border: 1px solid #172b4e;

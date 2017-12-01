@@ -12,12 +12,12 @@
         <title>JSP Page</title>
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/styleplacepicker.css">
    <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 50%;
+        height: 500px;
         width: 80%;
         padding-right: 15px;
     padding-left: 15px;
@@ -106,10 +106,10 @@
      
     
       
-    
-    
+    <form action="AddMeetingServlet" class="form-horizontal login"  role="form">
+    <h1>ADD A NEW MEETING</h1>
     <div class="container">
-            <form action="AddMeetingServlet" class="form-horizontal"  role="form">
+        
                 <fieldset>
                     <legend>Add Meeting</legend>
                     <input type="text" name="name" value="" placeholder="Insert name " class="login-input" />
@@ -129,7 +129,7 @@
                 </fieldset>
                 
 
-            </form>
+            
             
         </div>
       
@@ -158,7 +158,7 @@
       </div>
       <div id="pac-container">
         <input id="pac-input" type="text"
-            placeholder="Enter a location">
+            placeholder="Enter a location" name="location">
       </div>
     </div>
     <div id="map"></div>
@@ -167,6 +167,7 @@
       <span id="place-name"  class="title"></span><br>
       <span id="place-address"></span>
     </div>
+    </form>
 
     <script>
       // This example requires the Places library. Include the libraries=places

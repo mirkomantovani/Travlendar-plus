@@ -27,8 +27,8 @@ import org.json.simple.JSONObject;
 @Stateless
 public class RouteCalculatorBean {
 
-private void retrieveRoute() throws MalformedURLException, IOException, org.json.simple.parser.ParseException{
-    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
+private int retrieveDuration() throws MalformedURLException, IOException, ParseException{
+    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=via+ungaretti,Peschiera+Borromeo&destinations=via+Turoldo,Bussero&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
     connection.setRequestProperty("Accept-Charset", "UTF-8");
     StringBuilder responseStrBuilder;
         try (InputStream responses = connection.getInputStream()) {
@@ -46,6 +46,7 @@ private void retrieveRoute() throws MalformedURLException, IOException, org.json
             Object obj = parser.parse(json);
             JSONObject jb = (JSONObject) obj;
             
+            
             //now read
             JSONArray jsonObject1 = (JSONArray) jb.get("rows");
             
@@ -57,7 +58,8 @@ private void retrieveRoute() throws MalformedURLException, IOException, org.json
            System.out.println(jsonObject3.toString());
             
 
-           System.out.println( "Duration = " + jsonObject5.get("text").toString());
+           return (int) jsonObject5.get("value");
+      
     
   
 }

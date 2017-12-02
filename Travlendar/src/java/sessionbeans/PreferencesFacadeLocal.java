@@ -15,6 +15,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface PreferencesFacadeLocal {
+    
 
     void create(Preferences preferences);
 

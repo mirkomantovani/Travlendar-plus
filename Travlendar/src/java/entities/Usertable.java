@@ -71,7 +71,11 @@ public class Usertable implements Serializable {
     @Column(name = "HASHEDPASSWORD")
     private String hashedpassword;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usertable")
+    private Travelmean travelmean;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usertable")
     private Preferences preferences;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usertable")
+    private List<Break> breakList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usertable")
     private List<Meeting> meetingList;
 
@@ -143,12 +147,29 @@ public class Usertable implements Serializable {
         this.hashedpassword = hashedpassword;
     }
 
+    public Travelmean getTravelmean() {
+        return travelmean;
+    }
+
+    public void setTravelmean(Travelmean travelmean) {
+        this.travelmean = travelmean;
+    }
+
     public Preferences getPreferences() {
         return preferences;
     }
 
     public void setPreferences(Preferences preferences) {
         this.preferences = preferences;
+    }
+
+    @XmlTransient
+    public List<Break> getBreakList() {
+        return breakList;
+    }
+
+    public void setBreakList(List<Break> breakList) {
+        this.breakList = breakList;
     }
 
     @XmlTransient

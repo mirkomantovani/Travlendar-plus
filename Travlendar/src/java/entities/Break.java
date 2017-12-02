@@ -7,18 +7,16 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,7 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Break.findAll", query = "SELECT b FROM Break b")
-    , @NamedQuery(name = "Break.findByUid", query = "SELECT b FROM Break b WHERE b.uid = :uid")
+    , @NamedQuery(name = "Break.findByUid", query = "SELECT b FROM Break b WHERE b.breakPK.uid = :uid")
+    , @NamedQuery(name = "Break.findByBreakid", query = "SELECT b FROM Break b WHERE b.breakPK.breakid = :breakid")
     , @NamedQuery(name = "Break.findByName", query = "SELECT b FROM Break b WHERE b.name = :name")
     , @NamedQuery(name = "Break.findByStartingtime", query = "SELECT b FROM Break b WHERE b.startingtime = :startingtime")
     , @NamedQuery(name = "Break.findByEndingtime", query = "SELECT b FROM Break b WHERE b.endingtime = :endingtime")
@@ -42,12 +41,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Break implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "UID")
-    private Integer uid;
-    @Size(max = 10)
+    @EmbeddedId
+    protected BreakPK breakPK;
+    @Size(max = 100)
     @Column(name = "NAME")
     private String name;
     @Column(name = "STARTINGTIME")
@@ -67,22 +63,26 @@ public class Break implements Serializable {
     @Column(name = "DAYOFWEEK")
     private String dayofweek;
     @JoinColumn(name = "UID", referencedColumnName = "UID", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Preferences preferences;
+    @ManyToOne(optional = false)
+    private Usertable usertable;
 
     public Break() {
     }
 
-    public Break(Integer uid) {
-        this.uid = uid;
+    public Break(BreakPK breakPK) {
+        this.breakPK = breakPK;
     }
 
-    public Integer getUid() {
-        return uid;
+    public Break(int uid, int breakid) {
+        this.breakPK = new BreakPK(uid, breakid);
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public BreakPK getBreakPK() {
+        return breakPK;
+    }
+
+    public void setBreakPK(BreakPK breakPK) {
+        this.breakPK = breakPK;
     }
 
     public String getName() {
@@ -141,18 +141,18 @@ public class Break implements Serializable {
         this.dayofweek = dayofweek;
     }
 
-    public Preferences getPreferences() {
-        return preferences;
+    public Usertable getUsertable() {
+        return usertable;
     }
 
-    public void setPreferences(Preferences preferences) {
-        this.preferences = preferences;
+    public void setUsertable(Usertable usertable) {
+        this.usertable = usertable;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (uid != null ? uid.hashCode() : 0);
+        hash += (breakPK != null ? breakPK.hashCode() : 0);
         return hash;
     }
 
@@ -163,7 +163,7 @@ public class Break implements Serializable {
             return false;
         }
         Break other = (Break) object;
-        if ((this.uid == null && other.uid != null) || (this.uid != null && !this.uid.equals(other.uid))) {
+        if ((this.breakPK == null && other.breakPK != null) || (this.breakPK != null && !this.breakPK.equals(other.breakPK))) {
             return false;
         }
         return true;
@@ -171,7 +171,7 @@ public class Break implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Break[ uid=" + uid + " ]";
+        return "entities.Break[ breakPK=" + breakPK + " ]";
     }
     
 }

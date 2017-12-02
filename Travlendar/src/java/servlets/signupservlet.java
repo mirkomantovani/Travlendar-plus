@@ -98,17 +98,18 @@ public class signupservlet extends HttpServlet {
         //System.out.println(user.getPreferences().getMaxcyclingdistance());
        Travelmean travel=new Travelmean();
        
-       pref.setUid(user.getUid());
+       travel.setUid(user.getUid());
        travel.setOwnedbike(true);
        travel.setOwnedcar(true);
-       travel.setPublictrasport(true);
+       travel.setPublictransport(true);
        travel.setWalking(true);
        travel.setSharedbike(true);
        travel.setSharedcar(true);
        
-        travelmeanFacade.create(travel);
+        
         userFacade.create(user);
         preferencesFacade.create(pref);
+        travelmeanFacade.create(travel);
         
         
         

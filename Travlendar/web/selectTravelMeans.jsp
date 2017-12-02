@@ -22,33 +22,33 @@
           <h2>Owned car</h2>
         <label class="switch switch_type1" role="switch">
             
-          <input type="checkbox" class="switch__toggle" checked>
+          <input type="checkbox" name="oc" class="switch__toggle" ${oc}>
           <span class="switch__label"></span>
         </label>
           <h2>Shared car</h2>
         <label class="switch switch_type1" role="switch">
             
-          <input type="checkbox" class="switch__toggle" checked>
+          <input type="checkbox" name="sc" class="switch__toggle" ${sc}>
           <span class="switch__label"></span>
         </label>
           <h2>Owned bike</h2>
         <label class="switch switch_type2" role="switch">
-          <input type="checkbox" class="switch__toggle">
+          <input type="checkbox" name="ob" class="switch__toggle" ${ob}>
           <span class="switch__label"> </span>
         </label> 
           <h2>Shared bike</h2>
         <label class="switch switch_type2" role="switch">
-          <input type="checkbox" class="switch__toggle">
+          <input type="checkbox" name="sb" class="switch__toggle" ${sb}>
           <span class="switch__label"> </span>
         </label> 
           <h2>Walking</h2>
         <label class="switch switch_type3" role="switch">
-          <input type="checkbox" class="switch__toggle" checked>
+          <input type="checkbox" name="w" class="switch__toggle" ${w}>
           <span class="switch__label"></span>
         </label>          
           <h2>Public transports</h2>
         <label class="switch switch_type3" role="switch">
-          <input type="checkbox" class="switch__toggle" checked>
+          <input type="checkbox" name="p" class="switch__toggle" ${p}>
           <span class="switch__label"></span>
         </label> 
           <br>

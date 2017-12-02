@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,9 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Meeting.findByUid", query = "SELECT m FROM Meeting m WHERE m.meetingPK.uid = :uid")
     , @NamedQuery(name = "Meeting.findByMeetingid", query = "SELECT m FROM Meeting m WHERE m.meetingPK.meetingid = :meetingid")
     , @NamedQuery(name = "Meeting.findByName", query = "SELECT m FROM Meeting m WHERE m.name = :name")
+    , @NamedQuery(name = "Meeting.findByStartingdate", query = "SELECT m FROM Meeting m WHERE m.startingdate = :startingdate")
     , @NamedQuery(name = "Meeting.findByDuration", query = "SELECT m FROM Meeting m WHERE m.duration = :duration")
-    , @NamedQuery(name = "Meeting.findByLocation", query = "SELECT m FROM Meeting m WHERE m.location = :location")
-    , @NamedQuery(name = "Meeting.findByStartingdate", query = "SELECT m FROM Meeting m WHERE m.startingdate = :startingdate")})
+    , @NamedQuery(name = "Meeting.findByLocation", query = "SELECT m FROM Meeting m WHERE m.location = :location")})
 public class Meeting implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,17 +45,19 @@ public class Meeting implements Serializable {
     @Size(max = 100)
     @Column(name = "NAME")
     private String name;
+    @Column(name = "STARTINGDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startingdate;
     @Column(name = "DURATION")
     private Integer duration;
     @Size(max = 100)
     @Column(name = "LOCATION")
     private String location;
-    @Column(name = "STARTINGDATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startingdate;
     @JoinColumn(name = "UID", referencedColumnName = "UID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Usertable usertable;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "meeting")
+    private Reminder reminder;
 
     public Meeting() {
     }
@@ -82,6 +86,14 @@ public class Meeting implements Serializable {
         this.name = name;
     }
 
+    public Date getStartingdate() {
+        return startingdate;
+    }
+
+    public void setStartingdate(Date startingdate) {
+        this.startingdate = startingdate;
+    }
+
     public Integer getDuration() {
         return duration;
     }
@@ -98,20 +110,20 @@ public class Meeting implements Serializable {
         this.location = location;
     }
 
-    public Date getStartingdate() {
-        return startingdate;
-    }
-
-    public void setStartingdate(Date startingdate) {
-        this.startingdate = startingdate;
-    }
-
     public Usertable getUsertable() {
         return usertable;
     }
 
     public void setUsertable(Usertable usertable) {
         this.usertable = usertable;
+    }
+
+    public Reminder getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(Reminder reminder) {
+        this.reminder = reminder;
     }
 
     @Override

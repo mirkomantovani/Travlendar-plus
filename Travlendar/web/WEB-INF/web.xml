@@ -15,6 +15,10 @@
         <servlet-name>ModifyTravelMeans</servlet-name>
         <servlet-class>servlets.ModifyTravelMeans</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DisplayTravelMeans</servlet-name>
+        <servlet-class>servlets.DisplayTravelMeans</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginservlet</servlet-name>
         <url-pattern>/loginservlet</url-pattern>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>ModifyTravelMeans</servlet-name>
         <url-pattern>/ModifyTravelMeans</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayTravelMeans</servlet-name>
+        <url-pattern>/DisplayTravelMeans</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

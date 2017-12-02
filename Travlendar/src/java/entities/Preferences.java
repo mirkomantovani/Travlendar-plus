@@ -8,7 +8,6 @@ package entities;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -59,13 +58,9 @@ public class Preferences implements Serializable {
     private Boolean avoidtolls;
     @Column(name = "AVOIDMOTORWAYS")
     private Boolean avoidmotorways;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "preferences")
-    private Travelmean travelmean;
     @JoinColumn(name = "UID", referencedColumnName = "UID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Usertable usertable;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "preferences")
-    private Break break1;
 
     public Preferences() {
     }
@@ -130,28 +125,12 @@ public class Preferences implements Serializable {
         this.avoidmotorways = avoidmotorways;
     }
 
-    public Travelmean getTravelmean() {
-        return travelmean;
-    }
-
-    public void setTravelmean(Travelmean travelmean) {
-        this.travelmean = travelmean;
-    }
-
     public Usertable getUsertable() {
         return usertable;
     }
 
     public void setUsertable(Usertable usertable) {
         this.usertable = usertable;
-    }
-
-    public Break getBreak1() {
-        return break1;
-    }
-
-    public void setBreak1(Break break1) {
-        this.break1 = break1;
     }
 
     @Override

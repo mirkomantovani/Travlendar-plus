@@ -19,14 +19,12 @@ import sessionbeans.TravelmeanFacadeLocal;
  *
  * @author Mirko
  */
-public class ModifyTravelMeans extends HttpServlet {
+public class DisplayTravelMeans extends HttpServlet {
 
     @EJB
     private TravelmeanFacadeLocal travelmeanFacade;
-
     
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -42,19 +40,19 @@ public class ModifyTravelMeans extends HttpServlet {
         HttpSession session = request.getSession();
         String uid = session.getAttribute("uid").toString();
         
-        
         Travelmean travel = travelmeanFacade.find(Integer.parseInt(uid));
-
+      
         
-
-        travel.setOwnedcar(request.getParameter("oc")!=null ? true : false);
-        travel.setSharedcar(request.getParameter("sc")!=null ? true : false);
-        travel.setOwnedbike(request.getParameter("ob")!=null ? true : false);
-        travel.setSharedbike(request.getParameter("sb")!=null ? true : false);
-        travel.setWalking(request.getParameter("w")!=null ? true : false);
-        travel.setPublictransport(request.getParameter("p")!=null ? true : false);
-
-        travelmeanFacade.edit(travel);
+         
+        //List<Product> products = productService.list(); // Obtain all products.
+        request.setAttribute("oc", travel.getOwnedcar()? "checked" : ""); // Store var in request scope.
+        request.setAttribute("sc", travel.getSharedcar()? "checked" : ""); // Store var in request scope.
+        request.setAttribute("ob", travel.getOwnedbike()? "checked" : ""); // Store var in request scope.
+        request.setAttribute("sb", travel.getSharedbike()? "checked" : ""); // Store var in request scope.
+        request.setAttribute("w", travel.getWalking()? "checked" : ""); // Store var in request scope.
+        request.setAttribute("p", travel.getPublictransport()? "checked" : ""); // Store var in request scope.
+  
+        request.getRequestDispatcher("selectTravelMeans.jsp").forward(request, response); // Forward to JSP page to display them in a HTML form
     }
 
     

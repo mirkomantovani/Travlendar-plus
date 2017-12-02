@@ -39,7 +39,7 @@
           <br>
           <br>
           
-          <button type="submit" class="offset">Submit</button>
+          <button type="submit" class="offset">Apply changes</button>
       </div>
     </div>
   </div>

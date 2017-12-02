@@ -74,6 +74,8 @@ public class ModifyPreferences extends HttpServlet {
         }
 
         preferencesFacade.edit(pref);
+        
+        response.sendRedirect("Home");
 
        // System.out.println(minCarbonFootprint);
         //System.out.println(avoidMotorways);

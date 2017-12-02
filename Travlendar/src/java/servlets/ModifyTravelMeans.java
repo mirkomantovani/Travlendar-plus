@@ -55,6 +55,8 @@ public class ModifyTravelMeans extends HttpServlet {
         travel.setPublictransport(request.getParameter("p")!=null ? true : false);
 
         travelmeanFacade.edit(travel);
+        
+        response.sendRedirect("Home");
     }
 
     

@@ -65,11 +65,11 @@ public class loginservlet extends HttpServlet {
             if(SecureHashEncryption.encryptPassword(password).equals(u.getHashedpassword())){
                
                 HttpSession session=request.getSession();
-                session.setAttribute("name", u.getName()+" "+u.getSurname());
+                session.setAttribute("name", u.getName());
                 session.setAttribute("uid", u.getUid());
                 //session.setAttribute("name", u.getName());
                 System.out.println("REDIRECTING TO HOMEPAGE JSP");
-                response.sendRedirect("homepage.jsp");
+                response.sendRedirect("Home");
             }
             else{
                 System.out.println(SecureHashEncryption.encryptPassword(password));

@@ -16,6 +16,7 @@
         
         <link rel="stylesheet" href="css/simple.css">
         <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/body.css">
         <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
         <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
         
@@ -27,7 +28,9 @@
             }
 
         %>
-        <nav class="navbar navbar-default navbar-inverse" role="navigation">
+        
+        <!--          ----NAVBAR----         -->
+        <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -88,6 +91,8 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+                        
+                        <br><br><br>
 
         <h1>Welcome to the homepage ${name}</h1>
         <form action="DisplayPreferences" class="login">

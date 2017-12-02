@@ -4,6 +4,7 @@
     Author     : Mirko
 --%>
 
+<%@page import="sessionbeans.PreferencesFacade"%>
 <%@page import="entities.Preferences"%>
 <%@page import="sessionbeans.PreferencesFacadeLocal"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,7 +17,7 @@
         <link rel="stylesheet" href="css/button.css">
     </head>
     <body>
-        <jsp:useBean id="preferencesFacade" scope="session" class="sessionbeans.PreferencesFacadeLocal"/>
+        <jsp:useBean id="PreferencesFacadeLocal" scope="session" class="sessionbeans.PreferencesFacadeLocal"/>
         <%
             
             if(session.getAttribute("uid")==null){
@@ -24,7 +25,7 @@
             }
             else{
 
-            Preferences pref =preferencesFacade.find(session.getAttribute("uid"));
+            Preferences pref =PreferencesFacadeLocal.find(session.getAttribute("uid"));
             
             application.setAttribute( "pref", pref);
             

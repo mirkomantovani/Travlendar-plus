@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Travelmean.findByOwnedbike", query = "SELECT t FROM Travelmean t WHERE t.ownedbike = :ownedbike")
     , @NamedQuery(name = "Travelmean.findBySharedbike", query = "SELECT t FROM Travelmean t WHERE t.sharedbike = :sharedbike")
     , @NamedQuery(name = "Travelmean.findByWalking", query = "SELECT t FROM Travelmean t WHERE t.walking = :walking")
-    , @NamedQuery(name = "Travelmean.findByPublictrasport", query = "SELECT t FROM Travelmean t WHERE t.publictrasport = :publictrasport")})
+    , @NamedQuery(name = "Travelmean.findByPublictrasport", query = "SELECT t FROM Travelmean t WHERE t.publictransport = :publictransport")})
 public class Travelmean implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,8 +52,8 @@ public class Travelmean implements Serializable {
     private Boolean sharedbike;
     @Column(name = "WALKING")
     private Boolean walking;
-    @Column(name = "PUBLICTRASPORT")
-    private Boolean publictrasport;
+    @Column(name = "PUBLICTRANSPORT")
+    private Boolean publictransport;
     @JoinColumn(name = "UID", referencedColumnName = "UID", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Preferences preferences;
@@ -114,11 +114,11 @@ public class Travelmean implements Serializable {
     }
 
     public Boolean getPublictrasport() {
-        return publictrasport;
+        return publictransport;
     }
 
     public void setPublictrasport(Boolean publictrasport) {
-        this.publictrasport = publictrasport;
+        this.publictransport = publictrasport;
     }
 
     public Preferences getPreferences() {

@@ -27,7 +27,7 @@ import org.json.simple.JSONObject;
 @Stateless
 public class RouteCalculatorBean {
 
-private int retrieveDuration() throws MalformedURLException, IOException, ParseException{
+private int retrieveDuration() throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException{
     URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=via+ungaretti,Peschiera+Borromeo&destinations=via+Turoldo,Bussero&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
     connection.setRequestProperty("Accept-Charset", "UTF-8");
     StringBuilder responseStrBuilder;

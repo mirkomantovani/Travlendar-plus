@@ -21,7 +21,7 @@ import utils.SecureHashEncryption;
  *
  * @author Mirko
  */
-public class loginservlet extends HttpServlet {
+public class loginservlet extends HttpServlet{
 
     
     @EJB

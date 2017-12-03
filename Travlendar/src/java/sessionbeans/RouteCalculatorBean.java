@@ -5,6 +5,13 @@
  */
 package sessionbeans;
 
+
+
+
+import com.sun.xml.ws.runtime.dev.Session;
+import entities.Break;
+import entities.Preferences;
+import entities.Travelmean;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +20,14 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
+import javax.ejb.EJB;
+
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -26,9 +40,62 @@ import org.json.simple.JSONObject;
  */
 @Stateless
 public class RouteCalculatorBean {
+   
+ @EJB
+private PreferencesFacadeLocal preferencesFacade;
+private BreakFacadeLocal breakFacade;
+private TravelmeanFacadeLocal travelmeanFacade;
 
-private int retrieveDuration() throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException{
-    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?origins=via+ungaretti,Peschiera+Borromeo&destinations=via+Turoldo,Bussero&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
+private int retrieveDuration(String origin, String destination) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException{
+   
+   HttpServletRequest request = (HttpServletRequest) (FacesContext.getCurrentInstance().getExternalContext().getRequest());
+   
+   HttpSession session=request.getSession();
+   
+   String uid = session.getAttribute("uid").toString();
+   
+   Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
+   Break breaks = breakFacade.find(Integer.parseInt(uid));
+   Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
+   
+   String pmoto ="";
+   if(pref.getAvoidmotorways() && pref.getAvoidtolls()){
+        pmoto = "&avoid=highway";
+   }else if(pref.getAvoidmotorways() && !pref.getAvoidtolls()){
+        pmoto = "&avoid=highway";
+   }else if(!pref.getAvoidmotorways() && pref.getAvoidtolls()){
+        pmoto = "&avoid=tolls";
+   }else { pmoto = "";}
+   
+   String tway ="";
+   String tway2="";
+   
+   if(!transports.getOwnedcar() ){
+       tway="&mode=driving";
+   } else if(transports.getOwnedbike() ){
+       tway="&mode=bicycling";
+   } else if(transports.getPublictransport() ){
+       tway="&mode=transit";
+   } else if(transports.getWalking()){
+       tway="&mode=walking";
+   } if(transports.getOwnedbike() && !tway.equals("&mode=bicycling")){
+       tway2.concat("|bicycling");
+   } if (transports.getOwnedcar() && !tway.equals("&mode=driving")){
+       tway2.concat("|driving");
+   } if (transports.getPublictransport() && !tway.equals("&mode=transit")){
+       tway2.concat("|transit");
+   } if(transports.getWalking() && !tway.equals("&mode=walking")){
+       tway2.concat("|walking"); 
+   }
+   
+   String origins;
+   String destinations;
+  
+   origins = "origins="+origin.replaceAll(" ", "+");
+   destinations = "&destinations="+destination.replaceAll(" ", "+");
+   
+    
+    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destination + tway + tway2 + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
     connection.setRequestProperty("Accept-Charset", "UTF-8");
     StringBuilder responseStrBuilder;
         try (InputStream responses = connection.getInputStream()) {
@@ -55,11 +122,13 @@ private int retrieveDuration() throws MalformedURLException, IOException, ParseE
            JSONArray jsonObject3 = (JSONArray)jsonObject2.get("elements");
            JSONObject jsonObject4 = (JSONObject)jsonObject3.get(0);
            JSONObject jsonObject5 = (JSONObject)jsonObject4.get("duration");
+           JSONObject jsonObject6 = (JSONObject)jsonObject4.get("distance");
            System.out.println(jsonObject3.toString());
             
-
+         //  if(tway.contains("walking") || tway2.contains("walking") && pref.getMaxwalkingdistance() < (int) jsonObject6.get("value"))
+          // {
            return (int) jsonObject5.get("value");
-      
+         //  } else return 0;
     
   
 }

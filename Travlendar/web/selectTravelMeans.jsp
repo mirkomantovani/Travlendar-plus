@@ -84,6 +84,9 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><p class="navbar-text">Logged in as: ${name} </p></li>
+                        <li><form action="Logout">
+                                <a href="#" onclick="$(this).closest('form').submit()">Logout</a>
+                            </form></li>
                         
                     </ul>
                 </div><!-- /.navbar-collapse -->

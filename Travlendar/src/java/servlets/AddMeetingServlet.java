@@ -87,6 +87,8 @@ public class AddMeetingServlet extends HttpServlet {
         
        // System.out.println(date);
        // System.out.println(tstamp);
+       
+       response.sendRedirect("Home");
         
         
     }

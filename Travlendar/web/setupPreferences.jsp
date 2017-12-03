@@ -1,8 +1,9 @@
 <%-- 
-    Document   : selectTravelMeans
-    Created on : 1-dic-2017, 12.36.20
+    Document   : tog
+    Created on : 1-dic-2017, 12.08.06
     Author     : Mirko
 --%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -89,58 +90,38 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-                        
                         <br><br><br>
-                        
-                        
-                        
-        <form action="ModifyTravelMeans" >
+       
+        <form action="ModifyPreferences" >
         <div class="page">
   <div class="page__demo">
     <div class="main-container">
       <div class="page__container">  
-          <h2>Owned car</h2>
+          <h2>Minimize Carbon Footprint</h2>
         <label class="switch switch_type1" role="switch">
-            
-          <input type="checkbox" name="oc" class="switch__toggle" ${oc}>
+          <input type="checkbox" name="mincarbonfootprint" class="switch__toggle" ${mincarbonfootprint}>
           <span class="switch__label"></span>
         </label>
-          <h2>Shared car</h2>
+          <h2>Avoid Tolls</h2>
         <label class="switch switch_type1" role="switch">
-            
-          <input type="checkbox" name="sc" class="switch__toggle" ${sc}>
+          <input type="checkbox" name="avoidtolls" class="switch__toggle " ${avoidtolls}>
+          <span class="switch__label"> </span>
+        </label> 
+          <h2>Avoid Motorways </h2>
+        <label class="switch switch_type1" role="switch">
+          <input type="checkbox" name="avoidmotorways" class="switch__toggle" ${avoidmotorways} >
           <span class="switch__label"></span>
         </label>
-          <h2>Owned bike</h2>
-        <label class="switch switch_type2" role="switch">
-          <input type="checkbox" name="ob" class="switch__toggle" ${ob}>
-          <span class="switch__label"> </span>
-        </label> 
-          <h2>Shared bike</h2>
-        <label class="switch switch_type2" role="switch">
-          <input type="checkbox" name="sb" class="switch__toggle" ${sb}>
-          <span class="switch__label"> </span>
-        </label> 
-          <h2>Walking</h2>
-        <label class="switch switch_type3" role="switch">
-          <input type="checkbox" name="w" class="switch__toggle" ${w}>
-          <span class="switch__label"></span>
-        </label>          
-          <h2>Public transports</h2>
-        <label class="switch switch_type3" role="switch">
-          <input type="checkbox" name="p" class="switch__toggle" ${p}>
-          <span class="switch__label"></span>
-        </label> 
           <br>
           <br>
           
           <button type="submit" class="offset">Apply changes</button>
-          
-          
       </div>
     </div>
   </div>
-  
+  <footer class="footer">
+   
+  </footer>
 </div>
         </form>
     </body>

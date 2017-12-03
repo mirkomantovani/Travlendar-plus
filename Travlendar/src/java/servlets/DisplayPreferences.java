@@ -80,7 +80,7 @@ public class DisplayPreferences extends HttpServlet {
         request.setAttribute("mincarbonfootprint", pref.getMinimizecarbonfootprint() ? "checked" : ""); // Store var in request scope.
         request.setAttribute("avoidtolls", pref.getAvoidtolls() ? "checked" : ""); // Store var in request scope.
         request.setAttribute("avoidmotorways", pref.getAvoidmotorways() ? "checked" : ""); // Store var in request scope.
-        request.getRequestDispatcher("tog.jsp").forward(request, response); // Forward to JSP page to display them in a HTML form
+        request.getRequestDispatcher("setupPreferences.jsp").forward(request, response); // Forward to JSP page to display them in a HTML form
    
     }
 

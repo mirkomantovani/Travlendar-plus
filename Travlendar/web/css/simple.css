@@ -166,10 +166,10 @@
 }
 
 /* demo styles for switch */
-
+/* GRANDEZZAA */
 .switch{
-  --switchSize: 58px;
-  margin-top: 10px;
+  --switchSize: 40px;
+  margin-top: 5px;
 }
 
 .switch_type2{
@@ -211,7 +211,6 @@ a{
 
 .page{
   min-height: 100vh;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
 }

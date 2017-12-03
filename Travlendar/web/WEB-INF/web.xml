@@ -4,14 +4,18 @@
         <welcome-file>homepage.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
-    <servlet-name>homepage</servlet-name>
-    <jsp-file>/homepage.jsp</jsp-file> 
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>homepage</servlet-name>
-    <url-pattern>/Home</url-pattern> <!-- Any URL you want here -->
-</servlet-mapping>
+        <servlet-name>homepage</servlet-name>
+        <jsp-file>/homepage.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>servlets.Logout</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>homepage</servlet-name>
+        <url-pattern>/Home</url-pattern>
+        <!-- Any URL you want here -->
+    </servlet-mapping>
     <servlet>
         <servlet-name>loginservlet</servlet-name>
         <servlet-class>servlets.loginservlet</servlet-class>
@@ -43,6 +47,10 @@
     <servlet-mapping>
         <servlet-name>DisplayTravelMeans</servlet-name>
         <url-pattern>/DisplayTravelMeans</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

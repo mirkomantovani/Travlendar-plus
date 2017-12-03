@@ -9,6 +9,7 @@ import entities.Preferences;
 import entities.Travelmean;
 import entities.Usertable;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Random;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -91,6 +92,11 @@ public class signupservlet extends HttpServlet {
         pref.setMaxcyclingdistance(Integer.MAX_VALUE);
         pref.setMaxwalkingdistance(Integer.MAX_VALUE);
         pref.setMinimizecarbonfootprint(false);
+        //setting as default date 0, meaning midnight
+        Date d=new Date(0L);
+        pref.setNopublictransportationsafter(d);
+        pref.setMaxcyclingdistance(10000);
+        pref.setMaxwalkingdistance(5000);
         //pref.setUsertable(user);
         
         //user.setPreferences(pref);

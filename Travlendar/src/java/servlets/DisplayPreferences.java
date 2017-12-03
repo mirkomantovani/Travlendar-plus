@@ -72,16 +72,26 @@ public class DisplayPreferences extends HttpServlet {
         Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
         
         System.out.println(uid);
-        System.out.println(pref.getAvoidmotorways());
-        System.out.println(pref.getAvoidtolls());
+        
         
          
         //List<Product> products = productService.list(); // Obtain all products.
         request.setAttribute("mincarbonfootprint", pref.getMinimizecarbonfootprint() ? "checked" : ""); // Store var in request scope.
         request.setAttribute("avoidtolls", pref.getAvoidtolls() ? "checked" : ""); // Store var in request scope.
         request.setAttribute("avoidmotorways", pref.getAvoidmotorways() ? "checked" : ""); // Store var in request scope.
+        
+        request.setAttribute("maxw", pref.getMaxwalkingdistance()+"");
+       
+        request.setAttribute("maxc", pref.getMaxcyclingdistance()+"");
+        
+        request.setAttribute("nopublic", pref.getNopublictransportationsafter().getHours()+":"+pref.getNopublictransportationsafter().getMinutes());
+        
+        
+        
         request.getRequestDispatcher("setupPreferences.jsp").forward(request, response); // Forward to JSP page to display them in a HTML form
    
+        
+        
     }
 
     /**

@@ -36,5 +36,20 @@ public class DateConversion {
       return new Timestamp(DateConversion.parseDateFromHTMLForm(d).getTime());  
     }
     
+    public static Date parseTime(String d){
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm",Locale.US);
+        Date date=new Date();
+        try {
+
+            return formatter.parse(d);
+            
+        
+        } catch (ParseException ex) {
+            Logger.getLogger(AddMeetingServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
+    }
+    
     
 }

@@ -1,5 +1,5 @@
 <%-- 
-    Document   : provaplacepicker
+    Document   : addmeeting
     Created on : 30-nov-2017, 14.59.16
     Author     : Mirko
 --%>
@@ -20,7 +20,7 @@
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 500px;
+        height: 400px;
         width: 80%;
         padding-right: 15px;
     padding-left: 15px;
@@ -194,7 +194,7 @@
                     <legend>Add Meeting</legend>
                     <input type="text" name="name" value="" placeholder="Insert name " class="login-input" />
                     <div class="form-group">
-                        <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                        <label for="dtp_input1" class="col-md-2 control-label">Choose date and time</label>
                         <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
                             <input class="form-control" size="20" type="text" value="" name="date" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
@@ -202,11 +202,15 @@
                         </div>
                         <input type="hidden" id="dtp_input1" value="" /><br/>
                     </div>
+                    
+                    <input type="text" name="duration" value="" placeholder="Insert duration in minutes" class="login-input" />
 
                     <input type="submit" value="Add meeting" class="login-submit"/>
                     
    
                 </fieldset>
+        
+        
                 
 
             

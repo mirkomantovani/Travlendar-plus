@@ -8,6 +8,7 @@ package servlets;
 import entities.Preferences;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbeans.PreferencesFacadeLocal;
+import utils.DateConversion;
 
 /**
  *
@@ -48,10 +50,27 @@ public class ModifyPreferences extends HttpServlet {
         String minCarbonFootprint = "";
         String avoidTolls = "";
         String avoidMotorways = "";
-
+        String maxwalk;
+        String maxcycl;
+        String noPublicAfter;
+        
         minCarbonFootprint = request.getParameter("mincarbonfootprint");
         avoidTolls = request.getParameter("avoidtolls");
         avoidMotorways = request.getParameter("avoidmotorways");
+        
+        maxwalk=request.getParameter("maxwalking");
+        maxcycl=request.getParameter("maxcycling");
+        
+        noPublicAfter=request.getParameter("nopublicafter");
+        
+        System.out.println(DateConversion.parseTime(noPublicAfter));
+        
+        pref.setNopublictransportationsafter(DateConversion.parseTime(noPublicAfter));
+        
+        pref.setMaxwalkingdistance(Integer.parseInt(maxwalk));
+        pref.setMaxcyclingdistance(Integer.parseInt(maxcycl));
+        
+        
 
         
 

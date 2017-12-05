@@ -58,6 +58,8 @@ public class Meeting implements Serializable {
     private Usertable usertable;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "meeting")
     private Reminder reminder;
+    
+    
 
     public Meeting() {
     }

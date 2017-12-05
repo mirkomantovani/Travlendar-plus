@@ -4,21 +4,34 @@
     Author     : Mirko
 --%>
 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Homepage</title>
-     
         
+        
+        <link rel="stylesheet" href="css/fullcalendar.min.css">
+        <link rel="stylesheet" href="css/fullcalendar.print.min.css" media='print'>
+        
+        
+       
+        <script type="text/javascript" src="./js/moment.min.js"></script>
+        <script type="text/javascript" src="./js/jquery.min.js"></script>
+        <script type="text/javascript" src="./js/fullcalendar.min.js"></script>
+     
         <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+        
         
         <link rel="stylesheet" href="css/simple.css">
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/body.css">
-        <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+       <!-- <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script> -->
         <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+        
+        
         
     </head>
     <body>
@@ -61,7 +74,7 @@
                         
                         <li>
                             <form action="DisplayTravelMeans">
-                                <a href="addmeeting.jsp" >Add meeting</a>
+                                <a href="addmeeting.jsp?meetingname=&quot;&quot;" >Add meeting</a>
                             </form>
                         </li>
                         
@@ -78,9 +91,9 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
+                    <form action="SearchMeeting" class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search meeting">
+                            <input type="text" name="meetingname" class="form-control" placeholder="Search meeting">
                         </div>
                         <button type="submit" class="btn btn-default">Submit</button>
                     </form>
@@ -97,14 +110,131 @@
                         
                         <br><br><br>
 
-        <h1>Welcome to the homepage ${name}</h1>
-        <form action="DisplayPreferences" class="login">
+        
+        
+        <div id='calendar'></div>
+        
+        <script>
+            
 
-            <input type="submit" value="Modify preferences" class="login-submit"/>
-        </form>
-        <form action="DisplayTravelMeans" class="login">
+	$(document).ready(function() {
+            
+		
+		$('#calendar').fullCalendar({
+                    
+                   
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			defaultDate: '2017-11-12',
+			navLinks: true, // can click day/week names to navigate views
+			selectable: true,
+			selectHelper: true,
+			select: function(start, end) {
+                                
+				var title = prompt('Meeting Name:');
+				var eventData;
+				if (title) {
+					eventData = {
+						title: title,
+						start: start,
+						end: end
+					};
+                                        window.location.href = 'addmeeting.jsp?meetingname='+title;
+					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+				}
+				$('#calendar').fullCalendar('unselect');
+			},
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+                             ${meeeets}
+                           
+                            
+                        
+				/*{
+					title: 'qqqqqq',
+					start: '2017-11-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2017-11-07',
+					end: '2017-11-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-11-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-11-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2017-11-11',
+					end: '2017-11-13'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-11-12T10:30:00',
+					end: '2017-11-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2017-11-12T12:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-11-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2017-11-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2017-11-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+                                        url: 'addmeeting.jsp',
+					start: '2017-11-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2017-11-28'
+				}*/
+			]
+		});
+		
+	});
 
-            <input type="submit" value="Modify Travel means" class="login-submit"/>
-        </form>
+</script>
+<style>
+
+	body {
+            margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+                color: #eee;
+                
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+        
+        a{
+            color: #eee;
+        }
+
+</style>
     </body>
 </html>

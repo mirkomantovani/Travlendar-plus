@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-       <form action="loginservlet" class="login">
+       <form action="loginservlet" class="login" method="post">
            <h1>Travlendar+ Login</h1>
             <table border="3" cellpadding="2">
                 

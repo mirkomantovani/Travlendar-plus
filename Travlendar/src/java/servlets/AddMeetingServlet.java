@@ -10,6 +10,7 @@ import entities.MeetingPK;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -68,6 +69,9 @@ public class AddMeetingServlet extends HttpServlet {
         MeetingPK mpk=new MeetingPK();
         
         mpk.setMeetingid(request.getParameter("name").hashCode());
+        
+        System.out.println("meeting name hash:"+"caiaads".hashCode());
+        
         String uid=session.getAttribute("uid").toString();
         
         
@@ -87,6 +91,16 @@ public class AddMeetingServlet extends HttpServlet {
         
        // System.out.println(date);
        // System.out.println(tstamp);
+       
+       
+       List<Meeting> meetings = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
+
+
+                String mJSON=loginservlet.createMeetingJSON(meetings);
+                //session.setAttribute("meeeets", "{" + System.lineSeparator() + "title: 'qqqqqq'," + System.lineSeparator() + "start: '2017-11-01'" + System.lineSeparator() + "}");
+                session.setAttribute("meeeets",mJSON);
+       
+       
        
        response.sendRedirect("Home");
         
@@ -116,5 +130,7 @@ public class AddMeetingServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+   
 
 }

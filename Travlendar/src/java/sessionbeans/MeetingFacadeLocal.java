@@ -27,6 +27,10 @@ public interface MeetingFacadeLocal {
     List<Meeting> findAll();
 
     List<Meeting> findRange(int[] range);
+    
+    List getMeetingsFromUID(int uid);
+    
+    public List getMeetingsFromName(String partialName);
 
     int count();
     

@@ -195,7 +195,7 @@
         
                 <fieldset>
                     <legend>Add Meeting</legend>
-                    <input type="text" name="name" value="" placeholder="Insert name " class="login-input" />
+                    <input type="text" name="name" value="<%= request.getParameter("meetingname") %>" placeholder="Insert name " class="login-input" />
                     <div class="form-group">
                         <label for="dtp_input1" class="col-md-2 control-label">Choose date and time</label>
                         <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">

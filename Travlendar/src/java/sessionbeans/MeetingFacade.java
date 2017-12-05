@@ -6,6 +6,7 @@
 package sessionbeans;
 
 import entities.Meeting;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,6 +24,26 @@ public class MeetingFacade extends AbstractFacade<Meeting> implements MeetingFac
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    
+    //getting instances of the Meeting entity with select meeting from Meeting meeting
+    @Override
+    public List getMeetingsFromUID(int uid) {
+    return em.createQuery(
+    "SELECT m FROM Meeting m WHERE m.meetingPK.uid = :userid")
+    .setParameter("userid", uid)
+    .setMaxResults(40)
+    .getResultList();
+}
+    
+    @Override
+    public List getMeetingsFromName(String partialName){
+        return em.createQuery("SELECT m FROM Meeting m WHERE m.name LIKE :partname")
+                .setParameter("partname", "%"+partialName+"%")
+                .setMaxResults(10)
+                .getResultList();
+        
     }
 
     public MeetingFacade() {

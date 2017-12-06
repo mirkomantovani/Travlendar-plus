@@ -1,20 +1,17 @@
 <%-- 
-    Document   : tog
-    Created on : 1-dic-2017, 12.08.06
+    Document   : addBreak
+    Created on : 6-dic-2017, 21.40.00
     Author     : Mirko
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modify preferences</title>
-
+        <title>Add break</title>
 
         <link rel="stylesheet" href="css/jquery.timepicker.min.css">
-        <link rel="stylesheet" href="css/slider.css">
         <link rel="stylesheet" href="css/button.css">
         <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/navbar.css">
@@ -22,10 +19,8 @@
 
         <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
         <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
-
     </head>
     <body>
-
         <%
             if (session.getAttribute("name") == null) {
                 response.sendRedirect("login.jsp");
@@ -118,92 +113,140 @@
         </nav>
         <br><br><br>
 
-        
 
 
-            <div class="page">
-                <div class="page__demo">
-                    <div class="main-container">
-                        <div class="page__container">  
-                            <form action="ModifyPreferences" >
 
-
-                            <h2>Minimize Carbon Footprint</h2>
-                            <label class="switch switch_type1" role="switch">
-                                <input type="checkbox" name="mincarbonfootprint" class="switch__toggle" ${mincarbonfootprint}>
-                                <span class="switch__label"></span>
-                            </label>
-                            <h2>Avoid Tolls</h2>
-                            <label class="switch switch_type1" role="switch">
-                                <input type="checkbox" name="avoidtolls" class="switch__toggle " ${avoidtolls}>
-                                <span class="switch__label"> </span>
-                            </label> 
-                            <h2>Avoid Motorways </h2>
-                            <label class="switch switch_type1" role="switch">
-                                <input type="checkbox" name="avoidmotorways" class="switch__toggle" ${avoidmotorways} >
-                                <span class="switch__label"></span>
-                            </label>
-                            <h2>Max walking distance [m] </h2>
-
-                            <div class="valuemaxwalk">${maxw}</div>
-                            <input name="maxwalking" type="range" min="0" max="5000" step="50" value="${maxw}">
-
-                            <h2>Max cycling distance [m] </h2>
-
-                            <div class="valuemaxcycl">${maxc}</div>
-                            <input name="maxcycling" type="range" min="0" max="10000" step="100" value="${maxc}">
-
-                            <div class="bfh-timepicker" data-time="08:00">
-                            </div>
+        <div class="page">
+            <div class="page__demo">
+                <div class="main-container">
+                    <div class="page__container">  
+                        <form action="AddBreakServlet" >
+                            
+                            <h2>Name</h2>
+                            <input type="text" name="name" placeholder="Insert break name" />
 
                             <article>
                                 <div class="demo">
-                                    <h2>No public transports after</h2>
+                                    <h2>From</h2>
                                     <p>
-                                        <input id="basicExample" name="nopublicafter" value="${nopublic}" type="text" class="time" />
+                                        <input id="from" name="from" value="${nopublic}" type="text" class="time" />
                                     </p>
                                 </div>
                                 <script>
                                     $(function () {
-                                    $('#basicExample').timepicker({
-                                    'timeFormat': 'H:i',
-                                            'disableTimeRanges': [
-                                            ['6am', '18pm']
-                                            
-                                            ]
+                                        $('#from').timepicker({
+                                            'timeFormat': 'H:i',
+                                            'step': 15
+                                        });
                                     });
+                                </script>
+
+                            </article>
+
+                            <article>
+                                <div class="demo">
+                                    <h2>To</h2>
+                                    <p>
+                                        <input id="to" name="to" value="${nopublic}" type="text" class="time" />
+                                    </p>
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $('#to').timepicker({
+                                            'timeFormat': 'H:i',
+                                            'step': 15
+                                        });
+                                    });
+                                </script>
+
+                            </article>
+
+                            <article>
+                                <div class="demo">
+                                    <h2>Duration</h2>
+                                    <p>
+                                        <input id="duration" name="duration" value="${nopublic}" type="text" class="time" />
+                                    </p>
+                                </div>
+                                <script>
+                                    $(function () {
+                                        $('#duration').timepicker({
+                                            'timeFormat': 'H:i',
+                                            'disableTimeRanges': [
+                                            ['0am', '0.05am'],
+                                            ['3am', '24pm']
+                                            ],
+                                            'step': 5
+                                        });
                                     });
                                 </script>
 
                             </article>
 
 
+                            <h2>Recurrent</h2>
+                            <label class="switch switch_type1" role="switch">
+                                <input type="checkbox" name="recurrent" class="switch__toggle" ${mincarbonfootprint}>
+                                <span class="switch__label"></span>
+                            </label>
+                                
+                                <br><br>
+                            
+                                <h2>Select days of week</h2>
+
+                            <div class="weekDays-selector">
+                                <input name="mon" type="checkbox" id="weekday-mon" class="weekday" />
+                                <label for="weekday-mon">M</label>
+                                <input name="tue" type="checkbox" id="weekday-tue" class="weekday" />
+                                <label for="weekday-tue">T</label>
+                                <input name="wed" type="checkbox" id="weekday-wed" class="weekday" />
+                                <label for="weekday-wed">W</label>
+                                <input name="thu" type="checkbox" id="weekday-thu" class="weekday" />
+                                <label for="weekday-thu">T</label>
+                                <input name="fri" type="checkbox" id="weekday-fri" class="weekday" />
+                                <label for="weekday-fri">F</label>
+                                <input name="sat" type="checkbox" id="weekday-sat" class="weekday" />
+                                <label for="weekday-sat">S</label>
+                                <input name="sun" type="checkbox" id="weekday-sun" class="weekday" />
+                                <label for="weekday-sun">S</label>
+                            </div>
+                                
+                            <style>
+                                .weekDays-selector input {
+                                    display: none!important;
+                                }
+
+                                .weekDays-selector input[type=checkbox] + label {
+                                    display: inline-block;
+                                    border-radius: 6px;
+                                    background: #bbb;
+                                    height: 40px;
+                                    width: 30px;
+                                    margin-right: 3px;
+                                    line-height: 40px;
+                                    text-align: center;
+                                    cursor: pointer;
+                                }
+
+                                .weekDays-selector input[type=checkbox]:checked + label {
+                                    background: #2f61a8;
+                                    color: #ffffff;
+                                }
+                            </style>
+
                             <br>
                             <br>
 
-                            <button type="submit" class="offset">Apply changes</button>
-                            <br><br>
-                            </form>
-                            
-                            
-                            <form action="addBreak.jsp" >
-                                <button type="submit" class="pulse">Add flexible Break</button>
-                            </form>
-                            
-                        </div>
+                            <button type="submit" class="offset">Add break</button>
+                            <br><br
+
+                        </form>
                     </div>
                 </div>
-                <footer class="footer">
-
-                </footer>
             </div>
+            
+        </div>
 
-
-       
-
-        <script type="text/javascript" src="./js/slider.js"></script>
         <script type="text/javascript" src="./js/jquery.timepicker.min.js"></script>
-
-
     </body>
 </html>

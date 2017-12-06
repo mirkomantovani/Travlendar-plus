@@ -69,8 +69,7 @@ public class AddMeetingServlet extends HttpServlet {
         MeetingPK mpk=new MeetingPK();
         
         mpk.setMeetingid(request.getParameter("name").hashCode());
-        
-        System.out.println("meeting name hash:"+"caiaads".hashCode());
+
         
         String uid=session.getAttribute("uid").toString();
         

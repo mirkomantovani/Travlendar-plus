@@ -15,6 +15,10 @@
         <servlet-name>SearchMeeting</servlet-name>
         <servlet-class>servlets.SearchMeeting</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddBreakServlet</servlet-name>
+        <servlet-class>servlets.AddBreakServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homepage</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -59,6 +63,10 @@
     <servlet-mapping>
         <servlet-name>SearchMeeting</servlet-name>
         <url-pattern>/SearchMeeting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBreakServlet</servlet-name>
+        <url-pattern>/AddBreakServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

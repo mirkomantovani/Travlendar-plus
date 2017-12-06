@@ -73,8 +73,6 @@ public class loginservlet extends HttpServlet {
 
                 session.setAttribute("user", u);
 
-                //PROVAA
-                session.setAttribute("ciao", "Eventooo");
 
                 //GETTING EVERY MEETING THE USER HAS IN ORDER TO DISPLAY THEM IN THE CALENDAR HOMEPAGE
                 List<Meeting> meetings = meetingFacade.getMeetingsFromUID(u.getUid());
@@ -84,8 +82,9 @@ public class loginservlet extends HttpServlet {
                 //session.setAttribute("meeeets", "{" + System.lineSeparator() + "title: 'qqqqqq'," + System.lineSeparator() + "start: '2017-11-01'" + System.lineSeparator() + "}");
                 session.setAttribute("meeeets",mJSON);
                 
-                //prova
-                session.setAttribute("meet", meetings.get(0));
+                
+                //WHEN THE USER LOGS IN WE HAVE TO CHECK WHETHER THERE ARE WARNINGS, IF THERE ARE EXECUTE THIS LINE
+                //session.setAttribute("warningcolor", "red");
 
                 //for(Meeting me: meetings)
                 //System.out.println(me.getName());

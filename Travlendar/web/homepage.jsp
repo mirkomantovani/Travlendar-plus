@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Homepage</title>
+        <title>Travlendar+ Homepage</title>
         
         
         <link rel="stylesheet" href="css/fullcalendar.min.css">
@@ -72,12 +72,30 @@
                         </li>
                         
                         <li>
-                            <form action="DisplayTravelMeans">
+                            <form>
                                 <a href="addmeeting.jsp?meetingname=&quot;&quot" class="raise" >Add meeting</a>
                             </form>
                         </li>
                         
-                        <li class="dropdown">
+                        <li>
+                            <form>
+                                <a href="addBreak.jsp" class="raise" >Add break</a>
+                            </form>
+                        </li>
+                        
+                        <li>
+                            <form action="DisplayWarnings">
+                                <a href="#" id="${warningcolor}" class="raise" onclick="$(this).closest('form').submit()">Warnings</a>
+                            </form>
+                            <style>
+                                #red{
+                                    color:#f00;
+                                    font-weight: bold;
+                                }
+                            </style>
+                        </li>
+                        
+                      <!--  <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">Action</a></li>
@@ -88,7 +106,7 @@
                                 <li class="divider"></li>
                                 <li><a href="#">One more separated link</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                     <form action="SearchMeeting" class="navbar-form navbar-left" role="search">
                         <div class="form-group">

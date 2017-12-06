@@ -100,13 +100,14 @@
         </nav>
         <br><br><br>
 
-        <form action="ModifyPreferences" >
+        
 
 
             <div class="page">
                 <div class="page__demo">
                     <div class="main-container">
                         <div class="page__container">  
+                            <form action="ModifyPreferences" >
 
 
                             <h2>Minimize Carbon Footprint</h2>
@@ -163,6 +164,14 @@
                             <br>
 
                             <button type="submit" class="offset">Apply changes</button>
+                            <br><br>
+                            </form>
+                            
+                            
+                            <form action="buttons.jsp" >
+                                <button type="submit" class="pulse">Add flexible Break</button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -172,7 +181,7 @@
             </div>
 
 
-        </form>
+       
 
         <script type="text/javascript" src="./js/slider.js"></script>
         <script type="text/javascript" src="./js/jquery.timepicker.min.js"></script>

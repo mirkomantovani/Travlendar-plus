@@ -15,8 +15,7 @@
         
         <link rel="stylesheet" href="css/fullcalendar.min.css">
         <link rel="stylesheet" href="css/fullcalendar.print.min.css" media='print'>
-        
-        
+        <link rel="stylesheet" href="css/button.css">
        
         <script type="text/javascript" src="./js/moment.min.js"></script>
         <script type="text/javascript" src="./js/jquery.min.js"></script>
@@ -53,7 +52,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="homepage.jsp">TRAVLENDAR+</a>
+                    <a class="navbar-brand pulse" href="homepage.jsp">TRAVLENDAR+</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -62,19 +61,19 @@
                         
                         <li class="active">
                             <form action="DisplayPreferences">
-                                <a href="#" onclick="$(this).closest('form').submit()">Modify preferences</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Modify preferences</a>
                             </form>
                         </li>
                     
                         <li>
                             <form action="DisplayTravelMeans">
-                                <a href="#" onclick="$(this).closest('form').submit()">Select travel means</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Select travel means</a>
                             </form>
                         </li>
                         
                         <li>
                             <form action="DisplayTravelMeans">
-                                <a href="addmeeting.jsp?meetingname=&quot;&quot;" >Add meeting</a>
+                                <a href="addmeeting.jsp?meetingname=&quot;&quot" class="raise" >Add meeting</a>
                             </form>
                         </li>
                         
@@ -95,12 +94,12 @@
                         <div class="form-group">
                             <input type="text" name="meetingname" class="form-control" placeholder="Search meeting">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default fill">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><p class="navbar-text">Logged in as: ${name} </p></li>
                         <li><form action="Logout">
-                                <a href="#" onclick="$(this).closest('form').submit()">Logout</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Logout</a>
                             </form></li>
                         
                     </ul>
@@ -220,11 +219,18 @@
 	body {
             margin: 40px 10px;
 		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
+		/*font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px; */
                 color: #eee;
                 
 	}
+        
+        .fc-state-default {
+            background-color: #3f65b7;
+        }
+        .fc-state-active {
+            color: #fff;
+        }
 
 	#calendar {
 		max-width: 900px;

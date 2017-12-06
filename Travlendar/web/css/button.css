@@ -40,12 +40,12 @@
   box-shadow: 0 0 0 0 var(--hover), inset 6em 3.5em 0 0 var(--hover);
 }
 .fill {
-  --color: #a972cb;
-  --hover: #cb72aa;
+  --color: #3f65b7;
+  --hover: #3f65b7;
 }
 .pulse {
-  --color: #ef6eae;
-  --hover: #ef8f6e;
+  --color: #fff;
+  --hover: #3f65b7;
 }
 .close {
   --color: #ff7f82;
@@ -53,19 +53,19 @@
 }
 .raise {
   --color: #ffa260;
-  --hover: #e5ff60;
+  --hover: #3f65b7;
 }
 .up {
   --color: #e4cb58;
-  --hover: #94e458;
+  --hover: #3f65b7;
 }
 .slide {
   --color: #8fc866;
   --hover: #66c887;
 }
 .offset {
-  --color: #19bc8b;
-  --hover: #1973bc;
+  --color: #fff;
+  --hover: #3f65b7;
 }
 button {
   color: var(--color);
@@ -78,7 +78,7 @@ button:hover, button:focus {
 body {
   color: #fff;
   background: #17181c;
-  font: 300 1em 'Fira Sans', sans-serif;
+  font: 300 2em 'Fira Sans', sans-serif;
   justify-content: center;
   align-content: center;
   align-items: center;

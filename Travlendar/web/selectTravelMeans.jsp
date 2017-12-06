@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        
+
         <link rel="stylesheet" href="css/button.css">
         <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/navbar.css">
@@ -19,14 +19,14 @@
         <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-        
+
         <%
             if (session.getAttribute("name") == null) {
                 response.sendRedirect("login.jsp");
             }
 
         %>
-        
+
         <!--          ----NAVBAR----         -->
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
@@ -38,31 +38,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="homepage.jsp">TRAVLENDAR+</a>
+                    <a class="navbar-brand pulse" href="homepage.jsp">TRAVLENDAR+</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        
+
                         <li class="active">
                             <form action="DisplayPreferences">
-                                <a href="#" onclick="$(this).closest('form').submit()">Modify preferences</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Modify preferences</a>
                             </form>
                         </li>
-                    
+
                         <li>
                             <form action="DisplayTravelMeans">
-                                <a href="#" onclick="$(this).closest('form').submit()">Select travel means</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Select travel means</a>
                             </form>
                         </li>
-                        
+
                         <li>
                             <form action="DisplayTravelMeans">
                                 <a href="addmeeting.jsp" >Add meeting</a>
                             </form>
                         </li>
-                        
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -80,71 +80,75 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Search meeting">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default raise">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><p class="navbar-text">Logged in as: ${name} </p></li>
                         <li><form action="Logout">
                                 <a href="#" onclick="$(this).closest('form').submit()">Logout</a>
                             </form></li>
-                        
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-                        
-                        <br><br><br>
-                        
-                        
-                        
-        <form action="ModifyTravelMeans" >
+
+        <br><br><br>
+
+
+
+
         <div class="page">
-  <div class="page__demo">
-    <div class="main-container">
-      <div class="page__container">  
-          <h2>Owned car</h2>
-        <label class="switch switch_type1" role="switch">
-            
-          <input type="checkbox" name="oc" class="switch__toggle" ${oc}>
-          <span class="switch__label"></span>
-        </label>
-          <h2>Shared car</h2>
-        <label class="switch switch_type1" role="switch">
-            
-          <input type="checkbox" name="sc" class="switch__toggle" ${sc}>
-          <span class="switch__label"></span>
-        </label>
-          <h2>Owned bike</h2>
-        <label class="switch switch_type2" role="switch">
-          <input type="checkbox" name="ob" class="switch__toggle" ${ob}>
-          <span class="switch__label"> </span>
-        </label> 
-          <h2>Shared bike</h2>
-        <label class="switch switch_type2" role="switch">
-          <input type="checkbox" name="sb" class="switch__toggle" ${sb}>
-          <span class="switch__label"> </span>
-        </label> 
-          <h2>Walking</h2>
-        <label class="switch switch_type3" role="switch">
-          <input type="checkbox" name="w" class="switch__toggle" ${w}>
-          <span class="switch__label"></span>
-        </label>          
-          <h2>Public transports</h2>
-        <label class="switch switch_type3" role="switch">
-          <input type="checkbox" name="p" class="switch__toggle" ${p}>
-          <span class="switch__label"></span>
-        </label> 
-          <br>
-          <br>
-          
-          <button type="submit" class="offset">Apply changes</button>
-          
-          
-      </div>
-    </div>
-  </div>
-  
-</div>
-        </form>
-    </body>
+            <div class="page__demo">
+                <div class="main-container">
+                    <div class="page__container">  
+
+                        <form action="ModifyTravelMeans" >
+                            <h2>Owned car</h2>
+                            <label class="switch switch_type1" role="switch">
+
+                                <input type="checkbox" name="oc" class="switch__toggle" ${oc}>
+                                <span class="switch__label"></span>
+                            </label>
+                            <h2>Shared car</h2>
+                            <label class="switch switch_type1" role="switch">
+
+                                <input type="checkbox" name="sc" class="switch__toggle" ${sc}>
+                                <span class="switch__label"></span>
+                            </label>
+                            <h2>Owned bike</h2>
+                            <label class="switch switch_type2" role="switch">
+                                <input type="checkbox" name="ob" class="switch__toggle" ${ob}>
+                                <span class="switch__label"> </span>
+                            </label> 
+                            <h2>Shared bike</h2>
+                            <label class="switch switch_type2" role="switch">
+                                <input type="checkbox" name="sb" class="switch__toggle" ${sb}>
+                                <span class="switch__label"> </span>
+                            </label> 
+                            <h2>Walking</h2>
+                            <label class="switch switch_type3" role="switch">
+                                <input type="checkbox" name="w" class="switch__toggle" ${w}>
+                                <span class="switch__label"></span>
+                            </label>          
+                            <h2>Public transports</h2>
+                            <label class="switch switch_type3" role="switch">
+                                <input type="checkbox" name="p" class="switch__toggle" ${p}>
+                                <span class="switch__label"></span>
+                            </label> 
+                            <br>
+                            <br>
+
+                            <button type="submit" class="offset">Apply changes</button>
+                            
+                            </form>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+</body>
 </html>

@@ -175,6 +175,12 @@ public class loginservlet extends HttpServlet {
         sb.append(meetings.get(i).getName());
         sb.append("',");
         sb.append(System.lineSeparator());
+
+        //Here I'm going to define the URL of the meeting
+        sb.append("url: '/Travlendar/DisplayMeeting?meetingid=");
+        sb.append(meetings.get(i).getMeetingPK().getMeetingid());
+        sb.append("',");
+        sb.append(System.lineSeparator());
         
         //START DATE
         sb.append("start: '");

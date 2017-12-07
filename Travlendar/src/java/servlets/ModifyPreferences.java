@@ -8,7 +8,11 @@ package servlets;
 import entities.Preferences;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbeans.PreferencesFacadeLocal;
+import sessionbeans.RouteCalculatorBean;
+import sessionbeans.showDirectionsMap;
 import utils.DateConversion;
 
 /**
@@ -26,6 +32,10 @@ public class ModifyPreferences extends HttpServlet {
 
     @EJB
     private PreferencesFacadeLocal preferencesFacade;
+    @EJB
+    private RouteCalculatorBean routes;
+    @EJB
+    private showDirectionsMap dir;
 
 
 
@@ -46,6 +56,24 @@ public class ModifyPreferences extends HttpServlet {
         String uid = session.getAttribute("uid").toString();
         
         Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
+    
+        
+        try {
+            long prova = routes.retrieveDuration("Peschiera Borromeo","Bussero",uid);
+            System.out.println(prova);
+        } catch (MalformedURLException ex) {
+           ex.printStackTrace();
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        } catch (org.json.simple.parser.ParseException ex) {
+           ex.printStackTrace();
+        }
+        
+        try {
+            String prova2=dir.queryBuilder("Peschiera Borromeo", "Bussero", uid);
+        } catch (org.json.simple.parser.ParseException ex) {
+            Logger.getLogger(ModifyPreferences.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         String minCarbonFootprint = "";
         String avoidTolls = "";

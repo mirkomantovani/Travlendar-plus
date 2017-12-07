@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Conflicts
-    Created on : 02-Dec-2017, 15:30:56
+    Document   : meetingView
+    Created on : 06-Dec-2017, 15:26:51
     Author     : matteo
 --%>
 
@@ -8,17 +8,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        
-        <link rel="stylesheet" href="css/list.css" type="text/css">    
-      <link rel="stylesheet" href="css/navbar.css">
-      <link rel="stylesheet" href="css/simple.css">
-      <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         
+         <link rel="stylesheet" href="css/meetingView.css" type="text/css">
+         <link rel="stylesheet" href="css/navbar.css">
+         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+         <link rel="stylesheet" href="css/simple.css">
+         <link rel="stylesheet" href="css/button.css">
         <title>JSP Page</title>
     </head>
     <body>
-        
-                <!--          ----NAVBAR----         -->
+     
+         <!--          ----NAVBAR----         -->
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -85,32 +86,33 @@
         </nav>
                         
                         <br><br><br>
-                         
-        <div style="height: 50px"></div>                 
-                         
-        <h1>
-            Conflicts
-        </h1>
-        <div style="height: 5px"></div>
-<div id="modal">
-	<h1>This is a modal.</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices lorem, eu rhoncus dolor sollicitudin et. Suspendisse diam mauris, porta nec sollicitudin et, varius a ipsum.</p>
-	
-	<a class="yes" href="javascript:void(0);">Solve</a>
-	<a class="no" href="javascript:void(0);">Ignore</a>
-</div>
-        <div style="height: 10px"></div>
-<div id="modal">
-	<h1>This is a modal.</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices lorem, eu rhoncus dolor sollicitudin et. Suspendisse diam mauris, porta nec sollicitudin et, varius a ipsum.</p>
-	
-	<a class="yes" href="javascript:void(0);">Solve</a>
-	<a class="no" href="javascript:void(0);">Ignore</a>
-</div>
-        <div style="height: 15px"></div>
-        
-<div id="ignoreAll" style="position: absolute; left: 45%;">
-        <a class="no" href="javascript:void(0);" >IgnoreAll</a>
-</div>
+                        
+        <div style="height: 50px"></div>
+                        
+        <div class="wrapper" action="MeetingVisualization">
+  <header class="header">${m.name}</header>
+  
+  <aside class="sidebar">
+      <button class="offset"> Update meeting </button>
+      <button class="offset"> Delete meeting</button>  
+  </aside>
+  <article class="content">
+    <p>
+      Location:
+    </p>
+    <p>
+      Date:
+    </p>
+    <p>
+      Duration:
+    </p>
+  </article>
+  <footer class="footer">
+      <button class="offset"> View route </button>
+  </footer>
+</div>                
+                        
     </body>
 </html>
+                        
+                        

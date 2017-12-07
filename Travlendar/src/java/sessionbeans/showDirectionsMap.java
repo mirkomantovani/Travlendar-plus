@@ -8,11 +8,18 @@ package sessionbeans;
 import entities.Break;
 import entities.Preferences;
 import entities.Travelmean;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  *
@@ -23,34 +30,31 @@ public class showDirectionsMap {
     
 @EJB
 private PreferencesFacadeLocal preferencesFacade;
+@EJB
 private BreakFacadeLocal breakFacade;
+@EJB
 private TravelmeanFacadeLocal travelmeanFacade;
 
-public String queryBuilder(String origin, String destination ){
+public String queryBuilder(String origin, String destination, String uid ) throws ParseException, IOException{
     
-       HttpServletRequest request = (HttpServletRequest) (FacesContext.getCurrentInstance().getExternalContext().getRequest());
-   
-   HttpSession session=request.getSession();
-   
-   String uid = session.getAttribute("uid").toString();
    
    Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
-   Break breaks = breakFacade.find(Integer.parseInt(uid));
+  // Break breaks = breakFacade.find(Integer.parseInt(uid));
    Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
    
    String pmoto ="";
    if(pref.getAvoidmotorways() && pref.getAvoidtolls()){
+        pmoto = "&avoid=highway|tolls";
+   }else if(pref.getAvoidmotorways()){
         pmoto = "&avoid=highway";
-   }else if(pref.getAvoidmotorways() && !pref.getAvoidtolls()){
-        pmoto = "&avoid=highway";
-   }else if(!pref.getAvoidmotorways() && pref.getAvoidtolls()){
+   }else if( pref.getAvoidtolls()){
         pmoto = "&avoid=tolls";
    }else { pmoto = "";}
    
    String tway ="";
    String tway2="";
    
-   if(!transports.getOwnedcar() ){
+   if(transports.getOwnedcar() ){
        tway="&mode=driving";
    } else if(transports.getOwnedbike() ){
        tway="&mode=bicycling";
@@ -59,13 +63,18 @@ public String queryBuilder(String origin, String destination ){
    } else if(transports.getWalking()){
        tway="&mode=walking";
    } if(transports.getOwnedbike() && !tway.equals("&mode=bicycling")){
-       tway2.concat("|bicycling");
+       tway2=tway2.concat("|bicycling");
    } if (transports.getOwnedcar() && !tway.equals("&mode=driving")){
-       tway2.concat("|driving");
+       tway2=tway2.concat("|driving");
    } if (transports.getPublictransport() && !tway.equals("&mode=transit")){
-       tway2.concat("|transit");
+       tway2=tway2.concat("|transit");
    } if(transports.getWalking() && !tway.equals("&mode=walking")){
-       tway2.concat("|walking"); 
+       tway2=tway2.concat("|walking"); 
+   }
+   
+   if(pref.getMinimizecarbonfootprint() && tway.equals("&mode=driving") && !tway2.equals("")){
+       tway="";
+       tway2=tway2.replaceFirst("|", "&mode=");
    }
    
    String origins;
@@ -73,16 +82,57 @@ public String queryBuilder(String origin, String destination ){
   
    origins = "origins="+origin.replaceAll(" ", "+");
    destinations = "&destinations="+destination.replaceAll(" ", "+");
-   
     
+    String path = "https://www.google.com/maps/embed/v1/directions?"; 
     
-    String path = "https://www.google.com/maps/embed/v1/directions" +
-"?key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4";
-    
- 
-    String route;
     String query;
-    return query = path + origins + destination + tway + tway2 + pmoto;
+    return query = path + origins + destinations + tway + tway2 + pmoto + "&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4" ;
     
+}
+
+private int calculateDuration(String origin, String destination, String mode,String uid) throws ParseException, IOException{
+    
+    Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
+    
+   String origins;
+   String destinations;
+  
+   origins = "origins="+origin.replaceAll(" ", "+");
+   destinations = "&destinations="+destination.replaceAll(" ", "+");
+   String path = "https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations  +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4";
+    
+    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
+    connection.setRequestProperty("Accept-Charset", "UTF-8");
+    StringBuilder responseStrBuilder;
+        try (InputStream responses = connection.getInputStream()) {
+            BufferedReader streamReader = new BufferedReader(new InputStreamReader(responses, "UTF-8"));
+            responseStrBuilder = new StringBuilder();
+            String inputStr;
+            while ((inputStr = streamReader.readLine()) != null){
+                responseStrBuilder.append(inputStr);
+            }   }
+    
+    String json= responseStrBuilder.toString();
+   // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
+    
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(json);
+            JSONObject jb = (JSONObject) obj;
+            
+            
+            //now read
+            JSONArray jsonObject1 = (JSONArray) jb.get("rows");
+            
+            JSONObject jsonObject2 = (JSONObject)jsonObject1.get(0);
+                 System.out.println(jsonObject2.toString());
+           JSONArray jsonObject3 = (JSONArray)jsonObject2.get("elements");
+           JSONObject jsonObject4 = (JSONObject)jsonObject3.get(0);
+           JSONObject jsonObject5 = (JSONObject)jsonObject4.get("duration");
+           JSONObject jsonObject6 = (JSONObject)jsonObject4.get("distance");
+           System.out.println(jsonObject3.toString());
+           
+            return (int) jsonObject5.get("value"); 
+   
+   
 }
 }

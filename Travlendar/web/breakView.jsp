@@ -1,17 +1,21 @@
 <%-- 
-    Document   : routeview
-    Created on : 30-Nov-2017, 22:39:23
+    Document   : breakView
+    Created on : 07-Dec-2017, 18:23:38
     Author     : matteo
 --%>
 
-<%@page import="sessionbeans.showDirectionsMap"%>
-<%@page import="sessionbeans.MeetingFacade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+         
+         <link rel="stylesheet" href="css/meetingView.css" type="text/css">
          <link rel="stylesheet" href="css/navbar.css">
+         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+         <link rel="stylesheet" href="css/simple.css">
+         <link rel="stylesheet" href="css/button.css">
+         <link rel="stylesheet" href="css/break.css">
         <title>JSP Page</title>
     </head>
     <body>
@@ -83,17 +87,40 @@
         </nav>
                         
                         <br><br><br>
+                        
+        <div style="height: 50px"></div>
+    </body>
     
-    <jsp:useBean id="showDirectionsMap" scope ="page"  class="sessionbeans.showDirectionsMap"/>
-    <iframe
-  width="600"
-  height="450"
-  frameborder="0" style="border:0"
-  src= <% String query;
-        query = showDirectionsMap.queryBuilder("Peschiera Borromeo", "Bussero");
-        out.println(query);%> allowfullscreen>
-</iframe>
-
-<div> <% out.println(query); %> </div>
-    </body>  
+<div class='schedule-container'>
+  <h1>Breaks</h1>
+  <ul>
+    <li>
+      <div class='frame'>
+        <div class='hour'>
+          8
+        </div>
+        <div class='task'>
+          Take a walk, with Spotsie
+        </div>
+        <div class='full-time'>
+          8:00 PM
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class='frame'>
+        <div class='hour'>
+          9
+        </div>
+        <div class='task'>
+          More walking, with Spotsie
+        </div>
+        <div class='full-time'>
+          9:00 PM
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+          
 </html>

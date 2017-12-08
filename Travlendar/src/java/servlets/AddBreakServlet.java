@@ -7,8 +7,10 @@ package servlets;
 
 import entities.Break;
 import entities.BreakPK;
+import entities.Meeting;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbeans.BreakFacadeLocal;
+import sessionbeans.MeetingFacadeLocal;
 import utils.DateConversion;
 
 /**
@@ -23,6 +26,9 @@ import utils.DateConversion;
  * @author Mirko
  */
 public class AddBreakServlet extends HttpServlet {
+
+    @EJB
+    private MeetingFacadeLocal meetingFacade;
 
     @EJB
     private BreakFacadeLocal breakFacade;
@@ -67,6 +73,16 @@ public class AddBreakServlet extends HttpServlet {
         if(request.getParameter("sun")!=null)
             createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"sunday",rec);
          
+        
+        List<Meeting> meetings = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
+       
+       List<Break> breaks = breakFacade.getBreaksFromUID(Integer.parseInt(uid));
+
+
+                String mJSON=loginservlet.createMeetingJSON(meetings,breaks);
+                
+                session.setAttribute("meeeets",mJSON);
+        
           response.sendRedirect("Home");
         
     }
@@ -96,6 +112,8 @@ public class AddBreakServlet extends HttpServlet {
         b.setMinduration(duration);
         b.setName(name);
         b.setRecurrent(recurrent);
+        
+        
         
         breakFacade.create(b);
 

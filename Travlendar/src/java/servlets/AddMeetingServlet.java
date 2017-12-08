@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import entities.Break;
 import entities.Meeting;
 import entities.MeetingPK;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sessionbeans.BreakFacadeLocal;
 import sessionbeans.MeetingFacadeLocal;
 import utils.DateConversion;
 
@@ -27,6 +29,9 @@ import utils.DateConversion;
  */
 @WebServlet(name = "AddMeetingServlet", urlPatterns = {"/AddMeetingServlet"})
 public class AddMeetingServlet extends HttpServlet {
+
+    @EJB
+    private BreakFacadeLocal breakFacade;
 
     @EJB
     private MeetingFacadeLocal meetingFacade;
@@ -93,9 +98,11 @@ public class AddMeetingServlet extends HttpServlet {
        
        
        List<Meeting> meetings = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
+       
+       List<Break> breaks = breakFacade.getBreaksFromUID(Integer.parseInt(uid));
 
 
-                String mJSON=loginservlet.createMeetingJSON(meetings);
+                String mJSON=loginservlet.createMeetingJSON(meetings,breaks);
                 //session.setAttribute("meeeets", "{" + System.lineSeparator() + "title: 'qqqqqq'," + System.lineSeparator() + "start: '2017-11-01'" + System.lineSeparator() + "}");
                 session.setAttribute("meeeets",mJSON);
        

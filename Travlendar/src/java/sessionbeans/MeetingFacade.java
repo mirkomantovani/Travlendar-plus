@@ -33,7 +33,7 @@ public class MeetingFacade extends AbstractFacade<Meeting> implements MeetingFac
     return em.createQuery(
     "SELECT m FROM Meeting m WHERE m.meetingPK.uid = :userid")
     .setParameter("userid", uid)
-    .setMaxResults(40)
+    .setMaxResults(100)
     .getResultList();
 }
     

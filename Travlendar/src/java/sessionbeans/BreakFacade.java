@@ -6,6 +6,7 @@
 package sessionbeans;
 
 import entities.Break;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,6 +24,15 @@ public class BreakFacade extends AbstractFacade<Break> implements BreakFacadeLoc
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    @Override
+    public List getBreaksFromUID(int uid) {
+    return em.createQuery(
+    "SELECT b FROM Break b WHERE b.breakPK.uid = :userid")
+    .setParameter("userid", uid)
+    .setMaxResults(40)
+    .getResultList();
     }
 
     public BreakFacade() {

@@ -25,6 +25,8 @@ public interface BreakFacadeLocal {
     Break find(Object id);
 
     List<Break> findAll();
+    
+    List getBreaksFromUID(int uid);
 
     List<Break> findRange(int[] range);
 

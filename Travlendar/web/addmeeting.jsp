@@ -14,6 +14,8 @@
         <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
         <link rel="stylesheet" href="css/styleplacepicker.css">
         <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/simple.css">
+    
         
         
    <style>
@@ -379,6 +381,7 @@
             });
 
 
-        </script>  
+        </script> 
+        
   </body>
 </html>

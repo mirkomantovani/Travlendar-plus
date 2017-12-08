@@ -65,7 +65,7 @@ public class MeetingVisualization extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
         
   
         HttpSession session = request.getSession();
@@ -80,7 +80,10 @@ public class MeetingVisualization extends HttpServlet {
         
         Meeting m = meetingFacade.find(mPK);
         
-       response.sendRedirect("meetingView.jsp");
+        session.setAttribute("m", m);
+        
+        request.getRequestDispatcher("meetingView.jsp").forward(request, response);
+       
         
         
     }

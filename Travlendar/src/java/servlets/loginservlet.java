@@ -326,13 +326,14 @@ public class loginservlet extends HttpServlet {
 
     private static Date getEndingDate(Date startingdate, Integer duration) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Date d = startingdate;
-
+        Date d = new Date();
+        
+               
         int hours = (int) duration / 60;
         int minutes = duration % 60;
-        if (d.getHours() + hours < 24) {
-            d.setHours(d.getHours() + hours);
-            d.setMinutes(d.getMinutes() + minutes);
+        if (startingdate.getHours() + hours < 24) {
+            d.setHours(startingdate.getHours() + hours);
+            d.setMinutes(startingdate.getMinutes() + minutes);
         } else {
             d.setHours(23);
             d.setMinutes(59);

@@ -32,7 +32,8 @@ public class DisplayUpdateMeeting extends HttpServlet {
         HttpSession session = request.getSession();
         String uid = session.getAttribute("uid").toString();
 
-        int mID = Integer.parseInt(request.getParameter("MeetingID"));
+        int mID=Integer.parseInt(request.getParameter("meetingid"));
+        //int mID = Integer.parseInt(request.getParameter("MeetingID"));
 
         MeetingPK mPK = new MeetingPK();
 

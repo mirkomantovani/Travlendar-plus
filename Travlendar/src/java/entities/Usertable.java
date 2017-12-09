@@ -43,6 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Usertable.findByHashedpassword", query = "SELECT u FROM Usertable u WHERE u.hashedpassword = :hashedpassword")})
 public class Usertable implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usertable")
+    private List<Warning> warningList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -204,6 +207,15 @@ public class Usertable implements Serializable {
     @Override
     public String toString() {
         return "entities.Usertable[ uid=" + uid + " ]";
+    }
+
+    @XmlTransient
+    public List<Warning> getWarningList() {
+        return warningList;
+    }
+
+    public void setWarningList(List<Warning> warningList) {
+        this.warningList = warningList;
     }
     
 }

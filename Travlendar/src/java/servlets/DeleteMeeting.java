@@ -33,7 +33,8 @@ public class DeleteMeeting extends HttpServlet {
         HttpSession session = request.getSession();
         String uid = session.getAttribute("uid").toString();
         
-        int meetingID = Integer.parseInt(request.getParameter("MeetingID"));
+        int meetingID=Integer.parseInt(request.getParameter("meetingid"));
+        //int meetingID = Integer.parseInt(request.getParameter("MeetingID"));
         
         MeetingPK mpk= new MeetingPK();
         mpk.setMeetingid(meetingID);

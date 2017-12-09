@@ -8,9 +8,8 @@ package servlets;
 import entities.Break;
 import entities.Meeting;
 import entities.Usertable;
+import entities.Warning;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import sessionbeans.BreakFacadeLocal;
 import sessionbeans.MeetingFacadeLocal;
 import sessionbeans.UsertableFacadeLocal;
+import sessionbeans.WarningFacadeLocal;
 import utils.SecureHashEncryption;
 
 /**
@@ -30,6 +30,9 @@ import utils.SecureHashEncryption;
  * @author Mirko
  */
 public class loginservlet extends HttpServlet {
+
+    @EJB
+    private WarningFacadeLocal warningFacade;
 
     private final static int breaksPrecomputation=8;
 
@@ -41,6 +44,8 @@ public class loginservlet extends HttpServlet {
 
     @EJB
     private UsertableFacadeLocal userFacade;
+    
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -81,18 +86,27 @@ public class loginservlet extends HttpServlet {
                 session.setAttribute("name", u.getName());
 
                 session.setAttribute("user", u);
+                
+                //WHEN THE USER LOGS IN WE HAVE TO CHECK WHETHER THERE ARE WARNINGS, IF THERE ARE EXECUTE THIS LINE
+                
+                List<Warning> warnings = warningFacade.getWarningsFromUID(u.getUid());
+                
+                if(warnings.size()>0)
+                    session.setAttribute("warningcolor", "red");
+                    
 
                 //GETTING EVERY MEETING THE USER HAS IN ORDER TO DISPLAY THEM IN THE CALENDAR HOMEPAGE
                 List<Meeting> meetings = meetingFacade.getMeetingsFromUID(u.getUid());
 
                 List<Break> breaks = breakFacade.getBreaksFromUID(u.getUid());
+                
+                
 
                 String mJSON = createMeetingJSON(meetings, breaks);
                 //session.setAttribute("meeeets", "{" + System.lineSeparator() + "title: 'qqqqqq'," + System.lineSeparator() + "start: '2017-11-01'" + System.lineSeparator() + "}");
                 session.setAttribute("meeeets", mJSON);
 
-                //WHEN THE USER LOGS IN WE HAVE TO CHECK WHETHER THERE ARE WARNINGS, IF THERE ARE EXECUTE THIS LINE
-                //session.setAttribute("warningcolor", "red");
+                
                 //for(Meeting me: meetings)
                 //System.out.println(me.getName());
                 session.setAttribute("uid", u.getUid());
@@ -107,18 +121,7 @@ public class loginservlet extends HttpServlet {
             }
         }
 
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet loginservlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>You successfully submitted your data into the database: name= " + request.getParameter("name") + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        
     }
 
     /**

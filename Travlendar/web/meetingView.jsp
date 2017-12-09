@@ -98,13 +98,13 @@
   </aside>
   <article class="content">
     <p>
-      Location:
+      Location: ${m.location}
     </p>
     <p>
-      Date:
+      Date: ${m.startingdate}
     </p>
     <p>
-      Duration:
+      Duration: ${m.duration} min.
     </p>
   </article>
   <footer class="footer">

@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbeans.BreakFacadeLocal;
+import sessionbeans.ConflictCheckerBean;
 import sessionbeans.MeetingFacadeLocal;
 import utils.DateConversion;
 
@@ -32,6 +33,8 @@ public class AddMeetingServlet extends HttpServlet {
 
     @EJB
     private MeetingFacadeLocal meetingFacade;
+    @EJB
+    private ConflictCheckerBean conflictChecker;
 
     
     /**
@@ -93,7 +96,11 @@ public class AddMeetingServlet extends HttpServlet {
        // System.out.println(date);
        // System.out.println(tstamp);
        
+       Boolean conflitto;
        
+       conflitto = conflictChecker.CheckAllConflicts(m);
+       
+       System.out.println(conflitto.toString());
        
        response.sendRedirect("RecomputeCalendarMeetingsBreaks");
         

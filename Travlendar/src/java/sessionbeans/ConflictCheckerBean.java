@@ -64,12 +64,12 @@ public class ConflictCheckerBean {
     //this method computes the overlap between meetings
     public ArrayList<Meeting> CheckMeetingOverlaps(Meeting m) throws IOException, MalformedURLException, ParseException, org.json.simple.parser.ParseException{
         
-      ArrayList<Meeting> meetings = new ArrayList<Meeting>();  
-      meetings = (ArrayList<Meeting>) meetingFacade.getMeetingsFromUID(m.getMeetingPK().getUid()); //this contains all the meetings of a user
+      List<Meeting> meetings = new ArrayList<>();  
+      meetings = (List<Meeting>) meetingFacade.getMeetingsFromUID(m.getMeetingPK().getUid()); //this contains all the meetings of a user
       
       meetings.remove(m); //It depends if it is already inserted in the DB or not
      
-      ArrayList<Meeting> conflictuals = new ArrayList<Meeting>(); //this will be filled with meetings in conflict with m
+      ArrayList<Meeting> conflictuals = new ArrayList<>(); //this will be filled with meetings in conflict with m
       
       int userId= m.getMeetingPK().getUid();
       int mId= m.getMeetingPK().getMeetingid();
@@ -118,30 +118,35 @@ public class ConflictCheckerBean {
       
       HashMap<Break,Integer> deltas = new HashMap<Break,Integer>();
         
-        ArrayList<Break> breaks = (ArrayList)breakFacade.getBreaksFromUID(userId);
+        List<Break> breaks = (List)breakFacade.getBreaksFromUID(userId);
         
         for(Break b: breaks){
-      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <
-                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
+      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
                 
                 conflictuals.add(b);
                    
             }
-      else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >
-                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
+      else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >=
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
               b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
               
               conflictuals.add(b);
           
       }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >
-                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) > mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
+      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
+                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) >= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              conflictuals.add(b);
              
             }
    
+      
+      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) <=
+                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) <= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
+             conflictuals.add(b);
+             
+            }
         }
-        
         return conflictuals;
                       
         
@@ -150,29 +155,29 @@ public class ConflictCheckerBean {
 //returns only the breaks without any possible rescheduling
 public ArrayList<Break> checkReschedule(String uid){
    
-    ArrayList<Meeting> meetings = new ArrayList<Meeting>();
+    List<Meeting> meetings = new ArrayList<Meeting>();
     HashMap<Meeting,ArrayList<Break>> breaksOfM = new HashMap<Meeting,ArrayList<Break>>(); //contains all the breaks that are conflictual with m 
    
-    meetings = (ArrayList<Meeting>) meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
+    meetings = (List<Meeting>) meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
     
     HashMap<Break,ArrayList<Interval>> intervalsTaken= new HashMap<Break,ArrayList<Interval>>();
     HashMap<Break,Interval> possibleSlot = new HashMap<Break,Interval>();
     ArrayList<Break> result = new ArrayList<Break>();
     
     
-    for(Meeting m : meetings){
+    for(Meeting m : meetings){ // per ogni meeting e ogni break in conflitto con essi calcolo gli intervalli di overlap e li metto in intervalsTaken
         breaksOfM.put(m, this.BreakConflictChecker(m));
         for(Break b : breaksOfM.get(m)){
             intervalsTaken.get(b).add(this.calculateIntervals(m, b));
         }
     }
     
-    for(Break b : intervalsTaken.keySet()){
+    for(Break b : intervalsTaken.keySet()){ //per ogni break verifico se c'è un intervallo tra gli intervalli di overlap > della durata del meeting
         
         this.sortIntervals(intervalsTaken.get(b));       //TODO c'è conflitto 
-        possibleSlot.put(b, this.checkDistance(intervalsTaken.get(b), b.getMinduration().getHours()*3600*1000 + b.getMinduration().getMinutes()*60*1000));
-        if(!possibleSlot.get(b).equals(new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN)))){
-            possibleSlot.remove(b);
+        possibleSlot.put(b, this.checkDistance(intervalsTaken.get(b), b.getMinduration().getHours()*3600 + b.getMinduration().getMinutes()*60));
+        if(!possibleSlot.get(b).areIntervalsEqual(new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN)))){
+            possibleSlot.keySet().remove(b);
         }
     }
     
@@ -197,26 +202,31 @@ public Interval calculateIntervals(Meeting m, Break b){
       String mLoc = m.getLocation();
       String mName = m.getName();
     
-      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <
-                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
+      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
                 
                 flag = mStartDate;
                 flag.setTime(mStartDate.getTime() + mLasts*60*1000);
                 delta.setInterval(mStartDate,flag);
                    
             }
-      else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >
-                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
+      else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >=
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
               b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
               
               delta.setInterval(mStartDate, b.getEndingtime());
           
       }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >
-                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) > mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
+      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
+                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) >= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              flag = mStartDate;
              flag.setTime(mStartDate.getTime() + mLasts*60*1000);
              delta.setInterval( b.getStartingtime(), flag);
+            }
+      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) <=
+                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) <= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
+             delta.setInterval(b.getStartingtime(), b.getEndingtime());
+             
             }
     
     return delta;
@@ -236,6 +246,14 @@ private class Interval{
         this.end = end;
     }
     
+     public boolean areIntervalsEqual(Interval i1){
+       if(i1.start.equals(this.start) && i1.end.equals(this.end))
+           return true;
+       
+       return false;
+       
+   }
+    
         
     }
     
@@ -251,7 +269,6 @@ private class Interval{
             flag = i.get(j);
             i.set(j, i.get(j+1));
             i.set(j+1, flag);
-   
         }
         
     }
@@ -263,7 +280,7 @@ private class Interval{
    public Interval checkDistance(ArrayList<Interval> i, int dist){
        
        for(int j=0; j<i.size()-1;j++){
-           if(i.get(j).end.getTime() - i.get(j+1).start.getTime() > dist*1000){
+           if(i.get(j+1).start.getTime()-i.get(j).end.getTime() > dist*1000){
                return new Interval(i.get(j).end,i.get(j+1).start);
            }
            
@@ -272,6 +289,7 @@ private class Interval{
       
    }
     
+  
 }
     
 

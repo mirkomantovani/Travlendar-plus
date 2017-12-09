@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -34,13 +37,30 @@ public class ConflictCheckerBean {
     @EJB
     private BreakFacadeLocal breakFacade;
     
-      int userId= m.getMeetingPK().getUid();
-      int mId= m.getMeetingPK().getMeetingid();
-      Date mStartDate = m.getStartingdate();
-      int mLasts = m.getDuration();
-      String mLoc = m.getLocation();
-      String mName = m.getName();
-    
+    //returns true if m is feasible, false otherwise
+    public boolean CheckAllConflicts(Meeting m){
+        
+        ArrayList<Break> noReschedulableBreaks = new ArrayList<Break>();
+        ArrayList<Meeting> meetings = new ArrayList<Meeting>();
+        
+        
+        try {
+            meetings = CheckMeetingOverlaps(m);
+        } catch (IOException ex) {
+            Logger.getLogger(ConflictCheckerBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(ConflictCheckerBean.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (org.json.simple.parser.ParseException ex) {
+            Logger.getLogger(ConflictCheckerBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        noReschedulableBreaks = checkReschedule(String.valueOf(m.getMeetingPK().getUid()));
+        
+        if(meetings.isEmpty() && noReschedulableBreaks.isEmpty())
+            return true;
+        
+        return false;
+    }
+ 
     //this method computes the overlap between meetings
     public ArrayList<Meeting> CheckMeetingOverlaps(Meeting m) throws IOException, MalformedURLException, ParseException, org.json.simple.parser.ParseException{
         
@@ -81,7 +101,7 @@ public class ConflictCheckerBean {
     }
     
     //this method compute the overlaps between m and the breaks
-    //it returns the breakId of the conflictual break, in case of no conflict it returns -1
+    //it returns an Arraylist filled with break that are in conflict with m
     public ArrayList<Break> BreakConflictChecker(Meeting m){
         
       int userId= m.getMeetingPK().getUid();
@@ -92,6 +112,8 @@ public class ConflictCheckerBean {
       String mName = m.getName();
       
       ArrayList<Break> conflictuals = new ArrayList<Break>();
+      
+      ArrayList<Break> notReschedulable = new ArrayList<Break>();
       int delta=0; //this value is the overlapping time in seconds of m and a break 
       
       HashMap<Break,Integer> deltas = new HashMap<Break,Integer>();
@@ -119,13 +141,14 @@ public class ConflictCheckerBean {
             }
    
         }
-                        
-         return conflictuals;               
         
-        }
+        return conflictuals;
+                      
         
-
-public void checkReschedule(String uid){
+        } 
+        
+//returns only the breaks without any possible rescheduling
+public ArrayList<Break> checkReschedule(String uid){
    
     ArrayList<Meeting> meetings = new ArrayList<Meeting>();
     HashMap<Meeting,ArrayList<Break>> breaksOfM = new HashMap<Meeting,ArrayList<Break>>(); //contains all the breaks that are conflictual with m 
@@ -133,8 +156,9 @@ public void checkReschedule(String uid){
     meetings = (ArrayList<Meeting>) meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
     
     HashMap<Break,ArrayList<Interval>> intervalsTaken= new HashMap<Break,ArrayList<Interval>>();
+    HashMap<Break,Interval> possibleSlot = new HashMap<Break,Interval>();
+    ArrayList<Break> result = new ArrayList<Break>();
     
-    ArrayList<Interval> flag = new ArrayList<Interval>();
     
     for(Meeting m : meetings){
         breaksOfM.put(m, this.BreakConflictChecker(m));
@@ -144,12 +168,19 @@ public void checkReschedule(String uid){
     }
     
     for(Break b : intervalsTaken.keySet()){
-        if(b.getMinduration().getHours()*3600 + b.getMinduration().getMinutes()*60 > b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60
-                - b.getStartingtime().getHours()*3600 - b.getStartingtime().getMinutes()*60 - intervalsTaken.get(b))
-            //TODO c'è conflitto 
-            
+        
+        this.sortIntervals(intervalsTaken.get(b));       //TODO c'è conflitto 
+        possibleSlot.put(b, this.checkDistance(intervalsTaken.get(b), b.getMinduration().getHours()*3600*1000 + b.getMinduration().getMinutes()*60*1000));
+        if(!possibleSlot.get(b).equals(new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN)))){
+            possibleSlot.remove(b);
+        }
     }
     
+    for(Break b: possibleSlot.keySet()){
+        result.add(b);
+    }
+    
+    return result;
     
     }
 
@@ -158,6 +189,13 @@ public Interval calculateIntervals(Meeting m, Break b){
     
     Interval delta = new Interval(Date.from(Instant.now()),Date.from(Instant.now()));
     Date flag = new Date();
+    
+      int userId= m.getMeetingPK().getUid();
+      int mId= m.getMeetingPK().getMeetingid();
+      Date mStartDate = m.getStartingdate();
+      int mLasts = m.getDuration();
+      String mLoc = m.getLocation();
+      String mName = m.getName();
     
       if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
@@ -198,17 +236,43 @@ private class Interval{
         this.end = end;
     }
     
-    public void appendInterval(Interval i1){
         
-        if(i1.start.before(this.start) && i1.end.before(this.start) || (i1.start.before(this.start) && i1.end.after(this.start))){
-            this.start = i1.start;
-            this.end = this.end;
+    }
+    
+//this is a method to sort (form the earliest to the latest) an arraylist of intervals
+   public void sortIntervals(ArrayList<Interval> i){
+    
+    Interval flag = new Interval(Date.from(Instant.now()),Date.from(Instant.now()));
+    for(int j=0; j<i.size()-1;j++){
+        if(i.get(j).start.before(i.get(j+1).start) && i.get(j).end.before(i.get(j+1).start)) // se in precede flag 
+        {
+            
+        }else {
+            flag = i.get(j);
+            i.set(j, i.get(j+1));
+            i.set(j+1, flag);
+   
         }
         
     }
     
     
 }
-    
    
+   //this is a method that given an arraylist of Interval, checks whether there is an Interval of @param dist between two intervals in the arraylist and returns it
+   public Interval checkDistance(ArrayList<Interval> i, int dist){
+       
+       for(int j=0; j<i.size()-1;j++){
+           if(i.get(j).end.getTime() - i.get(j+1).start.getTime() > dist*1000){
+               return new Interval(i.get(j).end,i.get(j+1).start);
+           }
+           
+       }
+       return new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN));
+      
+   }
+    
 }
+    
+
+

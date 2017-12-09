@@ -99,16 +99,23 @@ public class ConflictCheckerBean {
         ArrayList<Break> breaks = (ArrayList)breakFacade.getBreaksFromUID(userId);
         
         for(Break b: breaks){
-            if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >
-                    b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60){
+      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
+                
                 conflictuals.add(b);
-                deltas.put(b, mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 -
-                    (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60));
+                   
             }
-            else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60 < 
-                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60){
+      else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
+              b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
+              
+              conflictuals.add(b);
+          
+      }
+      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >
+                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) > mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              conflictuals.add(b);
-             deltas.put(b,mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 - (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60));
+             
             }
    
         }
@@ -125,18 +132,20 @@ public void checkReschedule(String uid){
    
     meetings = (ArrayList<Meeting>) meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
     
-    HashMap<Break,Integer> timeTaken= new HashMap<Break,Integer>();
+    HashMap<Break,ArrayList<Interval>> intervalsTaken= new HashMap<Break,ArrayList<Interval>>();
+    
+    ArrayList<Interval> flag = new ArrayList<Interval>();
     
     for(Meeting m : meetings){
         breaksOfM.put(m, this.BreakConflictChecker(m));
         for(Break b : breaksOfM.get(m)){
-            timeTaken.put(b, timeTaken.get(b) + calculateDeltas(m,b));
+            intervalsTaken.get(b).add(this.calculateIntervals(m, b));
         }
     }
     
-    for(Break b : timeTaken.keySet()){
+    for(Break b : intervalsTaken.keySet()){
         if(b.getMinduration().getHours()*3600 + b.getMinduration().getMinutes()*60 > b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60
-                - b.getStartingtime().getHours()*3600 - b.getStartingtime().getMinutes()*60 - timeTaken.get(b))
+                - b.getStartingtime().getHours()*3600 - b.getStartingtime().getMinutes()*60 - intervalsTaken.get(b))
             //TODO c'è conflitto 
             
     }
@@ -145,24 +154,31 @@ public void checkReschedule(String uid){
     }
 
 
-public int calculateDeltas(Meeting m, Break b){
+public Interval calculateIntervals(Meeting m, Break b){
     
     Interval delta = new Interval(Date.from(Instant.now()),Date.from(Instant.now()));
     Date flag = new Date();
     
-      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <
-                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60){
+      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
                 
                 flag = mStartDate;
                 flag.setTime(mStartDate.getTime() + mLasts*60*1000);
-                delta.setInterval(flag, b.getEndingtime());
+                delta.setInterval(mStartDate,flag);
                    
             }
-            else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60 > 
-                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 +mLasts*60){
+      else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >
+                    b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 > b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
+              b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
+              
+              delta.setInterval(mStartDate, b.getEndingtime());
+          
+      }
+      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >
+                    mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) > mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              flag = mStartDate;
              flag.setTime(mStartDate.getTime() + mLasts*60*1000);
-             delta.setInterval( mStartDate, b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60);
+             delta.setInterval( b.getStartingtime(), flag);
             }
     
     return delta;
@@ -180,6 +196,15 @@ private class Interval{
     public void setInterval(Date start, Date end){
         this.start = start;
         this.end = end;
+    }
+    
+    public void appendInterval(Interval i1){
+        
+        if(i1.start.before(this.start) && i1.end.before(this.start) || (i1.start.before(this.start) && i1.end.after(this.start))){
+            this.start = i1.start;
+            this.end = this.end;
+        }
+        
     }
     
     

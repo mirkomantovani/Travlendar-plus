@@ -19,6 +19,26 @@
         <servlet-name>AddBreakServlet</servlet-name>
         <servlet-class>servlets.AddBreakServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteMeeting</servlet-name>
+        <servlet-class>servlets.DeleteMeeting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>updateMeetingServlet</servlet-name>
+        <servlet-class>servlets.updateMeetingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DisplayUpdateMeeting</servlet-name>
+        <servlet-class>servlets.DisplayUpdateMeeting</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RecomputeCalendarMeetingsBreaks</servlet-name>
+        <servlet-class>servlets.RecomputeCalendarMeetingsBreaks</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBreak</servlet-name>
+        <servlet-class>servlets.DeleteBreak</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>homepage</servlet-name>
         <url-pattern>/Home</url-pattern>
@@ -67,6 +87,26 @@
     <servlet-mapping>
         <servlet-name>AddBreakServlet</servlet-name>
         <url-pattern>/AddBreakServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMeeting</servlet-name>
+        <url-pattern>/DeleteMeeting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateMeetingServlet</servlet-name>
+        <url-pattern>/updateMeetingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DisplayUpdateMeeting</servlet-name>
+        <url-pattern>/DisplayUpdateMeeting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecomputeCalendarMeetingsBreaks</servlet-name>
+        <url-pattern>/RecomputeCalendarMeetingsBreaks</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBreak</servlet-name>
+        <url-pattern>/DeleteBreak</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

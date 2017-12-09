@@ -31,9 +31,6 @@ import utils.DateConversion;
 public class AddMeetingServlet extends HttpServlet {
 
     @EJB
-    private BreakFacadeLocal breakFacade;
-
-    @EJB
     private MeetingFacadeLocal meetingFacade;
 
     
@@ -97,18 +94,8 @@ public class AddMeetingServlet extends HttpServlet {
        // System.out.println(tstamp);
        
        
-       List<Meeting> meetings = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
        
-       List<Break> breaks = breakFacade.getBreaksFromUID(Integer.parseInt(uid));
-
-
-                String mJSON=loginservlet.createMeetingJSON(meetings,breaks);
-                //session.setAttribute("meeeets", "{" + System.lineSeparator() + "title: 'qqqqqq'," + System.lineSeparator() + "start: '2017-11-01'" + System.lineSeparator() + "}");
-                session.setAttribute("meeeets",mJSON);
-       
-       
-       
-       response.sendRedirect("Home");
+       response.sendRedirect("RecomputeCalendarMeetingsBreaks");
         
         
     }

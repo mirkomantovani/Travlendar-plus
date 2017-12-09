@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addmeeting
-    Created on : 30-nov-2017, 14.59.16
+    Document   : updateMeeting
+    Created on : 9-dic-2017, 14.35.37
     Author     : Mirko
 --%>
 
@@ -9,9 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add meeting</title>
+        <title>Update meeting</title>
         
-        <link rel="stylesheet" href="css/button.css">
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">   
         <link rel="stylesheet" href="css/styleplacepicker.css">
@@ -211,26 +210,28 @@
      <br><br><br>
     
       
-    <form action="AddMeetingServlet" class="form-horizontal login"  role="form">
-    <h1>ADD A NEW MEETING</h1>
+    <form action="updateMeetingServlet" class="form-horizontal login"  role="form">
+    <h1>Update meeting: ${updatem.name}</h1>
     <div class="container">
         
                 <fieldset>
-                    <legend>Meeting name</legend>
-                    <input type="text" name="name" value="<%= request.getParameter("meetingname") %>" placeholder="Insert name " class="login-input" />
+                    <legend>Edit the fields you want to update</legend>
+                    <input type="text" name="name" value="${updatem.name}" placeholder="Insert name " class="login-input" readonly />
+                    <br>
+                    
                     <div class="form-group">
                         <label for="dtp_input1" class="col-md-2 control-label">Choose date and time</label>
                         <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                            <input class="form-control" size="20" type="text" value="" name="date" readonly>
+                            <input class="form-control" size="20" type="text" value="${updatem.startingdate}" name="date" readonly>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
                         <input type="hidden" id="dtp_input1" value="" /><br/>
                     </div>
                     
-                    <input type="text" name="duration" value="" placeholder="Insert duration in minutes" class="login-input" />
+                    <input type="text" name="duration" value="${updatem.duration}" placeholder="Insert duration in minutes" class="login-input" />
 
-                    <input type="submit" value="Add meeting" class="login-submit"/>
+                    <input type="submit" value="Update meeting info" class="login-submit"/>
                     
    
                 </fieldset>
@@ -266,7 +267,7 @@
         </div>
       </div>
       <div id="pac-container">
-        <input id="pac-input" type="text"
+        <input id="pac-input" type="text" value="${updatem.location}"
             placeholder="Enter a location" name="location">
       </div>
     </div>

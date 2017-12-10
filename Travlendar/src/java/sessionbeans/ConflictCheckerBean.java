@@ -7,6 +7,7 @@ package sessionbeans;
 
 import entities.Break;
 import entities.Meeting;
+import entities.Warning;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
@@ -14,16 +15,11 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 /**
  *

@@ -41,12 +41,10 @@ public class updateMeetingServlet extends HttpServlet {
             throws ServletException, IOException {
     HttpSession session=request.getSession();
         
-        
+        try{
         MeetingPK mpk=new MeetingPK();
         
         mpk.setMeetingid(request.getParameter("name").hashCode());
-
-        
         String uid=session.getAttribute("uid").toString();
         
         
@@ -62,6 +60,9 @@ public class updateMeetingServlet extends HttpServlet {
         
         m.setStartingdate(tstamp);
         meetingFacade.edit(m);
+        }catch(Exception e){
+            response.sendRedirect("updateMeeting.jsp");
+        }
         
        // System.out.println(date);
        // System.out.println(tstamp);

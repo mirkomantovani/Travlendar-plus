@@ -53,7 +53,7 @@ public class ConflictCheckerBean {
         } catch (org.json.simple.parser.ParseException ex) {
             Logger.getLogger(ConflictCheckerBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        noReschedulableBreaks = checkReschedule(String.valueOf(m.getMeetingPK().getUid()));
+        noReschedulableBreaks = checkReschedule(m.getMeetingPK().getUid());
         
         if(meetings.isEmpty() && noReschedulableBreaks.isEmpty())
             return true;
@@ -153,21 +153,26 @@ public class ConflictCheckerBean {
         } 
         
 //returns only the breaks without any possible rescheduling
-public ArrayList<Break> checkReschedule(String uid){
+public ArrayList<Break> checkReschedule(int uid){
    
-    List<Meeting> meetings = new ArrayList<Meeting>();
-    HashMap<Meeting,ArrayList<Break>> breaksOfM = new HashMap<Meeting,ArrayList<Break>>(); //contains all the breaks that are conflictual with m 
+    List<Meeting> meetings = new ArrayList<>();
+    HashMap<Meeting,ArrayList<Break>> breaksOfM = new HashMap<>(); //contains all the breaks that are conflictual with m 
    
-    meetings = (List<Meeting>) meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
+    meetings = (List<Meeting>) meetingFacade.getMeetingsFromUID(uid);
     
     HashMap<Break,ArrayList<Interval>> intervalsTaken= new HashMap<Break,ArrayList<Interval>>();
     HashMap<Break,Interval> possibleSlot = new HashMap<Break,Interval>();
     ArrayList<Break> result = new ArrayList<Break>();
     
     
+    
+    
     for(Meeting m : meetings){ // per ogni meeting e ogni break in conflitto con essi calcolo gli intervalli di overlap e li metto in intervalsTaken
         breaksOfM.put(m, this.BreakConflictChecker(m));
+        
+        
         for(Break b : breaksOfM.get(m)){
+            intervalsTaken.keySet().add(b);
             intervalsTaken.get(b).add(this.calculateIntervals(m, b));
         }
     }
@@ -176,13 +181,12 @@ public ArrayList<Break> checkReschedule(String uid){
         
         this.sortIntervals(intervalsTaken.get(b));       //TODO c'è conflitto 
         possibleSlot.put(b, this.checkDistance(intervalsTaken.get(b), b.getMinduration().getHours()*3600 + b.getMinduration().getMinutes()*60));
-        if(!possibleSlot.get(b).areIntervalsEqual(new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN)))){
-            possibleSlot.keySet().remove(b);
-        }
+        
     }
     
     for(Break b: possibleSlot.keySet()){
-        result.add(b);
+        if(possibleSlot.get(b).areIntervalsEqual(new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN))))
+            result.add(b);
     }
     
     return result;

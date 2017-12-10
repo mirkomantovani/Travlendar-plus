@@ -9,6 +9,8 @@ import entities.Meeting;
 import entities.MeetingPK;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,15 +18,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.simple.parser.ParseException;
 import sessionbeans.MeetingFacadeLocal;
+import sessionbeans.showDirectionsMap;
 
 /**
  *
  * @author matteo
  */
-@WebServlet(name = "MeetingVisualization", urlPatterns = {"/MeetingVisualization"})
-public class MeetingVisualization extends HttpServlet {
+@WebServlet(name = "RouteVisualization", urlPatterns = {"/RouteVisualization"})
+public class RouteVisualization extends HttpServlet {
 
+    @EJB
+    private showDirectionsMap showDir;
     @EJB
     private MeetingFacadeLocal meetingFacade;
     /**
@@ -44,10 +50,10 @@ public class MeetingVisualization extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MeetingVisualization</title>");            
+            out.println("<title>Servlet RouteVisualization</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MeetingVisualization at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RouteVisualization at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -66,27 +72,27 @@ public class MeetingVisualization extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
-  
         HttpSession session = request.getSession();
         String uid = session.getAttribute("uid").toString();
         
-        int mid = Integer.parseInt(request.getParameter("MeetingID"));
-         
-        MeetingPK mPK = new MeetingPK();
+        int mid = (int) session.getAttribute("mid");
         
-        mPK.setMeetingid(mid);
-        mPK.setUid(Integer.parseInt(uid));
+        Meeting m = (Meeting) session.getAttribute("m");
+           
+        String path="";
         
-        Meeting m = meetingFacade.find(mPK);
+        session.setAttribute("path", path);
         
-        session.setAttribute("m", m);
-        session.setAttribute("mid",mid);
+        try {
+             path = showDir.queryBuilder("Peschiera Borromeo", m.getLocation(), uid);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
         
-        request.getRequestDispatcher("meetingView.jsp").forward(request, response);
+         session.setAttribute("path", path);
+        request.getRequestDispatcher("routeview.jsp").forward(request, response);
        
-        
-        
+           
     }
 
     /**
@@ -97,16 +103,12 @@ public class MeetingVisualization extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    
-    
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-       
     }
+
     /**
      * Returns a short description of the servlet.
      *

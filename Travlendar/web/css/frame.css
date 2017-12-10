@@ -8,34 +8,41 @@ and open the template in the editor.
     Author     : matteo
 */
 
-body{background-color:#f2f2f2}
-
-  #frame{
-    position:relative;
-    padding:0;
-    margin:0;
-    border:solid 15px #555; 
-    max-width:770px;
-    margin:40px auto;
-    box-shadow:-3px -3px 12px #999;
-    
-    }
-  #border{
-    position:relative;
-    padding:0;
-    margin:0;
-    border:solid 70px white;
-   box-shadow:-3px -3px 12px #999;
-       }  
-  img{
-    display:block;
-    padding:0;
-    margin:0;
-    width:100%;
-    height:auto;
-    border-top:solid 2px #aaa;
-    border-left:solid 2px #aaa;
-    border-bottom:solid 2px #ccc;
-    border-right:solid 2px #ccc;
-    }
-   
+body,
+html {
+  height: 100%;
+}
+body {
+  background: linear-gradient(to bottom, #bcbcbc 1%, #bcbcbc 82%, #8f8f8f 91%, #8f8f8f 91%, #b7b7b7 91%, #efefef 100%);
+}
+.frame {
+  width: 1033px;
+  height: 632px;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 15px solid white;
+  perspective: 300;
+  transform-style: preserve-3d;
+}
+.frame:before {
+  content: "";
+  position: absolute;
+  top: 340px;
+  width: 600px;
+  height: 100px;
+  z-index: -1;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.1) 100%);
+  transform: rotateX(-40deg) scale(1.2) translateY(20px);
+}
+.frame:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 600px 400px 0;
+  border-color: transparent rgba(255, 255, 255, 0.2) transparent transparent;
+}

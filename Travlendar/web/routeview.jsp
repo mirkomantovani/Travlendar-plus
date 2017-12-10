@@ -1,6 +1,6 @@
 <%-- 
-    Document   : meetingView
-    Created on : 06-Dec-2017, 15:26:51
+    Document   : routeview
+    Created on : 10-Dec-2017, 10:27:01
     Author     : matteo
 --%>
 
@@ -9,15 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Modify preferences</title>
 
-        <link rel="stylesheet" href="css/meetingView.css" type="text/css">
-        <link rel="stylesheet" href="css/navbar.css">
-        <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="css/simple.css">
+
+        <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+        <link rel="stylesheet" href="css/slider.css">
         <link rel="stylesheet" href="css/button.css">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/simple.css">
+         <link rel="stylesheet" href="css/frame.css"> 
+
+        <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+        <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+
     </head>
     <body>
+
 
         <!--          ----NAVBAR----         -->
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -30,32 +38,50 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="homepage.jsp">TRAVLENDAR+</a>
+                    <a class="navbar-brand pulse" href="homepage.jsp">TRAVLENDAR+</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-
+                        
                         <li class="active">
                             <form action="DisplayPreferences">
-                                <a href="#" onclick="$(this).closest('form').submit()">Modify preferences</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Modify preferences</a>
                             </form>
                         </li>
-
+                    
                         <li>
                             <form action="DisplayTravelMeans">
-                                <a href="#" onclick="$(this).closest('form').submit()">Select travel means</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Select travel means</a>
                             </form>
                         </li>
-
+                        
                         <li>
-                            <form action="DisplayTravelMeans">
-                                <a href="addmeeting.jsp" >Add meeting</a>
+                            <form>
+                                <a href="addmeeting.jsp?meetingname=&quot;&quot" class="raise" >Add meeting</a>
                             </form>
                         </li>
-
-                        <li class="dropdown">
+                        
+                        <li>
+                            <form>
+                                <a href="addBreak.jsp" class="raise" >Add break</a>
+                            </form>
+                        </li>
+                        
+                        <li>
+                            <form action="DisplayWarnings">
+                                <a href="#" id="${warningcolor}" class="raise" onclick="$(this).closest('form').submit()">Warnings</a>
+                            </form>
+                            <style>
+                                #red{
+                                    color:#f00;
+                                    font-weight: bold;
+                                }
+                            </style>
+                        </li>
+                        
+                      <!--  <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="#">Action</a></li>
@@ -66,65 +92,29 @@
                                 <li class="divider"></li>
                                 <li><a href="#">One more separated link</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
+                    <form action="SearchMeeting" class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search meeting">
+                            <input type="text" name="meetingname" class="form-control" placeholder="Search meeting">
                         </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
+                        <button type="submit" class="btn btn-default fill">Submit</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><p class="navbar-text">Logged in as: ${name} </p></li>
                         <li><form action="Logout">
-                                <a href="#" onclick="$(this).closest('form').submit()">Logout</a>
+                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Logout</a>
                             </form></li>
-
+                        
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-
         <br><br><br>
 
-        <div style="height: 50px"></div>
-
-        <div class="wrapper" action="MeetingVisualization">
-            <header class="header">${m.name}</header>
-
-            <aside class="sidebar">
-                <form action="DisplayUpdateMeeting?=MeetingID=${m.meetingPK.meetingid}" >
-                    <input type="hidden" name="meetingid" value="${m.meetingPK.meetingid}">
-                    <button type="submit" class="offset"> Update meeting </button>
-                    
-                </form>
-
-                <form action="DeleteMeeting?MeetingID=${m.meetingPK.meetingid}"  >
-                     <input type="hidden" name="meetingid" value="${m.meetingPK.meetingid}">
-                    <button type="submit" class="offset"> Delete meeting</button> 
-                   
-                </form>
-
-            </aside>
-            <article class="content">
-                <p>
-                    Location: ${m.location}
-                </p>
-                <p>
-                    Date: ${m.startingdate}
-                </p>
-                <p>
-                    Duration: ${m.duration} min.
-                </p>
-            </article>
-            <footer class="footer">
-                <form action="RouteVisualization">
-                <button class="offset"> View route </button>
-                </form>
-            </footer>
-        </div>                
-
+        <p>${path}</p>
+ 
+        <div class="frame"><iframe src=${path} width="1000" height="600"> </iframe> </div> 
+        
     </body>
 </html>
-
-

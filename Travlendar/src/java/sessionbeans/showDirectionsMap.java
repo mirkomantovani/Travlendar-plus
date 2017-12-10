@@ -53,6 +53,7 @@ public String queryBuilder(String origin, String destination, String uid ) throw
    
    String tway ="";
    String tway2="";
+   String twayf="";
    
    if(transports.getOwnedcar() ){
        tway="&mode=driving";
@@ -77,31 +78,77 @@ public String queryBuilder(String origin, String destination, String uid ) throw
        tway2=tway2.replaceFirst("|", "&mode=");
    }
    
+   
    String origins;
    String destinations;
   
-   origins = "origins="+origin.replaceAll(" ", "+");
-   destinations = "&destinations="+destination.replaceAll(" ", "+");
+   origins = "origin="+origin.replaceAll(" ", "+");
+   destinations = "&destination="+destination.replaceAll(" ", "+");
+   
+   long driveD=Integer.MAX_VALUE;
+   long walkD=Integer.MAX_VALUE;
+   long bikeD=Integer.MAX_VALUE;
+   long pubD=Integer.MAX_VALUE;
+   long comparator = 0;
+   
+    if(tway.contains("driving") || tway2.contains("driving")){
+        driveD = this.calculateDuration(origin, destination, "&mode=driving", uid);
+   }
+    if(tway.contains("walking") || tway2.contains("walking"))
+         walkD = this.calculateDuration(origin, destination, "&mode=walking", uid);
+    if(tway.contains("bicycling") || tway2.contains("bicycling"))
+        bikeD=this.calculateDuration(origin, destination, "&mode=bicycling", uid);
+    if(tway.contains("transit")|| tway2.contains("transit"))
+        pubD = this.calculateDuration(origin, destination, "&mode=transit", uid);
+    
+    if(driveD<walkD){
+        twayf="&mode=driving";
+        comparator=driveD;
+        }
+    else{
+        twayf="&mode=walking";
+        comparator=walkD;
+    }
+    
+    if(comparator>bikeD){
+        twayf="&mode=bicycling";
+        comparator=bikeD;
+    }
+    
+    if(comparator>pubD){
+        twayf="&mode=transit";
+    }
+        
     
     String path = "https://www.google.com/maps/embed/v1/directions?"; 
     
     String query;
-    return query = path + origins + destinations + tway + tway2 + pmoto + "&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4" ;
+    return query = path + origins + destinations + twayf + pmoto + "&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4" ;
     
 }
 
-private int calculateDuration(String origin, String destination, String mode,String uid) throws ParseException, IOException{
+private long calculateDuration(String origin, String destination, String mode,String uid) throws ParseException, IOException{
     
-    Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
+    Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
     
+    String pmoto ="";
+   if(pref.getAvoidmotorways() && pref.getAvoidtolls()){
+        pmoto = "&avoid=highway";
+   }else if(pref.getAvoidmotorways() && !pref.getAvoidtolls()){
+        pmoto = "&avoid=highway";
+   }else if(!pref.getAvoidmotorways() && pref.getAvoidtolls()){
+        pmoto = "&avoid=tolls";
+   }else { pmoto = "";}
+  
+   
    String origins;
    String destinations;
   
    origins = "origins="+origin.replaceAll(" ", "+");
    destinations = "&destinations="+destination.replaceAll(" ", "+");
-   String path = "https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations  +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4";
+   String path = "https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4";
     
-    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
+    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
     connection.setRequestProperty("Accept-Charset", "UTF-8");
     StringBuilder responseStrBuilder;
         try (InputStream responses = connection.getInputStream()) {
@@ -127,12 +174,19 @@ private int calculateDuration(String origin, String destination, String mode,Str
                  System.out.println(jsonObject2.toString());
            JSONArray jsonObject3 = (JSONArray)jsonObject2.get("elements");
            JSONObject jsonObject4 = (JSONObject)jsonObject3.get(0);
+           String errore = (String)jsonObject4.get("status");
+           if(errore.equals("ZERO_RESULTS")){
+               return -1;
+           }
            JSONObject jsonObject5 = (JSONObject)jsonObject4.get("duration");
            JSONObject jsonObject6 = (JSONObject)jsonObject4.get("distance");
            System.out.println(jsonObject3.toString());
+            
            
-            return (int) jsonObject5.get("value"); 
-   
+          
+         //TODO DOPO UNA CERTA ORA NON POSSO USARE I MEZZI if(tway.contains("transit") && !tway2.contains("|") return -1
+          //                                                 else if(tway2.contains("transit"))...
+          return (long) jsonObject5.get("value");
    
 }
 }

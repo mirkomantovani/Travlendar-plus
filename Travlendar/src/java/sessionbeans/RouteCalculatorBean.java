@@ -89,6 +89,10 @@ public long retrieveDuration(String origin, String destination,String uid) throw
        tway2=tway2.replaceFirst("|", "&mode=");
    }
    
+   if(!tway.contains("driving") && !tway2.contains("driving")){
+       pmoto = "";
+   }
+   
    String origins;
    String destinations;
   

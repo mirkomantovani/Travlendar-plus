@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import javax.ejb.EJB;
@@ -44,7 +45,7 @@ public String queryBuilder(String origin, String destination, String uid ) throw
    
    String pmoto ="";
    if(pref.getAvoidmotorways() && pref.getAvoidtolls()){
-        pmoto = "&avoid=highway|tolls";
+        pmoto = "&avoid=tolls";
    }else if(pref.getAvoidmotorways()){
         pmoto = "&avoid=highway";
    }else if( pref.getAvoidtolls()){
@@ -73,11 +74,14 @@ public String queryBuilder(String origin, String destination, String uid ) throw
        tway2=tway2.concat("|walking"); 
    }
    
-   if(pref.getMinimizecarbonfootprint() && tway.equals("&mode=driving") && !tway2.equals("")){
+   String carWasTrue="";
+   
+     if(pref.getMinimizecarbonfootprint() && tway.equals("&mode=driving") && !tway2.equals("")){
        tway="";
        tway2=tway2.replaceFirst("|", "&mode=");
+       carWasTrue="&mode=driving";
+       
    }
-   
    
    String origins;
    String destinations;
@@ -118,11 +122,31 @@ public String queryBuilder(String origin, String destination, String uid ) throw
     if(comparator>pubD){
         twayf="&mode=transit";
     }
+    
+       if(!twayf.contains("driving")){
+       pmoto = "";
+   }
         
-    
     String path = "https://www.google.com/maps/embed/v1/directions?"; 
-    
+   
     String query;
+    
+    if(pref.getMaxwalkingdistance() < this.calculateDistance(origin, destination, "&mode=walking", uid) && twayf.equals("&mode=walking")){
+        if(!carWasTrue.equals("&mode=driving"))
+            return "The target is too far according to maxWalkingDistance parameter";
+        else
+            twayf = carWasTrue;
+    }
+    
+    if(pref.getMaxcyclingdistance() < this.calculateDistance(origin, destination, "&mode=bicycling", uid) && twayf.contains("bicycling")){
+        if(!carWasTrue.equals("&mode=driving"))
+           return "The target is too far according to maxCyclingDistance parameter";
+        else{
+            twayf = carWasTrue;
+        }
+    }
+   
+   
     return query = path + origins + destinations + twayf + pmoto + "&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4" ;
     
 }
@@ -139,7 +163,10 @@ private long calculateDuration(String origin, String destination, String mode,St
    }else if(!pref.getAvoidmotorways() && pref.getAvoidtolls()){
         pmoto = "&avoid=tolls";
    }else { pmoto = "";}
-  
+   
+   if(!mode.equals("&mode=driving")){
+       pmoto="";
+   }
    
    String origins;
    String destinations;
@@ -188,5 +215,72 @@ private long calculateDuration(String origin, String destination, String mode,St
           //                                                 else if(tway2.contains("transit"))...
           return (long) jsonObject5.get("value");
    
+}
+
+private long calculateDistance(String origin,String destination, String mode, String uid) throws MalformedURLException, IOException, ParseException{
+    
+   
+   Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
+//   Break breaks = breakFacade.find(Integer.parseInt(uid));
+   Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
+   
+   String pmoto ="";
+   if(pref.getAvoidmotorways() && pref.getAvoidtolls()){
+        pmoto = "&avoid=highway";
+   }else if(pref.getAvoidmotorways() && !pref.getAvoidtolls()){
+        pmoto = "&avoid=highway";
+   }else if(!pref.getAvoidmotorways() && pref.getAvoidtolls()){
+        pmoto = "&avoid=tolls";
+   }else { pmoto = "";}
+   
+   if(!mode.equals("&mode=driving")){
+       pmoto="";
+   }
+   
+   String origins;
+   String destinations;
+  
+   origins = "origins="+origin.replaceAll(" ", "+");
+   destinations = "&destinations="+destination.replaceAll(" ", "+");
+   String path = "https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4";
+    
+    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
+    connection.setRequestProperty("Accept-Charset", "UTF-8");
+    StringBuilder responseStrBuilder;
+        try (InputStream responses = connection.getInputStream()) {
+            BufferedReader streamReader = new BufferedReader(new InputStreamReader(responses, "UTF-8"));
+            responseStrBuilder = new StringBuilder();
+            String inputStr;
+            while ((inputStr = streamReader.readLine()) != null){
+                responseStrBuilder.append(inputStr);
+            }   }
+    
+    String json= responseStrBuilder.toString();
+   // JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
+    
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(json);
+            JSONObject jb = (JSONObject) obj;
+            
+            
+            //now read
+            JSONArray jsonObject1 = (JSONArray) jb.get("rows");
+            
+            JSONObject jsonObject2 = (JSONObject)jsonObject1.get(0);
+                 System.out.println(jsonObject2.toString());
+           JSONArray jsonObject3 = (JSONArray)jsonObject2.get("elements");
+           JSONObject jsonObject4 = (JSONObject)jsonObject3.get(0);
+           String errore = (String)jsonObject4.get("status");
+           if(errore.equals("ZERO_RESULTS")){
+               return -1;
+           }
+           JSONObject jsonObject5 = (JSONObject)jsonObject4.get("duration");
+           JSONObject jsonObject6 = (JSONObject)jsonObject4.get("distance");
+           System.out.println(jsonObject3.toString());
+   
+          
+         //TODO DOPO UNA CERTA ORA NON POSSO USARE I MEZZI if(tway.contains("transit") && !tway2.contains("|") return -1
+          //                                                 else if(tway2.contains("transit"))...
+          return (long) jsonObject6.get("value");
 }
 }

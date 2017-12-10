@@ -22,6 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -36,6 +38,9 @@ public class ConflictCheckerBean {
     private RouteCalculatorBean nav;
     @EJB
     private BreakFacadeLocal breakFacade;
+    
+    @EJB
+    private WarningFacadeLocal warningFacade;
     
     //returns true if m is feasible, false otherwise
     public boolean CheckAllConflicts(Meeting m){
@@ -55,8 +60,20 @@ public class ConflictCheckerBean {
         }
         noReschedulableBreaks = checkReschedule(m.getMeetingPK().getUid());
         
+        String meetingsField="";
+        
+        
         if(meetings.isEmpty() && noReschedulableBreaks.isEmpty())
             return true;
+        else {
+            for(Meeting meet: meetings)
+            {
+                meetingsField = meetingsField.concat(meet.getMeetingPK().getMeetingid() + "%");
+            }
+            warningFacade.create(new Warning());
+        }
+        
+        
         
         return false;
     }

@@ -31,8 +31,14 @@ public class DeleteBreak extends HttpServlet {
        
         HttpSession session = request.getSession();
         String uid = session.getAttribute("uid").toString();
+       
+        
+        String bidd=request.getParameter("BreakID");
+        
+        System.out.println(bidd);
         
         int breakID = Integer.parseInt(request.getParameter("BreakID"));
+        
         
         BreakPK bpk= new BreakPK();
         bpk.setBreakid(breakID);

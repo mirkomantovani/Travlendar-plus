@@ -10,14 +10,26 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <link rel="stylesheet" href="css/meetingView.css" type="text/css">
-        <link rel="stylesheet" href="css/navbar.css">
-        <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" href="css/simple.css">
         <link rel="stylesheet" href="css/button.css">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="css/meetingView.css" type="text/css">
+
+        <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/simple.css">
+
+        <link rel="stylesheet" href="css/body.css">
+        <title>Meeting page</title>
     </head>
     <body>
+
+        <style>
+
+            .buttonsinpage {
+                font-size: 16px;
+                margin: 10px;
+            }
+        </style>
 
         <!--          ----NAVBAR----         -->
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -90,19 +102,20 @@
         <div style="height: 50px"></div>
 
         <div class="wrapper" action="MeetingVisualization">
-            <header class="header">${m.name}</header>
+            <h2 class="header" style="font-size:50px">${m.name}</h2>
+
 
             <aside class="sidebar">
                 <form action="DisplayUpdateMeeting?=MeetingID=${m.meetingPK.meetingid}" >
                     <input type="hidden" name="meetingid" value="${m.meetingPK.meetingid}">
-                    <button type="submit" class="offset"> Update meeting </button>
-                    
+                    <button type="submit" class="offset buttonsinpage"> Update meeting </button>
+
                 </form>
 
                 <form action="DeleteMeeting?MeetingID=${m.meetingPK.meetingid}"  >
-                     <input type="hidden" name="meetingid" value="${m.meetingPK.meetingid}">
-                    <button type="submit" class="offset"> Delete meeting</button> 
-                   
+                    <input type="hidden" name="meetingid" value="${m.meetingPK.meetingid}">
+                    <button type="submit" class="offset buttonsinpage"> Delete meeting</button> 
+
                 </form>
 
             </aside>
@@ -119,7 +132,7 @@
             </article>
             <footer class="footer">
                 <form action="RouteVisualization">
-                <button class="offset"> View route </button>
+                    <button class="offset buttonsinpage"> View route </button>
                 </form>
             </footer>
         </div>                

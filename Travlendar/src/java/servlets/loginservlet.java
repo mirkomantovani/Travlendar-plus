@@ -76,6 +76,12 @@ public class loginservlet extends HttpServlet {
 
                 session.setAttribute("user", u);
                 
+                Calendar today = Calendar.getInstance();
+                Date tod=new Date(today.getTimeInMillis());
+                
+                session.setAttribute("today", tod.getYear()+1900+"-"+(tod.getMonth()+1)+"-"+tod.getDate());
+                System.out.println(tod);
+                
                 //WHEN THE USER LOGS IN WE HAVE TO CHECK WHETHER THERE ARE WARNINGS, IF THERE ARE EXECUTE THIS LINE
                 
                 List<Warning> warnings = warningFacade.getWarningsFromUID(u.getUid());
@@ -242,7 +248,7 @@ public class loginservlet extends HttpServlet {
             sb.append("',");
             sb.append(System.lineSeparator());
 
-            sb.append("url: '/Travlendar/DisplayBreak?breakid=");
+            sb.append("url: '/Travlendar/BreakVisualization?BreakID=");
             sb.append(breaks.get(i).getBreakPK().getBreakid());
             sb.append("',");
             sb.append(System.lineSeparator());

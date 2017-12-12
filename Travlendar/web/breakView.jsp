@@ -9,15 +9,31 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <link rel="stylesheet" href="css/button.css">
 
         <link rel="stylesheet" href="css/meetingView.css" type="text/css">
-        <link rel="stylesheet" href="css/navbar.css">
+
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        
         <link rel="stylesheet" href="css/simple.css">
-        <link rel="stylesheet" href="css/button.css">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/body.css">
+
+        <title>Break page</title>
     </head>
     <body>
+        <style>
+            .wrapper > * {
+                background-color: #a444446b;
+
+
+            }
+            .buttonsinpage {
+                font-size: 16px;
+                margin: 10px;
+            }
+        </style>
 
         <!--          ----NAVBAR----         -->
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
@@ -90,26 +106,32 @@
         <div style="height: 50px"></div>
 
         <div class="wrapper" action="BreakVisualization">
-            <header class="header">${b.name}</header>
+            <h2 class="header" style="font-size:50px">${b.name}</h2>
 
             <aside class="sidebar">
-              
-                <form   >
-                     <input type="hidden" >
-                    <button type="submit" class="offset"> Delete break</button> 
-                   
+
+                <form action="DeleteBreak?BreakID=${b.breakPK.breakid}"  >
+                    <input type="hidden" name="BreakID" value="${b.breakPK.breakid}">
+                    <button type="submit" class="offset buttonsinpage"> Delete break</button> 
+
                 </form>
 
             </aside>
             <article class="content">
                 <p>
-                    Break time window: ${b.startingdate} - ${b.endingdate}
+                    Break time window: ${b.startingtime.hours}:${b.startingtime.minutes} - ${b.endingtime.hours}:${b.endingtime.minutes}
                 </p>
                 <p>
-                    Duration: ${b.duration} min.
+                    Minimum duration: ${b.minduration.hours}:${b.minduration.minutes}.
+                </p>
+                <p>
+                    Day of week: ${b.dayofweek}
+                </p>
+                <p>
+                    Recurrent: ${b.recurrent}
                 </p>
             </article>
-           
+
         </div>                
 
     </body>

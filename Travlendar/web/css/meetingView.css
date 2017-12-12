@@ -54,9 +54,9 @@ h1, p {
 }
 
 .wrapper > * {
-  background-color: #444;
+  background-color: #4462a46b;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 30px;
   padding: 20px;
   font-size: 150%;
   /* needed for the floated layout*/

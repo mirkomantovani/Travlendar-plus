@@ -7,6 +7,7 @@ package sessionbeans;
 
 import entities.Break;
 import entities.Meeting;
+import entities.Warning;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
@@ -47,7 +48,7 @@ public class ConflictCheckerBean {
         
         ArrayList<Break> noReschedulableBreaks = new ArrayList<Break>();
         ArrayList<Meeting> meetings = new ArrayList<Meeting>();
-        
+        Warning w = new Warning();
         
         try {
             meetings = CheckMeetingOverlaps(m);
@@ -61,6 +62,7 @@ public class ConflictCheckerBean {
         noReschedulableBreaks = checkReschedule(m.getMeetingPK().getUid());
         
         String meetingsField="";
+        String breaksField="";
         
         
         if(meetings.isEmpty() && noReschedulableBreaks.isEmpty())
@@ -70,7 +72,17 @@ public class ConflictCheckerBean {
             {
                 meetingsField = meetingsField.concat(meet.getMeetingPK().getMeetingid() + "%");
             }
-            warningFacade.create(new Warning());
+            
+            for(Break b: noReschedulableBreaks){
+                breaksField = breaksField.concat(b.getBreakPK().getBreakid() + "%");
+           }
+            
+           w.setMeetings(meetingsField);
+           w.setBreaks(breaksField);
+          //TODO w.setUsertable();
+          //TODO w.setWarningPK();
+           
+            warningFacade.create(w);
         }
         
         

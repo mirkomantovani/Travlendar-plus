@@ -139,11 +139,16 @@ public String queryBuilder(String origin, String destination, String uid ) throw
     }
     
     if(pref.getMaxcyclingdistance() < this.calculateDistance(origin, destination, "&mode=bicycling", uid) && twayf.contains("bicycling")){
-        if(!carWasTrue.equals("&mode=driving"))
+        if(!transports.getOwnedcar() && !transports.getPublictransport() && !transports.getWalking())
            return "The target is too far according to maxCyclingDistance parameter";
-        else{
-            twayf = carWasTrue;
-        }
+        else if(transports.getOwnedcar())
+            twayf="&mode=driving";
+        else if(transports.getPublictransport())
+            twayf="&mode=transit";
+        else if(transports.getWalking() && pref.getMaxwalkingdistance() > this.calculateDistance(origin, destination, "&mode=walking", uid))
+            twayf="&mode=transit";
+        else
+            return "No routes available, modify preferences";
     }
    
    

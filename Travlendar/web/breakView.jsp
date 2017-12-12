@@ -9,18 +9,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         
-         <link rel="stylesheet" href="css/meetingView.css" type="text/css">
-         <link rel="stylesheet" href="css/navbar.css">
-         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-         <link rel="stylesheet" href="css/simple.css">
-         <link rel="stylesheet" href="css/button.css">
-         <link rel="stylesheet" href="css/break.css">
+
+        <link rel="stylesheet" href="css/meetingView.css" type="text/css">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link rel="stylesheet" href="css/simple.css">
+        <link rel="stylesheet" href="css/button.css">
         <title>JSP Page</title>
     </head>
     <body>
-     
-         <!--          ----NAVBAR----         -->
+
+        <!--          ----NAVBAR----         -->
         <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -37,25 +36,25 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        
+
                         <li class="active">
                             <form action="DisplayPreferences">
                                 <a href="#" onclick="$(this).closest('form').submit()">Modify preferences</a>
                             </form>
                         </li>
-                    
+
                         <li>
                             <form action="DisplayTravelMeans">
                                 <a href="#" onclick="$(this).closest('form').submit()">Select travel means</a>
                             </form>
                         </li>
-                        
+
                         <li>
                             <form action="DisplayTravelMeans">
                                 <a href="addmeeting.jsp" >Add meeting</a>
                             </form>
                         </li>
-                        
+
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -80,47 +79,40 @@
                         <li><form action="Logout">
                                 <a href="#" onclick="$(this).closest('form').submit()">Logout</a>
                             </form></li>
-                        
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-                        
-                        <br><br><br>
-                        
+
+        <br><br><br>
+
         <div style="height: 50px"></div>
+
+        <div class="wrapper" action="BreakVisualization">
+            <header class="header">${b.name}</header>
+
+            <aside class="sidebar">
+              
+                <form   >
+                     <input type="hidden" >
+                    <button type="submit" class="offset"> Delete break</button> 
+                   
+                </form>
+
+            </aside>
+            <article class="content">
+                <p>
+                    Break time window: ${b.startingdate} - ${b.endingdate}
+                </p>
+                <p>
+                    Duration: ${b.duration} min.
+                </p>
+            </article>
+           
+        </div>                
+
     </body>
-    
-<div class='schedule-container'>
-  <h1>Breaks</h1>
-  <ul>
-    <li>
-      <div class='frame'>
-        <div class='hour'>
-          8
-        </div>
-        <div class='task'>
-          Take a walk, with Spotsie
-        </div>
-        <div class='full-time'>
-          8:00 PM
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class='frame'>
-        <div class='hour'>
-          9
-        </div>
-        <div class='task'>
-          More walking, with Spotsie
-        </div>
-        <div class='full-time'>
-          9:00 PM
-        </div>
-      </div>
-    </li>
-  </ul>
-</div>
-          
 </html>
+
+

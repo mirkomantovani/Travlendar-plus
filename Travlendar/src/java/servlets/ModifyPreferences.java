@@ -57,23 +57,7 @@ public class ModifyPreferences extends HttpServlet {
         
         Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
     
-        
-        try {
-            long prova = routes.retrieveDuration("Peschiera Borromeo","Bussero",uid);
-            System.out.println(prova);
-        } catch (MalformedURLException ex) {
-           ex.printStackTrace();
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        } catch (org.json.simple.parser.ParseException ex) {
-           ex.printStackTrace();
-        }
-        
-        try {
-            String prova2=dir.queryBuilder("Peschiera Borromeo", "Bussero", uid);
-        } catch (org.json.simple.parser.ParseException ex) {
-            Logger.getLogger(ModifyPreferences.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
         String minCarbonFootprint = "";
         String avoidTolls = "";

@@ -14,7 +14,7 @@
     </head>
     <body>
         
-        <form action="signupservlet" class="login">
+        <form action="signupservlet" class="login" method="post">
             <h1>Travlendar+ Sign up </h1>
             <table border="3" cellpadding="2">
                 
@@ -44,6 +44,8 @@
                
             </table>
              <input type="submit" value="Sign up" class="login-submit"/>
+             
+             <p class="login-help"><a href="login.jsp">Already have an account? Login</a></p>
              
              <!--<a href="signup.jsp">go to sign up</a>
              <button type="submit" action="signup.jsp" value="Go to sign up" />

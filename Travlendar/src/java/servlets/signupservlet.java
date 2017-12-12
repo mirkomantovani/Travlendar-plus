@@ -60,10 +60,12 @@ public class signupservlet extends HttpServlet {
         String password = request.getParameter("password");
         String email = request.getParameter("email");
         
+        if(!username.equals("")&&!password.equals("")&&!passwordConfirm.equals("")&&!email.equals("")){
        Random r=new Random();
         Usertable u=userFacade.find(email.hashCode());
         if(u==null &&password.equals(passwordConfirm)){
-            createUser(email, username, surname, password, response);
+            //createUser(email, username, surname, password, response);
+            response.sendRedirect("login.jsp");
         }
         else {
             response.sendRedirect("signup.jsp");
@@ -71,8 +73,41 @@ public class signupservlet extends HttpServlet {
             
             
         }
+        }
+        else {
+           response.sendRedirect("signup.jsp");
+        }
         
         
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String username = request.getParameter("name");
+        String surname = request.getParameter("surname");
+        String passwordConfirm = request.getParameter("passwordconfirm");
+        String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        
+        if(!username.equals("")&&!password.equals("")&&!passwordConfirm.equals("")&&!email.equals("")){
+       Random r=new Random();
+        Usertable u=userFacade.find(email.hashCode());
+        if(u==null &&password.equals(passwordConfirm)){
+            createUser(email, username, surname, password, response);
+            response.sendRedirect("login.jsp");
+        }
+        else {
+            response.sendRedirect("signup.jsp");
+            //or response.sendRedirect("signup.jsp?error"); and then I can take the parameter and display error
+            
+            
+        }
+        }
+        else {
+           response.sendRedirect("signup.jsp");
+        }
+       
     }
 
     private void createUser(String email, String username, String surname, String password, HttpServletResponse response) throws IOException {
@@ -118,8 +153,6 @@ public class signupservlet extends HttpServlet {
         travelmeanFacade.create(travel);
         
         
-        
-        response.sendRedirect("login.jsp");
     }
 
 }

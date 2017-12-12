@@ -60,25 +60,14 @@ public class loginservlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        //INSERTED BY ME
-        /*
-        Utente user=new Utente();
-        user.setId(id);
-        this.id++;
-        user.setUsername(request.getParameter("name"));
-        user.setPassword(request.getParameter("password"));
-        utenteFacade.create(user);
-         */
-        System.out.println("dieee");
+       if(!request.getParameter("email").equals("")&&!request.getParameter("password").equals("")){
         Usertable u = userFacade.find(request.getParameter("email").hashCode());
         String password = request.getParameter("password");
 
-        System.out.println(password);
-        System.out.println(u.getHashedpassword());
 
         if (u == null) {
             response.sendRedirect("signup.jsp");
-            System.out.println("user not in database");
+            
         } else {
             if (SecureHashEncryption.encryptPassword(password).equals(u.getHashedpassword())) {
 
@@ -120,6 +109,10 @@ public class loginservlet extends HttpServlet {
                 response.sendRedirect("index.jsp");
             }
         }
+       }
+       else{
+           response.sendRedirect("login.jsp");
+       }
 
         
     }

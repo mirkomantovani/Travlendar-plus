@@ -37,32 +37,6 @@ public class AddMeetingServlet extends HttpServlet {
     private ConflictCheckerBean conflictChecker;
 
     
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddMeetingServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddMeetingServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -73,7 +47,14 @@ public class AddMeetingServlet extends HttpServlet {
         Meeting m=new Meeting();
         MeetingPK mpk=new MeetingPK();
         
-        mpk.setMeetingid(request.getParameter("name").hashCode());
+        String name=request.getParameter("name");
+        String duration=request.getParameter("duration");
+        String location=request.getParameter("location");
+        String date=request.getParameter("date");
+        
+        if(!name.equals("")&&!duration.equals("")&&!location.equals("")&&!date.equals("")){
+        try{
+        mpk.setMeetingid(name.hashCode());
 
         
         String uid=session.getAttribute("uid").toString();
@@ -82,13 +63,11 @@ public class AddMeetingServlet extends HttpServlet {
         mpk.setUid(Integer.parseInt(uid));
         
         m.setMeetingPK(mpk);
-        m.setName(request.getParameter("name"));
+        m.setName(name);
+        m.setDuration(Integer.parseInt(duration));
+        m.setLocation(location);
         
-        m.setDuration(Integer.parseInt(request.getParameter("duration")));
-        
-        m.setLocation(request.getParameter("location"));
-        
-        Timestamp tstamp = DateConversion.parseTimestampFromHTMLForm(request.getParameter("date"));
+        Timestamp tstamp = DateConversion.parseTimestampFromHTMLForm(date);
         
         m.setStartingdate(tstamp);
         meetingFacade.create(m);
@@ -103,23 +82,18 @@ public class AddMeetingServlet extends HttpServlet {
        System.out.println(conflitto.toString());
        
        response.sendRedirect("RecomputeCalendarMeetingsBreaks");
+       
+        }catch(Exception e){
+            response.sendRedirect("addmeeting.jsp");
+        }
+        } else{
+             response.sendRedirect("addmeeting.jsp");
+        }
         
         
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
+    
 
     /**
      * Returns a short description of the servlet.

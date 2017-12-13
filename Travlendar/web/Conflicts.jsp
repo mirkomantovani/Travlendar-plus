@@ -4,12 +4,21 @@
     Author     : matteo
 --%>
 
+<%@page import="java.util.HashMap"%>
+<%@page import="entities.Break"%>
+<%@page import="java.util.Map"%>
+<%@page import="entities.Meeting"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="entities.Warning"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         
-        <link rel="stylesheet" href="css/list.css" type="text/css">    
+      
+        
+      <link rel="stylesheet" href="css/list.css" type="text/css">    
       <link rel="stylesheet" href="css/navbar.css">
       <link rel="stylesheet" href="css/simple.css">
       <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -92,25 +101,65 @@
             Conflicts
         </h1>
         <div style="height: 5px"></div>
-<div id="modal">
-	<h1>This is a modal.</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices lorem, eu rhoncus dolor sollicitudin et. Suspendisse diam mauris, porta nec sollicitudin et, varius a ipsum.</p>
-	
-	<a class="yes" href="javascript:void(0);">Solve</a>
-	<a class="no" href="javascript:void(0);">Ignore</a>
-</div>
-        <div style="height: 10px"></div>
-<div id="modal">
-	<h1>This is a modal.</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices lorem, eu rhoncus dolor sollicitudin et. Suspendisse diam mauris, porta nec sollicitudin et, varius a ipsum.</p>
-	
-	<a class="yes" href="javascript:void(0);">Solve</a>
-	<a class="no" href="javascript:void(0);">Ignore</a>
-</div>
-        <div style="height: 15px"></div>
+
+        <form action="ConflictVisualization">
+    <%
+        if(session.getAttribute("error").equals("NO Warnings detected"))
+            out.print("No warnings detected!");
+        else{
+        ArrayList<Warning> warnings = new ArrayList<Warning>();
+        warnings = (ArrayList<Warning>)session.getAttribute("warnings");
+        if(warnings == null){
+          System.out.println("sto stampando i warning null");  
+        }
+        System.out.println("sto stampando i warning" + warnings.toString());
+        Map<Warning,Meeting[]> meetings = new HashMap<Warning,Meeting[]>();
+        meetings = (HashMap<Warning,Meeting[]>)session.getAttribute("meetings");
+        Map<Warning,Break[]> breaks = new HashMap<Warning,Break[]>();
+        breaks = (HashMap<Warning,Break[]>)session.getAttribute("breaks");
+        int counter = 1;
+            
+    for(Warning w : warnings){
+       out.print("<div id='modal'>" +
+	"<h1>Warning n." + counter + "</h1>");
+       if(meetings.get(w).length!=0){
+            out.print("Involved meetings:\n");
+            for(int j=0; j<meetings.get(w).length;j++){
+                out.print(meetings.get(w)[j] + "\n");
+            }
+       }
+       if(breaks.get(w).length != 0){
+            out.print("Involved Breaks:\n");
+            for(int k=0;k<breaks.get(w).length;k++){
+                out.print(breaks.get(w)[k]);
+            }
+       }
+       out.print("<a class='yes' href='javascript:void(0);'>Solve</a>" +
+        "<form action='UpdateMeeting?MeetingID='${meetings.get(w)[0].meetingPK.meetingid}'  >" +
+                    "<input type='hidden' name='meetingid' value='${meetings.get(w)[0].meetingPK.meetingid}'>" +
+        "</form>" +
+        "<form action='DeleteWarning?WarningID='${w.warningPK.warningid}'  >" +
+                    "<input type='hidden' name='warningid' value='${w.warningPK.warningid}}'>" +
+	"<a class='no' href='javascript:void(0);'>Ignore</a>" +
+        "</form>" +
+        "</div>" +
+        "<div style='height: 15px'></div>");
+       counter = counter + 1;
+    }
         
-<div id="ignoreAll" style="position: absolute; left: 45%;">
-        <a class="no" href="javascript:void(0);" >IgnoreAll</a>
-</div>
-    </body>
+     if(!warnings.isEmpty())
+       out.print("<form action='DeleteAllWarnings'>" +
+                     "<div id='ignoreAll' style='position: absolute; left: 45%;'>" +
+                         "<a class='no' href='javascript:void(0);' >IgnoreAll</a>" + 
+                     "</div>" +
+                 "</form>");
+        
+     else 
+        out.print("No warnings detected!");
+     
+        }
+        %>
+        </form>
+     </body>
+    
 </html>

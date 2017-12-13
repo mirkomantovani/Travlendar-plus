@@ -114,7 +114,7 @@ public String queryBuilder(String origin, String destination, String uid ) throw
         comparator=walkD;
     }
     
-    if(comparator>bikeD){
+    if(comparator>bikeD && bikeD!=-1){
         twayf="&mode=bicycling";
         comparator=bikeD;
     }

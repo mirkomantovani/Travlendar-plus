@@ -8,6 +8,7 @@ package sessionbeans;
 import entities.Break;
 import entities.Meeting;
 import entities.Warning;
+import entities.WarningPK;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.ParseException;
@@ -74,8 +75,12 @@ public class ConflictCheckerBean {
             
            w.setMeetings(meetingsField);
            w.setBreaks(breaksField);
-          //TODO w.setUsertable();
-          //TODO w.setWarningPK();
+           WarningPK wPK = new WarningPK();
+           wPK.setUid(m.getMeetingPK().getUid());
+           String wID = w.getMeetings()+ String.valueOf(m.getMeetingPK().getUid());
+           wPK.setWarningid(wID.hashCode());
+           w.setWarningPK(wPK);
+           w.setUsertable(m.getUsertable());
            
             warningFacade.create(w);
         }

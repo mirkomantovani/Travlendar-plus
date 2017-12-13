@@ -29,7 +29,7 @@
                     </tr>
                     <tr>
                         
-                        <td><input type="text" placeholder="Insert email *" class="login-input"  name="email" value="" /></td>
+                        <td><input type="email" placeholder="Insert email *" class="login-input"  name="email" value="" /></td>
                     </tr>
                     <tr>
                         

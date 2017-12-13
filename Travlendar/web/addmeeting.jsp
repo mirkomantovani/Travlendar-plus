@@ -11,13 +11,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add meeting</title>
         
+        <link rel="stylesheet" href="css/button.css">
         <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">   
         <link rel="stylesheet" href="css/styleplacepicker.css">
-        <link rel="stylesheet" href="css/button.css">
-        <link rel="stylesheet" href="css/simple.css">
         <link rel="stylesheet" href="css/navbar.css">
-        <link rel="stylesheet" href="css/body.css">
+        
+        
 
         
    <style>
@@ -51,6 +51,7 @@
         font-size: 15px;
         font-weight: 300;
       }
+      
 
       #infowindow-content .title {
         font-weight: bold;
@@ -112,6 +113,13 @@
         font-size: 25px;
         font-weight: 500;
         padding: 6px 12px;
+      }
+    </style>
+    
+    <style>
+        nav {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Open Sans, Ubuntu, Fira Sans, Helvetica Neue, sans-serif;
+    font-size: 16px;
       }
     </style>
     

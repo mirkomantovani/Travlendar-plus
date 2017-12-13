@@ -27,7 +27,7 @@ public class SearchMeeting extends HttpServlet {
 
    
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -39,10 +39,12 @@ public class SearchMeeting extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Meeting> meetings =meetingFacade.getMeetingsFromName(request.getParameter("meetingname"));
+        List<Meeting> meetings =meetingFacade.getMeetingsFromName(request.getParameter("meetingname").toLowerCase());
         
         for(Meeting m: meetings)
             System.out.println(m.getName());
+        
+        response.sendRedirect("MeetingVisualization?MeetingID="+meetings.get(0).getMeetingPK().getMeetingid());
         
     }
 

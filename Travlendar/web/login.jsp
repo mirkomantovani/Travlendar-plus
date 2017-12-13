@@ -20,7 +20,7 @@
                 <tbody>
                     <tr>
                         
-                        <td><input type="text" placeholder="Insert email" name="email" value="" class="login-input"/></td>
+                        <td><input type="email" placeholder="Insert email" name="email" value="" class="login-input"/></td>
                     </tr>
                     <tr>
                         

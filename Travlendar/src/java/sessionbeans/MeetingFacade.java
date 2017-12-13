@@ -39,7 +39,7 @@ public class MeetingFacade extends AbstractFacade<Meeting> implements MeetingFac
     
     @Override
     public List getMeetingsFromName(String partialName){
-        return em.createQuery("SELECT m FROM Meeting m WHERE m.name LIKE :partname")
+        return em.createQuery("SELECT m FROM Meeting m WHERE lower(m.name) LIKE :partname")
                 .setParameter("partname", "%"+partialName+"%")
                 .setMaxResults(10)
                 .getResultList();

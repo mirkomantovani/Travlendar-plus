@@ -45,6 +45,16 @@ public class MeetingFacade extends AbstractFacade<Meeting> implements MeetingFac
                 .getResultList();
         
     }
+    
+    @Override
+    public List getMeetingsFromNameAndUID(String partialName,int UID){
+        return em.createQuery("SELECT m FROM Meeting m WHERE lower(m.name) LIKE :partname and m.meetingPK.uid = :uid")
+                .setParameter("partname", "%"+partialName+"%")
+                .setParameter("uid", UID)
+                .setMaxResults(10)
+                .getResultList();
+        
+    }
 
     public MeetingFacade() {
         super(Meeting.class);

@@ -31,6 +31,8 @@ public interface MeetingFacadeLocal {
     List getMeetingsFromUID(int uid);
     
     public List getMeetingsFromName(String partialName);
+    
+    public List getMeetingsFromNameAndUID(String partialName,int UID);
 
     int count();
     

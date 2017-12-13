@@ -66,13 +66,16 @@ public class DisplayPreferences extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Preferences pref=null;
+        try{
         HttpSession session = request.getSession();
         String uid = session.getAttribute("uid").toString();
         
-        Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
+        pref = preferencesFacade.find(Integer.parseInt(uid));
         
-        System.out.println(uid);
-        
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
         
          
         //List<Product> products = productService.list(); // Obtain all products.

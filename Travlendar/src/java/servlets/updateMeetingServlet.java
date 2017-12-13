@@ -60,7 +60,10 @@ public class updateMeetingServlet extends HttpServlet {
         
         m.setStartingdate(tstamp);
         meetingFacade.edit(m);
-        }catch(Exception e){
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
+        catch(Exception e){
             response.sendRedirect("updateMeeting.jsp");
         }
         

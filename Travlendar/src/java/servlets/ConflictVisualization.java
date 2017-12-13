@@ -86,14 +86,14 @@ public class ConflictVisualization extends HttpServlet {
       List<Warning> warnings = new ArrayList<Warning>();
       Map<Warning,Meeting[]> meetings = new HashMap<Warning,Meeting[]>();
       Map<Warning,Break[]> breaks = new HashMap<Warning,Break[]>();
-      Meeting[] Ms = new Meeting[Integer.MAX_VALUE];
-      Break[] Bs = new Break[Integer.MAX_VALUE];
+      Meeting[] Ms = new Meeting[5];
+      Break[] Bs = new Break[5];
       
       if(!warningFacade.findAll().isEmpty()){
-         warnings = (ArrayList<Warning>)warningFacade.findAll();
+         warnings = (List<Warning>)warningFacade.findAll();
      
          session.setAttribute("warnings", warnings);
-      
+      /*
       for(Warning w:warnings){
           for(int i=0; i<this.extractMeetingsFromWarning(w).length;i++){
               MeetingPK mPK = new MeetingPK(Integer.parseInt(uid),Integer.parseInt(this.extractMeetingsFromWarning(w)[i]));
@@ -105,10 +105,12 @@ public class ConflictVisualization extends HttpServlet {
               Bs[j] = breakFacade.find(bPK);
           }
           breaks.put(w, Bs);
+         
       }
+         */
       
-      session.setAttribute("meetings", meetings); //the map with an array of meetings involved in a warning (key)
-      session.setAttribute("breaks", breaks); // the map with an array of breaks involved in a warning (key)
+      //session.setAttribute("meetings", meetings); //the map with an array of meetings involved in a warning (key)
+      //session.setAttribute("breaks", breaks); // the map with an array of breaks involved in a warning (key)
       
       }else 
           session.setAttribute("error","NO Warnings detected");
@@ -148,7 +150,7 @@ public class ConflictVisualization extends HttpServlet {
     private String[] extractMeetingsFromWarning(Warning w){
         String meetings = w.getMeetings();
         
-        String[] result = new String[Integer.MAX_VALUE];
+        String[] result = new String[5];
    
         result = meetings.split("%");
         return result;
@@ -158,7 +160,7 @@ public class ConflictVisualization extends HttpServlet {
     private String[] extractBreaksFromWarning(Warning w){
         String breaks = w.getBreaks();
         
-        String[] result = new String[Integer.MAX_VALUE];
+        String[] result = new String[5];
         
         result = breaks.split("%");
         return result;

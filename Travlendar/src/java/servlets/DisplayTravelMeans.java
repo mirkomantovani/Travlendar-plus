@@ -37,8 +37,14 @@ public class DisplayTravelMeans extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String uid="none";
+        try{
         HttpSession session = request.getSession();
-        String uid = session.getAttribute("uid").toString();
+        uid = session.getAttribute("uid").toString();
+        
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
         
         Travelmean travel = travelmeanFacade.find(Integer.parseInt(uid));
       

@@ -39,8 +39,15 @@ public class ModifyTravelMeans extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String uid="none";
         HttpSession session = request.getSession();
-        String uid = session.getAttribute("uid").toString();
+        try{
+       
+        uid = session.getAttribute("uid").toString();
+        
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
         
         
         Travelmean travel = travelmeanFacade.find(Integer.parseInt(uid));

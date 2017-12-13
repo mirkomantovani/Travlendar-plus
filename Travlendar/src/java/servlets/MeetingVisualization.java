@@ -68,8 +68,15 @@ public class MeetingVisualization extends HttpServlet {
         
         
   
+        String uid="none";
         HttpSession session = request.getSession();
-        String uid = session.getAttribute("uid").toString();
+        try{
+       
+        uid = session.getAttribute("uid").toString();
+        
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
         
         int mid = Integer.parseInt(request.getParameter("MeetingID"));
          

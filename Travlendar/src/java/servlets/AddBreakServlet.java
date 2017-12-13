@@ -35,7 +35,7 @@ public class AddBreakServlet extends HttpServlet {
 
     
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -48,8 +48,15 @@ public class AddBreakServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session=request.getSession();
-        String uid=session.getAttribute("uid").toString();
+        String uid="none";
+        HttpSession session = request.getSession();
+        try{
+       
+        uid = session.getAttribute("uid").toString();
+        
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
         
         String name = request.getParameter("name");
         String from=request.getParameter("from");
@@ -57,6 +64,8 @@ public class AddBreakServlet extends HttpServlet {
         String duration=request.getParameter("duration");
         Boolean rec= request.getParameter("recurrent")==null? false : true;        
         
+        if(!name.equals("")&&!from.equals("")&&!to.equals("")&&!duration.equals("")){
+            try{
         
         if(request.getParameter("mon")!=null)
             createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"monday",rec);
@@ -84,6 +93,14 @@ public class AddBreakServlet extends HttpServlet {
                 session.setAttribute("meeeets",mJSON);
         
           response.sendRedirect("Home");
+        
+        }catch(Exception e){
+            response.sendRedirect("addmeeting.jsp");
+        }
+        }
+        else {
+            response.sendRedirect("addBreak.jsp");
+        }
         
     }
 

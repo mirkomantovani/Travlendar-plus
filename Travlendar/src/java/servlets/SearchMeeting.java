@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sessionbeans.MeetingFacadeLocal;
 
 /**
@@ -39,12 +40,25 @@ public class SearchMeeting extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Meeting> meetings =meetingFacade.getMeetingsFromName(request.getParameter("meetingname").toLowerCase());
         
-        for(Meeting m: meetings)
-            System.out.println(m.getName());
+        String uid="none";
+        HttpSession session = request.getSession();
+        try{
+       
+        uid = session.getAttribute("uid").toString();
         
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
+        
+        List<Meeting> meetings =meetingFacade.getMeetingsFromNameAndUID(request.getParameter("meetingname").toLowerCase(),Integer.parseInt(uid));
+        
+        if(meetings.size()!=0){
         response.sendRedirect("MeetingVisualization?MeetingID="+meetings.get(0).getMeetingPK().getMeetingid());
+        }
+        else{
+            response.sendRedirect("Home");
+        }
         
     }
 

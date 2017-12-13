@@ -37,8 +37,15 @@ public class RecomputeCalendarMeetingsBreaks extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        HttpSession session=request.getSession();
-        String uid=session.getAttribute("uid").toString();
+        String uid="none";
+        HttpSession session = request.getSession();
+        try{
+       
+        uid = session.getAttribute("uid").toString();
+        
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
         
        List<Meeting> meetings = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
        

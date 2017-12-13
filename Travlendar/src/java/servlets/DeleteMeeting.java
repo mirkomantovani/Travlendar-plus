@@ -30,8 +30,15 @@ public class DeleteMeeting extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
+        String uid="none";
         HttpSession session = request.getSession();
-        String uid = session.getAttribute("uid").toString();
+        try{
+       
+        uid = session.getAttribute("uid").toString();
+        
+        }catch(NullPointerException e){
+            response.sendRedirect("login.jsp");
+        }
         
         int meetingID=Integer.parseInt(request.getParameter("meetingid"));
         //int meetingID = Integer.parseInt(request.getParameter("MeetingID"));

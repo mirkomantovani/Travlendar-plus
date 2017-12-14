@@ -5,19 +5,12 @@
  */
 package servlets;
 
-import entities.Break;
-import entities.BreakPK;
-import entities.Meeting;
-import entities.MeetingPK;
 import entities.Warning;
+import entities.WarningPK;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,23 +18,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sessionbeans.BreakFacadeLocal;
-import sessionbeans.MeetingFacadeLocal;
 import sessionbeans.WarningFacadeLocal;
 
 /**
  *
  * @author matteo
  */
-@WebServlet(name = "ConflictVisualization", urlPatterns = {"/ConflictVisualization"})
-public class ConflictVisualization extends HttpServlet {
+@WebServlet(name = "DeleteAllWarnings", urlPatterns = {"/DeleteAllWarnings"})
+public class DeleteAllWarnings extends HttpServlet {
 
     @EJB
     private WarningFacadeLocal warningFacade;
-    @EJB
-    private MeetingFacadeLocal meetingFacade;
-    @EJB
-    private BreakFacadeLocal breakFacade;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -59,10 +46,10 @@ public class ConflictVisualization extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConflictVisualization</title>");            
+            out.println("<title>Servlet DeleteAllWarnings</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConflictVisualization at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteAllWarnings at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -80,63 +67,16 @@ public class ConflictVisualization extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+                String uid ="";
         HttpSession session = request.getSession();
-        String uid = session.getAttribute("uid").toString(); 
         
-      List<Warning> wList = new ArrayList<>();
-      List<Meeting> mList = new ArrayList<>();
-      List<Break> bList = new ArrayList<>();
-      List<Meeting> mResultList = new ArrayList<>();
-      List<Break> bResultList = new ArrayList<>();
-    
-     
-      
-      if(!warningFacade.getWarningsFromUID(Integer.parseInt(uid)).isEmpty()){
-         wList = (List<Warning>) warningFacade.getWarningsFromUID(Integer.parseInt(uid));
-        
-         session.setAttribute("warnings", wList);
-         
-          mList = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
-          
-          
-     
-     for(Warning w: wList){
-         for(Meeting m:mList){
-             String[] mInW = w.getMeetings().split("%");
-             for(int i =0; i<mInW.length;i++){
-             if(m.getMeetingPK().getMeetingid() == Integer.parseInt(mInW[i])){
-                mResultList.add(m);
-                }
-             }
-         }
-     }
-     
-       bList = breakFacade.getBreaksFromUID(Integer.parseInt(uid));
+        List<Warning> warnings= new ArrayList<Warning>();
+        warnings = (List<Warning>) warningFacade.getWarningsFromUID(Integer.parseInt(uid));
        
-       for(Warning w1: wList){
-         for(Break b:bList){
-             String[] bInW = w1.getBreaks().split("%");
-             for(int i =0; i<bInW.length;i++){
-             if(b.getBreakPK().getBreakid() == Integer.parseInt(bInW[i])){
-                bResultList.add(b);
-                }
-             }
-          }
-       }
-     session.setAttribute("mList", mResultList);
-     session.setAttribute("bList", bResultList);
-         
-     
-      }else 
-         session.setAttribute("error","NO Warnings detected");
-     
-      request.getRequestDispatcher("Conflicts.jsp").forward(request, response);
-        
-        
-        
-        
-        
+        for(Warning w: warnings){
+        warningFacade.remove(warningFacade.find(w.getWarningPK()));
+        }
+        response.sendRedirect("ConflictVisualization");
     }
 
     /**
@@ -162,26 +102,5 @@ public class ConflictVisualization extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    private String[] extractMeetingsFromWarning(Warning w){
-        String meetings = w.getMeetings();
-        
-        String[] result = new String[5];
-   
-        result = meetings.split("%");
-        return result;
-    
-    }
-    
-    private String[] extractBreaksFromWarning(Warning w){
-        String breaks = w.getBreaks();
-        
-        String[] result = new String[5];
-        
-        result = breaks.split("%");
-        return result;
-    }
 
 }
-
-

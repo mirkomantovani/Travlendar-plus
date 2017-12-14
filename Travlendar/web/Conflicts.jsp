@@ -4,6 +4,8 @@
     Author     : matteo
 --%>
 
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.HashMap"%>
 <%@page import="entities.Break"%>
 <%@page import="java.util.Map"%>
@@ -11,6 +13,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="entities.Warning"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -98,67 +101,62 @@
         <div style="height: 50px"></div>                 
                          
         <h1>
-            Conflicts
+            <c:out value="Conflicts"/>
         </h1>
         <div style="height: 5px"></div>
-
-        <form action="ConflictVisualization">
-    <%
-        if(session.getAttribute("error").equals("NO Warnings detected"))
-            out.print("No warnings detected!");
-        else{
-        ArrayList<Warning> warnings = new ArrayList<Warning>();
-        warnings = (ArrayList<Warning>)session.getAttribute("warnings");
-        if(warnings == null){
-          System.out.println("sto stampando i warning null");  
-        }
-        System.out.println("sto stampando i warning" + warnings.toString());
-        Map<Warning,Meeting[]> meetings = new HashMap<Warning,Meeting[]>();
-        meetings = (HashMap<Warning,Meeting[]>)session.getAttribute("meetings");
-        Map<Warning,Break[]> breaks = new HashMap<Warning,Break[]>();
-        breaks = (HashMap<Warning,Break[]>)session.getAttribute("breaks");
-        int counter = 1;
-            
-    for(Warning w : warnings){
-       out.print("<div id='modal'>" +
-	"<h1>Warning n." + counter + "</h1>");
-       if(meetings.get(w).length!=0){
-            out.print("Involved meetings:\n");
-            for(int j=0; j<meetings.get(w).length;j++){
-                out.print(meetings.get(w)[j] + "\n");
-            }
-       }
-       if(breaks.get(w).length != 0){
-            out.print("Involved Breaks:\n");
-            for(int k=0;k<breaks.get(w).length;k++){
-                out.print(breaks.get(w)[k]);
-            }
-       }
-       out.print("<a class='yes' href='javascript:void(0);'>Solve</a>" +
-        "<form action='UpdateMeeting?MeetingID='${meetings.get(w)[0].meetingPK.meetingid}'  >" +
-                    "<input type='hidden' name='meetingid' value='${meetings.get(w)[0].meetingPK.meetingid}'>" +
-        "</form>" +
-        "<form action='DeleteWarning?WarningID='${w.warningPK.warningid}'  >" +
-                    "<input type='hidden' name='warningid' value='${w.warningPK.warningid}}'>" +
-	"<a class='no' href='javascript:void(0);'>Ignore</a>" +
-        "</form>" +
-        "</div>" +
-        "<div style='height: 15px'></div>");
-       counter = counter + 1;
-    }
         
-     if(!warnings.isEmpty())
-       out.print("<form action='DeleteAllWarnings'>" +
-                     "<div id='ignoreAll' style='position: absolute; left: 45%;'>" +
-                         "<a class='no' href='javascript:void(0);' >IgnoreAll</a>" + 
-                     "</div>" +
-                 "</form>");
-        
-     else 
-        out.print("No warnings detected!");
-     
-        }
+        <% List<Warning> warnings = new ArrayList<Warning>();
+            warnings = (List<Warning>)session.getAttribute("warnings");
+           List<Meeting> mList = new ArrayList<Meeting>();
+            mList = (List<Meeting>)session.getAttribute("mList");
+           List<Break> bList = new ArrayList<Break>();
+            bList = (List<Break>) session.getAttribute("bList");
         %>
+
+        <div action="ConflictVisualization" >
+        
+            <c:forEach items="${warnings}" var= "i" begin="0">
+                <div id='modal'> 
+                    <h1>Warning n.  <c:out value="${i.warningPK.warningid}"/> <p> </h1>
+                    
+                        <h3>Involved meetings: </h3> 
+                        <c:forEach items = "${mList}" begin="0" var = "m">
+                            <c:out value = "${m.name}"/> 
+                            
+                             <form action='UpdateMeeting?MeetingID='${m.meetingPK.meetingid}'> 
+                                <input type='hidden' name='meetingid' value='${m.meetingPK.meetingid}'>  
+                                <a class='yes' href='javascript:void(0);' style='position: relative; left: 24%;'>Solve</a> 
+                            </form>
+                          
+                                <br><br><br><br>
+                         </c:forEach>
+                    
+                        <h3>Involved Breaks:</h3>
+                        <c:forEach items="${bList}" begin="0" var="b">
+                            
+                            <c:out value = "${b.name}"/><br>
+                             
+                         </c:forEach>
+                    
+                            
+                        <form action='DeleteWarning?WarningID='${i.warningPK.warningid}'>
+                             <input type='hidden' name='warningid' value='${i.warningPK.warningid}}'>
+                             <a class='no' href='javascript:void(0);' style='position:relative; right: 24%;'>Ignore</a>
+                        </form>
+                           
+        </div>
+        <div style='height: 15px'></div> 
+            
+            </c:forEach>   
+       
+        <form id="modal" action='DeleteAllWarnings'>
+                     <div id='ignoreAll' style='position: relative; right: 19%;'>
+                         <a class='no' href='javascript:void(0);' >IgnoreAll</a>
+                     </div> 
+                 </form>
+      
+        </div>   
+   
         </form>
      </body>
     

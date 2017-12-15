@@ -106,13 +106,11 @@ public class loginservlet extends HttpServlet {
                 //System.out.println(me.getName());
                 session.setAttribute("uid", u.getUid());
                 //session.setAttribute("name", u.getName());
-                System.out.println("REDIRECTING TO HOMEPAGE JSP");
+                
                 response.sendRedirect("Home");
             } else {
-                System.out.println(SecureHashEncryption.encryptPassword(password));
-                System.out.println(u.getHashedpassword());
-                System.out.println("REDIRECTING TO INDEX JSP");
-                response.sendRedirect("index.jsp");
+               
+                response.sendRedirect("Home");
             }
         }
        }

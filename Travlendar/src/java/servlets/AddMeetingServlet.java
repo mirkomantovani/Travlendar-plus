@@ -54,7 +54,7 @@ public class AddMeetingServlet extends HttpServlet {
         
         if(!name.equals("")&&!duration.equals("")&&!location.equals("")&&!date.equals("")){
         try{
-        mpk.setMeetingid(name.hashCode());
+        mpk.setMeetingid((name+duration+location+date).hashCode());
 
         
         String uid=session.getAttribute("uid").toString();

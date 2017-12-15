@@ -42,7 +42,7 @@ public class ConflictCheckerBean {
     //returns true if m is feasible, false otherwise
     public boolean CheckAllConflicts(Meeting m){
         
-        ArrayList<Break> noReschedulableBreaks = new ArrayList<Break>();
+        ArrayList<Break> rescheduleChecked = new ArrayList<Break>();
         ArrayList<Meeting> meetings = new ArrayList<Meeting>();
         Warning w = new Warning();
         
@@ -55,34 +55,70 @@ public class ConflictCheckerBean {
         } catch (org.json.simple.parser.ParseException ex) {
             Logger.getLogger(ConflictCheckerBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        noReschedulableBreaks = checkReschedule(m.getMeetingPK().getUid());
+        rescheduleChecked = checkReschedule(m.getMeetingPK().getUid());
+        
+        List<Break> noReschedulableBreaks = new ArrayList<Break>();
+        
+        for(Break b: rescheduleChecked){
+            if(this.BreakConflictChecker(m).contains(b)){
+                noReschedulableBreaks.add(b);
+            }
+        }
         
         String meetingsField="";
         String breaksField="";
         
+        System.out.print("stampo no reschedulable breaks:" + noReschedulableBreaks.toString());
+        System.out.print("stampo meetings:" + meetings.toString());
         
         if(meetings.isEmpty() && noReschedulableBreaks.isEmpty())
             return true;
         else {
+            if(!meetings.isEmpty()){
+                meetings.remove(m);
+
             for(Meeting meet: meetings)
             {
                 meetingsField = meetingsField.concat(meet.getMeetingPK().getMeetingid() + "%");
             }
+            }
             
-            for(Break b: noReschedulableBreaks){
-                breaksField = breaksField.concat(b.getBreakPK().getBreakid() + "%");
+            if(!noReschedulableBreaks.isEmpty()){
+             
+                for(Break b: noReschedulableBreaks){
+                    breaksField = breaksField.concat(b.getBreakPK().getBreakid() + "%");
+                }
+            }
+            
+            String existence = this.checkWarningExistence(meetingsField, breaksField, String.valueOf(m.getMeetingPK().getUid()));
+           
+           if(existence.equals("not exists")){
+              w.setMeetings(meetingsField.concat(String.valueOf(m.getMeetingPK().getMeetingid()).concat("%")));
+              w.setBreaks(breaksField);
+              WarningPK wPK = new WarningPK();
+              wPK.setUid(m.getMeetingPK().getUid());
+              String wID = w.getMeetings()+ String.valueOf(m.getMeetingPK().getUid());
+              wPK.setWarningid(wID.hashCode());
+              w.setWarningPK(wPK);
+              w.setUsertable(m.getUsertable());
+              warningFacade.create(w); 
+           }
+           else{
+              
+               Warning existent = new Warning();
+               
+               WarningPK wPK = new WarningPK();
+               
+               wPK.setUid(m.getMeetingPK().getUid());
+               wPK.setWarningid(Integer.parseInt(existence));
+              
+               existent = warningFacade.find(wPK);
+               
+               existent.setMeetings(existent.getMeetings().concat(String.valueOf(m.getMeetingPK().getMeetingid()).concat("%")));
+              
+               warningFacade.edit(existent);
            }
             
-           w.setMeetings(meetingsField);
-           w.setBreaks(breaksField);
-           WarningPK wPK = new WarningPK();
-           wPK.setUid(m.getMeetingPK().getUid());
-           String wID = w.getMeetings()+ String.valueOf(m.getMeetingPK().getUid());
-           wPK.setWarningid(wID.hashCode());
-           w.setWarningPK(wPK);
-           w.setUsertable(m.getUsertable());
-           
-            warningFacade.create(w);
         }
         
         
@@ -111,7 +147,7 @@ public class ConflictCheckerBean {
           
           if(mStartDate == other.getStartingdate())
               conflictuals.add(other);
-          else if(mStartDate.getDay() == other.getStartingdate().getDay() && mStartDate.after(other.getStartingdate()) && + other.getDuration()*60 + 
+          else if(mStartDate.getDay() == other.getStartingdate().getDay() && mStartDate.after(other.getStartingdate()) &&  other.getDuration()*60 + 
                   other.getStartingdate().getSeconds() + other.getStartingdate().getHours()*3600 + other.getStartingdate().getMinutes()*60 + 
                           nav.retrieveDuration(other.getLocation(), mLoc, String.valueOf(userId))  > mStartDate.getHours()*3600+mStartDate.getMinutes()*60+mStartDate.getSeconds())
               conflictuals.add(other);
@@ -139,6 +175,7 @@ public class ConflictCheckerBean {
       int mLasts = m.getDuration();
       String mLoc = m.getLocation();
       String mName = m.getName();
+      String dataM ="";
       
       ArrayList<Break> conflictuals = new ArrayList<Break>();
       
@@ -147,33 +184,45 @@ public class ConflictCheckerBean {
       
       HashMap<Break,Integer> deltas = new HashMap<Break,Integer>();
         
-        List<Break> breaks = (List)breakFacade.getBreaksFromUID(userId);
+        List<Break> breaks = (List<Break>)breakFacade.getBreaksFromUID(userId);
         
+        System.out.println("I break nel db sono:" + breaks.toString());
+       
+        dataM = this.returnDayOfWeek(mStartDate);
+    
         for(Break b: breaks){
-      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
+            System.out.println("Il break inizia" + (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) + "e finisce" + (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60));
+            System.out.println("il meet inizia:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60) + "e finisce:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60));
+            System.out.println("il break è il giorno: " + b.getDayofweek().subSequence(0, 2));
+            System.out.println("il meet è il giorno: " + mStartDate.toString().toLowerCase().subSequence(0, 2));
+            System.out.println(mStartDate.toString());
+      if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
-                
+                // meeting finisce prima che finisca il break, meeting inizia dopo che inizia il break (meeting incluso nella break)
                 conflictuals.add(b);
+                System.out.print("sono nel primo if");
                    
             }
       else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
-              b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
-              
+              b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))){
+              //meeting inizia dopo il break, meeting finisce dopo break 
               conflictuals.add(b);
-          
+          System.out.print("sono nel secondo else if");
       }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) >= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              conflictuals.add(b);
-             
+             System.out.print("sono nel terzo else if");
+             //break inizia dopo il meeting, break finisce dopo il meeting 
             }
    
       
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) <=
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) <= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              conflictuals.add(b);
-             
+             System.out.print("sono nel quarto else if");
+             //break interno al meeting
             }
         }
         return conflictuals;
@@ -190,21 +239,26 @@ public ArrayList<Break> checkReschedule(int uid){
     meetings = (List<Meeting>) meetingFacade.getMeetingsFromUID(uid);
     
     HashMap<Break,ArrayList<Interval>> intervalsTaken= new HashMap<Break,ArrayList<Interval>>();
-    HashMap<Break,Interval> possibleSlot = new HashMap<Break,Interval>();
+    HashMap<Break,Boolean> possibleSlot = new HashMap<Break,Boolean>();
     ArrayList<Break> result = new ArrayList<Break>();
     
     
-    
+    System.out.println("");
     
     for(Meeting m : meetings){ // per ogni meeting e ogni break in conflitto con essi calcolo gli intervalli di overlap e li metto in intervalsTaken
         breaksOfM.put(m, this.BreakConflictChecker(m));
         
+        System.out.println("breaksOfM:" + breaksOfM.toString());
         
         for(Break b : breaksOfM.get(m)){
-            intervalsTaken.keySet().add(b);
+            intervalsTaken.put(b, new ArrayList<Interval>());
             intervalsTaken.get(b).add(this.calculateIntervals(m, b));
+           
+            
         }
     }
+    
+    System.out.println("intervalsTaken:" + intervalsTaken.toString());
     
     for(Break b : intervalsTaken.keySet()){ //per ogni break verifico se c'è un intervallo tra gli intervalli di overlap > della durata del meeting
         
@@ -213,10 +267,14 @@ public ArrayList<Break> checkReschedule(int uid){
         
     }
     
+    System.out.println("possibleSlot:" + possibleSlot.toString());
+    
     for(Break b: possibleSlot.keySet()){
-        if(possibleSlot.get(b).areIntervalsEqual(new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN))))
+        if(!possibleSlot.get(b))
             result.add(b);
     }
+    
+    System.out.println("result:" + result.toString());
     
     return result;
     
@@ -310,19 +368,75 @@ private class Interval{
 }
    
    //this is a method that given an arraylist of Interval, checks whether there is an Interval of @param dist between two intervals in the arraylist and returns it
-   public Interval checkDistance(ArrayList<Interval> i, int dist){
+   public boolean checkDistance(ArrayList<Interval> i, int dist){
        
        for(int j=0; j<i.size()-1;j++){
            if(i.get(j+1).start.getTime()-i.get(j).end.getTime() > dist*1000){
-               return new Interval(i.get(j).end,i.get(j+1).start);
+               System.out.println("dist:" + dist*1000+ "cond:" + (i.get(j+1).start.getTime()-i.get(j).end.getTime()));
+               return true;
+               
+                     
            }
            
        }
-       return new Interval(Date.from(Instant.MIN),Date.from(Instant.MIN));
+       return false;
       
    }
+   
+   public String checkWarningExistence(String meetings,String breaks,String uid){
+       
+       List<Warning> warnings = new ArrayList<Warning>();
+       warnings = warningFacade.getWarningsFromUID(Integer.parseInt(uid));
+       
+       String[] Ms;
+       Ms = meetings.split("%");
+       String[] Bs;
+       Bs = breaks.split("%");
+       
+       
+       
+       for(Warning w: warnings){
+           int mCounter = 0;
+           int bCounter = 0;
+           for(int i=0; i<Ms.length;i++){
+              if(w.getMeetings().contains(Ms[i])){
+                mCounter++; 
+              }
+          }
+           for(int j=0; j<Bs.length;j++){
+               if(w.getBreaks().contains(Bs[j])){
+                   bCounter++;
+               }
+           }
+          
+           if(mCounter == Ms.length && bCounter == Bs.length ){
+               return String.valueOf(w.getWarningPK().getWarningid());
+           }
+           
+       }
+       
+       return "not exists";
+       
+   }
     
-  
+   public String returnDayOfWeek(Date d){
+      
+       switch(d.getDay()){
+           case 0: return "sunday";
+           case 1: return "monday";
+           case 2: return "tuesday";
+           case 3: return "wednesday";
+           case 4: return "thursday";
+           case 5: return "friday";
+           case 6: return "saturday";
+        
+       }
+       return "";
+   }
+   
+   public void cleanWarnings(String uid){
+       List<Warning> warnings = warningFacade.getWarningsFromUID(Integer.parseInt(uid));
+   }
 }
     
 

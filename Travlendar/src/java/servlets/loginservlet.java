@@ -236,9 +236,10 @@ public class loginservlet extends HttpServlet {
             start.setMonth(d.getMonth());
             start.setYear(d.getYear());
             
-            
+            if(meetings.size()!=0){
             sb.append(",");
             sb.append(System.lineSeparator());
+            }
             sb.append("{");
             sb.append(System.lineSeparator());
             sb.append("title: 'Break-");

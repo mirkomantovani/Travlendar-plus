@@ -79,11 +79,11 @@ public class AddMeetingServlet extends HttpServlet {
        
        conflitto = conflictChecker.CheckAllConflicts(m);
        
-       System.out.println(conflitto.toString());
        
        response.sendRedirect("RecomputeCalendarMeetingsBreaks");
        
         }catch(Exception e){
+            e.printStackTrace();
             response.sendRedirect("addmeeting.jsp");
         }
         } else{

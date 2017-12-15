@@ -3,6 +3,7 @@
   <persistence-unit name="TravlendarPU" transaction-type="JTA">
     <jta-data-source>java:app/jdbc/travlendardb</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <properties>
+    </properties>
   </persistence-unit>
 </persistence>

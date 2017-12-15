@@ -27,8 +27,6 @@ import utils.DateConversion;
  */
 public class AddBreakServlet extends HttpServlet {
 
-    @EJB
-    private MeetingFacadeLocal meetingFacade;
 
     @EJB
     private BreakFacadeLocal breakFacade;
@@ -64,35 +62,26 @@ public class AddBreakServlet extends HttpServlet {
         String duration=request.getParameter("duration");
         Boolean rec= request.getParameter("recurrent")==null? false : true;        
         
-        if(!name.equals("")&&!from.equals("")&&!to.equals("")&&!duration.equals("")){
+        if(!name.equals("")&&!from.equals("")&&!to.equals("")&&!duration.equals("")&&areTimesValid(from,to,duration)){
             try{
         
         if(request.getParameter("mon")!=null)
-            createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"monday",rec);
+            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"monday",rec);
         if(request.getParameter("tue")!=null)
-            createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"tuesday",rec);
+            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"tuesday",rec);
         if(request.getParameter("wed")!=null)
-            createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"wednesday",rec);
+            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"wednesday",rec);
         if(request.getParameter("thu")!=null)
-            createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"thursday",rec);
+            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"thursday",rec);
         if(request.getParameter("fri")!=null)
-            createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"friday",rec);
+            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"friday",rec);
         if(request.getParameter("sat")!=null)
-            createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"saturday",rec);
+            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"saturday",rec);
         if(request.getParameter("sun")!=null)
-            createMeeting(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"sunday",rec);
+            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"sunday",rec);
          
-        
-        List<Meeting> meetings = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
-       
-       List<Break> breaks = breakFacade.getBreaksFromUID(Integer.parseInt(uid));
+        response.sendRedirect("RecomputeCalendarMeetingsBreaks");
 
-
-                String mJSON=loginservlet.createMeetingJSON(meetings,breaks);
-                
-                session.setAttribute("meeeets",mJSON);
-        
-          response.sendRedirect("Home");
         
         }catch(Exception e){
             response.sendRedirect("addmeeting.jsp");
@@ -115,7 +104,7 @@ public class AddBreakServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private void createMeeting(int parseInt, String name, Date from, Date to, Date duration, String day,Boolean recurrent) {
+    private void createBreak(int parseInt, String name, Date from, Date to, Date duration, String day,Boolean recurrent) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Break b=new Break();
         BreakPK bpk=new BreakPK();
@@ -134,6 +123,20 @@ public class AddBreakServlet extends HttpServlet {
         
         breakFacade.create(b);
 
+    }
+
+    private boolean areTimesValid(String from, String to, String duration) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Date f=DateConversion.parseTime(from);
+        Date t=DateConversion.parseTime(to);
+        Date d=DateConversion.parseTime(duration);
+        
+        if(f.after(t)||f.equals(t))
+            return false;
+        if(((t.getHours()-f.getHours())*60+(t.getMinutes()-f.getMinutes()))>(d.getHours()*60+d.getMinutes()))
+            return false;
+        
+        return true;
     }
 
 }

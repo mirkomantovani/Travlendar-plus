@@ -71,7 +71,7 @@
                         </li>
                         
                         <li>
-                            <form action="DisplayWarnings">
+                            <form action="ConflictVisualization">
                                 <a href="#" id="${warningcolor}" class="raise" onclick="$(this).closest('form').submit()">Warnings</a>
                             </form>
                             <style>

@@ -131,11 +131,14 @@ public class AddBreakServlet extends HttpServlet {
         Date t=DateConversion.parseTime(to);
         Date d=DateConversion.parseTime(duration);
         
-        if(f.after(t)||f.equals(t))
+        if(f.after(t)||f.equals(t)){
+            System.out.println("from after to or from equal to");
             return false;
-        if(((t.getHours()-f.getHours())*60+(t.getMinutes()-f.getMinutes()))>(d.getHours()*60+d.getMinutes()))
+        }
+        if(((t.getHours()-f.getHours())*60+(t.getMinutes()-f.getMinutes()))<(d.getHours()*60+d.getMinutes())){
+            System.out.println("not enought space to min duration");
             return false;
-        
+        }
         return true;
     }
 

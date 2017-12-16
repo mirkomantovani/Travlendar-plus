@@ -10,6 +10,7 @@ import entities.BreakPK;
 import entities.Meeting;
 import entities.MeetingPK;
 import entities.Warning;
+import static entities.Warning_.breaks;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Array;
@@ -28,6 +29,7 @@ import javax.servlet.http.HttpSession;
 import sessionbeans.BreakFacadeLocal;
 import sessionbeans.MeetingFacadeLocal;
 import sessionbeans.WarningFacadeLocal;
+import utils.WarningDetails;
 
 /**
  *
@@ -85,48 +87,36 @@ public class ConflictVisualization extends HttpServlet {
         String uid = session.getAttribute("uid").toString(); 
         
       List<Warning> wList = new ArrayList<>();
-      List<Meeting> mList = new ArrayList<>();
-      List<Break> bList = new ArrayList<>();
-      List<Meeting> mResultList = new ArrayList<>();
-      List<Break> bResultList = new ArrayList<>();
-    
      
+      List<WarningDetails> warnings = new ArrayList<WarningDetails>();
+   
       
       if(!warningFacade.getWarningsFromUID(Integer.parseInt(uid)).isEmpty()){
          wList = (List<Warning>) warningFacade.getWarningsFromUID(Integer.parseInt(uid));
         
          session.setAttribute("warnings", wList);
          
-          mList = meetingFacade.getMeetingsFromUID(Integer.parseInt(uid));
-          
-          
-     
-     for(Warning w: wList){
-         for(Meeting m:mList){
-             String[] mInW = w.getMeetings().split("%");
-             for(int i =0; i<mInW.length;i++){
-             if(m.getMeetingPK().getMeetingid() == Integer.parseInt(mInW[i])){
-                mResultList.add(m);
+        for(Warning w: wList){
+             ArrayList<Meeting> mList = new ArrayList<>();
+             ArrayList<Break> bList = new ArrayList<>();
+             
+            if(!w.getMeetings().equals("")){
+            String[] Ms = w.getMeetings().split("%");
+            for(int i=0; i<Ms.length; i++){
+                mList.add(meetingFacade.find(new MeetingPK(Integer.parseInt(uid),Integer.parseInt(Ms[i]))));
+            }
+            }
+            if(!w.getBreaks().equals("")){
+                String[] Bs = w.getBreaks().split("%");
+                for(int j=0; j<Bs.length;j++){
+                    bList.add(breakFacade.find(new BreakPK(Integer.parseInt(uid),Integer.parseInt(Bs[j]))));
                 }
-             }
-         }
-     }
-     
-       bList = breakFacade.getBreaksFromUID(Integer.parseInt(uid));
-       
-       for(Warning w1: wList){
-         for(Break b:bList){
-             String[] bInW = w1.getBreaks().split("%");
-             for(int i =0; i<bInW.length;i++){
-             if(b.getBreakPK().getBreakid() == Integer.parseInt(bInW[i])){
-                bResultList.add(b);
-                }
-             }
-          }
-       }
-     session.setAttribute("mList", mResultList);
-     session.setAttribute("bList", bResultList);
+            }
+            
+            warnings.add(new WarningDetails(w,mList,bList));
+        }
          
+        session.setAttribute("warnDetails", warnings);
      
       }else 
          session.setAttribute("error","NO Warnings detected");
@@ -181,8 +171,16 @@ public class ConflictVisualization extends HttpServlet {
         result = breaks.split("%");
         return result;
     }
+    
+
+    
+
+
 
 }
+
+ 
+
 
 
 

@@ -4,6 +4,7 @@
     Author     : matteo
 --%>
 
+<%@page import="utils.WarningDetails"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.HashMap"%>
@@ -125,41 +126,40 @@
         
         <% List<Warning> warnings = new ArrayList<Warning>();
             warnings = (List<Warning>)session.getAttribute("warnings");
-           List<Meeting> mList = new ArrayList<Meeting>();
-            mList = (List<Meeting>)session.getAttribute("mList");
-           List<Break> bList = new ArrayList<Break>();
-            bList = (List<Break>) session.getAttribute("bList");
+           List<WarningDetails> wDet = new ArrayList<WarningDetails>();
+            wDet = (ArrayList<WarningDetails>)session.getAttribute("warnDetails");
+            System.out.println(wDet.toString());
         %>
 
         <div action="ConflictVisualization" >
         
-            <c:forEach items="${warnings}" var= "i" begin="0">
+            <c:forEach items="${warnDetails}" var= "i" begin="0">
                 <div id='modal'> 
-                    <h1>Warning n.  <c:out value="${i.warningPK.warningid}"/> <p> </h1>
+                    <h1>Warning n.  Warning ${i.w.warningPK.warningid} <p> </h1>
                     
                         <h3>Involved meetings: </h3> 
-                        <c:forEach items = "${mList}" begin="0" var = "m">
+                        <c:forEach items = "${i.meetings}" begin="0" var = "m">
                             <c:out value = "${m.name}"/> 
                             
-                             <form action='UpdateMeeting?MeetingID='${m.meetingPK.meetingid}'> 
+                             <form action="UpdateMeeting?MeetingID=${m.meetingPK.meetingid}"> 
                                 <input type='hidden' name='meetingid' value='${m.meetingPK.meetingid}'>  
-                                <a class='yes' href='javascript:void(0);' style='position: relative; left: 24%;'>Solve</a> 
+                                <a class='yes' href='UpdateMeeting?MeetingID=${m.meetingPK.meetingid}' style='position: relative; left: 24%;'>Solve</a> 
                             </form>
                           
                                 <br><br><br><br>
                          </c:forEach>
                     
                         <h3>Involved Breaks:</h3>
-                        <c:forEach items="${bList}" begin="0" var="b">
+                        <c:forEach items="${i.breaks}" begin="0" var="b">
                             
                             <c:out value = "${b.name}"/><br>
                              
                          </c:forEach>
                     
                             
-                        <form action='DeleteWarning?WarningID='${i.warningPK.warningid}'>
-                             <input type='hidden' name='warningid' value='${i.warningPK.warningid}}'>
-                             <a class='no' href='javascript:void(0);' style='position:relative; right: 24%;'>Ignore</a>
+                        <form action="DeleteWarning?WarningID=${i.w.warningPK.warningid}">
+                             <input type='hidden' name='warningid' value='${i.w.warningPK.warningid}'>
+                             <a class='no' href='DeleteWarning?WarningID=${i.w.warningPK.warningid}' style='position:relative; right: 24%;'>Ignore</a>
                         </form>
                            
         </div>
@@ -169,7 +169,7 @@
        
         <form id="modal" action='DeleteAllWarnings'>
                      <div id='ignoreAll' style='position: relative; right: 19%;'>
-                         <a class='no' href='javascript:void(0);' >IgnoreAll</a>
+                         <a class='no' href='DeleteAllWarnings' >IgnoreAll</a>
                      </div> 
                  </form>
       

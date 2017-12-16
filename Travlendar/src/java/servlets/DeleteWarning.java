@@ -68,10 +68,12 @@ public class DeleteWarning extends HttpServlet {
             throws ServletException, IOException {
         
         String uid ="";
+        
         HttpSession session = request.getSession();
+        uid= session.getAttribute("uid").toString();
         
          int warningID=Integer.parseInt(request.getParameter("WarningID"));
-        //int meetingID = Integer.parseInt(request.getParameter("MeetingID"));
+        
         
         WarningPK wPK = new WarningPK();
         wPK.setWarningid(warningID);
@@ -80,7 +82,7 @@ public class DeleteWarning extends HttpServlet {
 
         warningFacade.remove(warningFacade.find(wPK));
         
-        response.sendRedirect("ConflictVisualization");
+        response.sendRedirect("ConflictsVisualization");
     }
 
     /**

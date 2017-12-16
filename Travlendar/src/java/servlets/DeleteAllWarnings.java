@@ -69,6 +69,7 @@ public class DeleteAllWarnings extends HttpServlet {
             throws ServletException, IOException {
                 String uid ="";
         HttpSession session = request.getSession();
+        uid=session.getAttribute("uid").toString();
         
         List<Warning> warnings= new ArrayList<Warning>();
         warnings = (List<Warning>) warningFacade.getWarningsFromUID(Integer.parseInt(uid));

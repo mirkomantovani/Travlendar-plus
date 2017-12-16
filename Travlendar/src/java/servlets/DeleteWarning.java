@@ -82,7 +82,7 @@ public class DeleteWarning extends HttpServlet {
 
         warningFacade.remove(warningFacade.find(wPK));
         
-        response.sendRedirect("ConflictsVisualization");
+        response.sendRedirect("ConflictVisualization");
     }
 
     /**

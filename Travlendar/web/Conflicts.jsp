@@ -4,15 +4,9 @@
     Author     : matteo
 --%>
 
-<%@page import="utils.WarningDetails"%>
-<%@page import="java.util.List"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="java.util.HashMap"%>
-<%@page import="entities.Break"%>
-<%@page import="java.util.Map"%>
-<%@page import="entities.Meeting"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="entities.Warning"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
@@ -23,9 +17,11 @@
       
         
       <link rel="stylesheet" href="css/list.css" type="text/css">    
-      <link rel="stylesheet" href="css/navbar.css">
-      <link rel="stylesheet" href="css/simple.css">
       <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+      <link rel="stylesheet" href="css/button.css">
+      <link rel="stylesheet" href="css/simple.css">
+        <link rel="stylesheet" href="css/navbar.css">
+        <link rel="stylesheet" href="css/body.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
@@ -51,13 +47,13 @@
                         
                         <li class="active">
                             <form action="DisplayPreferences">
-                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Modify preferences</a>
+                                <a href="DisplayPreferences" class="raise" onclick="$(this).closest('form').submit()">Modify preferences</a>
                             </form>
                         </li>
                     
                         <li>
                             <form action="DisplayTravelMeans">
-                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Select travel means</a>
+                                <a href="DisplayTravelMeans" class="raise" onclick="$(this).closest('form').submit()">Select travel means</a>
                             </form>
                         </li>
                         
@@ -75,7 +71,7 @@
                         
                         <li>
                             <form action="ConflictVisualization">
-                                <a href="#" id="${warningcolor}" class="raise" onclick="$(this).closest('form').submit()">Warnings</a>
+                                <a href="ConflictVisualization" id="${warningcolor}" class="raise" onclick="$(this).closest('form').submit()">Warnings</a>
                             </form>
                             <style>
                                 #red{
@@ -114,22 +110,16 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-                        
-                        <br><br><br>
+                      
                          
         <div style="height: 50px"></div>                 
                          
         <h1>
-            <c:out value="Conflicts"/>
+            <c:out value="Warnings"/>
         </h1>
         <div style="height: 5px"></div>
         
-        <% List<Warning> warnings = new ArrayList<Warning>();
-            warnings = (List<Warning>)session.getAttribute("warnings");
-           List<WarningDetails> wDet = new ArrayList<WarningDetails>();
-            wDet = (ArrayList<WarningDetails>)session.getAttribute("warnDetails");
-            System.out.println(wDet.toString());
-        %>
+       
 
         <div action="ConflictVisualization" >
         
@@ -140,10 +130,10 @@
                         <h3>Involved meetings: </h3> 
                         <c:forEach items = "${i.meetings}" begin="0" var = "m">
                             <c:out value = "${m.name}"/> 
-                            
+                            <br><br>
                              <form action="UpdateMeeting?MeetingID=${m.meetingPK.meetingid}"> 
                                 <input type='hidden' name='meetingid' value='${m.meetingPK.meetingid}'>  
-                                <a class='yes' href='UpdateMeeting?MeetingID=${m.meetingPK.meetingid}' style='position: relative; left: 24%;'>Solve</a> 
+                                <a class='yes' href='DisplayUpdateMeeting?meetingid=${m.meetingPK.meetingid}' style='position: relative; left: 24%;'>Edit</a> 
                             </form>
                           
                                 <br><br><br><br>

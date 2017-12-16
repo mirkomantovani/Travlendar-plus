@@ -44,9 +44,12 @@ public class updateMeetingServlet extends HttpServlet {
         try{
         MeetingPK mpk=new MeetingPK();
         
-        mpk.setMeetingid(request.getParameter("name").hashCode());
-        String uid=session.getAttribute("uid").toString();
+       // String n=request.getParameter("name");
         
+        
+        mpk.setMeetingid(Integer.parseInt(request.getParameter("MeetingID")));
+        String uid=session.getAttribute("uid").toString();
+        //System.out.println(mpk.getMeetingid());
         
         mpk.setUid(Integer.parseInt(uid));
         
@@ -69,6 +72,7 @@ public class updateMeetingServlet extends HttpServlet {
         
        // System.out.println(date);
        // System.out.println(tstamp);
+       
        
        
        response.sendRedirect("RecomputeCalendarMeetingsBreaks");

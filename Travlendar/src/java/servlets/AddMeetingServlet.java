@@ -77,7 +77,15 @@ public class AddMeetingServlet extends HttpServlet {
        
        Boolean conflitto;
        
+       long st = System.currentTimeMillis();
+       
        conflitto = conflictChecker.CheckAllConflicts(m);
+       
+       long en = System.currentTimeMillis();
+       
+       long tot=st-en;
+       
+       System.out.println("time to execute conflictchecker:"+tot);
        
        
        response.sendRedirect("RecomputeCalendarMeetingsBreaks");

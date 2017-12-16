@@ -71,13 +71,13 @@ public class DeleteAllWarnings extends HttpServlet {
         HttpSession session = request.getSession();
         uid=session.getAttribute("uid").toString();
         
-        List<Warning> warnings= new ArrayList<Warning>();
-        warnings = (List<Warning>) warningFacade.getWarningsFromUID(Integer.parseInt(uid));
+        List<Warning> warnings = (List<Warning>) warningFacade.getWarningsFromUID(Integer.parseInt(uid));
        
         for(Warning w: warnings){
-        warningFacade.remove(warningFacade.find(w.getWarningPK()));
+        warningFacade.remove(w);
         }
         response.sendRedirect("ConflictVisualization");
+        
     }
 
     /**

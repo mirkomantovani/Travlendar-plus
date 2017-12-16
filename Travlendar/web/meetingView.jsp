@@ -51,13 +51,13 @@
                         
                         <li class="active">
                             <form action="DisplayPreferences">
-                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Modify preferences</a>
+                                <a href="DisplayPreferences" class="raise" onclick="$(this).closest('form').submit()">Modify preferences</a>
                             </form>
                         </li>
                     
                         <li>
                             <form action="DisplayTravelMeans">
-                                <a href="#" class="raise" onclick="$(this).closest('form').submit()">Select travel means</a>
+                                <a href="DisplayTravelMeans" class="raise" onclick="$(this).closest('form').submit()">Select travel means</a>
                             </form>
                         </li>
                         
@@ -75,7 +75,7 @@
                         
                         <li>
                             <form action="ConflictVisualization">
-                                <a href="#" id="${warningcolor}" class="raise" onclick="$(this).closest('form').submit()">Warnings</a>
+                                <a href="ConflictVisualization" id="${warningcolor}" class="raise" onclick="$(this).closest('form').submit()">Warnings</a>
                             </form>
                             <style>
                                 #red{

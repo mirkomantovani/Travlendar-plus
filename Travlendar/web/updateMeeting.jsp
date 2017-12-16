@@ -211,6 +211,7 @@
     
       
     <form action="updateMeetingServlet" class="form-horizontal login"  role="form">
+        <input type="hidden" name="MeetingID" value="${updatem.meetingPK.meetingid}">
     <h1>Update meeting: ${updatem.name}</h1>
     <div class="container">
         

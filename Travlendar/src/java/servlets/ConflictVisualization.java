@@ -118,8 +118,10 @@ public class ConflictVisualization extends HttpServlet {
          
         session.setAttribute("warnDetails", warnings);
      
-      }else 
+      }else{
          session.setAttribute("error","NO Warnings detected");
+         session.setAttribute("warnDetails", warnings);
+      }
      
       request.getRequestDispatcher("Conflicts.jsp").forward(request, response);
         

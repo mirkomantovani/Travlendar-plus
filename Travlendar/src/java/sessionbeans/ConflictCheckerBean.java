@@ -119,6 +119,7 @@ public class ConflictCheckerBean {
                warningFacade.edit(existent);
            }
             
+           this.cleanWarnings(String.valueOf(m.getMeetingPK().getUid())s;
         }
         
         
@@ -434,8 +435,19 @@ private class Interval{
        return "";
    }
    
+   // it removes warnings which are included in other warning 
    public void cleanWarnings(String uid){
        List<Warning> warnings = warningFacade.getWarningsFromUID(Integer.parseInt(uid));
+       
+       for(Warning w: warnings){
+           
+           for(Warning w1 : warnings){
+               if(w != w1 && w.getMeetings().contains(w1.getMeetings()) && w.getBreaks().contains(w1.getBreaks())){
+                   warningFacade.remove(w1);
+               }
+           }
+          
+       }
    }
 }
     

@@ -12,6 +12,7 @@ import entities.Warning;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -66,10 +67,14 @@ public class updateMeetingServlet extends HttpServlet {
         m.setDuration(Integer.parseInt(request.getParameter("duration")));
         
         m.setLocation(request.getParameter("location"));
-        
+        try{
+            
         Timestamp tstamp = DateConversion.parseTimestampFromHTMLForm(request.getParameter("date"));
-        
         m.setStartingdate(tstamp);
+        }catch(ParseException ex){
+            
+        }
+       
         meetingFacade.edit(m);
         
         List<Warning> warnings = warningFacade.getWarningsFromUID(Integer.parseInt(uid));

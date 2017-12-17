@@ -19,21 +19,22 @@ import servlets.AddMeetingServlet;
  * @author Mirko
  */
 public class DateConversion {
-    public static Date parseDateFromHTMLForm(String d){
+    public static Date parseDateFromHTMLForm(String d) throws ParseException {
+        
         SimpleDateFormat formatter = new SimpleDateFormat("dd MMMMM yyyy - HH:mm",Locale.US);
         Date date=new Date();
-        try {
+      
 
             return formatter.parse(d);
         
-        } catch (ParseException ex) {
-            Logger.getLogger(AddMeetingServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        
+       // return null;
     }
     
-    public static Timestamp parseTimestampFromHTMLForm(String d){
+    public static Timestamp parseTimestampFromHTMLForm(String d) throws ParseException {
+       
       return new Timestamp(DateConversion.parseDateFromHTMLForm(d).getTime());  
+       
     }
     
     public static Date parseTime(String d){

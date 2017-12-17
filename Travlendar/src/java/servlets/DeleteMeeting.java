@@ -69,14 +69,17 @@ public class DeleteMeeting extends HttpServlet {
          for(Warning w: warnings){
            if(w.getMeetings().contains(String.valueOf(m.getMeetingPK().getMeetingid()))){
                String[] meets;
-               
+               String[] bees;
                String mflag;
+               String bflag;
+               
                mflag = w.getMeetings().replace(String.valueOf(m.getMeetingPK().getMeetingid()).concat("%"), "");
                System.out.println("mflag:" + mflag);
-            
+               bflag = w.getBreaks();
                meets = mflag.split("%");
+               bees = bflag.split("%");
                warningFacade.remove(w);
-               if(meets.length>1){
+               if(meets.length>1 || bees.length>=1 ){
                for(int i=0;i<meets.length;i++){
                    System.out.println("meets di i:" + meets[i]);
                    MeetingPK mPK = new MeetingPK();

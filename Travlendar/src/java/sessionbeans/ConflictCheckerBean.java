@@ -198,7 +198,7 @@ public class ConflictCheckerBean {
             System.out.println("Il break inizia" + (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) + "e finisce" + (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60));
             System.out.println("il meet inizia:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60) + "e finisce:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60));
             System.out.println("il break è il giorno: " + b.getDayofweek().subSequence(0, 2));
-            System.out.println("il meet è il giorno: " + mStartDate.toString().toLowerCase().subSequence(0, 2));
+            System.out.println("il meet è il giorno: " + dataM);
             System.out.println(mStartDate.toString());
       if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
@@ -231,7 +231,7 @@ public class ConflictCheckerBean {
         }
       
         else {
-                if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
+                if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
                 
@@ -241,17 +241,17 @@ public class ConflictCheckerBean {
       else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
-              b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
+              b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))){
               
               conflictuals.add(b);
           
       }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) >= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              conflictuals.add(b);
             }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) <=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) <= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              
@@ -325,10 +325,14 @@ public Interval calculateIntervals(Meeting m, Break b){
       int mLasts = m.getDuration();
       String mLoc = m.getLocation();
       String mName = m.getName();
+      
+      String dataM="";
+      
+      dataM = this.returnDayOfWeek(mStartDate);
    
     if(b.getRecurrent()){
     
-      if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
+      if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
                 
                 flag = mStartDate;
@@ -338,24 +342,24 @@ public Interval calculateIntervals(Meeting m, Break b){
             }
       else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
-              b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
+              b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))){
               
               delta.setInterval(mStartDate, b.getEndingtime());
           
       }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) >= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              flag = mStartDate;
              flag.setTime(mStartDate.getTime() + mLasts*60*1000);
              delta.setInterval( b.getStartingtime(), flag);
             }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) <=
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) <=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) <= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              delta.setInterval(b.getStartingtime(), b.getEndingtime());
              
             }
     }else{
-        if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
+        if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
                 
@@ -367,19 +371,19 @@ public Interval calculateIntervals(Meeting m, Break b){
       else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
-              b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))){
+              b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))){
               
               delta.setInterval(mStartDate, b.getEndingtime());
           
       }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) >= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              flag = mStartDate;
              flag.setTime(mStartDate.getTime() + mLasts*60*1000);
              delta.setInterval( b.getStartingtime(), flag);
             }
-      else if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
+      else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))  &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) <=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) <= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              delta.setInterval(b.getStartingtime(), b.getEndingtime());

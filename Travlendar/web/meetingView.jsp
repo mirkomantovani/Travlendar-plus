@@ -17,6 +17,7 @@
 
         <link rel="stylesheet" href="css/navbar.css">
         <link rel="stylesheet" href="css/simple.css">
+        <link rel="stylesheet" href="css/style.css">
 
         <link rel="stylesheet" href="css/body.css">
         <title>Meeting page</title>
@@ -149,8 +150,9 @@
                 </p>
             </article>
             <footer class="footer">
-                <form action="RouteVisualization">
-                    <button class="offset buttonsinpage"> View route </button>
+                <form action="RouteVisualization?Origin=${origin}">
+                    <input placeholder="insert a starting point" name ="origin" class="login-input">
+                    <button type="submit" class="offset buttonsinpage"> View route </button>
                 </form>
             </footer>
         </div>                

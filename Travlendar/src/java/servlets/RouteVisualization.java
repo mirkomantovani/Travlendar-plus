@@ -75,6 +75,8 @@ public class RouteVisualization extends HttpServlet {
         HttpSession session = request.getSession();
         String uid = session.getAttribute("uid").toString();
         
+        String origin = request.getParameter("origin");
+        
         int mid = (int) session.getAttribute("mid");
         
         Meeting m = (Meeting) session.getAttribute("m");
@@ -83,15 +85,21 @@ public class RouteVisualization extends HttpServlet {
         
         session.setAttribute("path", path);
         
+        if(origin!=""){
         try {
-             path = showDir.queryBuilder("Peschiera Borromeo", m.getLocation(), uid);
+             path = showDir.queryBuilder(origin, m.getLocation(), uid);
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
         
          session.setAttribute("path", path);
         request.getRequestDispatcher("routeview.jsp").forward(request, response);
-       
+        }
+        else {
+            
+            response.sendRedirect("meetingView.jsp");
+        }
+        
            
     }
 

@@ -119,7 +119,7 @@ public class ConflictCheckerBean {
                warningFacade.edit(existent);
            }
             
-           this.cleanWarnings(String.valueOf(m.getMeetingPK().getUid())s;
+           this.cleanWarnings(String.valueOf(m.getMeetingPK().getUid()));
         }
         
         

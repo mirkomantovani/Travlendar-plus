@@ -9,6 +9,7 @@ import entities.Break;
 import entities.BreakPK;
 import entities.Meeting;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -64,27 +65,30 @@ public class AddBreakServlet extends HttpServlet {
         
         if(!name.equals("")&&!from.equals("")&&!to.equals("")&&!duration.equals("")&&areTimesValid(from,to,duration)){
             try{
+                
+               
+                
         
         if(request.getParameter("mon")!=null)
-            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"monday",rec);
+            createBreak(Integer.parseInt(uid),name,addDateToTime(DateConversion.parseTime(from),2),DateConversion.parseTime(to),DateConversion.parseTime(duration),"monday",rec);
         if(request.getParameter("tue")!=null)
-            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"tuesday",rec);
+            createBreak(Integer.parseInt(uid),name,addDateToTime(DateConversion.parseTime(from),3),DateConversion.parseTime(to),DateConversion.parseTime(duration),"tuesday",rec);
         if(request.getParameter("wed")!=null)
-            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"wednesday",rec);
+            createBreak(Integer.parseInt(uid),name,addDateToTime(DateConversion.parseTime(from),4),DateConversion.parseTime(to),DateConversion.parseTime(duration),"wednesday",rec);
         if(request.getParameter("thu")!=null)
-            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"thursday",rec);
+            createBreak(Integer.parseInt(uid),name,addDateToTime(DateConversion.parseTime(from),5),DateConversion.parseTime(to),DateConversion.parseTime(duration),"thursday",rec);
         if(request.getParameter("fri")!=null)
-            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"friday",rec);
+            createBreak(Integer.parseInt(uid),name,addDateToTime(DateConversion.parseTime(from),6),DateConversion.parseTime(to),DateConversion.parseTime(duration),"friday",rec);
         if(request.getParameter("sat")!=null)
-            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"saturday",rec);
+            createBreak(Integer.parseInt(uid),name,addDateToTime(DateConversion.parseTime(from),7),DateConversion.parseTime(to),DateConversion.parseTime(duration),"saturday",rec);
         if(request.getParameter("sun")!=null)
-            createBreak(Integer.parseInt(uid),name,DateConversion.parseTime(from),DateConversion.parseTime(to),DateConversion.parseTime(duration),"sunday",rec);
+            createBreak(Integer.parseInt(uid),name,addDateToTime(DateConversion.parseTime(from),1),DateConversion.parseTime(to),DateConversion.parseTime(duration),"sunday",rec);
          
         response.sendRedirect("RecomputeCalendarMeetingsBreaks");
 
         
         }catch(Exception e){
-            response.sendRedirect("addmeeting.jsp");
+            response.sendRedirect("addBreak.jsp");
         }
         }
         else {
@@ -140,6 +144,29 @@ public class AddBreakServlet extends HttpServlet {
             return false;
         }
         return true;
+    }
+
+    private Date addDateToTime(Date parseTime,int dOfWeek) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     //giving the break an actual date which is the first occurence of that day of week
+                
+                    Calendar calendar = Calendar.getInstance();
+                    
+            
+            int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+            
+            int daysToGo=dOfWeek-dayOfWeek;
+            
+            if(daysToGo<0)
+                daysToGo+=7;
+            
+             calendar.add(Calendar.DAY_OF_MONTH, daysToGo);
+            
+            Date d=calendar.getTime();
+            parseTime.setDate(d.getDate());
+            parseTime.setMonth(d.getMonth());
+            parseTime.setYear(d.getYear());
+            return parseTime;
     }
 
 }

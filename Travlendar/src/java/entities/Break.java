@@ -47,7 +47,7 @@ public class Break implements Serializable {
     @Column(name = "NAME")
     private String name;
     @Column(name = "STARTINGTIME")
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date startingtime;
     @Column(name = "ENDINGTIME")
     @Temporal(TemporalType.TIME)

@@ -127,7 +127,7 @@ public long retrieveDuration(String origin, String destination,String uid) throw
            JSONArray jsonObject3 = (JSONArray)jsonObject2.get("elements");
            JSONObject jsonObject4 = (JSONObject)jsonObject3.get(0);
            String errore = (String)jsonObject4.get("status");
-           if(errore.equals("ZERO_RESULTS")){
+           if(!errore.equals("OK")){
                return -1;
            }
            JSONObject jsonObject5 = (JSONObject)jsonObject4.get("duration");

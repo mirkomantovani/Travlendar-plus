@@ -148,11 +148,13 @@ public class ConflictCheckerBean {
           
           if(mStartDate == other.getStartingdate())
               conflictuals.add(other);
-          else if(mStartDate.getDay() == other.getStartingdate().getDay() && mStartDate.after(other.getStartingdate()) &&  other.getDuration()*60 + 
+          else if(mStartDate.getDay() == other.getStartingdate().getDay() && mStartDate.getDate() == other.getStartingdate().getDate() && mStartDate.getMonth()==other.getStartingdate().getMonth()
+                  && mStartDate.getYear() == other.getStartingdate().getYear() && mStartDate.after(other.getStartingdate()) &&  other.getDuration()*60 + 
                   other.getStartingdate().getSeconds() + other.getStartingdate().getHours()*3600 + other.getStartingdate().getMinutes()*60 + 
                           nav.retrieveDuration(other.getLocation(), mLoc, String.valueOf(userId))  > mStartDate.getHours()*3600+mStartDate.getMinutes()*60+mStartDate.getSeconds())
               conflictuals.add(other);
-          else if (mStartDate.getDay() == other.getStartingdate().getDay() && mStartDate.before(other.getStartingdate()) && 
+          else if (mStartDate.getDay() == other.getStartingdate().getDay()  && mStartDate.getDate() == other.getStartingdate().getDate() && mStartDate.getMonth()==other.getStartingdate().getMonth()
+                  && mStartDate.getYear() == other.getStartingdate().getYear() && mStartDate.before(other.getStartingdate()) && 
                   other.getStartingdate().getSeconds() + other.getStartingdate().getHours()*3600 + other.getStartingdate().getMinutes()*60 
                             < mStartDate.getHours()*3600+mStartDate.getMinutes()*60+mStartDate.getSeconds() + nav.retrieveDuration(mLoc, other.getLocation(), String.valueOf(userId)) +
                                     mLasts*60 )
@@ -166,7 +168,7 @@ public class ConflictCheckerBean {
         
     }
     
-    //this method compute the overlaps between m and the breaks
+    //this method compute the overlaps between m and the breaksd
     //it returns an Arraylist filled with break that are in conflict with m
     public ArrayList<Break> BreakConflictChecker(Meeting m){
         
@@ -192,6 +194,7 @@ public class ConflictCheckerBean {
         dataM = this.returnDayOfWeek(mStartDate);
     
         for(Break b: breaks){
+        if(b.getRecurrent()){
             System.out.println("Il break inizia" + (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) + "e finisce" + (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60));
             System.out.println("il meet inizia:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60) + "e finisce:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60));
             System.out.println("il break è il giorno: " + b.getDayofweek().subSequence(0, 2));
@@ -226,9 +229,13 @@ public class ConflictCheckerBean {
              //break interno al meeting
             }
         }
-        return conflictuals;
-                      
+      
+        else {
+                //TODO
+                }
         
+        }
+        return conflictuals;
         } 
         
 //returns only the breaks without any possible rescheduling
@@ -293,6 +300,8 @@ public Interval calculateIntervals(Meeting m, Break b){
       int mLasts = m.getDuration();
       String mLoc = m.getLocation();
       String mName = m.getName();
+   
+    if(b.getRecurrent()){
     
       if(b.getDayofweek().subSequence(0, 2).equals(mStartDate.toString().subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
@@ -320,6 +329,9 @@ public Interval calculateIntervals(Meeting m, Break b){
              delta.setInterval(b.getStartingtime(), b.getEndingtime());
              
             }
+    }else{
+        //TODO 
+    }
     
     return delta;
 }
@@ -441,12 +453,26 @@ private class Interval{
        
        for(Warning w: warnings){
            
+           //this checks if a warning is totally included in other warning
            for(Warning w1 : warnings){
                if(w != w1 && w.getMeetings().contains(w1.getMeetings()) && w.getBreaks().contains(w1.getBreaks())){
                    warningFacade.remove(w1);
                }
            }
-          
+           
+           String[] meets = w.getMeetings().split("%");
+           String niu ="";
+           //avoid that a warning contains twice the same meeting
+           for(int i=0;i<meets.length;i++){
+               for(int j=i+1;j<meets.length;j++){
+                   if(meets[i].equals(meets[j])){
+                       meets[i] = "";
+                   }
+               }
+               if(!meets[i].equals(""))
+               niu = niu.concat(meets[i].concat("%"));
+           }  
+           w.setMeetings(niu);
        }
    }
 }

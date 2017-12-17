@@ -5,15 +5,20 @@
  */
 package servlets;
 
+import entities.Meeting;
 import entities.MeetingPK;
+import entities.Warning;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sessionbeans.ConflictCheckerBean;
 import sessionbeans.MeetingFacadeLocal;
+import sessionbeans.WarningFacadeLocal;
 
 /**
  *
@@ -23,6 +28,10 @@ public class DeleteMeeting extends HttpServlet {
 
     @EJB
     private MeetingFacadeLocal meetingFacade;
+    @EJB
+    private WarningFacadeLocal warningFacade;
+    @EJB
+    private ConflictCheckerBean checker;
 
    
     
@@ -47,8 +56,37 @@ public class DeleteMeeting extends HttpServlet {
         mpk.setMeetingid(meetingID);
         mpk.setUid(Integer.parseInt(uid));
         
+        Meeting m = meetingFacade.find(mpk);
+        
+        List<Warning> warnings = warningFacade.getWarningsFromUID(Integer.parseInt(uid));
+        
+        //A meno che il conflitto sia tipo m-m o m-b, ricalcolo i conflitti per tutti i meeting coinvolti ->
+        
+        
 
         meetingFacade.remove(meetingFacade.find(mpk));
+        
+         for(Warning w: warnings){
+           if(w.getMeetings().contains(String.valueOf(m.getMeetingPK().getMeetingid()))){
+               String[] meets;
+               
+               String mflag;
+               mflag = w.getMeetings().replace(String.valueOf(m.getMeetingPK().getMeetingid()).concat("%"), "");
+               System.out.println("mflag:" + mflag);
+            
+               meets = mflag.split("%");
+               warningFacade.remove(w);
+               if(meets.length>1){
+               for(int i=0;i<meets.length;i++){
+                   System.out.println("meets di i:" + meets[i]);
+                   MeetingPK mPK = new MeetingPK();
+                   mPK.setMeetingid(Integer.parseInt(meets[i]));
+                   mPK.setUid(Integer.parseInt(uid));
+                   checker.CheckAllConflicts(meetingFacade.find(mPK));
+               }
+               }
+           }
+         }
         
         response.sendRedirect("RecomputeCalendarMeetingsBreaks");
         

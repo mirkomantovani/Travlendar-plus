@@ -102,6 +102,7 @@ public class ConflictCheckerBean {
               w.setWarningPK(wPK);
               w.setUsertable(m.getUsertable());
               warningFacade.create(w); 
+              
            }
            else{
               

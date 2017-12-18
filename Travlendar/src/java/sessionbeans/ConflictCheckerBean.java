@@ -133,7 +133,7 @@ public class ConflictCheckerBean {
       List<Meeting> meetings = new ArrayList<>();  
       meetings = (List<Meeting>) meetingFacade.getMeetingsFromUID(m.getMeetingPK().getUid()); //this contains all the meetings of a user
       
-      meetings.remove(m); //It depends if it is already inserted in the DB or not
+      meetings.remove(m); //it will be added when the conflictual meetings are computed 
      
       ArrayList<Meeting> conflictuals = new ArrayList<>(); //this will be filled with meetings in conflict with m
       
@@ -146,7 +146,7 @@ public class ConflictCheckerBean {
      
       for(Meeting other: meetings ){
           
-          if(mStartDate == other.getStartingdate())
+          if(mStartDate == other.getStartingdate()) // if two meetings are in the same date are in conflict
               conflictuals.add(other);
           else if(mStartDate.getDay() == other.getStartingdate().getDay() && mStartDate.getDate() == other.getStartingdate().getDate() && mStartDate.getMonth()==other.getStartingdate().getMonth()
                   && mStartDate.getYear() == other.getStartingdate().getYear() && mStartDate.after(other.getStartingdate()) &&  other.getDuration()*60 + 
@@ -168,7 +168,7 @@ public class ConflictCheckerBean {
         
     }
     
-    //this method compute the overlaps between m and the breaksd
+    //this method compute the overlaps between m and the user breaks
     //it returns an Arraylist filled with break that are in conflict with m
     public ArrayList<Break> BreakConflictChecker(Meeting m){
         
@@ -187,7 +187,7 @@ public class ConflictCheckerBean {
       
       HashMap<Break,Integer> deltas = new HashMap<Break,Integer>();
         
-        List<Break> breaks = (List<Break>)breakFacade.getBreaksFromUID(userId);
+        List<Break> breaks = (List<Break>)breakFacade.getBreaksFromUID(userId); //list filled with all the breaks in the db
         
         System.out.println("I break nel db sono:" + breaks.toString());
        
@@ -195,42 +195,39 @@ public class ConflictCheckerBean {
     
         for(Break b: breaks){
         if(b.getRecurrent()){
-            System.out.println("Il break inizia" + (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) + "e finisce" + (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60));
-            System.out.println("il meet inizia:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60) + "e finisce:" + (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60));
-            System.out.println("il break è il giorno: " + b.getDayofweek().subSequence(0, 2));
-            System.out.println("il meet è il giorno: " + dataM);
+     
             System.out.println(mStartDate.toString());
       if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
-                // meeting finisce prima che finisca il break, meeting inizia dopo che inizia il break (meeting incluso nella break)
+                // meeting ends before the break ends and starts after the break begins (meeting included in the break)
                 conflictuals.add(b);
-                System.out.print("sono nel primo if");
+                
                    
             }
       else if ((mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 >=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) &&
               b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2))){
-              //meeting inizia dopo il break, meeting finisce dopo break 
+              //meeting starts after the break, meeting ends after the break 
               conflictuals.add(b);
-          System.out.print("sono nel secondo else if");
+       
       }
       else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) >= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              conflictuals.add(b);
-             System.out.print("sono nel terzo else if");
-             //break inizia dopo il meeting, break finisce dopo il meeting 
+             
+             //break starts after the meeting, break ends after the meeting 
             }
    
       
       else if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) && (b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60) >=
                     mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 && (b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) <= mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60){
              conflictuals.add(b);
-             System.out.print("sono nel quarto else if");
-             //break interno al meeting
+             
+             //break included in the meeting
             }
         }
       
-        else {
+        else { //same code written above but the day,month and year of the break should be now considered because this branch regards not recurrent breaks
                 if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
@@ -271,14 +268,14 @@ public ArrayList<Break> checkReschedule(int uid){
    
     meetings = (List<Meeting>) meetingFacade.getMeetingsFromUID(uid);
     
-    HashMap<Break,ArrayList<Interval>> intervalsTaken= new HashMap<Break,ArrayList<Interval>>();
-    HashMap<Break,Boolean> possibleSlot = new HashMap<Break,Boolean>();
+    HashMap<Break,ArrayList<Interval>> intervalsTaken= new HashMap<Break,ArrayList<Interval>>(); //For every break i compute all the intervals which are taken between its starting and ending time
+    HashMap<Break,Boolean> possibleSlot = new HashMap<Break,Boolean>(); //Every break is related to a boolean value that explains if it is reschedulable or not 
     ArrayList<Break> result = new ArrayList<Break>();
     
     
     System.out.println("");
     
-    for(Meeting m : meetings){ // per ogni meeting e ogni break in conflitto con essi calcolo gli intervalli di overlap e li metto in intervalsTaken
+    for(Meeting m : meetings){ // for every meeting and every break that is in conflict with them i compute the overlapping and i store them in intervalsTaken
         breaksOfM.put(m, this.BreakConflictChecker(m));
         
         System.out.println("breaksOfM:" + breaksOfM.toString());
@@ -293,9 +290,10 @@ public ArrayList<Break> checkReschedule(int uid){
     
     System.out.println("intervalsTaken:" + intervalsTaken.toString());
     
-    for(Break b : intervalsTaken.keySet()){ //per ogni break verifico se c'è un intervallo tra gli intervalli di overlap > della durata del meeting
+    for(Break b : intervalsTaken.keySet()){ //for every break i evaluate if there is an interval among the taken intervals whihch is grater or equal to the break duration(= which allows the flexible reschedulation)
+       
         
-        this.sortIntervals(intervalsTaken.get(b));       //TODO c'è conflitto 
+        this.sortIntervals(intervalsTaken.get(b)); // i sort in cronological order the intervals taken       
         possibleSlot.put(b, this.checkDistance(intervalsTaken.get(b), b.getMinduration().getHours()*3600 + b.getMinduration().getMinutes()*60));
         
     }
@@ -303,7 +301,7 @@ public ArrayList<Break> checkReschedule(int uid){
     System.out.println("possibleSlot:" + possibleSlot.toString());
     
     for(Break b: possibleSlot.keySet()){
-        if(!possibleSlot.get(b))
+        if(!possibleSlot.get(b)) // if possibleSlot.get(b) is true it means that the flexible reschedulation can occur, so i fill an arrayList result with the breaks related to a false value 
             result.add(b);
     }
     
@@ -313,7 +311,8 @@ public ArrayList<Break> checkReschedule(int uid){
     
     }
 
-
+//this method checks if during the break duration there is time to have the break, considering all the conflict in which it is involved and returns the first possible slot
+//if absent it returns the current instant. 
 public Interval calculateIntervals(Meeting m, Break b){
     
     Interval delta = new Interval(Date.from(Instant.now()),Date.from(Instant.now()));
@@ -358,7 +357,7 @@ public Interval calculateIntervals(Meeting m, Break b){
              delta.setInterval(b.getStartingtime(), b.getEndingtime());
              
             }
-    }else{
+    }else{ //same code written above but the day,month and year of the break should be now considered because this branch regards not recurrent breaks
         if(b.getDayofweek().subSequence(0, 2).equals(dataM.subSequence(0, 2)) &&mStartDate.getDate() == b.getStartingtime().getDate() && mStartDate.getMonth() == b.getStartingtime().getMonth()
                 && mStartDate.getYear() == b.getStartingtime().getYear() && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 + mLasts*60 <=
                     b.getEndingtime().getHours()*3600 + b.getEndingtime().getMinutes()*60) && (mStartDate.getHours()*3600 + mStartDate.getMinutes()*60 >= b.getStartingtime().getHours()*3600 + b.getStartingtime().getMinutes()*60)){
@@ -394,6 +393,7 @@ public Interval calculateIntervals(Meeting m, Break b){
     return delta;
 }
 
+//This private class represent the interval concept, it is necessary to estimate the faculty to flexible reschedule a break 
 private class Interval{
     Date start;
     Date end;
@@ -438,7 +438,7 @@ private class Interval{
     
 }
    
-   //this is a method that given an arraylist of Interval, checks whether there is an Interval of @param dist between two intervals in the arraylist and returns it
+   //this is a method that given an arraylist of Interval, checks whether there is an Interval of @param dist distance between two intervals in the arraylist and returns true if it finds it, false otherwise
    public boolean checkDistance(ArrayList<Interval> i, int dist){
        
        for(int j=0; j<i.size()-1;j++){
@@ -454,6 +454,7 @@ private class Interval{
       
    }
    
+   //This method is used to check if a warning is already existent and should be edit and retrurns its warningid, or if it is necessary to create a new one and returns "not exists"
    public String checkWarningExistence(String meetings,String breaks,String uid){
        
        List<Warning> warnings = new ArrayList<Warning>();
@@ -490,6 +491,7 @@ private class Interval{
        
    }
     
+   // This method receives as a parameter an integer related to a day of week and returns the string which represents textually that day
    public String returnDayOfWeek(Date d){
       
        switch(d.getDay()){
@@ -505,7 +507,7 @@ private class Interval{
        return "";
    }
    
-   // it removes warnings which are included in other warning 
+   // it removes warnings which are included in other warning  and avoid that the same meeting is present twice or more in the same warning
    public void cleanWarnings(String uid){
        List<Warning> warnings = warningFacade.getWarningsFromUID(Integer.parseInt(uid));
        

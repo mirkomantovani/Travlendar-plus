@@ -5,7 +5,6 @@
  */
 package sessionbeans;
 
-import entities.Break;
 import entities.Preferences;
 import entities.Travelmean;
 import java.io.BufferedReader;
@@ -40,7 +39,6 @@ public String queryBuilder(String origin, String destination, String uid ) throw
     
    
    Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
-  // Break breaks = breakFacade.find(Integer.parseInt(uid));
    Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
    
    String pmoto ="";
@@ -226,7 +224,6 @@ private long calculateDistance(String origin,String destination, String mode, St
     
    
    Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
-//   Break breaks = breakFacade.find(Integer.parseInt(uid));
    Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
    
    String pmoto ="";
@@ -249,7 +246,7 @@ private long calculateDistance(String origin,String destination, String mode, St
    destinations = "&destinations="+destination.replaceAll(" ", "+");
    String path = "https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4";
     
-    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + mode + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
+    URLConnection connection = new URL(path).openConnection();
     connection.setRequestProperty("Accept-Charset", "UTF-8");
     StringBuilder responseStrBuilder;
         try (InputStream responses = connection.getInputStream()) {

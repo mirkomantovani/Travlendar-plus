@@ -8,14 +8,12 @@ package sessionbeans;
 
 
 
-import entities.Break;
 import entities.Preferences;
 import entities.Travelmean;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -45,13 +43,13 @@ private BreakFacadeLocal breakFacade;
 private TravelmeanFacadeLocal travelmeanFacade;
 
 
+ //This method submits a call to the google maps distance matrix API and retrieves the info about a travel duration, matching user preferences
 public long retrieveDuration(String origin, String destination,String uid) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException{
    
     
 
    
    Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
-//   Break breaks = breakFacade.find(Integer.parseInt(uid));
    Travelmean transports = travelmeanFacade.find(Integer.parseInt(uid));
    
    String pmoto ="";
@@ -100,7 +98,7 @@ public long retrieveDuration(String origin, String destination,String uid) throw
    destinations = "&destinations="+destination.replaceAll(" ", "+");
    String path = "https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + tway + tway2 + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4";
     
-    URLConnection connection = new URL("https://maps.googleapis.com/maps/api/distancematrix/json?"+origins + destinations + tway + tway2 + pmoto +"&key=AIzaSyAgeo56pmj4_foFgklzXU_NAc2trdS19x4").openConnection();
+    URLConnection connection = new URL(path).openConnection();
     connection.setRequestProperty("Accept-Charset", "UTF-8");
     StringBuilder responseStrBuilder;
         try (InputStream responses = connection.getInputStream()) {
@@ -143,6 +141,7 @@ public long retrieveDuration(String origin, String destination,String uid) throw
           if(tway.contains("bicycling") && pref.getMaxcyclingdistance() < (int) jsonObject6.get("value")){
           return -1;
            }
+          
           
          //TODO DOPO UNA CERTA ORA NON POSSO USARE I MEZZI if(tway.contains("transit") && !tway2.contains("|") return -1
           //                                                 else if(tway2.contains("transit"))...

@@ -85,9 +85,9 @@ public class loginservlet extends HttpServlet {
                 //WHEN THE USER LOGS IN WE HAVE TO CHECK WHETHER THERE ARE WARNINGS, IF THERE ARE EXECUTE THIS LINE
                 
                 List<Warning> warnings = warningFacade.getWarningsFromUID(u.getUid());
-                
                 if(warnings.size()>0)
                     session.setAttribute("warningcolor", "red");
+               
                     
 
                 //GETTING EVERY MEETING THE USER HAS IN ORDER TO DISPLAY THEM IN THE CALENDAR HOMEPAGE

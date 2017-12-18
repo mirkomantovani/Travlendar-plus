@@ -90,6 +90,12 @@ public class DeleteMeeting extends HttpServlet {
                }
            }
          }
+         
+         if(warningFacade.getWarningsFromUID(Integer.parseInt(uid)).size()>0)
+                    session.setAttribute("warningcolor", "red");
+                else {
+                    session.setAttribute("warningcolor", "none");
+                }
         
         response.sendRedirect("RecomputeCalendarMeetingsBreaks");
         

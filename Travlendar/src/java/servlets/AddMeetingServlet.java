@@ -5,13 +5,10 @@
  */
 package servlets;
 
-import entities.Break;
 import entities.Meeting;
 import entities.MeetingPK;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Timestamp;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,10 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sessionbeans.BreakFacadeLocal;
 import sessionbeans.ConflictCheckerBean;
 import sessionbeans.MeetingFacadeLocal;
+import sessionbeans.WarningFacadeLocal;
 import utils.DateConversion;
+
 
 /**
  *
@@ -30,6 +28,9 @@ import utils.DateConversion;
  */
 @WebServlet(name = "AddMeetingServlet", urlPatterns = {"/AddMeetingServlet"})
 public class AddMeetingServlet extends HttpServlet {
+
+    @EJB
+    private WarningFacadeLocal warningFacade;
 
     @EJB
     private MeetingFacadeLocal meetingFacade;
@@ -87,6 +88,11 @@ public class AddMeetingServlet extends HttpServlet {
        
        System.out.println("time to execute conflictchecker:"+tot);
        
+       if(warningFacade.getWarningsFromUID(Integer.parseInt(uid)).size()>0)
+                    session.setAttribute("warningcolor", "red");
+                else {
+                    session.setAttribute("warningcolor", "none");
+                }
        
        response.sendRedirect("RecomputeCalendarMeetingsBreaks");
        

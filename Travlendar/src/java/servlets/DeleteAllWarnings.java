@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sessionbeans.WarningFacadeLocal;
 
+
 /**
  *
  * @author matteo
@@ -74,6 +75,13 @@ public class DeleteAllWarnings extends HttpServlet {
         for(Warning w: warnings){
         warningFacade.remove(w);
         }
+        
+        if(warningFacade.getWarningsFromUID(Integer.parseInt(uid)).size()>0)
+                    session.setAttribute("warningcolor", "red");
+                else {
+                    session.setAttribute("warningcolor", "none");
+                }
+        
         response.sendRedirect("ConflictVisualization");
         
     }

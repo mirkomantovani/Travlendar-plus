@@ -23,6 +23,7 @@ import sessionbeans.MeetingFacadeLocal;
 import sessionbeans.WarningFacadeLocal;
 import utils.DateConversion;
 
+
 /**
  *
  * @author Mirko
@@ -55,6 +56,7 @@ public class updateMeetingServlet extends HttpServlet {
         
         mpk.setMeetingid(Integer.parseInt(request.getParameter("MeetingID")));
         String uid=session.getAttribute("uid").toString();
+        
         //System.out.println(mpk.getMeetingid());
         
         mpk.setUid(Integer.parseInt(uid));
@@ -98,6 +100,13 @@ public class updateMeetingServlet extends HttpServlet {
                
            }
          }
+           
+           if(warningFacade.getWarningsFromUID(Integer.parseInt(uid)).size()>0)
+                    session.setAttribute("warningcolor", "red");
+                else {
+                    session.setAttribute("warningcolor", "none");
+                }
+           
         
         }catch(NullPointerException e){
             response.sendRedirect("login.jsp");
@@ -110,7 +119,6 @@ public class updateMeetingServlet extends HttpServlet {
        // System.out.println(tstamp);
        
      
-       
        
        response.sendRedirect("RecomputeCalendarMeetingsBreaks");
     }

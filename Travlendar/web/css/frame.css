@@ -13,7 +13,8 @@ html {
   height: 100%;
 }
 body {
-  background: linear-gradient(to bottom, #bcbcbc 1%, #bcbcbc 82%, #8f8f8f 91%, #8f8f8f 91%, #b7b7b7 91%, #efefef 100%);
+  background: linear-gradient(to bottom, #000000 1%, #334b91 82%, #000000 91%, #bec2d0 91%, #2a4683 91%, #00040c 100%);
+  
 }
 .frame {
   width: 1033px;

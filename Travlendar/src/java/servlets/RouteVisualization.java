@@ -8,6 +8,9 @@ package servlets;
 import entities.Meeting;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.json.simple.parser.ParseException;
 import sessionbeans.MeetingFacadeLocal;
+import sessionbeans.RouteCalculatorBean;
 import sessionbeans.showDirectionsMap;
 
 /**
@@ -30,6 +34,8 @@ public class RouteVisualization extends HttpServlet {
     private showDirectionsMap showDir;
     @EJB
     private MeetingFacadeLocal meetingFacade;
+    @EJB
+    private RouteCalculatorBean routeCalc;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -84,13 +90,19 @@ public class RouteVisualization extends HttpServlet {
         
         if(origin!=""){
         try {
+            if(routeCalc.retrieveDuration(origin, m.getLocation(), uid) == -1){
+                response.sendRedirect("meetingView.jsp");
+            }else{
+            
              path = showDir.queryBuilder(origin, m.getLocation(), uid);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
-        
-         session.setAttribute("path", path);
+              session.setAttribute("path", path);
         request.getRequestDispatcher("routeview.jsp").forward(request, response);
+            }
+        } catch (ParseException ex) {
+        }   catch (MalformedURLException | java.text.ParseException ex) {
+                Logger.getLogger(RouteVisualization.class.getName()).log(Level.SEVERE, null, ex);
+            }
+     
         }
         else {
             

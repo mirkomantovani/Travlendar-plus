@@ -88,9 +88,9 @@ public class RouteVisualization extends HttpServlet {
         
         session.setAttribute("path", path);
         
-        if(origin!=""){
+        
         try {
-            if(routeCalc.retrieveDuration(origin, m.getLocation(), uid) == -1){
+            if(routeCalc.retrieveDuration(origin, m.getLocation(), uid) == -1 || origin.equals("")){
                 response.sendRedirect("meetingView.jsp");
             }else{
             
@@ -103,11 +103,7 @@ public class RouteVisualization extends HttpServlet {
                 Logger.getLogger(RouteVisualization.class.getName()).log(Level.SEVERE, null, ex);
             }
      
-        }
-        else {
-            
-            response.sendRedirect("meetingView.jsp");
-        }
+       
         
            
     }

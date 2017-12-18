@@ -112,7 +112,7 @@
         </nav>
         <br><br><br>
 
-        <p>${path}</p>
+       
  
         <div class="frame"><iframe src=${path} width="1000" height="600"> </iframe> </div> 
         

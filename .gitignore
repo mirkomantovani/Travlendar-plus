@@ -29,3 +29,8 @@ DD/DD\.pdf
 /Travlendar/dist/
 /prove/nbproject/private/
 /prove/build/
+Travlendar/nbproject/genfiles\.properties
+
+Travlendar/nbproject/project\.properties
+
+Travlendar/nbproject/build-impl\.xml

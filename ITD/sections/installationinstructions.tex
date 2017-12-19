@@ -9,6 +9,7 @@ In case you don't have any version of Java Development Kit you should download i
 Being Travlendar+ a web application, it is essential to have a web server installed, here we provide information about the installation and deployment on Glassfish 4.1.1. You can download it from
 \\
 \href{url}{https://javaee.github.io/glassfish/download}
+\\or alternatively, you can follow the quick installation instructions for Windows, which includes a Glassfish installation.
 
 \subsubsection{DBMS}
 For simplicity, we decided to use the basic DBMS provided by glassfish, Apache Derby RDBMS, thus you do not need anything else if you have installed Glassfish Server.
@@ -16,7 +17,22 @@ For simplicity, we decided to use the basic DBMS provided by glassfish, Apache D
 \subsubsection{Browser}
 For the development and testing we always used Google Chrome as browser, we recommend installing the latest version of Chrome and we do not guarantee the absence of bugs and poor performances on other Browsers, even if they would probably work just as fine.
 
-\subsection{Environment Setup}
+\subsection{Quick Installation for Windows}
+The quick installation consists in downloading Glassfish 4.1.1 with the script to install Travlendar and the war file already in it.
+\begin{itemize}
+\item Download the JDK if you don't have it already from\\ \href{url}{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}, usually it is stored in C:\textbackslash Program Files\textbackslash Java, put it there or wherever you prefer, keep in mind or save the path where you put it.
+\item Download the zip at: \href{url}{https://}, unzip the folder and put the folder glassfish-4.1.1 it contains in C:\textbackslash Program Files.
+\item Open the glassfish-4.1.1 folder and double click on installtravlendar file.
+\item Click yes to the popup that asks if you want to run it as administrator.
+\item Write down in the Command Prompt the JDK path when asked for it, for example write: C:\textbackslash Program Files\textbackslash Java\textbackslash jdk1.8.0_121
+\item Press enter.
+\item If everything went fine the default browser should have been launched and you should see the login page of the app, signup and enjoy the app.
+\end{itemize}
+
+
+
+
+\subsection{Manual installation - Environment Setup}
 \subsubsection{Starting up Glassfish Server}
 \begin{itemize}
 \item On Windows, open command prompt as administrator (right click on cmd.exe and click Run as administrator), on Linux or MacOS open Terminal.

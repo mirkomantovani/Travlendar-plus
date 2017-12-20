@@ -52,14 +52,31 @@
 
 \clearpage
 \section{Implemented functionalities}
-\subsection{Scope}
-
+\input{sections/implementedfunctionalities}
 
 \clearpage
 \section{Adopted development frameworks}
 \subsection{Adopted programming languages}
-\subsection{Adopted middlewares}
+
+To implement Travlendar+ we mainly used Java. The front-end was created using HTML, css and javascript while the back-end is plain Java and for it we adopted some of the functionalities that JEE provides.
+
+
+\subsection{Adopted middlewares and libraries}
+The only middleware used is Glassfish Web server, it provided us with the functionality of using the Java Persistence API framework in an easy way, allowing us to define and create the entities in the database and mapping them to Java classes.
+The only library we used is json.simple, a library to simply parse the JSON files arrived as a response by the Google Maps APIs in order to retrieve specific and useful information.
+
+
 \subsection{Used APIs}
+The main APIs we interfaced with are Google Maps APIs, such as:
+\begin{itemize}
+\item Google Maps Distance Matrix API to:
+Estimate travel time and distance from origin to destination.
+\item Google Maps Directions API to:
+Calculate directions between origin to destination specifying the means of transport.
+\item Google Maps Place Autocomplete to: Input real addresses for meetings avoiding mispelling of addresses
+\end{itemize}
+
+
 
 \clearpage
 \section{Source Code structure}
@@ -82,9 +99,9 @@
 \subsection{Effort spent}
 \begin{itemize}
 
-\item Matteo Marziali working hours:  $\approxeq$ 80 hours
+\item Matteo Marziali working hours:  $\approxeq$ 100 hours
 
-\item Mirko Mantovani working hours:  $\approxeq$ 80 hours
+\item Mirko Mantovani working hours:  $\approxeq$ 100 hours
 
 
 

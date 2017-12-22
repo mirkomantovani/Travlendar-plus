@@ -1,0 +1,13 @@
+The following two subsections will be needed for any external person in order to understand the code structure and possibly modify or extend the Application. 
+\subsection{Back end code structure}
+The back end code of the application is logically subdivided into four Source Packages:
+\begin{itemize}
+\item \textbf{Entities}: This package contains all the Java entity classes which, due to the JPA mapping to the database entity tables, allow us to directly manipulating persistent data by simply setting fields of the relative instances. Each of these classes has a few named queries to easily retrieve data sets from the database, fields with specifications defining the SQL type and constraints on the attributes of the database tables, and getters/setters.
+\item \textbf{Servlets}: This package contains all the servlets which are needed by the server in order to handle http get/post requests and responses, most of the used and significant endpoints are managed in these servlets. In our case servlets can either process data in the requests and interact with Java beans in order to make some changes in the persistent memory, or they are used as access points to JSPs and their purpose in this case is mainly that of customizing the JSP based on the User Session.
+\item \textbf{Session Beans}: This package contains all the EJB needed both for interacting with the database and to run concurrently some weighty and onerous algorithms such as conflict checking between meetings. The common abstract class AbstractFacade exposes methods to interact with the database by mapping the methods to the corresponding method call on the JPA EntityManager interface. One facade per entity extend the abstract one and contain a few additional methods to handle queries if needed.
+\item \textbf{Utils}: This package mainly contains plain Java classes with static services methods to be used by servlets and Beans.
+\end{itemize}
+
+\subsection{Front end code structure}
+The front end of the application is primarily composed by JSPs, in which we decided not to put any scriplets in order not to have the possibility for any runtime exception to occur. We thought it would be better to have semantical incorrectness than exceptions, that is why we decided to use JSTL/EL to give dynamicity to the plain html code of the JSPs.
+\\The JSPs html code is enriched with css and javascipt to make it more appealing and responsive. We also used and included in the source code jquery framework and bootstrap.

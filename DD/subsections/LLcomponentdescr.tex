@@ -4,7 +4,7 @@
 
 \begin{tabular}{l|p{7cm}}
 
-Name&\textbf{Meeting manager bean}\\
+Name&\textbf{Meeting Facade}\\
 \hline
 \hline
 Input interfaces&
@@ -67,7 +67,7 @@ Description&This is the component responsible for managing the insertion of meet
 		
 		\begin{tabular}{l|p{7cm}}
 		
-			Name&\textbf{Warning manager bean}\\
+			Name&\textbf{Warning Facade}\\
 			\hline
 			\hline
 			Input interfaces& Meeting evaluation\\
@@ -117,7 +117,7 @@ Description&This is the component responsible for managing the insertion of meet
 		
 		\begin{tabular}{l|p{7cm}}
 		
-			Name&\textbf{Preferences manager bean}\\
+			Name&\textbf{Preferences Facade}\\
 			\hline
 			\hline
 			Input interfaces& Preferences set up \\
@@ -168,30 +168,6 @@ Description&This is the component responsible for managing the insertion of meet
 	
 \end{flushleft}
 
-\begin{flushleft}
-	
-	\begin{table}[htp]
-		
-		\begin{tabular}{l|p{7cm}}
-		
-			Name&\textbf{Signup manager bean}\\
-			\hline
-			\hline
-			Input interfaces& Signup data \\
-			\hline
-			Output interfaces& Registration\\
-			\hline
-			Description&This is the component which manages the user signup process, from the insertion of personal data, through their storage on the database, to the account verification. \\
-			\hline
-			
-		\end{tabular}
-		
-		\caption{Signup manager table } 
-		\label{tab:signupmanagertable}
-		
-	\end{table}
-	
-\end{flushleft}
 
 \begin{flushleft}
 	
@@ -201,14 +177,14 @@ Description&This is the component responsible for managing the insertion of meet
 			
 		
 		
-			Name&\textbf{Login manager bean}\\
+			Name&\textbf{User Data Facade}\\
 			\hline
 			\hline
-			Input interfaces& Login data \\
+			Input interfaces& Login data, signup data \\
 			\hline
-			Output interfaces& User data \\
+			Output interfaces& User data, registration \\
 			\hline
-			Description&This is the component dedicated to all the login steps. When the user insert in the apposite area his name and password, this component takes the data and provides the computations needed to verify the credentials and load the user's content. \\
+			Description&This is the component which manages the user signup process, from the insertion of personal data, through their storage on the database, to the account verification.This component is also dedicated to all the login and signup steps. When the user insert in the apposite area his name and password, this component takes the data and provides the computations needed to verify the credentials and load the user's content. \\
 			\hline
 			
 		\end{tabular}

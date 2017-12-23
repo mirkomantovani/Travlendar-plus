@@ -482,7 +482,7 @@ private class Interval{
                }
            }
           
-           if(mCounter == Ms.length && bCounter == Bs.length ){
+           if(mCounter == Ms.length && bCounter == Bs.length && mCounter != 0 && bCounter != 0){
                return String.valueOf(w.getWarningPK().getWarningid());
            }
            

@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+%\usepackage{showkeys}
+%\usepackage{float} % here for H placement parameter
+\usepackage{flafter} 
+\setcounter{secnumdepth}{5}
+\usepackage[bookmarks=true]{hyperref}
+\author{Mirko Mantovani (893784), Matteo Marziali (893904)} 
+\date{\today}
+\title{Politecnico di Milano
+	\\A.A. 2017\@-\@2018
+	\\Software Engineering II project \\ \textbf{Travlendar+}
+	\\
+	\textbf{I}mplementation \& \textbf{T}esting 
+	\\ \textbf{D}ocument 
+	\\
+	\textbf{V1}} 
+	\hypersetup{pdftitle={Implementation and Testing Document},    % title
+	pdfauthor={Mirko Mantovani, Matteo Marziali},                     % author
+	pdfsubject={ITD},                        % subject of the document
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,       % color of internal links
+	citecolor=blue,       % color of links to bibliography
+	filecolor=black,        % color of file links
+	urlcolor=purple,        % color of external links
+   }
+\begin{document}
+\maketitle
+\begin{center}
+	\includegraphics[width=7cm]{polimi-logo}
+\end{center}
+\clearpage
+{\hypersetup{hidelinks}\tableofcontents}
+
+\clearpage
+
+\section{Introduction}
+\subsection{Purpose}
+\input{sections/purpose}
+
+\subsection{Definition and Acronyms}
+\input{sections/definitionsacronyms}
+
+
+\subsection{Revision}
+\input{sections/revision}
+\subsection{Document Structure}
+\input{sections/documentstructure}
+
+\clearpage
+\section{Implemented functionalities}
+\input{sections/implementedfunctionalities}
+
+\clearpage
+\section{Adopted development frameworks}
+\subsection{Adopted programming languages}
+
+To implement Travlendar+ we mainly used Java. The front-end was created using HTML, css and javascript while the back-end is plain Java and for it we adopted some of the functionalities that JEE provides.
+
+
+\subsection{Adopted middlewares and libraries}
+We could say that the main middleware we used is Glassfish Web server, it provided us with the functionality of using the Java Persistence API framework in an easy way, allowing us to define and create the entities in the database and mapping them to Java classes.
+Other adopted frameworks are bootstrap and jquery, in order to simplify the creation of an enhanced UI/UX.
+The only library we used is json.simple, a library to simply parse the JSON files arrived as a response by the Google Maps APIs in order to retrieve specific and useful information.
+
+
+\subsection{Used APIs}
+The main APIs we interfaced with are Google Maps APIs, such as:
+\begin{itemize}
+\item Google Maps Distance Matrix API to:
+Estimate travel time and distance from origin to destination.
+\item Google Maps Directions API to:
+Calculate directions between origin to destination specifying the means of transport.
+\item Google Maps Place Autocomplete to: Input real addresses for meetings avoiding mispelling of addresses
+\end{itemize}
+
+
+
+\clearpage
+\section{Source Code structure}
+\input{sections/codestructure}
+
+\clearpage
+\section{Testing}
+
+\clearpage
+\section{Installation Instructions}
+\input{sections/installationinstructions}
+
+
+
+\clearpage
+\section{Appendix}
+
+\subsection{Used software}
+\input{sections/usedsoftware}
+
+\subsection{Effort spent}
+\begin{itemize}
+
+\item Matteo Marziali working hours:  $\approxeq$ 100 hours
+
+\item Mirko Mantovani working hours:  $\approxeq$ 100 hours
+
+
+
+\end{itemize}
+
+
+
+\end{document}

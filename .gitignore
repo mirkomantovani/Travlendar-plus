@@ -34,3 +34,7 @@ Travlendar/nbproject/genfiles\.properties
 Travlendar/nbproject/project\.properties
 
 Travlendar/nbproject/build-impl\.xml
+
+Travlendar/nbproject/project\.xml
+
+Travlendar/src/conf/persistence\.xml

@@ -152,12 +152,12 @@ public class ConflictCheckerBean {
           else if(mStartDate.getDay() == other.getStartingdate().getDay() && mStartDate.getDate() == other.getStartingdate().getDate() && mStartDate.getMonth()==other.getStartingdate().getMonth()
                   && mStartDate.getYear() == other.getStartingdate().getYear() && mStartDate.after(other.getStartingdate()) &&  other.getDuration()*60 + 
                   other.getStartingdate().getSeconds() + other.getStartingdate().getHours()*3600 + other.getStartingdate().getMinutes()*60 + 
-                          nav.retrieveDuration(other.getLocation(), mLoc, String.valueOf(userId))  > mStartDate.getHours()*3600+mStartDate.getMinutes()*60+mStartDate.getSeconds())
+                          nav.retrieveDuration(other.getLocation(), mLoc, String.valueOf(userId),m.getStartingdate())  > mStartDate.getHours()*3600+mStartDate.getMinutes()*60+mStartDate.getSeconds())
               conflictuals.add(other);
           else if (mStartDate.getDay() == other.getStartingdate().getDay()  && mStartDate.getDate() == other.getStartingdate().getDate() && mStartDate.getMonth()==other.getStartingdate().getMonth()
                   && mStartDate.getYear() == other.getStartingdate().getYear() && mStartDate.before(other.getStartingdate()) && 
                   other.getStartingdate().getSeconds() + other.getStartingdate().getHours()*3600 + other.getStartingdate().getMinutes()*60 
-                            < mStartDate.getHours()*3600+mStartDate.getMinutes()*60+mStartDate.getSeconds() + nav.retrieveDuration(mLoc, other.getLocation(), String.valueOf(userId)) +
+                            < mStartDate.getHours()*3600+mStartDate.getMinutes()*60+mStartDate.getSeconds() + nav.retrieveDuration(mLoc, other.getLocation(), String.valueOf(userId),m.getStartingdate()) +
                                     mLasts*60 )
              conflictuals.add(other);
       }

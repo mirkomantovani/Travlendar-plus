@@ -8,6 +8,8 @@ import entities.Preferences;
 import entities.Travelmean;
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.Instant;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -77,7 +79,8 @@ public class RouteCalculatorBeanTest {
         userTmeans.setUid(1);
         userTmeans.setOwnedcar(Boolean.TRUE);
         userTmeans.setPublictransport(Boolean.TRUE);
-     
+        userPref.setNopublictransportationsafter(new Date(Date.UTC(2018-1900, 1, 1, 0, 0, 0)));
+                
         
     }
     
@@ -93,7 +96,7 @@ public class RouteCalculatorBeanTest {
     @Test
     public void retrieveDurationTest(){
         try {
-            assertEquals(this.nav.retrieveDuration("New York", "Washington", "1"),147779);
+            assertEquals(this.nav.retrieveDuration("New York", "Washington", "1",new Date(Date.UTC(2018-1900, 1, 1, 0, 0, 0))),147782);
         } catch (IOException | ParseException | org.json.simple.parser.ParseException ex) {
             Logger.getLogger(RouteCalculatorBeanTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,7 +107,7 @@ public class RouteCalculatorBeanTest {
         userPref.setAvoidmotorways(Boolean.FALSE);
         
         try {
-            assertEquals(this.nav.retrieveDuration("Washington,DC,USA", "New York,NY,USA", "1"),13852);
+            assertEquals(this.nav.retrieveDuration("Washington,DC,USA", "New York,NY,USA", "1",new Date(Date.UTC(2018-1900, 1, 1, 0, 0, 0))),13852);
         } catch (IOException | ParseException | org.json.simple.parser.ParseException ex) {
             Logger.getLogger(RouteCalculatorBeanTest.class.getName()).log(Level.SEVERE, null, ex);
         }

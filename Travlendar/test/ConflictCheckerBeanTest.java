@@ -93,7 +93,7 @@ public class ConflictCheckerBeanTest {
         Mockito.when(breakFacade.getBreaksFromUID(anyInt())).thenReturn(breaks);
         Mockito.when(meetingFacade.getMeetingsFromUID(anyInt())).thenReturn(meetings);
         try {
-            Mockito.when(nav.retrieveDuration(anyString(), anyString(), anyString())).thenReturn((long)0);
+            Mockito.when(nav.retrieveDuration(anyString(), anyString(), anyString(),any(Date.class))).thenReturn((long)0);
         } catch (IOException | ParseException | org.json.simple.parser.ParseException ex) {
             Logger.getLogger(ConflictCheckerBeanTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -154,6 +154,7 @@ public class ConflictCheckerBeanTest {
     @Test
     public void checkRescheduleTest(){
         assertTrue(this.checker.checkReschedule(1).contains(b));
+        
     }
     
     @Test

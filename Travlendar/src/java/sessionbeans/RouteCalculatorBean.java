@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.ParseException;
+import java.util.Date;
 import javax.ejb.EJB;
 
 import javax.ejb.Stateless;
@@ -44,7 +45,7 @@ private TravelmeanFacadeLocal travelmeanFacade;
 
 
  //This method submits a call to the google maps distance matrix API and retrieves the info about a travel duration, matching user preferences
-public long retrieveDuration(String origin, String destination,String uid) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException{
+public long retrieveDuration(String origin, String destination,String uid, Date date) throws MalformedURLException, IOException, ParseException, org.json.simple.parser.ParseException{
    
     
 
@@ -89,6 +90,14 @@ public long retrieveDuration(String origin, String destination,String uid) throw
    
    if(!tway.contains("driving") && !tway2.contains("driving")){
        pmoto = "";
+   }
+   
+   if(tway.contains("transit") && tway2.equals("")){
+       
+   } else {
+       if(pref.getNopublictransportationsafter().before(date)){
+          tway2 =  tway2.replace("|transit", "");
+       }
    }
    
    String origins;

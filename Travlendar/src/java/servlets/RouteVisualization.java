@@ -90,11 +90,11 @@ public class RouteVisualization extends HttpServlet {
         
         
         try {
-            if(routeCalc.retrieveDuration(origin, m.getLocation(), uid) == -1 || origin.equals("")){
+            if(routeCalc.retrieveDuration(origin, m.getLocation(), uid, m.getStartingdate()) == -1 || origin.equals("")){
                 response.sendRedirect("meetingView.jsp");
             }else{
             
-             path = showDir.queryBuilder(origin, m.getLocation(), uid);
+             path = showDir.queryBuilder(origin, m.getLocation(), uid, m.getStartingdate());
               session.setAttribute("path", path);
         request.getRequestDispatcher("routeview.jsp").forward(request, response);
             }

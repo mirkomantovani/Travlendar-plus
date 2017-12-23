@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Date;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import org.json.simple.JSONArray;
@@ -35,7 +36,7 @@ private BreakFacadeLocal breakFacade;
 @EJB
 private TravelmeanFacadeLocal travelmeanFacade;
 
-public String queryBuilder(String origin, String destination, String uid ) throws ParseException, IOException{
+public String queryBuilder(String origin, String destination, String uid, Date date) throws ParseException, IOException{
     
    
    Preferences pref = preferencesFacade.find(Integer.parseInt(uid));
@@ -73,6 +74,15 @@ public String queryBuilder(String origin, String destination, String uid ) throw
    }
    
    String carWasTrue="";
+   
+        
+     if(tway.contains("transit") && tway2.equals("")){
+       
+   } else {
+       if(pref.getNopublictransportationsafter().before(date)){
+          tway2 =  tway2.replace("|transit", "");
+       }
+   }
    
      if(pref.getMinimizecarbonfootprint() && tway.equals("&mode=driving") && !tway2.equals("")){
        tway="";

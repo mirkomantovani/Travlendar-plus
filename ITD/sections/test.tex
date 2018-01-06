@@ -31,7 +31,6 @@ In other words we called the method retrieveDuration(String origin,String destin
 
 We also made a really trivial test to evaluate the non-functional requirements and in particular the performances given an high number of clients requesting a resource. The test was done using JMeter and the simple test consisted having a thousand users trying to access the application by performing a login and visiting the homepage, the requested are done almost all at the same time (ramp-up period equal to zero which means no delay between requests).
 \\As you can see from the below graph the latest visited the homepage after less than 3 seconds, which suggests than the performances of the server are already a bit stressed and if the same amount of users requested a more sophisticated resource that would require computationally onerous algorithms by the server, the amount of time requires would probably not be reasonable for a user experience point of view. Notice however that, in such an application, users would mostly navigate in a burstly way, which implies that in order to have a thousand requests at the same exact time, the number of users would have to be much larger than a thousand.
-
 \begin{figure} 
 \begin{center}
 

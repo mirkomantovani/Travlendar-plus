@@ -1,3 +1,19 @@
+\subsection{Quick Installation for Windows}
+The quick installation consists in downloading Glassfish 4.1.1 with the script to install Travlendar and the war file already in it.
+\begin{itemize}
+\item Download the JDK if you don't have it already from\\ \href{url}{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}, usually it is stored in C:\textbackslash Program Files\textbackslash Java, put it there or wherever you prefer, keep in mind or save the path where you put it.
+\item Download the zip by clicking on this link:\\ \href{url}{https://www.dropbox.com/s/itycorsvfimpy5w/glassfish-4.1.1.zip?dl=1}, unzip the folder and put the contained folder (glassfish-4.1.1) in C:\textbackslash Program Files.
+In case you have a different JDK from the jdk1.8.0_121 version, or you have it in a different folder than the default one, navigate to\\ \textit{C:\textbackslash Program Files\textbackslash glassfish-4.1.1\textbackslash glassfish\textbackslash domains\textbackslash domain1\textbackslash config}, open domain.xml file search for java-home attribute (there is only one, the one of java-config node) and substitute C:\textbackslash Program Files\textbackslash Java\textbackslash jdk1.8.0_121 with the path of your JDK.
+\item Then open the glassfish-4.1.1 folder and double click on installtravlendar file.
+\item Click yes to the popup that asks if you want to run it as administrator.
+\item Write down in the Command Prompt the JDK path when asked for it, for example write: C:\textbackslash Program Files\textbackslash Java\textbackslash jdk1.8.0_121
+\item Press enter.
+\item Wait for the command prompt to close itself then Travlendar should be installed correctly.
+\item Launch travlendar by double clicking on Travlendar+ file in glassfish-4.1.1 folder.
+\item If everything went fine the default browser should have been launched and you should see the login page of the app, signup and enjoy the app.
+\end{itemize}
+
+\clearpage
 \subsection{System Requirements}
 
 \subsubsection{JDK}
@@ -17,17 +33,7 @@ For simplicity, we decided to use the basic DBMS provided by glassfish, Apache D
 \subsubsection{Browser}
 For the development and testing we always used Google Chrome as browser, we recommend installing the latest version of Chrome and we do not guarantee the absence of bugs and poor performances on other Browsers, even if they would probably work just as fine.
 
-\subsection{Quick Installation for Windows}
-The quick installation consists in downloading Glassfish 4.1.1 with the script to install Travlendar and the war file already in it.
-\begin{itemize}
-\item Download the JDK if you don't have it already from\\ \href{url}{http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html}, usually it is stored in C:\textbackslash Program Files\textbackslash Java, put it there or wherever you prefer, keep in mind or save the path where you put it.
-\item Download the zip at: \href{url}{https://}, unzip the folder and put the folder glassfish-4.1.1 it contains in C:\textbackslash Program Files.
-\item Open the glassfish-4.1.1 folder and double click on installtravlendar file.
-\item Click yes to the popup that asks if you want to run it as administrator.
-\item Write down in the Command Prompt the JDK path when asked for it, for example write: C:\textbackslash Program Files\textbackslash Java\textbackslash jdk1.8.0_121
-\item Press enter.
-\item If everything went fine the default browser should have been launched and you should see the login page of the app, signup and enjoy the app.
-\end{itemize}
+
 
 
 
@@ -59,7 +65,7 @@ Just substitute \textit{C:\textbackslash Program Files\textbackslash Java\textba
 
 \subsubsection{Database configuration}
 In order to make it simpler to create the database you can download the already configured Derby database from \\
-\href{url}{https://linkdropbox}
+\href{url}{https://www.dropbox.com/s/8c8rjc40b86wj77/travlendar.zip?dl=1}
 \\Unzip it and put it in the folder: \textit{.\textbackslash glassfish\textbackslash databases}\\ in the glassfish installation path (on Windows usually \\
 \textit{cd C:\textbackslash Program Files\textbackslash glassfish-4.1.1}
 \begin{figure}[H]
@@ -88,7 +94,7 @@ If at any moment you want to stop the database just execute command \\
 
 \subsection{Application Deployment}
 After having configured and set up the environment, download the \texttt{.war} file \texttt{Travlendar.war} at \\
-link release in github.
+\href{url}{https://github.com/MatteoMarziali/MarzialiMantovani/releases/download/v1.0/Travlendar.zip}, unzip it where you prefer.
 \\You can now follow one of these ways in order to deploy the Application on Glassfish.
 
 \subsubsection{Manual deployment from Admin Console}

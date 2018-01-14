@@ -1,0 +1,130 @@
+\subsection{Login/Signup}
+
+\begin{flushleft}
+
+\begin{table}[htp]
+
+\begin{tabular}{p{7cm}|p{7cm}}
+ Implemented requirement&Notes\\
+\hline
+\hline
+R1: Registration&\textcolor{green}{Accomplished}\\
+\hline
+R2: Login&\textcolor{green}{Accomplished}\\
+\hline
+
+\end{tabular}
+
+\caption{Req table } 
+\label{tab:Reqtable}
+
+\end{table}
+
+\end{flushleft}
+
+
+
+\subsection{Event CRUD operations}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{p{7cm}|p{7cm}}
+			Implemented requirement&Notes\\
+			\hline
+			\hline
+
+R3: The insertion of new event in the calendar. & \textcolor{green}{Accomplished}\\
+\hline
+R4: Modification of an event. & \textcolor{green}{Accomplished}\\
+\hline
+R5: Deletion of an event. & \textcolor{green}{Accomplished}\\
+\hline
+R7: Warning creation. & \textcolor{BurntOrange}{Partially accomplished} Everything works fine excepts for a minor bug. We made a test case consisting in inserting a meeting from 22.00p.m. to 23.00p.m. in Busto Arsizio and a meeting from 2.00a.m. to 3.00a.m. in Puglia on the following day, obviously the insertion should be prevented due to the impossibility to cover the distance between the meetings in just 3 hours, but this doesn't happen, the second meeting is accepted by the system.  \\
+\hline
+
+\end{tabular}
+
+\caption{Event table } 
+\label{tab:Eventtable}
+
+\end{table}
+
+\end{flushleft}
+
+
+
+\subsection{Routes}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{p{7cm}|p{7cm}}
+			Implemented requirement&Notes\\
+			\hline
+			\hline
+R8: The identification of the best mobility option for a transfer, according to user preferences and other external factors.& \textcolor{green}{  Accomplished} \\
+\hline
+
+\end{tabular}
+
+\caption{Mobility table } 
+\label{tab:Mobilitytable}
+
+\end{table}
+
+\end{flushleft}
+
+
+
+\subsection{Breaks}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{p{7cm}|p{7cm}}
+			Implemented requirement&Notes\\
+			\hline
+			\hline
+Definition of flexible daily breaks&\textcolor{green}{Accomplished}\\
+\hline
+Modification of flexible daily breaks&\\
+\hline
+Usage of flexible daily breaks&\\
+\hline
+
+\end{tabular}
+
+\caption{Break table } 
+\label{tab:Breaktable}
+
+\end{table}
+
+\end{flushleft}
+
+\clearpage
+
+\subsection{Travel mean preferences}
+
+\begin{flushleft}
+	
+	\begin{table}[htp]
+		
+		\begin{tabular}{p{7cm}|p{7cm}}
+			Implemented requirement&Notes\\
+			\hline
+			\hline
+R14: Some settings regarding the navigation profile, such as choosing the preferred means of transport&\textcolor{BurntOrange}{Partially accomplished} The unique preference the user can manage regards the travel means and in particular a prevalence order of them. This leads to a low level of customization for the users. Moreover the prevalence order prevent a user avoiding to adopt a specific travel mean, indeed it is not excluded but at most it is placed below other transports.   \\
+\hline
+
+\end{tabular}
+
+\caption{Nav table } 
+\label{tab:Navtable}
+
+\end{table}
+
+\end{flushleft}

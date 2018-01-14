@@ -1,0 +1,97 @@
+\documentclass{article}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{listings}
+%\usepackage{showkeys}
+%\usepackage{float} % here for H placement parameter
+\usepackage{flafter} 
+\setcounter{secnumdepth}{5}
+\usepackage[bookmarks=true]{hyperref}
+\author{Mirko Mantovani (893784), Matteo Marziali (893904)} 
+\date{\today}
+\title{Politecnico di Milano
+	\\A.A. 2017\@-\@2018
+	\\Software Engineering II project \\ \textbf{Travlendar+}
+	\\
+	\textbf{A}cceptance \textbf{T}est 
+	\\ \textbf{D}ocument 
+	\\
+	\textbf{V1}} 
+	\hypersetup{pdftitle={Acceptance Test Document},    % title
+	pdfauthor={Mirko Mantovani, Matteo Marziali},                     % author
+	pdfsubject={ATD},                        % subject of the document
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,       % color of internal links
+	citecolor=blue,       % color of links to bibliography
+	filecolor=black,        % color of file links
+	urlcolor=purple,        % color of external links
+   }
+\begin{document}
+\maketitle
+\begin{center}
+	\includegraphics[width=7cm]{polimi-logo}
+\end{center}
+\clearpage
+{\hypersetup{hidelinks}\tableofcontents}
+
+
+\clearpage
+\section{Analyzed project}
+\subsection{Project info}
+The project analysed is \textbf{EventMI} developed by: Guglielmo Manneschi and Andrea Mecchia.
+\\The link to the private repository containing code and documentation is: \\
+\href{url}{https://github.com/nondecidibile/ManneschiMecchia}
+
+\subsection{Documents considered}
+The documents we took into consideration when analysing and testing the application are:
+\begin{itemize}
+\item \textbf{ITD:} from which we found the implemented requirements/functionalities.
+\item \textbf{RASD1.1:} from which we found all the requirements and checked the coherence with the ones that were actually implemented.
+\item \textbf{DD1.0:}
+\end{itemize}
+
+
+\clearpage
+\section{Installation Setup}
+Since the last version of the application was already remotely deployed and the group provided users with public access to it at the address page: \href{url}{http://eventmi.date}, we avoided the installation on our machines and preferred to concentrate the little time we had on performing a thorough testing of the requirements they implemented.\\ The installation manual seems clear though, even if a installation guide based on a more widespread operating system, such as Windows, would have been better.
+
+\clearpage
+\section{Acceptance Test Cases}
+\subsection{Creation and management of flexible breaks}
+\input{testtables/breaks}
+
+\clearpage
+\subsection{Use cases}
+\input{testtables/usecases}
+
+\clearpage
+\section{Additional notes}
+
+
+
+
+\clearpage
+\section{Appendix}
+
+\subsection{Effort spent}
+\begin{itemize}
+
+\item Matteo Marziali working hours:  $\approxeq$ 2 hours
+
+\item Mirko Mantovani working hours:  $\approxeq$ 2 hours
+
+
+
+\end{itemize}
+
+
+
+\end{document}

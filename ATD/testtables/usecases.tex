@@ -1,0 +1,48 @@
+In this section we check that all use cases presented in the RASD matches the implementation.
+
+\begin{flushleft}
+
+\begin{table}[htp]
+
+\begin{tabular}{p{3cm}|p{5cm}|p{5cm}}
+\bf\large Use Case&\bf\large Exit Condition&\bf\large Exceptions\\
+\hline
+\hline
+\textbf{Registration}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Login}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Add event to calendar}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Edit an event in the calendar}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Removing an event from the calendar}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Recompute transfer for an event}&\large\bf\textcolor{red}{Incorrect}: It displays an error: "recompute not allowed over insecure network", yet the application is not present in a secure domain (https)&\large\bf\textcolor{red}{Incorrect}: It is stated no exceptions presents where instead an exception is always presented\\
+\hline
+\textbf{Transfer notiﬁcation}&\large\bf Not implemented&\large\bf Not implemented\\
+\hline
+\textbf{Deﬁne a new break}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Modify a break}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Delete a break}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Add a preferred mean of transport}&\large\bf\textcolor{green}{Correct}&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{Select a navigation proﬁle
+}&\large\bf Not implemented&\large\bf Not implemented\\
+\hline
+
+
+
+
+\end{tabular}
+
+\caption{Use cases tests} 
+\label{tab:usecases}
+
+\end{table}
+
+\end{flushleft}
+

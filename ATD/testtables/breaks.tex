@@ -1,0 +1,54 @@
+Requirements relative to goal G3 which is: "Ensure that appointments and related trasfers dont preclude a persons daily breaks, such as lunch break."
+
+
+\begin{flushleft}
+
+\begin{table}[htp]
+
+\begin{tabular}{p{3cm}|p{10cm}}
+\bf\large Implemented requirements&\bf\large Notes\\
+\hline
+\hline
+\textbf{R11}.1 Adding a break specifying a time interval and a minimum duration&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{R11}.2 Modify a break specifying a time interval and a minimum duration&\large\bf\textcolor{green}{Correct}\\
+\hline
+\textbf{R11}.3 Delete a break&\large\bf\textcolor{green}{Correct}\\
+\hline
+
+\end{tabular}
+
+\caption{Breaks: R11} 
+\label{tab:R11}
+
+\end{table}
+
+\end{flushleft}
+
+
+\begin{flushleft}
+
+\begin{table}[htp]
+
+\begin{tabular}{p{3cm}|p{10cm}}
+\bf\large Implemented requirements&\bf\large Notes\\
+\hline
+\hline
+\textbf{R12} The system must organize the transfers so that all the minimum durations of the breaks are respected, or show a warning in the other case.&\textbf{\textcolor{red}{\large Partially correct}}
+In particular: it's not very clear what organizing the transfer means, we believe the semantics of this requirement is that the system has to be able to, at meeting insertion time, either determining whether the inserted meeting does not overlap with the break in a way such that it is impossible for the break to actually happen (in order to be able to be scheduled, the break has to be of at least the minimum specified length), or to determining if the inserted break overlaps with the already inserted meetings and would not be able to be properly scheduled. With respect to this the following minor bugs have been detected during the testing phase:
+\begin{itemize}
+\item If the event is created before the break, the system does not detect the unfeasibility of the break scheduling: as test case I created a meeting from 17:00 to 18:00 then I created a break from 17:00 to 18.10 with a minimum time of 20 minutes, the system does not tell the user in any way the incompatibility of the event and the break.
+\item Extending the above point, if I create a meeting that overlaps again with the break, even if the break is already created, the system does not tell me it is not compatible and lets the user create it. As test case from the above point state I created an event from 18:05 to 19:00 and the outcome is the creation of the event without warnings.
+\item Another important thing to notice is that when considering the feasibility of a break, the minimum duration time is considered summing up all the time slices left free inbetween the meetings overlapping with the break, this could mean that for instance one could create a lunch break that has to last for at least half an hour from a certain starting time to and ending time, and then creating some events into this time range leaving small bunches of minutes between the events, and as long as the sum of all the small pauses sums up to more than thirty minutes the system would not complain about that and would let you split a lunch in several and distant moments.
+\end{itemize}
+\\
+\hline
+
+\end{tabular}
+
+\caption{Breaks: R12} 
+\label{tab:R12}
+
+\end{table}
+
+\end{flushleft}

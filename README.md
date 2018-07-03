@@ -217,7 +217,7 @@ this page, a guest can reach the sign up form, a user can log himself
 in,can insert a meeting by tapping onto a day in the calendar,can manage
 his preferences and even access the warnings
 
-![image](media/Homepage.png)
+![image](media/homepage.png)
 
 
 ### Meeting Creation

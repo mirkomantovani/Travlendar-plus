@@ -17,7 +17,7 @@ _Mirko Mantovani_ and _Matteo Marziali_
 Introduction
 ============
 
-The main purpose of Travlendar+ allowing
+The main purpose of Travlendar+ is allowing
 users to easily manage their daily meetings and commitments, by
 providing some useful features such as finding the best means of
 transport to reach the appointment place and easily know the quickest
